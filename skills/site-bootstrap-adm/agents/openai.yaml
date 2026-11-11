@@ -1,0 +1,4 @@
+interface:
+  display_name: "Astro website setup"
+  short_description: "Prepare a small Astro/Node website for self-hosted Coolify."
+  default_prompt: "Use $site-bootstrap-adm to prepare this website from the reusable Astro/Node template."

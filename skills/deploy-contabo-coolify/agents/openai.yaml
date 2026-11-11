@@ -1,0 +1,4 @@
+interface:
+  display_name: "Contabo and Coolify hosting"
+  short_description: "Host an Astro/Node website on a Contabo VPS with Coolify."
+  default_prompt: "Use $deploy-contabo-coolify to deploy this website to the selected Contabo server with Coolify."
