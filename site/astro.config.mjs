@@ -7,8 +7,15 @@ try {
   if (error.code !== 'ENOENT') throw error;
 }
 
+const site = new URL(process.env.SITE_URL || 'http://localhost:4321');
+
 export default defineConfig({
-  site: process.env.SITE_URL || 'http://localhost:4321',
+  site: site.href,
+  // Behind Coolify's proxy Astro only sees the internal host. Trusting X-Forwarded-Host for our own
+  // domain keeps the form-post origin check from rejecting real visitors.
+  security: {
+    allowedDomains: [{ protocol: site.protocol.slice(0, -1), hostname: site.hostname, port: site.port || undefined }],
+  },
   output: 'static',
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },

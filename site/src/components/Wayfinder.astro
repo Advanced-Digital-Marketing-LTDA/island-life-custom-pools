@@ -1,0 +1,39 @@
+---
+import { home } from '../lib/content';
+const stops = [...home.circuit.rooms.map((r) => ({ id: r.id, name: r.name })), { id: 'quote', name: 'Free quote' }];
+---
+<div class="waterline" aria-hidden="true"></div>
+<nav class="wayfinder" aria-label="Backyard circuit">
+  <ol>
+    {stops.map((s, i) => (
+      <li><a href={`#${s.id}`}><span class="wf-label">0{i + 1} {s.name}</span><span class="wf-dot"></span></a></li>
+    ))}
+  </ol>
+</nav>
+
+<script>
+  const root = document.documentElement;
+  const wf = document.querySelector<HTMLElement>('.wayfinder');
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.wayfinder a')];
+  const sections = links.map((a) => document.getElementById(a.hash.slice(1))).filter((s): s is HTMLElement => !!s);
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const max = root.scrollHeight - innerHeight;
+    root.style.setProperty('--p', String(max > 0 ? Math.min(1, scrollY / max) : 0));
+    if (!sections.length) return;
+    const top = (s: HTMLElement) => s.getBoundingClientRect().top + scrollY;
+    const first = top(sections[0]);
+    const last = top(sections[sections.length - 1]);
+    const c = last > first ? (scrollY + innerHeight * 0.4 - first) / (last - first) : 0;
+    root.style.setProperty('--c', String(Math.max(0, Math.min(1, c))));
+    wf?.toggleAttribute('data-show', scrollY > innerHeight * 0.6);
+    let current = -1;
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top <= innerHeight * 0.45) current = i; });
+    links.forEach((a, i) => (i === current ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+  };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', queue);
+  update();
+</script>

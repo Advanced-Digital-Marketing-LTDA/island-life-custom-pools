@@ -1,42 +1,39 @@
 /*
-  Brand tokens. Every brand color lives here, in one place.
-  Sampled from the Island Life Custom Pools logo (public/images/island-life-logo.webp):
-    navy   #010031  palm trees and lettering outline
-    blue   #0c75b6  lettering
-    sky    #75b5d2  ring around the sun
-    glow   #fdeeb4  sun glow (action color below is the same hue, deepened for contrast)
+  Brand tokens. Every color lives here, in one place.
+  Logo-sampled brand colors (public/images/island-life-logo.svg):
+    navy #010031, blue #0c75b6, sky #75b5d2, glow #fdeeb4
+  The Thermal Circuit world drenches the page in deep lagoon water and sets
+  honed-stone plaques and brass fittings on it. Brass is the logo glow hue, deepened.
 */
 :root {
-  /* water: brand blue and sky */
-  --aqua-500: #0c75b6;
-  --aqua-300: #75b5d2;
-  --aqua-100: #d2e8f2;
+  /* water */
+  --lagoon: #06384a;          /* ground: deep pool water */
+  --lagoon-deep: #03242f;     /* footer, pressed states */
+  --lagoon-lift: #0b4d65;     /* raised panels on the ground */
+  --blue: #0c75b6;            /* brand blue */
+  --sky: #75b5d2;             /* brand sky: accents and links on water */
 
-  /* ink and deep surfaces: brand navy */
-  --lagoon-900: #010031;
-  --lagoon-800: #010031;
-  --lagoon-600: #0a6199; /* brand blue, darkened for text and hover fills (4.5:1+) */
-  --lagoon-500: #4a5379;
+  /* stone */
+  --stone: #e8dcc8;           /* honed travertine plaques */
+  --stone-light: #f4eee3;     /* lighter stone sections */
 
-  /* ground: pale water tinted toward the brand blue */
-  --ground: #f1f7fb;
-  --ground-2: #ddeaf3;
-  --ground-3: #c9dcea;
+  /* brass */
+  --brass: #e0b04a;           /* action fill; ink text on it */
+  --brass-press: #cf9f3a;
+  --brass-deep: #7a5614;      /* brass as text on stone */
 
-  /* action: the logo's sun glow hue */
-  --sun: #fcd84a;
-  --sun-press: #f7cc26;
+  /* type colors */
+  --ink: #0a2230;             /* text on stone */
+  --ink-soft: #3d5563;
+  --on-water: #f4eee3;        /* text on lagoon */
+  --on-water-soft: #bcd3dc;
+  --link-on-stone: #0a6199;
 
-  /* roles */
-  --ink: var(--lagoon-800);
-  --ink-soft: var(--lagoon-500);
-  --link: var(--lagoon-600);
-  --line: color-mix(in oklab, var(--lagoon-800) 16%, transparent);
-  --line-strong: color-mix(in oklab, var(--lagoon-800) 40%, transparent);
-  --on-deep: #e8f1f8;
-  --on-deep-soft: #a9bfd6;
+  /* lines */
+  --rule-water: color-mix(in oklab, var(--sky) 38%, transparent);
+  --rule-stone: color-mix(in oklab, var(--ink) 22%, transparent);
 
   /* type */
-  --font-display: 'Bricolage Grotesque Variable', sans-serif;
-  --font-body: 'Figtree Variable', sans-serif;
+  --font-display: 'Marcellus', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'Figtree Variable', system-ui, sans-serif;
 }

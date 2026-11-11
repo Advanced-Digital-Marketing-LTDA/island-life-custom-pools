@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import { settings } from '../lib/content';
 const primary = settings.nav.filter((n) => n.primary);
 ---
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap bar">
     <a class="brand" href="/" aria-label={`${settings.name}, home`}>
       {settings.logo
@@ -14,13 +14,13 @@ const primary = settings.nav.filter((n) => n.primary);
       {primary.map((n) => <a href={n.href}>{n.short || n.label}</a>)}
     </nav>
     <div class="bar-actions">
-      <a class="btn btn-ghost" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
-      <a class="btn btn-sun" href="#quote">Request a free quote</a>
+      <a class="btn btn-stone" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
+      <a class="btn btn-brass" href="#quote">Request a free quote</a>
     </div>
     <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open menu"><Icon name="menu" />Menu</button>
   </div>
 
-  <div id="menu" popover class="menu-panel on-deep">
+  <div id="menu" popover class="menu-panel">
     <div class="menu-top">
       <strong>{settings.name}</strong>
       <button class="menu-close" type="button" popovertarget="menu" popovertargetaction="hide">Close</button>
@@ -32,15 +32,19 @@ const primary = settings.nav.filter((n) => n.primary);
       {settings.hours.map((h) => <span>{h.days}: {h.time}</span>)}
     </div>
     <div class="menu-actions">
-      <a class="btn btn-sun" href="#quote">Request a free quote</a>
-      <a class="btn btn-ghost" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
+      <a class="btn btn-brass" href="#quote">Request a free quote</a>
+      <a class="btn btn-stone" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
     </div>
   </div>
 </header>
 
 <script>
+  const header = document.getElementById('site-header');
   const menu = document.getElementById('menu');
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => menu.hidePopover());
   });
+  const solid = () => header?.toggleAttribute('data-solid', scrollY > 40);
+  addEventListener('scroll', solid, { passive: true });
+  solid();
 </script>

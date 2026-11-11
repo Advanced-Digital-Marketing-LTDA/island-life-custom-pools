@@ -19,13 +19,14 @@ npm start
 - `content/home.json`: every word on the home page.
 - `content/settings.json`: logo, phone, hours, navigation, social links and the quote form endpoint.
 - `src/styles/brand.css`: brand colors, sampled from the logo (`public/images/island-life-logo.svg` wraps the logo bitmap; a transparent PNG or SVG would let the header and footer drop the blend and the white plate).
+- `public/oasis/`: the photos and videos the home page uses. Each photo is a `<name>-1600.webp` with a `<name>-800.webp` twin for phones (keep that naming when you add one); videos are short muted H.264 loops in `public/oasis/video/` with a webp poster. Full-size originals live in `originals/` and are not shipped in the Docker image.
 - `DESIGN.md` and `PRODUCT.md`: the design system and product context.
 
 Tina edits these JSON files and commits them to Git. The production build does not use Tina: `npm run build` reads the JSON directly. `TINA_CLIENT_ID` and `TINA_TOKEN` are only for editing through Tina Cloud.
 
 ## Quote form
 
-Set `Quote form endpoint` in Site settings (`quoteFormAction` in `content/settings.json`). The form sends a multipart POST with `name`, `email`, `phone`, `zip`, `contact_method`, `interest` and `message`. Until an endpoint is set, the form tells the visitor it isn't connected.
+The form posts to `/api/quote` (`quoteFormAction` in `content/settings.json`), a server route in `src/pages/api/quote.ts` that validates the fields and emails the lead through Proton SMTP. Set these as runtime variables in Coolify: `SMTP_USER` (the Proton address that owns the token), `SMTP_TOKEN` (its SMTP token), `LEAD_TO` (where leads go); `SMTP_HOST` and `SMTP_PORT` default to `smtp.protonmail.ch` and `587`. Without them the route returns 503 and the visitor is told to call. A hidden `company` field is the spam trap, and the route sends at most 3 emails per visitor IP and 30 in total per hour (in memory, so a restart resets it) to protect the Proton account. If other projects share that Proton account, create a separate SMTP token for this site so it can be revoked on its own.
 
 ## Deploy
 

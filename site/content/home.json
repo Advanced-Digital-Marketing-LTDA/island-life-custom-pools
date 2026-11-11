@@ -3,27 +3,12 @@
   "seoDescription": "Book a free design consult with Custom Pool And Patio Builders at Island Life Custom Pools and enjoy resort living.",
   "hero": {
     "headline": "Bring your vacation dreams home",
-    "subhead": "Houston pool & patio builders",
     "lead": "Custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, and Houston. We build a 3D model of your pool and outdoor space, so you see it before it’s built.",
     "quoteLabel": "Request a free quote",
-    "hotspots": [
-      {
-        "id": "pool",
-        "label": "Custom pools",
-        "href": "/custom-pools/"
-      },
-      {
-        "id": "patio",
-        "label": "Custom patios",
-        "href": "/custom-patios/"
-      },
-      {
-        "id": "kitchen",
-        "label": "Outdoor kitchens",
-        "href": "/outdoor-kitchens/"
-      }
-    ],
-    "plateNote": "Illustrative plan"
+    "video": "/oasis/video/model-flythrough.mp4",
+    "poster": "/oasis/video/model-flythrough.webp",
+    "videoAlt": "A 3D model of a backyard with palms, a pool and a spa, slowly flying through",
+    "videoCaption": "A 3D model from one of our design reviews"
   },
   "trust": [
     {
@@ -73,9 +58,10 @@
   "design": {
     "title": "See your pool before it’s built",
     "text": "At Island Life Custom Pools we create a 3D model of your pool and outdoor space so you can see your vision come to life.",
-    "videoSrc": "https://s2s.558.myftpupload.com/wp-content/uploads/2023/10/Island-Life-Skaggs-Family-Revisions_StoryBoard_01_001.mp4",
-    "videoLabel": "Our 3D design software in action",
-    "caption": "3D model, design review"
+    "videoSrc": "/oasis/video/design-walkthrough.mp4",
+    "videoLabel": "Play the 3D walkthrough",
+    "caption": "Our 3D design software in action",
+    "poster": "/oasis/video/design-walkthrough.webp"
   },
   "process": {
     "title": "How a build runs",
@@ -104,29 +90,113 @@
     "quote": "Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way.",
     "by": "Jasmine H."
   },
-  "services": {
-    "title": "Pools, patios, and outdoor kitchens",
-    "items": [
+  "circuit": {
+    "title": "One backyard, four rooms",
+    "lead": "Walk the yard room by room: each one is designed to work with the others.",
+    "rooms": [
       {
-        "id": "pool",
+        "id": "plunge",
+        "name": "Plunge",
         "title": "Custom pools",
         "text": "Spectacular backyard pools that transport you to your own island paradise, designed around your vision and installed by our team.",
         "linkLabel": "Explore custom pools",
-        "href": "/custom-pools/"
+        "href": "/custom-pools/",
+        "photo": "/oasis/grotto-falls-1600.webp",
+        "alt": "Freeform pool with a stacked-rock grotto and waterfall under tall trees",
+        "video": "/oasis/video/built-pool.mp4",
+        "videoPoster": "/oasis/video/built-pool.webp",
+        "videoAlt": "Footage of a finished freeform pool with a spa and a sun shelf with swim-up stools",
+        "gallery": [
+          {
+            "photo": "/oasis/sun-shelf-1600.webp",
+            "alt": "Pool with an in-water sun shelf, loungers and a turf-striped stone deck"
+          },
+          {
+            "photo": "/oasis/lagoon-1600.webp",
+            "alt": "Natural-edge lagoon pool set among pine trees at dusk"
+          },
+          {
+            "photo": "/oasis/stone-weir-1600.webp",
+            "alt": "Stacked-stone water wall pouring into a teal pool"
+          }
+        ]
       },
       {
-        "id": "patio",
+        "id": "lounge",
+        "name": "Lounge",
         "title": "Custom patios",
         "text": "Patio covers are an important part of our pool builds. We craft an outdoor space you can be proud of: the perfect home away from home.",
         "linkLabel": "Explore custom patios",
-        "href": "/custom-patios/"
+        "href": "/custom-patios/",
+        "photo": "/oasis/gazebo-gold-1600.webp",
+        "alt": "Round gazebo with seating on a stone patio at golden hour",
+        "video": "",
+        "videoPoster": "",
+        "videoAlt": "",
+        "gallery": [
+          {
+            "photo": "/oasis/stone-pavilion-1600.webp",
+            "alt": "Stone patio pavilion beside a backyard pool in warm evening light"
+          },
+          {
+            "photo": "/oasis/white-patio-1600.webp",
+            "alt": "Covered white patio beside a pool with turf strips and in-pool loungers"
+          },
+          {
+            "photo": "/oasis/pergola-1600.webp",
+            "alt": "Timber pergola with climbing roses over a stone patio"
+          }
+        ]
       },
       {
-        "id": "kitchen",
+        "id": "table",
+        "name": "Table",
         "title": "Custom outdoor kitchens",
         "text": "Outdoor kitchens made for entertaining and relaxing, designed to fit your pool and patio.",
         "linkLabel": "Explore outdoor kitchens",
-        "href": "/outdoor-kitchens/"
+        "href": "/outdoor-kitchens/",
+        "photo": "/oasis/swim-up-bar-1600.webp",
+        "alt": "Covered outdoor kitchen with a swim-up bar at the pool’s edge",
+        "video": "",
+        "videoPoster": "",
+        "videoAlt": "",
+        "gallery": [
+          {
+            "photo": "/oasis/white-pavilion-1600.webp",
+            "alt": "White-columned pavilion with an outdoor kitchen beside the pool"
+          },
+          {
+            "photo": "/oasis/kitchen-dusk-800.webp",
+            "alt": "Outdoor kitchen with a long counter under a covered patio at dusk"
+          }
+        ]
+      },
+      {
+        "id": "fire",
+        "name": "Fire",
+        "title": "Fire pits and fireplaces",
+        "text": "Pool, spa, fire pit, fireplace: we design the whole space to work together, so the evening lasts longer than the sunset.",
+        "linkLabel": "Ask about fire features",
+        "href": "#quote",
+        "photo": "/oasis/stone-hearth-1600.webp",
+        "alt": "Stone fireplace with a mounted television under a covered patio",
+        "video": "",
+        "videoPoster": "",
+        "videoAlt": "",
+        "gallery": [
+          {
+            "photo": "/oasis/covered-hearth-1600.webp",
+            "alt": "Covered patio with a stone fireplace and seating overlooking the yard"
+          },
+          {
+            "photo": "/oasis/white-hearth-1600.webp",
+            "alt": "Covered white patio with a fireplace, ceiling fans and a television"
+          },
+          {
+            "photo": "/oasis/hearth-tv-1600.webp",
+            "alt": "Outdoor fireplace with a television beside a covered seating area"
+          }
+        ]
       }
     ]
   },
@@ -163,7 +233,8 @@
         "quote": "Tim exceeded our expectations with the construction of our beautiful pool. He was extremely communicative, detail oriented and surrounded himself with quality subs.",
         "by": "Jeff L."
       }
-    ]
+    ],
+    "photo": "/oasis/pavilion-dusk-1600.webp"
   },
   "recent": {
     "title": "Recent work on Instagram",
@@ -250,6 +321,7 @@
       "Patio",
       "Outdoor kitchen"
     ],
-    "submitLabel": "Send my request"
+    "submitLabel": "Send my request",
+    "photo": "/oasis/turquoise-day-1600.webp"
   }
 }

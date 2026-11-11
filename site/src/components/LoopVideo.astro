@@ -1,0 +1,33 @@
+---
+// A muted looping background video. A button with data-pause-for="<id>" elsewhere on the page controls it.
+// Without JS or with reduced motion it shows its poster; it only plays while on screen.
+interface Props { id: string; src: string; poster?: string; label: string; preload?: 'none' | 'metadata' }
+const { id, src, poster, label, preload = 'metadata' } = Astro.props;
+---
+<video id={id} data-loop muted loop playsinline preload={preload} poster={poster} aria-label={label}>
+  <source src={src} type="video/mp4" />
+</video>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLVideoElement>('video[data-loop]').forEach((v) => {
+    const btn = document.querySelector<HTMLButtonElement>(`[data-pause-for="${v.id}"]`);
+    let userPaused = reduce.matches;
+    const sync = () => {
+      if (!btn) return;
+      btn.dataset.state = v.paused ? 'paused' : 'playing';
+      btn.setAttribute('aria-label', v.paused ? 'Play background video' : 'Pause background video');
+    };
+    v.addEventListener('play', sync);
+    v.addEventListener('pause', sync);
+    btn?.addEventListener('click', () => {
+      if (v.paused) { userPaused = false; v.play().catch(() => {}); }
+      else { userPaused = true; v.pause(); }
+    });
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !userPaused) v.play().catch(() => {});
+      else v.pause();
+    }, { threshold: 0.25 }).observe(v);
+    sync();
+  });
+</script>

@@ -2,17 +2,25 @@
 import { home } from '../lib/content';
 const p = home.process;
 ---
-<section class="section" aria-labelledby="process-title">
-  <div class="wrap">
-    <div class="section-head"><h2 id="process-title">{p.title}</h2></div>
+<section class="section on-stone" aria-labelledby="process-title">
+  <div class="wrap process-grid">
+    <div class="process-side">
+      <h2 id="process-title">{p.title}</h2>
+      <blockquote>
+        <p>“{p.quote}”</p>
+        <cite>{p.by}</cite>
+      </blockquote>
+    </div>
     <ol class="steps">
-      {p.steps.map((s) => (
-        <li><h3>{s.title}</h3><p>{s.text}</p></li>
+      {p.steps.map((s, i) => (
+        <li class="step">
+          <span class="num">0{i + 1}</span>
+          <div>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        </li>
       ))}
     </ol>
-    <blockquote class="process-quote">
-      <p>“{p.quote}”</p>
-      <cite>{p.by}</cite>
-    </blockquote>
   </div>
 </section>

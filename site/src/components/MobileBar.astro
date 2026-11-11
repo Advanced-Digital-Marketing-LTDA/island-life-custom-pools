@@ -2,7 +2,20 @@
 import Icon from './Icon.astro';
 import { settings } from '../lib/content';
 ---
-<div class="mobile-bar">
-  <a class="btn btn-ink" href={settings.phoneHref}><Icon name="phone" />Call</a>
-  <a class="btn btn-sun" href="#quote">Free quote</a>
+<div class="mobile-bar" id="mobile-bar">
+  <a class="btn btn-stone" href={settings.phoneHref}><Icon name="phone" />Call</a>
+  <a class="btn btn-brass" href="#quote">Free quote</a>
 </div>
+
+<script>
+  // The hero already shows both actions, so the bar waits until they scroll out of view.
+  const bar = document.getElementById('mobile-bar');
+  const hero = document.querySelector('.hero .cta-pair');
+  if (bar && hero) {
+    bar.dataset.hidden = '';
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) bar.dataset.hidden = '';
+      else delete bar.dataset.hidden;
+    }).observe(hero);
+  }
+</script>

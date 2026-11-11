@@ -3,14 +3,11 @@ import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const p = home.proof;
 ---
-<section class="section" aria-labelledby="proof-title">
+<section class="section proof" aria-labelledby="proof-title">
+  {p.photo && <div class="proof-bg"><img src={p.photo} alt="" width="1600" height="1066" loading="lazy" decoding="async" /></div>}
   <div class="wrap">
     <div class="section-head"><h2 id="proof-title">{p.title}</h2></div>
     <div class="proof-top">
-      <div class="google">
-        <strong><Icon name="check" />{p.google.title}</strong>
-        <p>{p.google.text}</p>
-      </div>
       <figure class="featured">
         <blockquote>
           <p class="q">“{p.featured.quote}”</p>
@@ -18,10 +15,14 @@ const p = home.proof;
           <cite>{p.featured.by}</cite>
         </blockquote>
       </figure>
+      <div class="plaque google">
+        <strong><Icon name="check" />{p.google.title}</strong>
+        <p>{p.google.text}</p>
+      </div>
     </div>
     <div class="reviews">
       {p.reviews.map((r) => (
-        <figure class="review">
+        <figure class="plaque review">
           <blockquote><p>“{r.quote}”</p></blockquote>
           <cite>{r.by}</cite>
         </figure>

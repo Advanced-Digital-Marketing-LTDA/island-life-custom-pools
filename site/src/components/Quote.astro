@@ -3,15 +3,17 @@ import { settings, home } from '../lib/content';
 const q = home.quote;
 ---
 <section class="quote section" id="quote" aria-labelledby="quote-title">
+  {q.photo && <div class="quote-bg"><img src={q.photo} alt="" width="1600" height="1067" loading="lazy" decoding="async" /></div>}
+  <div class="steam" aria-hidden="true"></div>
   <div class="wrap quote-grid">
     <div class="call">
       <h2 id="quote-title">{q.title}</h2>
       <p class="lead">{q.lead}</p>
       <div>
         <p class="muted" style="font-weight:600;margin-bottom:.5rem">{q.callTitle}</p>
-        <a class="call-num" href={settings.phoneHref}>{settings.phone}</a>
+        <a class="call-num tnum" href={settings.phoneHref}>{settings.phone}</a>
       </div>
-      <ul class="hours">
+      <ul class="hours tnum">
         {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
       </ul>
       <ul class="areas">
@@ -19,29 +21,32 @@ const q = home.quote;
       </ul>
     </div>
 
-    <form class="form" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} novalidate>
+    <form class="form plaque" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} data-phone={settings.phone} novalidate>
+      <div aria-hidden="true" style="position:absolute;left:-9999px">
+        <label>Leave this empty <input name="company" type="text" tabindex="-1" autocomplete="off" /></label>
+      </div>
       <div class="row two">
         <div class="field">
           <label for="q-name">Your name</label>
-          <input id="q-name" name="name" type="text" autocomplete="name" required />
-          <span class="err">Enter your name.</span>
+          <input id="q-name" name="name" type="text" autocomplete="name" required aria-describedby="q-name-err" />
+          <span class="err" id="q-name-err">Enter your name.</span>
         </div>
         <div class="field">
           <label for="q-zip">Zip code</label>
-          <input id="q-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required />
-          <span class="err">Enter a 5-digit zip code.</span>
+          <input id="q-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required aria-describedby="q-zip-err" />
+          <span class="err" id="q-zip-err">Enter a 5-digit zip code.</span>
         </div>
       </div>
       <div class="row two">
         <div class="field">
           <label for="q-email">Email address</label>
-          <input id="q-email" name="email" type="email" autocomplete="email" required />
-          <span class="err">Enter a valid email address.</span>
+          <input id="q-email" name="email" type="email" autocomplete="email" required aria-describedby="q-email-err" />
+          <span class="err" id="q-email-err">Enter a valid email address.</span>
         </div>
         <div class="field">
           <label for="q-phone">Phone number</label>
-          <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
-          <span class="err">Enter your phone number.</span>
+          <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="q-phone-err" />
+          <span class="err" id="q-phone-err">Enter your phone number.</span>
         </div>
       </div>
       <fieldset class="field">
@@ -61,7 +66,7 @@ const q = home.quote;
         <label for="q-msg">Message <span class="muted" style="font-weight:500">(optional)</span></label>
         <textarea id="q-msg" name="message" rows="4"></textarea>
       </div>
-      <button class="btn btn-sun" type="submit">{q.submitLabel}</button>
+      <button class="btn btn-brass" type="submit">{q.submitLabel}</button>
       <p class="status" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -86,8 +91,10 @@ const q = home.quote;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
+      const names: Record<string, string> = { name: 'name', zip: 'zip code', email: 'email address', phone: 'phone number', interest: 'what you are interested in' };
+      const bad = [...new Set([...form.querySelectorAll<HTMLInputElement>(':invalid')].map((el) => names[el.name]).filter(Boolean))];
       form.querySelector<HTMLElement>(':invalid')?.focus();
-      setStatus('Check the highlighted fields.', 'error');
+      setStatus(`Please check your ${bad.join(', ')}.`, 'error');
       return;
     }
     const endpoint = form.dataset.endpoint;
@@ -106,7 +113,7 @@ const q = home.quote;
       setStatus(`Thanks. We’ll reach out by ${method}.`);
     } catch (err) {
       console.error('Quote form submit failed', err);
-      setStatus("That didn’t send. Call us instead.", 'error');
+      setStatus(`That didn’t send. Please call us at ${form.dataset.phone}.`, 'error');
     } finally {
       if (btn) btn.disabled = false;
     }

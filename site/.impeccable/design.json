@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T21:01:09Z",
+  "title": "Design System: Island Life Custom Pools",
+  "extensions": {
+    "colorMeta": {
+      "lagoon": {
+        "role": "neutral",
+        "displayName": "Deep Lagoon",
+        "canonical": "#06384a",
+        "tonalRamp": [
+          "#000d15",
+          "#06384a",
+          "#1a485b",
+          "#3b687c",
+          "#5c8a9e",
+          "#7eadc2",
+          "#a2d1e8",
+          "#dbf3ff"
+        ]
+      },
+      "lagoon-deep": {
+        "role": "neutral",
+        "displayName": "Pool Floor Night",
+        "canonical": "#03242f",
+        "tonalRamp": [
+          "#000d14",
+          "#03242f",
+          "#274753",
+          "#466773",
+          "#678896",
+          "#89abb9",
+          "#acd0de",
+          "#d9f4fe"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Brand Blue",
+        "canonical": "#0c75b6",
+        "tonalRamp": [
+          "#000c1a",
+          "#012742",
+          "#04466f",
+          "#0c75b6",
+          "#2c89cb",
+          "#54adf2",
+          "#98d0ff",
+          "#e1f1ff"
+        ]
+      },
+      "sky": {
+        "role": "secondary",
+        "displayName": "Pool Sky",
+        "canonical": "#75b5d2",
+        "tonalRamp": [
+          "#000d15",
+          "#002939",
+          "#014961",
+          "#286a84",
+          "#4c8ca7",
+          "#75b5d2",
+          "#93d4f1",
+          "#dbf3fe"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Honed Travertine",
+        "canonical": "#e8dcc8",
+        "tonalRamp": [
+          "#120a00",
+          "#2d2414",
+          "#4a4130",
+          "#6a604e",
+          "#8c816f",
+          "#afa390",
+          "#d3c8b4",
+          "#e8dcc8"
+        ]
+      },
+      "stone-light": {
+        "role": "neutral",
+        "displayName": "Pale Travertine",
+        "canonical": "#f4eee3",
+        "tonalRamp": [
+          "#0e0b04",
+          "#29241c",
+          "#464139",
+          "#666157",
+          "#878278",
+          "#aaa49a",
+          "#cec8be",
+          "#f4eee3"
+        ]
+      },
+      "brass": {
+        "role": "primary",
+        "displayName": "Polished Brass",
+        "canonical": "#e0b04a",
+        "tonalRamp": [
+          "#110a00",
+          "#322200",
+          "#563d00",
+          "#7c5b01",
+          "#a67a04",
+          "#cc9d33",
+          "#e0b04a",
+          "#ffecca"
+        ]
+      },
+      "brass-press": {
+        "role": "primary",
+        "displayName": "Pressed Brass",
+        "canonical": "#cf9f3a",
+        "tonalRamp": [
+          "#120a00",
+          "#322201",
+          "#563d02",
+          "#7d5b06",
+          "#a67a0d",
+          "#cf9f3a",
+          "#f2c15f",
+          "#ffeccb"
+        ]
+      },
+      "brass-deep": {
+        "role": "primary",
+        "displayName": "Aged Brass",
+        "canonical": "#7a5614",
+        "tonalRamp": [
+          "#120900",
+          "#342100",
+          "#593c01",
+          "#7a5614",
+          "#a17b3e",
+          "#c59e61",
+          "#ebc284",
+          "#ffeccf"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#0a2230",
+        "tonalRamp": [
+          "#000d17",
+          "#0a2230",
+          "#2d4555",
+          "#4c6575",
+          "#6c8698",
+          "#8ea9bb",
+          "#b2cee0",
+          "#dff2ff"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "#3d5563",
+        "tonalRamp": [
+          "#000d16",
+          "#112834",
+          "#3d5563",
+          "#4d6573",
+          "#6d8696",
+          "#8fa9b9",
+          "#b3cede",
+          "#def2fe"
+        ]
+      },
+      "on-water": {
+        "role": "neutral",
+        "displayName": "Water Light",
+        "canonical": "#f4eee3",
+        "tonalRamp": [
+          "#0e0b04",
+          "#29241c",
+          "#464139",
+          "#666157",
+          "#878278",
+          "#aaa49a",
+          "#cec8be",
+          "#f4eee3"
+        ]
+      },
+      "on-water-soft": {
+        "role": "neutral",
+        "displayName": "Mist Blue",
+        "canonical": "#bcd3dc",
+        "tonalRamp": [
+          "#000e14",
+          "#15282f",
+          "#32454d",
+          "#50656d",
+          "#71868f",
+          "#93a9b2",
+          "#bcd3dc",
+          "#dcf3fc"
+        ]
+      },
+      "link-on-stone": {
+        "role": "neutral",
+        "displayName": "Stone Link Blue",
+        "canonical": "#0a6199",
+        "tonalRamp": [
+          "#000c1a",
+          "#002743",
+          "#014570",
+          "#0a6199",
+          "#3d88c3",
+          "#62ace9",
+          "#9ad0fe",
+          "#e1f1ff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The h1: hero headline only (Marcellus 400, max 6rem)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section h2 (Marcellus 400)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3 for paths and build steps (Marcellus 400)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text (Figtree Variable 400, 1.0625rem)."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The paragraph under a heading, capped at 36rem (.lead)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase 600 tags such as the Instagram kind labels; the .label class itself is unused."
+      },
+      "btn": {
+        "displayName": "Button",
+        "purpose": "All .btn text (Figtree 600, 1rem, 0.02em)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plaque-inset-rule",
+        "value": "inset 0 0 0 5px var(--stone), inset 0 0 0 6px color-mix(in oklab, var(--brass) 85%, transparent)",
+        "purpose": "The 1px brass rule inset 5px into a plaque face. Declared once on .plaque; no drop shadow."
+      },
+      {
+        "name": "player-frame-ring",
+        "value": "0 0 0 1px var(--brass), 0 0 0 7px var(--lagoon), 0 0 0 8px color-mix(in oklab, var(--brass) 55%, transparent)",
+        "purpose": "Double brass line around the 3D video player (.player)."
+      },
+      {
+        "name": "vframe-frame-ring",
+        "value": "0 0 0 1px var(--brass), 0 0 0 7px var(--lagoon-deep), 0 0 0 8px color-mix(in oklab, var(--brass) 55%, transparent)",
+        "purpose": "Same ring around the portrait video frame (.vframe), with lagoon-deep as the inner gap."
+      },
+      {
+        "name": "header-hairline",
+        "value": "0 1px 0 var(--rule-water)",
+        "purpose": "Hairline under the solid header after 40px of scroll."
+      },
+      {
+        "name": "hero-headline-glow (text-shadow)",
+        "value": "0 2px 30px rgb(2 20 28 / 0.45)",
+        "purpose": "The only blurred shadow in the system; hero h1 over video."
+      }
+    ],
+    "motion": [
+      {
+        "name": "steam",
+        "value": "38s ease-in-out infinite alternate (::before: 53s alternate-reverse)",
+        "purpose": "Hero and quote steam glows drift and scale 1 to 1.12. Only under prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "rise",
+        "value": "linear both; animation-timeline: view()",
+        "purpose": "Room backdrop parallax, translate -7% to 7%. Gated by no-preference and @supports (animation-timeline: view())."
+      },
+      {
+        "name": "fill",
+        "value": "linear both; animation-timeline: view(); animation-range: entry 15% exit 45%",
+        "purpose": "Build-steps rail scales from 0 to 1 with scroll. Same gates as rise; static and fully filled otherwise."
+      },
+      {
+        "name": ".btn transition",
+        "value": "background-color, color, border-color 0.2s",
+        "purpose": "Button state changes. Not gated by reduced motion."
+      },
+      {
+        "name": ".mobile-bar / .menu-panel translate",
+        "value": "0.3s (menu panel: ease)",
+        "purpose": "Mobile bar slide and menu panel slide. Not gated by reduced motion."
+      },
+      {
+        "name": ".room-strip img scale",
+        "value": "0.5s, scale 1.05 on hover",
+        "purpose": "Gallery tile zoom. Not gated by reduced motion."
+      },
+      {
+        "name": ".wayfinder opacity",
+        "value": "0.4s (labels: 0.25s opacity and translate)",
+        "purpose": "Rail fade-in after 0.6 viewport of scroll and label reveal. Not gated by reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "40em",
+        "value": "40em"
+      },
+      {
+        "name": "48em",
+        "value": "48em"
+      },
+      {
+        "name": "56em",
+        "value": "56em"
+      },
+      {
+        "name": "60em",
+        "value": "60em"
+      },
+      {
+        "name": "64em",
+        "value": "64em"
+      },
+      {
+        "name": "75em",
+        "value": "75em"
+      },
+      {
+        "name": "100em",
+        "value": "100em"
+      },
+      {
+        "name": "max 47.99em",
+        "value": "47.99em"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Brass Button",
+      "kind": "button",
+      "refersTo": "button-brass",
+      "description": "The quote action. Brass fill, ink text; hover presses to brass-press.",
+      "html": "<a class=\"ds-btn ds-btn-brass\" href=\"#\">Request a free quote</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3.25rem;padding:.75rem 1.6rem;border-radius:4px;font:600 1rem/1.2 var(--font-body, 'Figtree Variable', system-ui, sans-serif);letter-spacing:.02em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background-color .2s,color .2s,border-color .2s}.ds-btn-brass{background:var(--brass, #e0b04a);border-color:var(--brass, #e0b04a);color:var(--ink, #0a2230)}.ds-btn-brass:hover{background:var(--brass-press, #cf9f3a);border-color:var(--brass-press, #cf9f3a)}.ds-btn-brass:focus-visible{outline:3px solid var(--brass, #e0b04a);outline-offset:3px;border-radius:3px}"
+    },
+    {
+      "name": "Stone Button",
+      "kind": "button",
+      "refersTo": "button-stone",
+      "description": "The call action on lagoon, equal in size to the brass button. Hover goes white.",
+      "html": "<span style=\"display:inline-block;background:var(--lagoon, #06384a);padding:1rem\"><a class=\"ds-btn ds-btn-stone\" href=\"#\">Call (832) 304-4092</a></span>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3.25rem;padding:.75rem 1.6rem;border-radius:4px;font:600 1rem/1.2 var(--font-body, 'Figtree Variable', system-ui, sans-serif);letter-spacing:.02em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background-color .2s,color .2s,border-color .2s}.ds-btn-stone{background:var(--stone-light, #f4eee3);border-color:var(--stone-light, #f4eee3);color:var(--ink, #0a2230)}.ds-btn-stone:hover{background:#fff;border-color:#fff}.ds-btn-stone:focus-visible{outline:3px solid var(--brass, #e0b04a);outline-offset:3px;border-radius:3px}"
+    },
+    {
+      "name": "Ink Button on Stone",
+      "kind": "button",
+      "refersTo": "button-stone-on-stone",
+      "description": "The stone button on a stone ground or plaque flips to an ink fill; hover goes lagoon.",
+      "html": "<span style=\"display:inline-block;background:var(--stone, #e8dcc8);padding:1rem\"><a class=\"ds-btn ds-btn-ink\" href=\"#\">Explore custom pools</a></span>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3.25rem;padding:.75rem 1.6rem;border-radius:4px;font:600 1rem/1.2 var(--font-body, 'Figtree Variable', system-ui, sans-serif);letter-spacing:.02em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background-color .2s,color .2s,border-color .2s}.ds-btn-ink{background:var(--ink, #0a2230);border-color:var(--ink, #0a2230);color:var(--stone-light, #f4eee3)}.ds-btn-ink:hover{background:var(--lagoon, #06384a);border-color:var(--lagoon, #06384a)}.ds-btn-ink:focus-visible{outline:3px solid var(--blue, #0c75b6);outline-offset:3px;border-radius:3px}"
+    },
+    {
+      "name": "Stone Plaque",
+      "kind": "card",
+      "refersTo": "plaque",
+      "description": "Honed-stone panel with the inset brass rule; no drop shadow. Holds room copy, paths, reviews and the quote form.",
+      "html": "<div style=\"background:var(--lagoon, #06384a);padding:1.5rem\"><article class=\"ds-plaque\"><div class=\"ds-tag\"><span class=\"ds-num\">01</span><h3>Plunge</h3></div><p class=\"ds-svc\">Custom pools</p><p>Backyard pools designed around your vision.</p></article></div>",
+      "css": ".ds-plaque{position:relative;background:var(--stone, #e8dcc8);color:var(--ink, #0a2230);border-radius:4px;padding:1.75rem;display:grid;gap:1rem;max-width:26rem;font:400 1.0625rem/1.6 var(--font-body, 'Figtree Variable', system-ui, sans-serif);box-shadow:inset 0 0 0 5px var(--stone, #e8dcc8),inset 0 0 0 6px color-mix(in oklab,var(--brass, #e0b04a) 85%,transparent)}.ds-plaque p{margin:0}.ds-tag{display:flex;align-items:center;gap:.85rem}.ds-tag h3{margin:0;font:400 2rem/1.05 var(--font-display, 'Marcellus', 'Palatino Linotype', Georgia, serif)}.ds-svc{font-weight:600}.ds-num{display:inline-grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--brass, #e0b04a);color:var(--ink, #0a2230);font:600 .9375rem/1 var(--font-body, 'Figtree Variable', system-ui, sans-serif);font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Brass Medallion",
+      "kind": "custom",
+      "refersTo": "medallion",
+      "description": "Numbered brass disc marking each stop; flips to ink with a brass numeral on stone grounds (build steps).",
+      "html": "<span style=\"display:flex;gap:1rem;align-items:center\"><span class=\"ds-num\">01</span><span style=\"background:var(--stone-light, #f4eee3);padding:.5rem\"><span class=\"ds-num ds-num-ink\">02</span></span></span>",
+      "css": ".ds-num{display:inline-grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--brass, #e0b04a);color:var(--ink, #0a2230);font:600 .9375rem/1 var(--font-body, 'Figtree Variable', system-ui, sans-serif);font-variant-numeric:tabular-nums}.ds-num-ink{background:var(--ink, #0a2230);color:var(--brass, #e0b04a)}"
+    },
+    {
+      "name": "Form Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Stone-light field with a 1px ink-soft border; focus shows a 3px blue outline.",
+      "html": "<div style=\"background:var(--stone, #e8dcc8);padding:1.25rem;max-width:22rem\"><div class=\"ds-field\"><label for=\"ds-n\">Your name</label><input id=\"ds-n\" type=\"text\" value=\"\" /></div></div>",
+      "css": ".ds-field{display:grid;gap:.5rem;font-family:var(--font-body, 'Figtree Variable', system-ui, sans-serif);color:var(--ink, #0a2230)}.ds-field label{font:600 .9375rem var(--font-body, 'Figtree Variable', system-ui, sans-serif)}.ds-field input{width:100%;min-height:3rem;padding:.7rem .9rem;font:inherit;color:var(--ink, #0a2230);background:var(--stone-light, #f4eee3);border:1px solid var(--ink-soft, #3d5563);border-radius:4px;box-sizing:border-box}.ds-field input:focus-visible{outline:3px solid var(--blue, #0c75b6);outline-offset:1px;border-color:var(--blue, #0c75b6)}"
+    },
+    {
+      "name": "Segmented Choice",
+      "kind": "chip",
+      "refersTo": "segment-option",
+      "description": "Radio options as 3rem boxes; the checked option fills ink with stone-light text.",
+      "html": "<div style=\"background:var(--stone, #e8dcc8);padding:1.25rem\"><div class=\"ds-seg\"><label><input type=\"radio\" name=\"ds-i\" checked /><span>Pool</span></label><label><input type=\"radio\" name=\"ds-i\" /><span>Patio</span></label><label><input type=\"radio\" name=\"ds-i\" /><span>Outdoor kitchen</span></label></div></div>",
+      "css": ".ds-seg{display:flex;flex-wrap:wrap;gap:.5rem;font-family:var(--font-body, 'Figtree Variable', system-ui, sans-serif)}.ds-seg label{position:relative}.ds-seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}.ds-seg span{display:inline-flex;align-items:center;min-height:3rem;padding:0 1.1rem;border:1px solid var(--ink-soft, #3d5563);border-radius:4px;background:var(--stone-light, #f4eee3);color:var(--ink, #0a2230);font-weight:500}.ds-seg input:checked + span{background:var(--ink, #0a2230);border-color:var(--ink, #0a2230);color:var(--stone-light, #f4eee3)}.ds-seg label:hover span{border-color:var(--ink, #0a2230)}.ds-seg input:focus-visible + span{outline:3px solid var(--blue, #0c75b6);outline-offset:2px}"
+    },
+    {
+      "name": "Link Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Stone-light chip with a 1px stone rule and link-on-stone text; the border darkens to ink on hover.",
+      "html": "<div style=\"background:var(--stone-light, #f4eee3);padding:1.25rem\"><ul class=\"ds-chips\"><li><a href=\"#\">Patio covers</a></li><li><a href=\"#\">Outdoor kitchens</a></li></ul></div>",
+      "css": ".ds-chips{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:0;font-family:var(--font-body, 'Figtree Variable', system-ui, sans-serif)}.ds-chips a{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1rem;border:1px solid color-mix(in oklab,var(--ink, #0a2230) 22%,transparent);border-radius:4px;text-decoration:none;font-weight:500;background:var(--stone-light, #f4eee3);color:var(--link-on-stone, #0a6199)}.ds-chips a:hover{border-color:var(--ink, #0a2230)}.ds-chips a:focus-visible{outline:3px solid var(--blue, #0c75b6);outline-offset:3px}"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "site-header-solid",
+      "description": "Solid header: stone-light logo plate, on-water links with a brass underline on hover, stone call and brass quote buttons.",
+      "html": "<header class=\"ds-hdr\"><span class=\"ds-plate\">Island Life</span><nav class=\"ds-links\"><a href=\"#\">Pools</a><a href=\"#\">Patios</a><a href=\"#\">Outdoor kitchens</a></nav><span class=\"ds-acts\"><a class=\"ds-b ds-bs\" href=\"#\">Call</a><a class=\"ds-b ds-bb\" href=\"#\">Request a free quote</a></span></header>",
+      "css": ".ds-hdr{display:flex;align-items:center;gap:1.5rem;min-height:4.75rem;padding:0 1.25rem;background:color-mix(in oklab,var(--lagoon-deep, #03242f) 94%,transparent);box-shadow:0 1px 0 color-mix(in oklab,var(--sky, #75b5d2) 38%,transparent);font-family:var(--font-body, 'Figtree Variable', system-ui, sans-serif)}.ds-plate{background:var(--stone-light, #f4eee3);color:var(--ink, #0a2230);border-radius:6px;padding:.3rem .65rem;font:400 1.1rem var(--font-display, 'Marcellus', 'Palatino Linotype', Georgia, serif)}.ds-links{display:flex;gap:1.75rem;margin-inline:auto}.ds-links a{color:var(--on-water, #f4eee3);text-decoration:none;font-size:.9375rem;font-weight:500;padding-block:.5rem;border-bottom:1px solid transparent}.ds-links a:hover{border-bottom-color:var(--brass, #e0b04a)}.ds-links a:focus-visible{outline:3px solid var(--brass, #e0b04a);outline-offset:3px}.ds-acts{display:flex;gap:.75rem}.ds-b{display:inline-flex;align-items:center;min-height:2.875rem;padding:0 1.25rem;border-radius:4px;font:600 1rem/1.2 var(--font-body, 'Figtree Variable', system-ui, sans-serif);text-decoration:none;letter-spacing:.02em}.ds-bs{background:var(--stone-light, #f4eee3);color:var(--ink, #0a2230)}.ds-bb{background:var(--brass, #e0b04a);color:var(--ink, #0a2230)}.ds-bb:hover{background:var(--brass-press, #cf9f3a)}"
+    },
+    {
+      "name": "Wayfinder Rail",
+      "kind": "custom",
+      "refersTo": "wayfinder-dot",
+      "description": "Fixed vertical circuit rail (desktop): lagoon dots with sky borders on a sky line; the current stop fills brass.",
+      "html": "<div style=\"background:var(--lagoon, #06384a);padding:1.5rem 1rem;display:inline-block\"><ol class=\"ds-rail\"><li><a href=\"#\"><span class=\"ds-lbl\">01 Plunge</span><span class=\"ds-dot\"></span></a></li><li><a href=\"#\" aria-current=\"true\"><span class=\"ds-lbl\">02 Lounge</span><span class=\"ds-dot\"></span></a></li><li><a href=\"#\"><span class=\"ds-lbl\">03 Table</span><span class=\"ds-dot\"></span></a></li></ol></div>",
+      "css": ".ds-rail{list-style:none;margin:0;padding:0;display:grid;gap:1.75rem;position:relative;font-family:var(--font-body, 'Figtree Variable', system-ui, sans-serif)}.ds-rail::before{content:\"\";position:absolute;right:.4375rem;top:.45rem;bottom:.45rem;width:1px;background:color-mix(in oklab,var(--sky, #75b5d2) 45%,var(--lagoon, #06384a))}.ds-rail a{display:flex;align-items:center;justify-content:flex-end;gap:.75rem;color:var(--on-water, #f4eee3);text-decoration:none;font-size:.8125rem}.ds-lbl{background:var(--lagoon-deep, #03242f);padding:.3rem .65rem;border-radius:4px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .25s}.ds-rail a:hover .ds-lbl,.ds-rail a:focus-visible .ds-lbl,.ds-rail a[aria-current=\"true\"] .ds-lbl{opacity:1}.ds-dot{position:relative;z-index:1;width:.9rem;height:.9rem;border-radius:50%;background:var(--lagoon, #06384a);border:1.5px solid var(--sky, #75b5d2)}.ds-rail a[aria-current=\"true\"] .ds-dot{background:var(--brass, #e0b04a);border-color:var(--brass, #e0b04a);scale:1.25}.ds-rail a:focus-visible{outline:3px solid var(--brass, #e0b04a);outline-offset:3px;border-radius:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Thermal Circuit",
+    "overview": "The page is deep pool water. One lagoon ground (`lagoon`) carries everything, and the interface is set on it the way a thermal spa sets honed stone and brass fittings against its pools: pale travertine plaques with a fine brass rule inset into the face, numbered brass medallions, soft sky-blue light on the pool floor. The interface itself stays lagoon, stone, brass and ink, with only sky and a little blue added for links, progress and focus; photographs and looping video carry the scene's color. Brass is the logo's glow hue deepened until it can hold ink text.\n\nThe structure is a circuit, not a stack of cards. The visitor walks four rooms (Plunge, Lounge, Table, Fire) and ends at the free quote, and the system makes the route visible: brass medallions numbered 01 to 05 recur in the hero route strip, the room tags, the wayfinder rail and the build steps, while a thin sky waterline fills across the top of the viewport as the page is read. Type is set in Marcellus, an inscriptional serif at one weight, so headings read as lettering cut into stone; Figtree does all the functional work.\n\nThe one visual rejection that is confirmed in the direction contract: no aqua-photo hero over a white card grid. The build answers it with a full-bleed looping flythrough under drifting steam, full-viewport photographic rooms, and a lagoon page whose lightest ground is warm stone, not white.",
+    "keyCharacteristics": [
+      "A single lagoon ground; stone appears as plaques, form fields, the logo plate, and two light sections (Process, Financing).",
+      "Brass is the action fill and the numeral color; text on brass is always ink.",
+      "Flat surfaces with 4px corners; depth from tone, photography and an inset brass rule, never from drop shadows.",
+      "Numbered brass medallions are the wayfinding mark, and the wayfinder rail and waterline trace progress.",
+      "Marcellus at weight 400 for display voice only; Figtree Variable for everything else.",
+      "Slow, scroll-tied motion (steam drift, room parallax, a steps rail that fills) with reduced-motion handling that is partial (see Components, Motion and Reduced Motion)."
+    ],
+    "rules": [
+      {
+        "name": "The One Ground Rule",
+        "body": "Page-level surfaces are lagoon water (`lagoon`, `lagoon-deep`, or a photograph under a lagoon-deep scrim) or the single light ground `stone-light`. There is no third ground color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Inks Rule",
+        "body": "Text on water is `on-water` or `on-water-soft`; text on stone is `ink`, `ink-soft` or `link-on-stone`. The pairs never cross, and links follow the ground (`sky` on water, `link-on-stone` on stone).",
+        "section": "colors"
+      },
+      {
+        "name": "The Brass Action Rule",
+        "body": "Brass fills mean \"begin\" (the quote) and \"count\" (the numerals), and text on brass is ink. On stone surfaces the stone button and the build-step medallions flip to ink fills; the room-tag medallions and the quote form's submit button stay brass on their plaques.",
+        "section": "colors"
+      },
+      {
+        "name": "The Inscription Rule",
+        "body": "Marcellus is regular weight only, and only for display voice (headings, the featured quote, the phone number, the footer tagline, the menu links). It is never used for buttons, labels or form text, and it is never bolded: no other weight is loaded, so bold would be synthesized.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Numerals Rule",
+        "body": "Phone numbers, opening hours and every medallion numeral use `.tnum` (`font-variant-numeric: tabular-nums`).",
+        "section": "typography"
+      },
+      {
+        "name": "The No Drop Shadow Rule",
+        "body": "Plaques, buttons, cards and fields cast no shadow. Separation is tone, a brass line, or a scrim.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Plaque Rule",
+        "body": "The inset brass rule is declared once and reached by adding the `.plaque` class. Do not redeclare it per component. (The media frame ring is a separate, outer device for video, not a second plaque.)",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** ground every page-level surface in `lagoon`, `lagoon-deep`, a photograph under a lagoon-deep scrim, or `stone-light`.",
+      "**Do** set text on brass in `ink` (8.2:1) and flip stone-face buttons and step medallions to `ink` fills.",
+      "**Do** give call and quote equal size wherever a decision is asked for: same height, brass for the quote, stone for the call.",
+      "**Do** build raised surfaces by adding `.plaque`, so the inset brass rule stays declared in one place.",
+      "**Do** number stops with brass medallions, zero-padded, in tabular numerals.",
+      "**Do** keep Marcellus at weight 400 for display voice and Figtree for everything functional.",
+      "**Do** give any new looping video a visible 2.75rem pause control and a poster, and play it only while it is on screen.",
+      "**Do** wrap new scroll-linked or ambient animation in `prefers-reduced-motion: no-preference` (and `@supports (animation-timeline: view())` for view timelines), as `steam`, `rise` and `fill` do.",
+      "**Do** use `sky` for links on water and `link-on-stone` for links on stone; use a `blue` focus ring on stone and a `brass` one on water.",
+      "**Do** tint scrims and overlays with `lagoon-deep` or `lagoon`."
+    ],
+    "donts": [
+      "**Don't** build an aqua-photo hero over a white card grid (the direction contract's confirmed rejection).",
+      "**Don't** add drop shadows to plaques, buttons, cards or fields.",
+      "**Don't** set brass text on stone (1.5:1 to 1.7:1); use `brass-deep` on stone.",
+      "**Don't** set `blue` as text on lagoon (2.5:1); the build never does.",
+      "**Don't** bold Marcellus: only weight 400 is loaded, so any bolder weight is synthesized.",
+      "**Don't** introduce pill or large-radius controls; the system is 4px with circles for medallions and media controls.",
+      "**Don't** add new UI hues beyond brass, sky and a little blue; the photographs and video carry the scene's color. The only non-token hue in the CSS is the error red.",
+      "**Don't** introduce new raw color literals; add a token to `brand.css` first."
+    ]
+  }
+}

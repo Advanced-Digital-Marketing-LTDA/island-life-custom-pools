@@ -1,43 +1,39 @@
 ---
-import PlanDrawing from './PlanDrawing.astro';
 import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const d = home.design;
 ---
-<section class="design section" aria-labelledby="design-title">
+<section class="design section tiled" aria-labelledby="design-title">
   <div class="wrap design-grid">
     <div class="design-copy">
       <h2 id="design-title">{d.title}</h2>
       <p class="lead">{d.text}</p>
-      <a class="textlink" href="#quote">Get my 3D design<Icon name="arrow" /></a>
+      <a class="btn btn-brass" href="#quote">Get my 3D design</a>
     </div>
     <figure>
-      <div class="reel" data-src={d.videoSrc}>
-        <div class="stage" aria-hidden="true">
-          <div class="iso"><PlanDrawing id="iso" label="" /></div>
-        </div>
-        <button class="play" type="button" aria-label={`Play video: ${d.videoLabel}`}>
+      <div class="player" data-src={d.videoSrc} data-poster={d.poster}>
+        <img src={d.poster} alt="" width="1280" height="720" loading="lazy" decoding="async" />
+        <button class="play" type="button" aria-label={d.videoLabel}>
           <span class="disc"><Icon name="play" /></span>
-          <span class="lbl">{d.videoLabel}</span>
+          <span>{d.videoLabel}</span>
         </button>
       </div>
-      <figcaption class="reel-cap">{d.caption}</figcaption>
+      <figcaption class="player-cap">{d.caption}</figcaption>
     </figure>
   </div>
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>('.reel').forEach((reel) => {
-    const btn = reel.querySelector<HTMLButtonElement>('.play');
+  document.querySelectorAll<HTMLElement>('.player').forEach((player) => {
+    const btn = player.querySelector<HTMLButtonElement>('.play');
     btn?.addEventListener('click', () => {
       const v = document.createElement('video');
-      v.src = reel.dataset.src ?? '';
+      v.src = player.dataset.src ?? '';
+      v.poster = player.dataset.poster ?? '';
       v.controls = true;
       v.autoplay = true;
       v.playsInline = true;
-      reel.append(v);
-      reel.querySelector('.stage')?.remove();
-      btn.remove();
+      player.replaceChildren(v);
       v.focus();
     });
   });
