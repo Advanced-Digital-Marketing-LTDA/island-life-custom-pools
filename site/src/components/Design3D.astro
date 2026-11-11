@@ -1,0 +1,44 @@
+---
+import PlanDrawing from './PlanDrawing.astro';
+import Icon from './Icon.astro';
+import { home } from '../lib/content';
+const d = home.design;
+---
+<section class="design section" aria-labelledby="design-title">
+  <div class="wrap design-grid">
+    <div class="design-copy">
+      <h2 id="design-title">{d.title}</h2>
+      <p class="lead">{d.text}</p>
+      <a class="textlink" href="#quote">Get my 3D design<Icon name="arrow" /></a>
+    </div>
+    <figure>
+      <div class="reel" data-src={d.videoSrc}>
+        <div class="stage" aria-hidden="true">
+          <div class="iso"><PlanDrawing id="iso" label="" /></div>
+        </div>
+        <button class="play" type="button" aria-label={`Play video: ${d.videoLabel}`}>
+          <span class="disc"><Icon name="play" /></span>
+          <span class="lbl">{d.videoLabel}</span>
+        </button>
+      </div>
+      <figcaption class="reel-cap">{d.caption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.reel').forEach((reel) => {
+    const btn = reel.querySelector<HTMLButtonElement>('.play');
+    btn?.addEventListener('click', () => {
+      const v = document.createElement('video');
+      v.src = reel.dataset.src ?? '';
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      reel.append(v);
+      reel.querySelector('.stage')?.remove();
+      btn.remove();
+      v.focus();
+    });
+  });
+</script>

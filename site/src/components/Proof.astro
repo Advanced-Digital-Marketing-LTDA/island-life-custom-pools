@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+import { home } from '../lib/content';
+const p = home.proof;
+---
+<section class="section" aria-labelledby="proof-title">
+  <div class="wrap">
+    <div class="section-head"><h2 id="proof-title">{p.title}</h2></div>
+    <div class="proof-top">
+      <div class="google">
+        <strong><Icon name="check" />{p.google.title}</strong>
+        <p>{p.google.text}</p>
+      </div>
+      <figure class="featured">
+        <blockquote>
+          <p class="q">“{p.featured.quote}”</p>
+          <p class="more">{p.featured.more}</p>
+          <cite>{p.featured.by}</cite>
+        </blockquote>
+      </figure>
+    </div>
+    <div class="reviews">
+      {p.reviews.map((r) => (
+        <figure class="review">
+          <blockquote><p>“{r.quote}”</p></blockquote>
+          <cite>{r.by}</cite>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

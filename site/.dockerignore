@@ -1,0 +1,9 @@
+.git
+node_modules
+.astro
+dist
+.env
+.env.*
+*.log
+tina
+public/admin

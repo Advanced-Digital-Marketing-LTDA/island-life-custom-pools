@@ -1,0 +1,114 @@
+---
+import { settings, home } from '../lib/content';
+const q = home.quote;
+---
+<section class="quote section" id="quote" aria-labelledby="quote-title">
+  <div class="wrap quote-grid">
+    <div class="call">
+      <h2 id="quote-title">{q.title}</h2>
+      <p class="lead">{q.lead}</p>
+      <div>
+        <p class="muted" style="font-weight:600;margin-bottom:.5rem">{q.callTitle}</p>
+        <a class="call-num" href={settings.phoneHref}>{settings.phone}</a>
+      </div>
+      <ul class="hours">
+        {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
+      </ul>
+      <ul class="areas">
+        {settings.areas.map((a) => <li>{a.href ? <a href={a.href}>{a.label}</a> : a.label}</li>)}
+      </ul>
+    </div>
+
+    <form class="form" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} novalidate>
+      <div class="row two">
+        <div class="field">
+          <label for="q-name">Your name</label>
+          <input id="q-name" name="name" type="text" autocomplete="name" required />
+          <span class="err">Enter your name.</span>
+        </div>
+        <div class="field">
+          <label for="q-zip">Zip code</label>
+          <input id="q-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required />
+          <span class="err">Enter a 5-digit zip code.</span>
+        </div>
+      </div>
+      <div class="row two">
+        <div class="field">
+          <label for="q-email">Email address</label>
+          <input id="q-email" name="email" type="email" autocomplete="email" required />
+          <span class="err">Enter a valid email address.</span>
+        </div>
+        <div class="field">
+          <label for="q-phone">Phone number</label>
+          <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+          <span class="err">Enter your phone number.</span>
+        </div>
+      </div>
+      <fieldset class="field">
+        <legend>Best way to reach you</legend>
+        <div class="seg">
+          <label><input type="radio" name="contact_method" value="Email" checked /><span>Email</span></label>
+          <label><input type="radio" name="contact_method" value="Phone" /><span>Phone</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="field">
+        <legend>What are you interested in?</legend>
+        <div class="seg">
+          {q.interests.map((i) => <label><input type="radio" name="interest" value={i} required /><span>{i}</span></label>)}
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="q-msg">Message <span class="muted" style="font-weight:500">(optional)</span></label>
+        <textarea id="q-msg" name="message" rows="4"></textarea>
+      </div>
+      <button class="btn btn-sun" type="submit">{q.submitLabel}</button>
+      <p class="status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.quote .form');
+  const status = form?.querySelector<HTMLElement>('.status');
+  const setStatus = (msg: string, state = '') => {
+    if (!status) return;
+    status.textContent = msg;
+    status.dataset.state = state;
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-interest]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const radio = form?.querySelector<HTMLInputElement>(`input[name="interest"][value="${el.dataset.interest}"]`);
+      if (radio) radio.checked = true;
+    });
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.querySelector<HTMLElement>(':invalid')?.focus();
+      setStatus('Check the highlighted fields.', 'error');
+      return;
+    }
+    const endpoint = form.dataset.endpoint;
+    if (!endpoint) {
+      setStatus('Connect a form endpoint under Site settings to send requests.', 'error');
+      return;
+    }
+    const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
+    if (btn) btn.disabled = true;
+    setStatus('Sending…');
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form) });
+      if (!res.ok) throw new Error(String(res.status));
+      const method = (new FormData(form).get('contact_method') as string).toLowerCase();
+      form.reset();
+      setStatus(`Thanks. We’ll reach out by ${method}.`);
+    } catch (err) {
+      console.error('Quote form submit failed', err);
+      setStatus("That didn’t send. Call us instead.", 'error');
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  });
+</script>
