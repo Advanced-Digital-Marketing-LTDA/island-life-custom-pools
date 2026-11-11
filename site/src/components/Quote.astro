@@ -104,7 +104,8 @@ const q = home.quote;
       const method = (new FormData(form).get('contact_method') as string).toLowerCase();
       form.reset();
       setStatus(`Thanks. We’ll reach out by ${method}.`);
-    } catch {
+    } catch (err) {
+      console.error('Quote form submit failed', err);
       setStatus("That didn’t send. Call us instead.", 'error');
     } finally {
       if (btn) btn.disabled = false;

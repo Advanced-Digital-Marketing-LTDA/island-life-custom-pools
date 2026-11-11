@@ -3,7 +3,7 @@
   "logo": "/images/island-life-logo.svg",
   "phone": "(832) 304-4092",
   "phoneHref": "tel:8323044092",
-  "quoteFormAction": "https://islandlifecustompools.com/contact/",
+  "quoteFormAction": "",
   "hours": [
     {
       "days": "Monday – Friday",
