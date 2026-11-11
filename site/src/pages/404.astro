@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import { settings } from '../lib/content';
+---
+<Base title={`Page not found | ${settings.name}`} noindex>
+  <Header />
+  <main id="content" class="section">
+    <div class="wrap section-head">
+      <h1>Page not found</h1>
+      <p class="lead">That page doesn’t exist, or it moved. Start from the home page, or call us and we’ll point you to the right place.</p>
+      <div class="cta-pair">
+        <a class="btn btn-sun" href="/">Go to the home page</a>
+        <a class="btn btn-ink" href={settings.phoneHref}>Call {settings.phone}</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+  <MobileBar />
+</Base>

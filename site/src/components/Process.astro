@@ -1,0 +1,18 @@
+---
+import { home } from '../lib/content';
+const p = home.process;
+---
+<section class="section" aria-labelledby="process-title">
+  <div class="wrap">
+    <div class="section-head"><h2 id="process-title">{p.title}</h2></div>
+    <ol class="steps">
+      {p.steps.map((s) => (
+        <li><h3>{s.title}</h3><p>{s.text}</p></li>
+      ))}
+    </ol>
+    <blockquote class="process-quote">
+      <p>“{p.quote}”</p>
+      <cite>{p.by}</cite>
+    </blockquote>
+  </div>
+</section>

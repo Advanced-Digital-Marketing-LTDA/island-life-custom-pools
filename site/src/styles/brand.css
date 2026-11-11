@@ -1,0 +1,42 @@
+/*
+  Brand tokens. Every brand color lives here, in one place.
+  Sampled from the Island Life Custom Pools logo (public/images/island-life-logo.webp):
+    navy   #010031  palm trees and lettering outline
+    blue   #0c75b6  lettering
+    sky    #75b5d2  ring around the sun
+    glow   #fdeeb4  sun glow (action color below is the same hue, deepened for contrast)
+*/
+:root {
+  /* water: brand blue and sky */
+  --aqua-500: #0c75b6;
+  --aqua-300: #75b5d2;
+  --aqua-100: #d2e8f2;
+
+  /* ink and deep surfaces: brand navy */
+  --lagoon-900: #010031;
+  --lagoon-800: #010031;
+  --lagoon-600: #0a6199; /* brand blue, darkened for text and hover fills (4.5:1+) */
+  --lagoon-500: #4a5379;
+
+  /* ground: pale water tinted toward the brand blue */
+  --ground: #f1f7fb;
+  --ground-2: #ddeaf3;
+  --ground-3: #c9dcea;
+
+  /* action: the logo's sun glow hue */
+  --sun: #fcd84a;
+  --sun-press: #f7cc26;
+
+  /* roles */
+  --ink: var(--lagoon-800);
+  --ink-soft: var(--lagoon-500);
+  --link: var(--lagoon-600);
+  --line: color-mix(in oklab, var(--lagoon-800) 16%, transparent);
+  --line-strong: color-mix(in oklab, var(--lagoon-800) 40%, transparent);
+  --on-deep: #e8f1f8;
+  --on-deep-soft: #a9bfd6;
+
+  /* type */
+  --font-display: 'Bricolage Grotesque Variable', sans-serif;
+  --font-body: 'Figtree Variable', sans-serif;
+}

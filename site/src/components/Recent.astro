@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import { home } from '../lib/content';
+const r = home.recent;
+---
+<section class="recent section" aria-labelledby="recent-title">
+  <div class="wrap">
+    <div class="recent-head">
+      <h2 id="recent-title">{r.title}</h2>
+      <a class="btn btn-ghost" href={r.followHref} rel="noopener">{r.followLabel}<Icon name="out" /></a>
+    </div>
+    <ul class="posts">
+      {r.items.map((i) => (
+        <li>
+          <a href={i.href} rel="noopener">
+            {i.image && <img src={i.image} alt="" loading="lazy" width="72" height="72" />}
+            <span>{i.title}</span>
+            <span class="kind">{i.kind}<Icon name="out" /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

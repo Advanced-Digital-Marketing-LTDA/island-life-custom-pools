@@ -1,0 +1,15 @@
+---
+import { settings, home } from '../lib/content';
+import Icon from './Icon.astro';
+const d = home.discount;
+---
+<section class="deep discount on-deep" aria-labelledby="discount-title">
+  <div class="wrap discount-in">
+    <h2 id="discount-title">{d.title}</h2>
+    <p>{d.text}</p>
+    <div class="cta-pair">
+      <a class="btn btn-sun" href="#quote">{d.linkLabel}</a>
+      <a class="btn btn-ghost" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
+    </div>
+  </div>
+</section>

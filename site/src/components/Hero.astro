@@ -1,0 +1,49 @@
+---
+import PlanDrawing from './PlanDrawing.astro';
+import Icon from './Icon.astro';
+import { settings, home } from '../lib/content';
+const h = home.hero;
+const pos: Record<string, string> = {
+  pool: 'left:56%;top:48.5%',
+  patio: 'left:36.5%;top:20.4%',
+  kitchen: 'left:77%;top:20.4%',
+};
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          <span class="big">{h.headline}</span>
+          <span class="sub">{h.subhead}</span>
+        </h1>
+        <p class="lead">{h.lead}</p>
+        <div class="cta-pair">
+          <a class="btn btn-sun" href="#quote">{h.quoteLabel}</a>
+          <a class="btn btn-ink" href={settings.phoneHref}><Icon name="phone" /><span>Call <span class="tnum">{settings.phone}</span></span></a>
+        </div>
+      </div>
+
+      <div class="hero-plan">
+        <div class="plan-stage">
+          <div class="plan-frame">
+            <PlanDrawing id="hero" draw />
+          </div>
+          {h.hotspots.map((s) => (
+            <a class="hot" data-hot={s.id} href={s.href} style={pos[s.id]}><i aria-hidden="true"></i>{s.label}</a>
+          ))}
+        </div>
+        <p class="plate-note">{h.plateNote}</p>
+      </div>
+    </div>
+
+    <div class="titleblock" role="list">
+      {home.trust.map((t, i) => (
+        <div role="listitem">
+          <strong>{i === 0 && <Icon name="check" />}{t.title}</strong>
+          {t.text && <span>{t.text}</span>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

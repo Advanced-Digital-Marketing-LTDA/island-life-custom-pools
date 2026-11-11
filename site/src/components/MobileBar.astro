@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import { settings } from '../lib/content';
+---
+<div class="mobile-bar">
+  <a class="btn btn-ink" href={settings.phoneHref}><Icon name="phone" />Call</a>
+  <a class="btn btn-sun" href="#quote">Free quote</a>
+</div>
