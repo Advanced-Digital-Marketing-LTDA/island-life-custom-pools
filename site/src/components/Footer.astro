@@ -5,7 +5,7 @@ import { settings } from '../lib/content';
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="/" aria-label={`${settings.name}, home`} style="display:inline-block">
+        <a class="brand" href="/" aria-label={`${settings.name}, home`}>
           {settings.logo ? <img src={settings.logo} alt={settings.name} width="114" height="72" /> : <span class="wordmark">Island Life<small>Custom Pools</small></span>}
         </a>
         <p class="footer-tag">Bring your vacation dreams home</p>
@@ -15,7 +15,7 @@ import { settings } from '../lib/content';
         <ul class="hours tnum">
           {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
         </ul>
-        <p style="margin-top:1rem"><a class="tnum" href={settings.phoneHref} style="font-size:1.25rem">{settings.phone}</a></p>
+        <p class="footer-call"><a class="tnum" href={settings.phoneHref}>{settings.phone}</a></p>
       </div>
       <div>
         <h3>Info</h3>

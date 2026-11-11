@@ -16,6 +16,7 @@ colors:
   on-water: "#f4eee3"
   on-water-soft: "#bcd3dc"
   link-on-stone: "#0a6199"
+  error: "#a4261c"
 typography:
   display:
     fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
@@ -55,6 +56,43 @@ typography:
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.02em"
+  micro:
+    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 600
+  caption:
+    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontSize: "0.875rem"
+  small:
+    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontSize: "0.9375rem"
+  large:
+    fontFamily: "'Figtree Variable', system-ui, sans-serif"
+    fontSize: "1.125rem"
+  h4:
+    fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
+    fontSize: "1.25rem"
+    fontWeight: 400
+  h4-lg:
+    fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
+    fontSize: "1.375rem"
+    fontWeight: 400
+  h3-sm:
+    fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
+    fontSize: "1.5rem"
+    fontWeight: 400
+  room:
+    fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
+    fontSize: "clamp(2rem, 1.5rem + 2vw, 3.1rem)"
+    fontWeight: 400
+  feature:
+    fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
+    fontSize: "clamp(1.75rem, 1.2rem + 2vw, 2.75rem)"
+    fontWeight: 400
+  call:
+    fontFamily: "'Marcellus', 'Palatino Linotype', Georgia, serif"
+    fontSize: "clamp(2rem, 1.4rem + 2.6vw, 3.25rem)"
+    fontWeight: 400
 components:
   button-brass:
     backgroundColor: "{colors.brass}"
@@ -165,7 +203,7 @@ The one visual rejection that is confirmed in the direction contract: no aqua-ph
 - Flat surfaces with 4px corners; depth from tone, photography and an inset brass rule, never from drop shadows.
 - Numbered brass medallions are the wayfinding mark, and the wayfinder rail and waterline trace progress.
 - Marcellus at weight 400 for display voice only; Figtree Variable for everything else.
-- Slow, scroll-tied motion (steam drift, room parallax, a steps rail that fills) with reduced-motion handling that is partial (see Components, Motion and Reduced Motion).
+- Slow, scroll-tied motion (steam drift, room parallax, a steps rail that fills) with reduced-motion handling that makes movement instant and pauses video (see Components, Motion and Reduced Motion).
 
 ## Colors
 
@@ -190,6 +228,7 @@ A deep-lagoon, travertine and brass palette sampled from the logo (navy `#010031
 - **Water Light** (`on-water`): primary text on lagoon. Same hex as `stone-light`, kept as its own token.
 - **Mist Blue** (`on-water-soft`): secondary text on lagoon (captions, footer meta, trust sub-lines).
 - **Stone Link Blue** (`link-on-stone`): links on stone and plaques.
+- **Error Red** (`error`): the only feedback hue. Invalid field borders, the inline `.err` message and the failed-send status line, always on stone (6.3:1 on `stone-light`).
 
 Two derived hairlines are also tokens in brand.css: `--rule-water` (sky at 38% over transparent, `color-mix` in oklab) for dividers on lagoon, and `--rule-stone` (ink at 22%) for dividers and chip borders on stone.
 
@@ -206,8 +245,8 @@ Recomputed from the token hexes on flat surfaces:
 
 Unconfirmed: text laid over video or photography (hero, rooms, proof, quote) rides on gradient scrims and has not been measured.
 
-### Literals Outside brand.css
-These appear in `global.css` as raw values with no token: the error red `#a4261c` (invalid field border, `.err`, error status; 6.3:1 on `stone-light`), `#fff` (stone button hover), `#000` (player background), `rgb(2 20 28 / ...)` (menu backdrop, hero headline glow, player play-scrim; a near-black teal that matches no token), and `rgb(255 255 255 / 0.15)` and `/ 0.11` (steam).
+### Literals
+None outside `brand.css`. Scrims, the menu backdrop, the headline glow and the steam are `color-mix` blends of tokens (`lagoon-deep`, `on-water`), the stone button hover mixes `stone-light` with white, and the 3D player ground is `lagoon-deep`. Error red is the `error` token.
 
 ### Named Rules
 **The One Ground Rule.** Page-level surfaces are lagoon water (`lagoon`, `lagoon-deep`, or a photograph under a lagoon-deep scrim) or the single light ground `stone-light`. There is no third ground color.
@@ -230,7 +269,8 @@ These appear in `global.css` as raw values with no token: the error red `#a4261c
 - **Display voice, not headings** (Marcellus 400): the featured review quote `clamp(1.75rem, 1.2rem + 2vw, 2.75rem)` at 1.15; the call number `clamp(2rem, 1.4rem + 2.6vw, 3.25rem)` at 1.1; the footer tagline 1.375rem; menu links 1.5rem; the Google Guaranteed title 1.5rem.
 - **Body** (Figtree 400, 1.0625rem, 1.6, `text-wrap: pretty`): all running text.
 - **Lead** (Figtree, `clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem)`, 1.55, `max-width: 36rem`; 34rem in the hero): the paragraph under a heading.
-- **Label** (Figtree 600, 0.8125rem, 1.2, 0.16em, uppercase): the `kind` tags in the Instagram list. A `.label` rule and a `.call .label` rule exist in global.css but no component uses either (unconfirmed whether they are reserved or dead). Wayfinder labels are the same idea at 0.08em.
+- **Label** (Figtree 600, 0.8125rem, 1.2, 0.16em, uppercase): the `kind` tags in the Instagram list. Wayfinder labels are the same idea at 0.08em.
+- **Scale tokens** (`brand.css`): every other size is a `--text-*` token, documented in the frontmatter: `micro` 0.75rem, `caption` 0.875rem, `small` 0.9375rem, `large` 1.125rem, `h4` 1.25rem, `h4-lg` 1.375rem, `h3-sm` 1.5rem, and the fluid `room`, `feature` and `call`. New sizes are added as tokens first.
 - **Button** (Figtree 600, 1rem, 1.2, 0.02em): all `.btn`.
 
 ### Named Rules
@@ -249,7 +289,7 @@ A single centered column with generous vertical air, broken by full-bleed photog
 - **Splits (from 60em):** design 5fr/7fr, process 5fr/7fr (copy column sticky at `top: 7rem`), quote 5fr/6fr, proof 7fr/4fr, discount/financing 1fr/1fr. Paths split 1fr/1fr from 56em, reviews from 48em, footer 1.2fr/1fr/1fr/1fr from 48em.
 - **Breakpoints (em):** 40, 48, 56, 60, 64, 75, 100; one max-width query at 47.99em for the hero. The header changes at 75em (inline nav and actions replace the menu button; the mobile bar is hidden; body bottom padding of 4.75rem is dropped).
 - **Fixed layers (z-index):** waterline 60, header 50, mobile bar 45, wayfinder 40.
-- **Targets:** buttons 3.25rem minimum height, fields and segmented options 3rem, chips, menu button and pause control 2.75rem. Anchors scroll with `scroll-padding-top: 5.5rem`.
+- **Targets:** buttons 3.25rem minimum height, fields and segmented options 3rem; chips, area tags, the menu button, the pause control, the nav links, the hero route links, text links, the phone numbers and (on touch or narrow screens) the footer links 2.75rem (44px). Anchors scroll with `scroll-padding-top: 5.5rem`.
 - **Unconfirmed (needs a render):** the Table room has two gallery photos in the six-column strip, so the second tile occupies two of six columns; how that reads has not been seen.
 
 ## Elevation & Depth
@@ -260,7 +300,7 @@ Flat and tonal. Depth comes from three things: the lagoon ground stepping from `
 - **Plaque inset rule** (`box-shadow: inset 0 0 0 5px var(--stone), inset 0 0 0 6px color-mix(in oklab, var(--brass) 85%, transparent)`): a 1px brass line set 5px inside the plaque edge. Declared once, on `.plaque`.
 - **Media frame ring** (`box-shadow: 0 0 0 1px var(--brass), 0 0 0 7px var(--lagoon), 0 0 0 8px color-mix(in oklab, var(--brass) 55%, transparent)`): a double brass line around the 3D video player. The portrait video frame (`.vframe`) repeats it with `--lagoon-deep` as the inner gap.
 - **Header hairline** (`box-shadow: 0 1px 0 var(--rule-water)`): appears when the header turns solid after 40px of scroll.
-- **Headline glow** (`text-shadow: 0 2px 30px rgb(2 20 28 / 0.45)`): hero h1 only.
+- **Headline glow** (`text-shadow: 0 2px 30px color-mix(in oklab, var(--lagoon-deep) 55%, transparent)`): hero h1 only.
 
 ### Named Rules
 **The No Drop Shadow Rule.** Plaques, buttons, cards and fields cast no shadow. Separation is tone, a brass line, or a scrim.
@@ -279,7 +319,7 @@ Quiet and squared, like cut stone. The corner radius is 4px on every control and
 - **Stone (`.btn-stone`):** `stone-light` fill, `ink` text; the call action on water. Hover: white. On `.on-stone` sections and inside `.plaque` it flips to an `ink` fill with `stone-light` text (hover `lagoon`), which is why the room links and the discount button are ink, not brass.
 - **Line (`.btn-line`):** transparent with a 55% `on-water` border (an `ink`-toned border on stone); hover adds a faint fill. Used for financing and Instagram follow.
 - **Equal weight:** call and quote share height; in the hero they share `min-width: 12.5rem`, in the header the same compact size, and in the mobile bar they are two equal grid columns. Widths in the hero and header are otherwise content-driven.
-- **Text link (`.textlink`):** 600 weight, no underline, arrow nudges 4px right on hover.
+- **Text link (`.textlink`):** 600 weight, no underline, 2.75rem tall, arrow nudges 4px right on hover.
 - **Focus:** `3px solid brass` outline, 3px offset, on water; `blue` on stone and plaques.
 
 ### Stone Plaque
@@ -290,14 +330,14 @@ The system's signature surface. `stone` fill, `ink` text, 4px corners, padding `
 
 ### Chips and Tags
 - **Chip (`.chips a`):** `stone-light` fill, 1px `--rule-stone` border, 4px corners, 2.75rem tall, `link-on-stone` text; hover darkens the border to `ink`. A non-link variant (`.chip-plain`) has no fill.
-- **Area tag (`.areas li`):** 1px `--rule-water` outline on water, 4px corners, on-water text; hover on the link turns it brass.
+- **Area tag (`.areas li`):** 1px `--rule-water` outline on water, 4px corners, 2.75rem tall with the link filling the whole tag, on-water text; hover on the link turns it brass.
 - **Room link (`.room-nav a`):** outlined in `--rule-water`, brass numeral, brass border and text on hover.
 
 ### Inputs / Fields
 - **Style:** `stone-light` fill, 1px `ink-soft` border, 4px corners, 3rem minimum height, `ink` text, labels Figtree 600 at 0.9375rem. Fields sit inside the form plaque.
 - **Segmented choice (`.seg`):** radio inputs visually hidden under 3rem option boxes with the same fill and border; checked becomes `ink` fill with `stone-light` text; hover darkens the border.
 - **Focus:** `3px solid blue` outline, 1px offset, border turns `blue`.
-- **Error:** validation uses `:user-invalid`; the border turns `#a4261c` and a hidden `.err` message appears; the form status line uses the same red for failures.
+- **Error:** validation uses `:user-invalid`; the border turns `error` and a hidden `.err` message appears. The status line names the fields to fix ("Please check your name and your zip code.") and uses the same red for failures; a failed or unconfigured send tells the visitor to call.
 
 ### Navigation
 - **Header:** fixed; transparent over the hero, turning `lagoon-deep` at 94% with a hairline after 40px of scroll. A `stone-light` logo plate (6px corners, logo multiplied onto it) sits left. From 75em: primary links in Figtree 500 at 0.9375rem (`on-water`, 1px brass underline on hover), then a stone call button and brass quote button at 2.875rem tall. Below 75em: an outlined Menu button opens a popover panel sliding in from the right (`lagoon-deep`, up to 26rem wide) with Marcellus 1.5rem links divided by `--rule-water`, opening hours, and the two actions.
@@ -313,18 +353,18 @@ Full-viewport photographic sections, one per stop: a photo backdrop (`scale: 1.1
 
 ### Wayfinder and Waterline (signature)
 - **Waterline:** a fixed 3px `sky` bar across the top whose width tracks page scroll (`--p`), at every viewport width.
-- **Rail:** from 64em, a fixed vertical rail at the right edge, vertically centered, that fades in after scrolling 0.6 of a viewport. Five stops (Plunge, Lounge, Table, Fire, Free quote), each a 0.9rem `lagoon` dot with a 1.5px `sky` border on a 1px sky line; a 2px `sky` fill grows down the line with progress through the circuit (`--c`). The current stop's dot fills `brass` and scales 1.25. Labels (`01 Plunge`, uppercase, 0.8125rem 600, on `lagoon-deep` chips) show on hover or focus, and the current label stays visible from 100em. Updates come from a requestAnimationFrame-throttled scroll listener.
+- **Rail:** from 64em, a fixed vertical rail at the right edge, vertically centered, that fades in after scrolling 0.6 of a viewport. Five stops (Plunge, Lounge, Table, Fire, Free quote), each a 0.9rem `lagoon` dot with a 1.5px `sky` border on a 1px sky line; a 2px `sky` fill grows down the line with progress through the circuit (`--c`). The current stop's dot fills `brass` and scales 1.25. Labels (`01 Plunge`, uppercase, 0.8125rem 600, on `lagoon-deep` chips) show on hover or focus, and the current label stays visible from 100em. A requestAnimationFrame-throttled scroll listener reads all layout first, then writes `--p` onto the waterline and `--c` onto the rail (not onto `<html>`). Until it shows, the rail is `visibility: hidden`, so it is out of the tab order.
 
 ### Build Steps Rail
 Five `h3` steps with ink medallions on a stone ground, joined by a 2px vertical rail: `--rule-stone` track with a `blue` fill that scrubs with scroll where the browser supports view timelines (entry 15% to exit 45%).
 
 ### Video and Pause Control
-Every looping video is muted, `loop`, `playsinline`, has no `autoplay` attribute, and shows its poster until script runs. Script plays it only while at least 25% is on screen and the visitor has not paused it, and pauses it when it leaves view. A 2.75rem round pause control (lagoon-deep at 70%, 55% `on-water` border) sits in the hero foot, or inside the portrait frame's bottom-right corner, swapping a pause and play icon and its aria-label. The 3D walkthrough is poster-first: a 5rem `brass` play disc over a 16:9 brass-ringed frame, replaced on click by a native controls video.
+Every looping video is muted, `loop`, `playsinline`, has no `autoplay` attribute and no `src` in the markup, and shows its poster until script runs. Script sets the file only when the video is about to play (so reduced motion and Save-Data visitors download nothing until they press play), picks `model-flythrough-sm.mp4` (480x612, cropped to the phone view, 1.4 MB) on portrait phones (found by adding `-sm` to the hero file name; if it fails to load the video falls back to the full file), plays it only while at least 25% is on screen and the visitor has not paused it, and pauses it when it leaves view or when reduced motion is switched on. A 2.75rem round pause control (lagoon-deep at 70%, 55% `on-water` border) sits in the hero foot, or inside the portrait frame's bottom-right corner, swapping a pause and play icon and its aria-label. The 3D walkthrough is poster-first: a 5rem `brass` play disc over a 16:9 brass-ringed frame, replaced on click by a native controls video that carries the same accessible name. The walkthrough file has no audio track (the original held only continuous low noise, no speech), so it needs no captions.
 
 ### Motion and Reduced Motion
 - **Authored motion:** hero steam drift (`steam`, 38s and 53s, alternating, also on the quote section); room backdrop parallax (`rise`, translate -7% to 7% over the viewport pass); the steps rail fill (`fill`); a 0.5s zoom on gallery tiles; a 0.2s arrow nudge; a 0.3s mobile bar slide; the menu panel slide.
-- **Gated by `prefers-reduced-motion`:** smooth scrolling (set to auto), steam, room parallax and the steps fill (all wrapped in `no-preference`, and the latter two also in `@supports (animation-timeline: view())`), and video autoplay (read once at load, starts paused with the poster; no change listener). With motion off or unsupported, the steps rail renders fully filled.
-- **Not gated:** color and border transitions, the gallery-tile and play-disc scale, the arrow nudge, wayfinder fades, the mobile bar slide, and the menu panel slide.
+- **Gated by `prefers-reduced-motion`:** smooth scrolling (set to auto), steam, room parallax and the steps fill (all wrapped in `no-preference`, and the latter two also in `@supports (animation-timeline: view())`), video autoplay (starts paused with the poster, and pauses if the preference is switched on while the page is open), and every movement transition (gallery-tile and play-disc scale, arrow nudge, wayfinder fade and label slide, mobile bar slide, menu panel slide), which become instant. With motion off or unsupported, the steps rail renders fully filled.
+- **Kept under reduced motion:** the 0.2s color and border transitions on buttons and the header, because they carry state and move nothing.
 
 ### Footer
 `lagoon-deep` ground, four columns, the logo on the same stone-light plate as the header, a Marcellus 1.375rem tagline, hours as hairline rows, links in `on-water` with a `--rule-water` underline that turns brass on hover.
@@ -339,6 +379,7 @@ Every looping video is muted, `loop`, `playsinline`, has no `autoplay` attribute
 - **Do** number stops with brass medallions, zero-padded, in tabular numerals.
 - **Do** keep Marcellus at weight 400 for display voice and Figtree for everything functional.
 - **Do** give any new looping video a visible 2.75rem pause control and a poster, and play it only while it is on screen.
+- **Do** keep every tap target at 2.75rem (44px) or more, and add new type sizes as `--text-*` tokens in `brand.css` first.
 - **Do** wrap new scroll-linked or ambient animation in `prefers-reduced-motion: no-preference` (and `@supports (animation-timeline: view())` for view timelines), as `steam`, `rise` and `fill` do.
 - **Do** use `sky` for links on water and `link-on-stone` for links on stone; use a `blue` focus ring on stone and a `brass` one on water.
 - **Do** tint scrims and overlays with `lagoon-deep` or `lagoon`.
@@ -350,5 +391,5 @@ Every looping video is muted, `loop`, `playsinline`, has no `autoplay` attribute
 - **Don't** set `blue` as text on lagoon (2.5:1); the build never does.
 - **Don't** bold Marcellus: only weight 400 is loaded, so any bolder weight is synthesized.
 - **Don't** introduce pill or large-radius controls; the system is 4px with circles for medallions and media controls.
-- **Don't** add new UI hues beyond brass, sky and a little blue; the photographs and video carry the scene's color. The only non-token hue in the CSS is the error red.
+- **Don't** add new UI hues beyond brass, sky and a little blue; the photographs and video carry the scene's color. The one feedback hue is the `error` token.
 - **Don't** introduce new raw color literals; add a token to `brand.css` first.

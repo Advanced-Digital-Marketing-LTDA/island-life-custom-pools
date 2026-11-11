@@ -42,7 +42,7 @@ const set = (p: string) => (p.includes('-1600.webp') ? `${small(p)} 800w, ${p} 1
       </div>
       {r.video ? (
         <div class="vframe">
-          <LoopVideo id={`${r.id}-video`} src={r.video} poster={r.videoPoster} label={r.videoAlt} preload="none" />
+          <LoopVideo id={`${r.id}-video`} src={r.video} poster={r.videoPoster} label={r.videoAlt} />
           <button class="pause" type="button" data-pause-for={`${r.id}-video`} data-state="paused" aria-label="Play background video">
             <span data-icon="pause"><Icon name="pause" /></span>
             <span data-icon="play"><Icon name="play" /></span>

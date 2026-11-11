@@ -1,31 +1,46 @@
 ---
 // A muted looping background video. A button with data-pause-for="<id>" elsewhere on the page controls it.
-// Without JS or with reduced motion it shows its poster; it only plays while on screen.
-interface Props { id: string; src: string; poster?: string; label: string; preload?: 'none' | 'metadata' }
-const { id, src, poster, label, preload = 'metadata' } = Astro.props;
+// The file is requested only when the video is about to play, so a visitor who prefers reduced motion or Save-Data
+// downloads nothing until they press play, and portrait phones get the smaller cropped file (srcSmall),
+// falling back to the full file if that one fails to load.
+// Without JS it shows its poster.
+interface Props { id: string; src: string; srcSmall?: string; poster?: string; label: string }
+const { id, src, srcSmall, poster, label } = Astro.props;
 ---
-<video id={id} data-loop muted loop playsinline preload={preload} poster={poster} aria-label={label}>
-  <source src={src} type="video/mp4" />
-</video>
+<video id={id} data-loop data-src={src} data-src-small={srcSmall} muted loop playsinline preload="none" poster={poster} aria-label={label}></video>
 
 <script>
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const phone = matchMedia('(max-width: 47.99em) and (orientation: portrait)');
+  const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
   document.querySelectorAll<HTMLVideoElement>('video[data-loop]').forEach((v) => {
     const btn = document.querySelector<HTMLButtonElement>(`[data-pause-for="${v.id}"]`);
-    let userPaused = reduce.matches;
+    let userPaused = reduce.matches || saveData;
     const sync = () => {
       if (!btn) return;
       btn.dataset.state = v.paused ? 'paused' : 'playing';
       btn.setAttribute('aria-label', v.paused ? 'Play background video' : 'Pause background video');
     };
+    const play = () => {
+      if (!v.getAttribute('src')) v.src = (phone.matches && v.dataset.srcSmall) || v.dataset.src || '';
+      v.play().catch(() => {});
+    };
     v.addEventListener('play', sync);
     v.addEventListener('pause', sync);
+    // The small file is found by naming convention, so if it is missing fall back to the full file.
+    v.addEventListener('error', () => {
+      const full = v.dataset.src;
+      if (!full || v.getAttribute('src') === full) return;
+      v.src = full;
+      if (!userPaused) play();
+    });
     btn?.addEventListener('click', () => {
-      if (v.paused) { userPaused = false; v.play().catch(() => {}); }
+      if (v.paused) { userPaused = false; play(); }
       else { userPaused = true; v.pause(); }
     });
+    reduce.addEventListener('change', () => { if (reduce.matches) { userPaused = true; v.pause(); } });
     new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !userPaused) v.play().catch(() => {});
+      if (e.isIntersecting && !userPaused) play();
       else v.pause();
     }, { threshold: 0.25 }).observe(v);
     sync();

@@ -30,6 +30,7 @@ const d = home.design;
       const v = document.createElement('video');
       v.src = player.dataset.src ?? '';
       v.poster = player.dataset.poster ?? '';
+      v.setAttribute('aria-label', btn?.getAttribute('aria-label') ?? 'Video');
       v.controls = true;
       v.autoplay = true;
       v.playsInline = true;

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T21:01:09Z",
+  "generatedAt": "2026-11-11T22:34:35Z",
   "title": "Design System: Island Life Custom Pools",
   "extensions": {
     "colorMeta": {
@@ -213,6 +213,21 @@
           "#9ad0fe",
           "#e1f1ff"
         ]
+      },
+      "error": {
+        "role": "tertiary",
+        "displayName": "Error Red",
+        "canonical": "#a4261c",
+        "tonalRamp": [
+          "#190604",
+          "#420f0b",
+          "#731b14",
+          "#a4261c",
+          "#b65149",
+          "#cd8882",
+          "#e4bebb",
+          "#f6e9e8"
+        ]
       }
     },
     "typographyMeta": {
@@ -243,6 +258,46 @@
       "btn": {
         "displayName": "Button",
         "purpose": "All .btn text (Figtree 600, 1rem, 0.02em)."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Hero route medallion numerals (0.75rem, --text-micro)."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Captions and trust sub-lines (0.875rem, --text-caption)."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Nav links, labels, errors and fine print (0.9375rem, --text-small)."
+      },
+      "large": {
+        "displayName": "Large",
+        "purpose": "Pull quote beside the build steps (1.125rem, --text-large)."
+      },
+      "h4": {
+        "displayName": "H4",
+        "purpose": "Footer headings, menu title, footer phone (Marcellus 1.25rem, --text-h4)."
+      },
+      "h4-lg": {
+        "displayName": "H4 large",
+        "purpose": "Footer tagline (Marcellus 1.375rem, --text-h4-lg)."
+      },
+      "h3-sm": {
+        "displayName": "H3 small",
+        "purpose": "Menu links and the Google Guaranteed title (Marcellus 1.5rem, --text-h3-sm)."
+      },
+      "room": {
+        "displayName": "Room heading",
+        "purpose": "Room plaque h2 (Marcellus, --text-room)."
+      },
+      "feature": {
+        "displayName": "Feature",
+        "purpose": "Featured review and financing headings (Marcellus, --text-feature)."
+      },
+      "call": {
+        "displayName": "Call number",
+        "purpose": "The phone number on the quote section (Marcellus, --text-call)."
       }
     },
     "shadows": [
@@ -268,7 +323,7 @@
       },
       {
         "name": "hero-headline-glow (text-shadow)",
-        "value": "0 2px 30px rgb(2 20 28 / 0.45)",
+        "value": "0 2px 30px color-mix(in oklab, var(--lagoon-deep) 55%, transparent)",
         "purpose": "The only blurred shadow in the system; hero h1 over video."
       }
     ],
@@ -291,22 +346,22 @@
       {
         "name": ".btn transition",
         "value": "background-color, color, border-color 0.2s",
-        "purpose": "Button state changes. Not gated by reduced motion."
+        "purpose": "Button state changes. Color only, so kept under reduced motion."
       },
       {
         "name": ".mobile-bar / .menu-panel translate",
         "value": "0.3s (menu panel: ease)",
-        "purpose": "Mobile bar slide and menu panel slide. Not gated by reduced motion."
+        "purpose": "Mobile bar slide and menu panel slide. Instant under prefers-reduced-motion."
       },
       {
         "name": ".room-strip img scale",
         "value": "0.5s, scale 1.05 on hover",
-        "purpose": "Gallery tile zoom. Not gated by reduced motion."
+        "purpose": "Gallery tile zoom. Off under prefers-reduced-motion."
       },
       {
         "name": ".wayfinder opacity",
         "value": "0.4s (labels: 0.25s opacity and translate)",
-        "purpose": "Rail fade-in after 0.6 viewport of scroll and label reveal. Not gated by reduced motion."
+        "purpose": "Rail fade-in after 0.6 viewport of scroll (visibility hidden until then) and label reveal. Instant under prefers-reduced-motion."
       }
     ],
     "breakpoints": [
@@ -435,7 +490,7 @@
       "Flat surfaces with 4px corners; depth from tone, photography and an inset brass rule, never from drop shadows.",
       "Numbered brass medallions are the wayfinding mark, and the wayfinder rail and waterline trace progress.",
       "Marcellus at weight 400 for display voice only; Figtree Variable for everything else.",
-      "Slow, scroll-tied motion (steam drift, room parallax, a steps rail that fills) with reduced-motion handling that is partial (see Components, Motion and Reduced Motion)."
+      "Slow, scroll-tied motion (steam drift, room parallax, a steps rail that fills) with reduced-motion handling that makes movement instant and pauses video (see Components, Motion and Reduced Motion)."
     ],
     "rules": [
       {

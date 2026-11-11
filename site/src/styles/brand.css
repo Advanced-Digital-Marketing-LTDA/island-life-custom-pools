@@ -29,9 +29,25 @@
   --on-water-soft: #bcd3dc;
   --link-on-stone: #0a6199;
 
+  /* feedback */
+  --error: #a4261c;           /* invalid fields and failed sends; 6.3:1 on stone-light */
+
   /* lines */
   --rule-water: color-mix(in oklab, var(--sky) 38%, transparent);
   --rule-stone: color-mix(in oklab, var(--ink) 22%, transparent);
+
+  /* type scale: rem steps used outside the h1-h3 clamps in global.css */
+  --text-micro: 0.75rem;      /* hero route medallions */
+  --text-caption: 0.875rem;   /* captions, trust sub-lines */
+  --text-small: 0.9375rem;    /* nav, labels, errors, fine print */
+  --text-body: 1.0625rem;
+  --text-large: 1.125rem;     /* pull quote beside the build steps */
+  --text-h4: 1.25rem;         /* footer headings, menu title, footer phone */
+  --text-h4-lg: 1.375rem;     /* footer tagline */
+  --text-h3-sm: 1.5rem;       /* menu links, Google Guaranteed title */
+  --text-room: clamp(2rem, 1.5rem + 2vw, 3.1rem);          /* room plaque headings */
+  --text-feature: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);   /* featured review, financing headings */
+  --text-call: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);       /* the phone number on the quote section */
 
   /* type */
   --font-display: 'Marcellus', 'Palatino Linotype', Georgia, serif;
