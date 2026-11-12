@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import Discount from '../../components/Discount.astro';
+import Footer from '../../components/Footer.astro';
+import MobileBar from '../../components/MobileBar.astro';
+import { posts, fmtDate } from '../../lib/blog';
+import '../../styles/inner.css';
+
+export function getStaticPaths() {
+  return posts.map((post, i) => ({ params: { slug: post.slug }, props: { post, more: posts.filter((p) => p !== post).slice(0, 2) } }));
+}
+const { post, more } = Astro.props;
+const { Content } = post;
+---
+<Base title={`${post.title} | Island Life Custom Pools`} description={post.excerpt}>
+  <Header />
+  <main id="content">
+    <PageHero crumbs={[{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog/' }, { label: post.title }]} title={post.title} lead={`${fmtDate(post.date)} · ${post.minutes} min read`} actions={false} />
+    <article class="article">
+      <div class="wrap">
+        <img class="article-img" src={post.image} alt={post.imageAlt} width="1280" height="720" fetchpriority="high" />
+        <div class="prose"><Content /></div>
+      </div>
+    </article>
+    {more.length > 0 && (
+      <section class="blog blog-more" aria-labelledby="more-title">
+        <div class="wrap">
+          <h2 id="more-title">More from the blog</h2>
+          <ul class="post-grid">
+            {more.map((p) => (
+              <li>
+                <a class="post-card" href={`/blog/${p.slug}/`}>
+                  <img src={p.image} alt={p.imageAlt} loading="lazy" width="1280" height="720" />
+                  <span class="post-meta">{fmtDate(p.date)} · {p.minutes} min read</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.excerpt}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+    <Discount title="Ready to see your own backyard in 3D?" text="Request a free quote and book your free design consult." quoteHref="/#quote" />
+  </main>
+  <Footer />
+  <MobileBar />
+</Base>
