@@ -1,5 +1,7 @@
 ---
 import '@fontsource-variable/figtree';
+import '@fontsource-variable/archivo/wdth.css';
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
 import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import { settings, home } from '../lib/content';
@@ -32,6 +34,7 @@ const ld = {
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" as="font" type="font/woff2" crossorigin href={figtreeUrl} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={archivoUrl} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />

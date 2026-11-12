@@ -1,37 +1,41 @@
 # Design
 
-## Concept
-Drawn before dug, brought to life. The company’s real 3D design footage is the visual center: a cinematic full-screen introduction, an editorial design-film chapter, and clearly labeled visualization stills for each service. The interface stays quiet so the work carries the color.
+## Direction: a walkthrough of a drawn project
+Island Life sells certainty before construction: a 3D model of the yard, then a build the owner keeps the client updated on every week (reviews name this repeatedly). The site therefore behaves like a walkthrough of a project that already exists on paper, not a brochure.
+
+- Large, square-cornered renders, edge to edge where they carry the page (service panels, design film), like sheets in a drawing set.
+- Ruled lists instead of cards (process steps, partners, reviews): a heavy top rule, hairlines between rows.
+- One action color. Sun yellow is only ever "Request a free quote". Everything else is deep water ink, paper, and logo blue for links and focus.
+- Display type is Archivo run wide (signage and drawing-title proportions). Body is Figtree.
+- Honest imagery: only the company's own 3D renders, captioned once as visualizations, never presented as finished projects.
+
+Alternatives considered and rejected: a drafting-sheet look (grid ticks, sheet numbers: decoration, and numbers read as template tells) and a warm resort brochure (serif, cream, brass: interchangeable with every premium-consumer site).
+
+## Page structure (home)
+Hero video, trust line, services (one large panel plus two), 3D design film (the differentiator, on deep water), process with the first-pool reassurance beside a ruled step list and the weekly-calendar review, reviews, financing, quote form with the military/first-responder/teacher discount note. Each section answers one question a homeowner has, in the order they ask it. Inner pages vary: service pages add overview, process and film; gallery is images only; contact is the form only; the privacy page is text.
 
 ## Color
-`src/styles/brand.css` uses OKLCH primitive, semantic, and component tokens.
-- Deep surfaces: warm cinematic charcoal derived from `#0a0a0a`.
-- Ground: warm off-white derived from `#f5f5f5`; subtle sections use a deeper tint of the same ground.
-- Text: near-black on light and off-white on dark; secondary text remains WCAG AA compliant.
-- Brand navy, water blue, and sun yellow remain as primitives from the existing logo. Water is reserved for focus and selected states rather than decorative fills.
-- Photography and 3D footage supply the dominant color. No gradients other than the hero’s charcoal readability scrim.
+Tokens live in `src/styles/brand.css`.
+- Deep water `oklch(0.2 0.045 245)`: dark surfaces, header, footer. The logo blue darkened toward water.
+- Ink `oklch(0.2 0.03 245)` and soft ink `oklch(0.42 0.025 245)`: text.
+- Paper `oklch(0.985 0.004 230)` and paper tint `oklch(0.955 0.014 230)`: surfaces.
+- Logo blue `oklch(0.5 0.13 245)`: links, focus ring on light surfaces, form focus.
+- Sun `oklch(0.87 0.16 95)`: the quote action, nav underline, focus ring on dark surfaces.
 
-## Type
-- Display: Newsreader Variable, light weights with tight optical sizing and fluid headlines. Select final words use a true serif italic.
-- Body and controls: Figtree Variable, 400–650.
-- Hero: 4–9rem, compact line-height, word-by-word masked entrance.
-- Section display: 3.25–6.5rem. Body copy stays at least 17px with a readable measure.
+## Typography
+- Display: Archivo Variable at `font-stretch: 114%`, weight 600, tight line height (1.02 to 1.18). Used for h1 to h3, pull quotes, phone number.
+- Body and UI: Figtree Variable, 17px base, 1.65 line height, lines capped near 40 to 65 characters.
+- Labels are plain sentence case. The only uppercase tracked label is the hero kicker.
 
-## Layout
-- Full-viewport media hero with lower-left editorial composition.
-- Twelve-column asymmetric desktop compositions, collapsing to a single readable column on mobile.
-- Service stories alternate large visualization stills and copy; no nested cards or decorative panel stacks.
-- Reviews, process, social posts, and partner lists use rules and whitespace instead of boxes.
-- Mobile call and quote actions remain fixed within safe-area padding.
-
-## Components
-- Pill buttons: dark on light, off-white on dark, and outlined secondary actions.
-- Form fields use editorial underline styling. Radio options are keyboard-operable pills.
-- Navigation uses a native popover drawer with Escape, backdrop, and close-button support.
-- External social posts open real Instagram URLs. Unconfigured quote submission explicitly directs visitors to call; it never simulates success.
-
-## Media
-`public/media/` contains an optimized local MP4 and WebP stills extracted from the Island Life design video already referenced by the project. They depict 3D visualizations, not completed projects, and are labeled accordingly.
+## Shape and surfaces
+- Controls (buttons, inputs, chips) use a 2px radius. Photos and video are square. No pills, no soft cards, no drop shadows.
+- Form fields are boxed with a 3:1 border so they read as inputs on a phone.
 
 ## Motion
-The hero headline enters word by word over 800ms. Interface transitions stay below 300ms and use transform, opacity, or color. Video pauses for reduced-motion users and when the page is hidden; reduced-motion visitors receive the poster instead of autoplay.
+Hover and focus transitions only, 150 ms. The hero video autoplays only when allowed (not under reduced motion or data saver), with a visible pause control. The service panel image eases a 2% zoom on hover.
+
+## Rules that keep it from looking generic
+- One label per intent: every quote action says "Request a free quote" (compact header and phone bar say "Free quote").
+- No eyebrow labels, numbered sections, decorative dots, section pills, or text overlaid on images.
+- Client reviews are reproduced verbatim. Do not shorten or reword them without owner approval.
+- No invented facts, metrics, logos, awards, or photography.

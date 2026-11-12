@@ -1,46 +1,48 @@
-/* Primitive → semantic → component tokens. */
+/* Tokens. Primitive -> semantic -> component.
+   Direction: the company sells certainty before construction (a 3D model, weekly updates), so the
+   page reads like a walkthrough of a drawn project: large rectangular renders, ruled lists, one
+   action color. Photos and video are square-cornered like drawings; controls are nearly square. */
 :root {
-  /* Neutrals derived from cinematic charcoal and warm paper. */
-  --neutral-950: oklch(0.17 0.006 80);
-  --neutral-900: oklch(0.23 0.006 80);
-  --neutral-700: oklch(0.43 0.008 80);
-  --neutral-500: oklch(0.62 0.008 80);
-  --neutral-300: oklch(0.82 0.008 80);
-  --neutral-100: oklch(0.94 0.008 80);
-  --neutral-50: oklch(0.965 0.008 80);
-
-  /* Existing Island Life brand colors. */
-  --aqua-500: oklch(0.51 0.12 235);
-  --aqua-300: oklch(0.72 0.075 225);
-  --navy-900: oklch(0.19 0.09 275);
+  /* Primitives. Blue and sun are sampled from the logo; the deep tone is the logo blue darkened toward water. */
+  --water-950: oklch(0.2 0.045 245);
+  --blue-600: oklch(0.5 0.13 245);
+  --blue-300: oklch(0.78 0.07 230);
   --sun-400: oklch(0.87 0.16 95);
+  --paper: oklch(0.985 0.004 230);
+  --paper-tint: oklch(0.955 0.014 230);
 
   /* Semantic roles. */
-  --surface: oklch(1 0 0);
-  --surface-subtle: oklch(0.965 0.012 225);
-  --surface-deep: var(--navy-900);
-  --blue: var(--aqua-500);
-  --sky: var(--aqua-300);
-  --sun: var(--sun-400);
-  --ink: oklch(0.2 0.03 265);
-  --ink-soft: oklch(0.42 0.02 265);
-  --on-deep: var(--neutral-50);
-  --on-deep-soft: var(--neutral-300);
-  --line: color-mix(in oklab, var(--ink) 18%, transparent);
+  --surface: var(--paper);
+  --surface-subtle: var(--paper-tint);
+  --surface-deep: var(--water-950);
+  --ink: oklch(0.2 0.03 245);
+  --ink-soft: oklch(0.42 0.025 245);
+  --on-deep: oklch(0.97 0.006 230);
+  --on-deep-soft: oklch(0.8 0.02 235);
+  --blue: var(--blue-600);
+  --sky: var(--blue-300);
+  --sun: var(--sun-400); /* the quote action, nothing else */
+  --line: color-mix(in oklab, var(--ink) 16%, transparent);
   --line-strong: color-mix(in oklab, var(--ink) 58%, transparent);
-  --line-deep: color-mix(in oklab, var(--on-deep) 24%, transparent);
-  --link: var(--ink);
+  --line-deep: color-mix(in oklab, var(--on-deep) 26%, transparent);
+  --link: var(--blue);
   --error: oklch(0.48 0.17 28);
+
+  /* Shape: one rule. Controls 2px, media square. */
+  --radius-control: 2px;
+  --radius-media: 0;
 
   /* Component tokens. */
   --button-bg: var(--ink);
   --button-fg: var(--on-deep);
-  --button-radius: 999px; /* buttons are pills; photos and video use --radius-media */
-  --radius-media: 1rem;
-  --field-bg: transparent;
-  --header-height: 5.5rem;
+  --field-bg: #fff;
+  --header-height: 5.25rem;
 
-  /* Type. */
-  --font-display: 'Figtree Variable', sans-serif;
+  /* Type. Display is Archivo run wide (signage and drawing-title proportions); body is Figtree. */
+  --font-display: 'Archivo Variable', 'Figtree Variable', sans-serif;
   --font-body: 'Figtree Variable', sans-serif;
+  --display-stretch: 114%;
+
+  /* Rhythm. */
+  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
 }

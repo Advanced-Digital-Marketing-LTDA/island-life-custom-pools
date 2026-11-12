@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import PageHero from '../../components/PageHero.astro';
-import Discount from '../../components/Discount.astro';
+import ConsultBand from '../../components/ConsultBand.astro';
 import Footer from '../../components/Footer.astro';
 import MobileBar from '../../components/MobileBar.astro';
 import { posts, fmtDate } from '../../lib/blog';
@@ -40,7 +40,7 @@ const [lead, ...rest] = posts;
         </ul>
       </div>
     </section>
-    <Discount title="Start with a free design consult" text="Tell us what you want and what you must have. We listen first." quoteHref="/#quote" />
+    <ConsultBand title="Start with a free design consult" text="Tell us what you want and what you must have. We listen first." quoteHref="/#quote" />
   </main>
   <Footer />
   <MobileBar />

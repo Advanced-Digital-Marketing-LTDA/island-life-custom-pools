@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import { settings, home } from '../lib/content';
 const q = home.quote;
 const next = home.process.steps[0];
+const disc = home.discount;
 ---
 <section class="quote section" id="quote" aria-labelledby="quote-title">
   <div class="wrap quote-grid">
@@ -10,6 +11,7 @@ const next = home.process.steps[0];
       <div class="quote-head">
         <h2 id="quote-title">{q.title}</h2>
         <p class="lead">{q.lead}</p>
+        <p class="note"><strong>{disc.title}.</strong> {disc.text}</p>
       </div>
       <div class="quote-info">
         <div class="call-direct">

@@ -4,7 +4,7 @@ import { settings } from '../lib/content';
 interface Props { crumbs: { label: string; href?: string }[]; title: string; lead?: string; image?: string; imageAlt?: string; actions?: boolean }
 const { crumbs, title, lead, image, imageAlt = '', actions = true } = Astro.props;
 ---
-<section class="page-hero on-deep">
+<section class="page-hero">
   <div class="wrap page-hero-grid">
     <div class="page-hero-copy">
       <nav class="crumbs" aria-label="Breadcrumb">
@@ -17,7 +17,7 @@ const { crumbs, title, lead, image, imageAlt = '', actions = true } = Astro.prop
       {actions && (
         <div class="cta-pair">
           <a class="btn btn-sun" href="#quote">Request a free quote</a>
-          <a class="btn btn-outline-light" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
+          <a class="btn btn-outline-dark" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
         </div>
       )}
     </div>

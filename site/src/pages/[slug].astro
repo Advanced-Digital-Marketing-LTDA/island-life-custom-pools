@@ -7,7 +7,6 @@ import Design3D from '../components/Design3D.astro';
 import Proof from '../components/Proof.astro';
 import Services from '../components/Services.astro';
 import Financing from '../components/Financing.astro';
-import Discount from '../components/Discount.astro';
 import Quote from '../components/Quote.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
@@ -67,10 +66,9 @@ const has = (s: string) => page.sections.includes(s);
         <div class="wrap"><div class="prose">{page.prose.map((p: string) => <p>{p}</p>)}</div></div>
       </section>
     )}
-    {has('process') && <Process steps={page.processSteps} />}
+    {has('process') && <Process steps={page.processSteps} intro={false} />}
     {has('design') && <Design3D />}
     {has('proof') && <Proof />}
-    {has('cta') && <Discount />}
     {has('quote') && <Quote />}
   </main>
   <Footer />

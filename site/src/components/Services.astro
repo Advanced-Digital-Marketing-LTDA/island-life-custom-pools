@@ -2,6 +2,9 @@
 import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const s = home.services;
+const up = home.paths.upgrade;
+const covered = new Set(s.items.map((i) => i.href));
+const also = up.items.filter((i) => !covered.has(i.href));
 const images: Record<string, string> = {
   pool: '/media/service-pool.webp',
   patio: '/media/service-patio.webp',
@@ -22,5 +25,9 @@ const images: Record<string, string> = {
       </a>
     ))}
   </div>
-  <p class="wrap services-note">All images on this site are 3D design visualizations, not photographs of finished projects.</p>
+  <div class="wrap services-note">
+    <p>{up.text}</p>
+    <ul>{also.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+    <p class="caption">All images on this site are 3D design visualizations, not photographs of finished projects.</p>
+  </div>
 </section>

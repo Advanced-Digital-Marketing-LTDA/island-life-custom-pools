@@ -18,7 +18,6 @@
       "process",
       "design",
       "proof",
-      "cta",
       "quote"
     ],
     "processSteps": [
@@ -48,7 +47,6 @@
       "process",
       "design",
       "proof",
-      "cta",
       "quote"
     ],
     "processSteps": [
@@ -76,7 +74,6 @@
       "process",
       "design",
       "proof",
-      "cta",
       "quote"
     ],
     "processSteps": [
@@ -95,7 +92,6 @@
     "sections": [
       "overview",
       "proof",
-      "cta",
       "quote"
     ],
     "placeholder": true,
@@ -117,7 +113,6 @@
     "lead": "3D design visualizations from Island Life Custom Pools. Each image is a render of a planned backyard, not a finished project.",
     "sections": [
       "gallery",
-      "cta",
       "quote"
     ],
     "placeholder": true,
@@ -157,7 +152,6 @@
     "lead": "We work with several partners so that you can secure your dream pool without financial worry.",
     "sections": [
       "financing",
-      "cta",
       "quote"
     ],
     "placeholder": true,
@@ -172,7 +166,6 @@
     "lead": "We build with equipment from partners including Hayward, Paramount, NPT, Ledge Lounger and AquaStar.",
     "sections": [
       "partners",
-      "cta",
       "quote"
     ],
     "placeholder": true
@@ -200,7 +193,6 @@
       "services",
       "design",
       "proof",
-      "cta",
       "quote"
     ],
     "placeholder": true
@@ -216,7 +208,6 @@
       "services",
       "design",
       "proof",
-      "cta",
       "quote"
     ],
     "placeholder": true
