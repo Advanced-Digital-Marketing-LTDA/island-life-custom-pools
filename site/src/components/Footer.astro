@@ -1,7 +1,7 @@
 ---
 import { settings } from '../lib/content';
 ---
-<footer class="deep footer on-deep">
+<footer class="footer on-deep">
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand-col">
@@ -12,17 +12,17 @@ import { settings } from '../lib/content';
         <a class="footer-phone tnum" href={settings.phoneHref}>{settings.phone}</a>
       </div>
       <div>
-        <h3>Get in touch</h3>
+        <h2>Get in touch</h2>
         <ul class="hours tnum">
           {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
         </ul>
       </div>
       <div>
-        <h3>Explore</h3>
+        <h2>Explore</h2>
         <ul>{settings.infoLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
       </div>
       <div>
-        <h3>Follow</h3>
+        <h2>Follow</h2>
         <ul>{settings.social.map((l) => <li><a href={l.href} rel="noopener">{l.label}</a></li>)}</ul>
       </div>
     </div>

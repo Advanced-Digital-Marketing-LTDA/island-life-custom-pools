@@ -7,7 +7,6 @@ import { settings, home } from '../lib/content';
 interface Props { title?: string; description?: string; noindex?: boolean }
 const { title = home.seoTitle, description = home.seoDescription, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const logoUrl = new URL(settings.logo, Astro.site).href;
 const logoIsSvg = settings.logo.endsWith('.svg');
 const ld = {
   '@context': 'https://schema.org',
@@ -41,7 +40,8 @@ const ld = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_US" />
-    {!logoIsSvg && <meta property="og:image" content={logoUrl} />}
+    <meta property="og:image" content={new URL('/media/hero-poster.webp', Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href={settings.logo} type={logoIsSvg ? 'image/svg+xml' : 'image/webp'} />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </head>

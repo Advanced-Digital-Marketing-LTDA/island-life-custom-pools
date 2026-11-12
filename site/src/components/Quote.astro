@@ -63,7 +63,7 @@ const next = home.process.steps[0];
           <span class="err" id="q-phone-err">Enter a phone number, 7 to 20 digits.</span>
         </div>
       </div>
-      <fieldset class="field">
+      <fieldset class="field" aria-describedby="q-interest-err">
         <legend>What are you interested in?</legend>
         <div class="seg">
           {q.interests.map((i) => <label><input type="radio" name="interest" value={i} required /><span>{i}</span></label>)}
@@ -153,6 +153,7 @@ const next = home.process.steps[0];
     });
   });
 
+  form.addEventListener('input', (e) => { const el = e.target as HTMLInputElement; if (el.hasAttribute('aria-invalid')) el.setAttribute('aria-invalid', String(!el.validity.valid)); });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     form.classList.add('was-validated');
@@ -160,6 +161,7 @@ const next = home.process.steps[0];
       const names: Record<string, string> = { name: 'your name', zip: 'your zip code', email: 'your email address', phone: 'your phone number', interest: 'the kind of project you’re interested in' };
       const fields = [...form.querySelectorAll<HTMLInputElement>('input:invalid, textarea:invalid')];
       const bad = [...new Set(fields.map((el) => names[el.name]).filter(Boolean))];
+      form.querySelectorAll<HTMLInputElement>('input, textarea').forEach((el) => el.setAttribute('aria-invalid', String(!el.validity.valid)));
       fields[0]?.focus();
       setStatus(`Please check ${new Intl.ListFormat('en', { type: 'conjunction' }).format(bad)}.`, 'error');
       return;

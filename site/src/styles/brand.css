@@ -27,7 +27,7 @@
   --on-deep: var(--neutral-50);
   --on-deep-soft: var(--neutral-300);
   --line: color-mix(in oklab, var(--ink) 18%, transparent);
-  --line-strong: color-mix(in oklab, var(--ink) 42%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 58%, transparent);
   --line-deep: color-mix(in oklab, var(--on-deep) 24%, transparent);
   --link: var(--ink);
   --error: oklch(0.48 0.17 28);

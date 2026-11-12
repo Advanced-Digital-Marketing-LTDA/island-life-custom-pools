@@ -10,13 +10,12 @@ const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
       <img src={settings.logo} alt={settings.name} width="114" height="72" />
     </a>
     <nav class="nav-inline" aria-label="Main navigation">
-      {primary.map((n) => <a href={n.href}>{n.short || n.label}</a>)}
+      {primary.map((n) => <a href={n.href} aria-current={Astro.url.pathname === n.href ? 'page' : undefined}>{n.short || n.label}</a>)}
     </nav>
     <div class="bar-actions">
-      <a class="header-phone tnum" href={settings.phoneHref}>{settings.phone}</a>
       <a class="btn btn-sun btn-small" href={quoteHref}>Free quote</a>
     </div>
-    <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open navigation menu">
+    <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="menu">
       <span>Menu</span><Icon name="menu" />
     </button>
   </div>
@@ -48,8 +47,18 @@ const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => menu.hidePopover());
   });
+  // Modal behaviour: everything behind the panel is inert and the page does not scroll.
+  const behind = () => [...document.querySelectorAll<HTMLElement>('.site-header .bar, main, footer, .mobile-bar, .skip')];
+  const opener = document.querySelector<HTMLElement>('.menu-btn');
+  menu?.addEventListener('beforetoggle', (e) => {
+    const open = (e as ToggleEvent).newState === 'open';
+    behind().forEach((el) => { el.inert = open; });
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    opener?.setAttribute('aria-expanded', String(open));
+  });
   menu?.addEventListener('toggle', (e) => {
     if ((e as ToggleEvent).newState === 'open') menu.querySelector<HTMLElement>('.menu-close')?.focus();
+    else opener?.focus();
   });
   matchMedia('(min-width: 76rem)').addEventListener('change', (e) => {
     if (e.matches && menu?.matches(':popover-open')) menu.hidePopover();
