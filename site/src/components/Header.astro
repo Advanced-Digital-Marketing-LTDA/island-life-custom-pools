@@ -2,38 +2,43 @@
 import Icon from './Icon.astro';
 import { settings } from '../lib/content';
 const primary = settings.nav.filter((n) => n.primary);
+const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
 ---
-<header class="site-header">
+<header class="site-header" data-solid={Astro.url.pathname !== '/' ? '' : undefined}>
   <div class="wrap bar">
     <a class="brand" href="/" aria-label={`${settings.name}, home`}>
-      {settings.logo
-        ? <img src={settings.logo} alt={settings.name} width="114" height="72" />
-        : <span class="wordmark">Island Life<small>Custom Pools</small></span>}
+      <img src={settings.logo} alt={settings.name} width="114" height="72" />
     </a>
-    <nav class="nav-inline" aria-label="Main">
+    <nav class="nav-inline" aria-label="Main navigation">
       {primary.map((n) => <a href={n.href}>{n.short || n.label}</a>)}
     </nav>
     <div class="bar-actions">
-      <a class="btn btn-ghost" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
-      <a class="btn btn-sun" href="#quote">Request a free quote</a>
+      <a class="header-phone tnum" href={settings.phoneHref}>{settings.phone}</a>
+      <a class="btn btn-sun btn-small" href={quoteHref}>Free quote</a>
     </div>
-    <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open menu"><Icon name="menu" />Menu</button>
+    <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open navigation menu">
+      <span>Menu</span><Icon name="menu" />
+    </button>
   </div>
 
   <div id="menu" popover class="menu-panel on-deep">
     <div class="menu-top">
-      <strong>{settings.name}</strong>
-      <button class="menu-close" type="button" popovertarget="menu" popovertargetaction="hide">Close</button>
+      <span class="menu-brand">Island Life <em>Custom Pools</em></span>
+      <button class="menu-close" type="button" popovertarget="menu" popovertargetaction="hide" aria-label="Close navigation menu">Close</button>
     </div>
-    <ul class="menu-list">
-      {settings.nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-    </ul>
-    <div class="menu-meta tnum">
-      {settings.hours.map((h) => <span>{h.days}: {h.time}</span>)}
-    </div>
-    <div class="menu-actions">
-      <a class="btn btn-sun" href="#quote">Request a free quote</a>
-      <a class="btn btn-ghost" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
+    <nav aria-label="Menu navigation">
+      <ul class="menu-list">
+        {settings.nav.map((n) => <li><a href={n.href}>{n.label}<Icon name="arrow" /></a></li>)}
+      </ul>
+    </nav>
+    <div class="menu-footer">
+      <div class="menu-meta tnum">
+        {settings.hours.map((h) => <span>{h.days}: {h.time}</span>)}
+      </div>
+      <div class="menu-actions">
+        <a class="btn btn-light" href={quoteHref}>Request a free quote</a>
+        <a class="btn btn-outline-light" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
+      </div>
     </div>
   </div>
 </header>
@@ -42,5 +47,11 @@ const primary = settings.nav.filter((n) => n.primary);
   const menu = document.getElementById('menu');
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => menu.hidePopover());
+  });
+  menu?.addEventListener('toggle', (e) => {
+    if ((e as ToggleEvent).newState === 'open') menu.querySelector<HTMLElement>('.menu-close')?.focus();
+  });
+  matchMedia('(min-width: 76rem)').addEventListener('change', (e) => {
+    if (e.matches && menu?.matches(':popover-open')) menu.hidePopover();
   });
 </script>

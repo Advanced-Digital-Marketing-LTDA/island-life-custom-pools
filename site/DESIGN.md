@@ -1,32 +1,37 @@
 # Design
 
 ## Concept
-Drawn before dug. The page is a drawing set: a backyard plan is the hero, the same drawing is cropped into service detail sheets, and a title block carries the trust points. Water is the one bright element; everything else stays quiet.
+Drawn before dug, brought to life. The company’s real 3D design footage is the visual center: a cinematic full-screen introduction, an editorial design-film chapter, and clearly labeled visualization stills for each service. The interface stays quiet so the work carries the color.
 
-## Color (src/styles/brand.css, sampled from the logo)
-- Ink and deep surfaces: brand navy `#010031`; soft ink `#4a5379`
-- Water: brand blue `#0c75b6`, brand sky `#75b5d2`, pale `#d2e8f2`
-- Link and hover fill: blue darkened for text `#0a6199`
-- Ground: pale water tinted to the brand blue `#f1f7fb`, `#ddeaf3`, `#c9dcea`
-- Action: sun `#fcd84a` (the logo's glow hue, deepened) for the quote button; navy pill for call
-- Deep surfaces carry text `#e8f1f8` and `#a9bfd6`
-- The logo has a white background: header blends it with multiply, footer uses a white plate
+## Color
+`src/styles/brand.css` uses OKLCH primitive, semantic, and component tokens.
+- Deep surfaces: warm cinematic charcoal derived from `#0a0a0a`.
+- Ground: warm off-white derived from `#f5f5f5`; subtle sections use a deeper tint of the same ground.
+- Text: near-black on light and off-white on dark; secondary text remains WCAG AA compliant.
+- Brand navy, water blue, and sun yellow remain as primitives from the existing logo. Water is reserved for focus and selected states rather than decorative fills.
+- Photography and 3D footage supply the dominant color. No gradients other than the hero’s charcoal readability scrim.
 
 ## Type
-- Display: Bricolage Grotesque Variable (500, tracking -0.02 to -0.03em, opsz 72-96)
-- Body: Figtree Variable 400/500; weight 600 only on buttons, labels and wordmark
-- Scale: h1 2.5-4.25rem, h2 / featured quote / call number 2-3rem (one shared step), h3 1.4-1.75rem, body 1.0625rem; body measure under 65ch
+- Display: Newsreader Variable, light weights with tight optical sizing and fluid headlines. Select final words use a true serif italic.
+- Body and controls: Figtree Variable, 400–650.
+- Hero: 4–9rem, compact line-height, word-by-word masked entrance.
+- Section display: 3.25–6.5rem. Body copy stays at least 17px with a readable measure.
+
+## Layout
+- Full-viewport media hero with lower-left editorial composition.
+- Twelve-column asymmetric desktop compositions, collapsing to a single readable column on mobile.
+- Service stories alternate large visualization stills and copy; no nested cards or decorative panel stacks.
+- Reviews, process, social posts, and partner lists use rules and whitespace instead of boxes.
+- Mobile call and quote actions remain fixed within safe-area padding.
 
 ## Components
-- Buttons: 52px tall, 10px radius, 1px hairline. Sun = request quote, ink = call, white = secondary. Section-level repeats are text links.
-- Hairlines (1px, 16-40% ink) everywhere. The signature is the dimension line: a 1px ink rule with tick ends above paths, services, reviews and Instagram.
-- Panels (plan frame, reel, sheets, form, title block): 12px radius, 1px hairline, soft neutral shadow. Controls 8-10px.
+- Pill buttons: dark on light, off-white on dark, and outlined secondary actions.
+- Form fields use editorial underline styling. Radio options are keyboard-operable pills.
+- Navigation uses a native popover drawer with Escape, backdrop, and close-button support.
+- External social posts open real Instagram URLs. Unconfigured quote submission explicitly directs visitors to call; it never simulates success.
+
+## Media
+`public/media/` contains an optimized local MP4 and WebP stills extracted from the Island Life design video already referenced by the project. They depict 3D visualizations, not completed projects, and are labeled accordingly.
 
 ## Motion
-One authored moment: the hero plan draws itself, water wipes in, hotspots pop. Water shimmer loops slowly (kept on purpose). Process rail fills on scroll. All of it stops under reduced motion. No pings, no hover scale, no layout animation.
-
-## Spacing
-4px grid for all fixed values; fluid section padding uses clamp().
-
-## Icons
-One set, 18px, 1.5 stroke, text-role color.
+The hero headline enters word by word over 800ms. Interface transitions stay below 300ms and use transform, opacity, or color. Video pauses for reduced-motion users and when the page is hidden; reduced-motion visitors receive the poster instead of autoplay.

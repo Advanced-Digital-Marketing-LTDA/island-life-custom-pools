@@ -1,28 +1,24 @@
 ---
-import PlanDrawing from './PlanDrawing.astro';
 import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const s = home.services;
-const crops: Record<string, string> = {
-  pool: '120 250 640 400',
-  patio: '95 100 420 262',
-  kitchen: '470 112 290 181',
+const images: Record<string, string> = {
+  pool: '/media/service-pool.webp',
+  patio: '/media/service-patio.webp',
+  kitchen: '/media/service-kitchen.webp',
 };
 ---
-<section class="section" aria-labelledby="services-title">
-  <div class="wrap">
-    <div class="section-head"><h2 id="services-title">{s.title}</h2></div>
-    <div class="services">
-      {s.items.map((i) => (
-        <article class="service">
-          <div class="sheet"><PlanDrawing id={`svc-${i.id}`} viewBox={crops[i.id]} label="" /></div>
-          <div class="service-copy">
-            <h3>{i.title}</h3>
-            <p>{i.text}</p>
-            <a class="textlink" href={i.href}>{i.linkLabel}<Icon name="arrow" /></a>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
+<section class="services" aria-labelledby="services-title">
+  <h2 id="services-title" class="sr-only">{s.title}</h2>
+  {s.items.map((i) => (
+    <a class="panel" href={i.href}>
+      <img src={images[i.id]} alt="" loading="lazy" width="1600" height="900" />
+      <span class="panel-tag">3D design visualization</span>
+      <span class="panel-copy">
+        <h3>{i.title}</h3>
+        <p>{i.text}</p>
+        <span class="panel-link">{i.linkLabel}<Icon name="arrow" /></span>
+      </span>
+    </a>
+  ))}
 </section>

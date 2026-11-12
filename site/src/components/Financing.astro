@@ -3,18 +3,19 @@ import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const f = home.financing;
 ---
-<section class="section" aria-labelledby="fin-title">
+<section class="financing" aria-labelledby="fin-title">
   <div class="wrap fin-grid">
+    <img class="fin-img" src="/media/design-lounge-fire.webp" alt="An outdoor lounge with a fireplace in an Island Life 3D backyard design" loading="lazy" width="1280" height="720" />
     <div class="fin-copy">
       <h2 id="fin-title">{f.title}</h2>
       <p class="lead">{f.text}</p>
-      <a class="btn btn-ink" href={f.href}>{f.linkLabel}<Icon name="arrow" /></a>
-    </div>
-    <div class="partners">
-      <h3>{f.partnersTitle}</h3>
-      <ul>
-        {f.partners.map((p) => <li>{p.href ? <a href={p.href} rel="noopener">{p.label}</a> : <span>{p.label}</span>}</li>)}
-      </ul>
+      <a class="btn btn-sky" href={f.href}>{f.linkLabel}</a>
+      <div class="partners">
+        <h3>{f.partnersTitle}</h3>
+        <ul>
+          {f.partners.map((p) => <li>{p.href ? <a href={p.href} rel="noopener">{p.label}<Icon name="out" /></a> : <span>{p.label}</span>}</li>)}
+        </ul>
+      </div>
     </div>
   </div>
 </section>

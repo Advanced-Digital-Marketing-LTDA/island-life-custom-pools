@@ -1,42 +1,45 @@
-/*
-  Brand tokens. Every brand color lives here, in one place.
-  Sampled from the Island Life Custom Pools logo (public/images/island-life-logo.webp):
-    navy   #010031  palm trees and lettering outline
-    blue   #0c75b6  lettering
-    sky    #75b5d2  ring around the sun
-    glow   #fdeeb4  sun glow (action color below is the same hue, deepened for contrast)
-*/
+/* Primitive → semantic → component tokens. */
 :root {
-  /* water: brand blue and sky */
-  --aqua-500: #0c75b6;
-  --aqua-300: #75b5d2;
-  --aqua-100: #d2e8f2;
+  /* Neutrals derived from cinematic charcoal and warm paper. */
+  --neutral-950: oklch(0.17 0.006 80);
+  --neutral-900: oklch(0.23 0.006 80);
+  --neutral-700: oklch(0.43 0.008 80);
+  --neutral-500: oklch(0.62 0.008 80);
+  --neutral-300: oklch(0.82 0.008 80);
+  --neutral-100: oklch(0.94 0.008 80);
+  --neutral-50: oklch(0.965 0.008 80);
 
-  /* ink and deep surfaces: brand navy */
-  --lagoon-900: #010031;
-  --lagoon-800: #010031;
-  --lagoon-600: #0a6199; /* brand blue, darkened for text and hover fills (4.5:1+) */
-  --lagoon-500: #4a5379;
+  /* Existing Island Life brand colors. */
+  --aqua-500: oklch(0.51 0.12 235);
+  --aqua-300: oklch(0.72 0.075 225);
+  --navy-900: oklch(0.19 0.09 275);
+  --sun-400: oklch(0.87 0.16 95);
 
-  /* ground: pale water tinted toward the brand blue */
-  --ground: #f1f7fb;
-  --ground-2: #ddeaf3;
-  --ground-3: #c9dcea;
+  /* Semantic roles. */
+  --surface: oklch(1 0 0);
+  --surface-subtle: oklch(0.965 0.012 225);
+  --surface-deep: var(--navy-900);
+  --blue: var(--aqua-500);
+  --sky: var(--aqua-300);
+  --sun: var(--sun-400);
+  --ink: oklch(0.2 0.03 265);
+  --ink-soft: oklch(0.42 0.02 265);
+  --on-deep: var(--neutral-50);
+  --on-deep-soft: var(--neutral-300);
+  --line: color-mix(in oklab, var(--ink) 18%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 42%, transparent);
+  --line-deep: color-mix(in oklab, var(--on-deep) 24%, transparent);
+  --link: var(--ink);
+  --error: oklch(0.48 0.17 28);
 
-  /* action: the logo's sun glow hue */
-  --sun: #fcd84a;
-  --sun-press: #f7cc26;
+  /* Component tokens. */
+  --button-bg: var(--ink);
+  --button-fg: var(--on-deep);
+  --button-radius: 999px;
+  --field-bg: transparent;
+  --header-height: 5.5rem;
 
-  /* roles */
-  --ink: var(--lagoon-800);
-  --ink-soft: var(--lagoon-500);
-  --link: var(--lagoon-600);
-  --line: color-mix(in oklab, var(--lagoon-800) 16%, transparent);
-  --line-strong: color-mix(in oklab, var(--lagoon-800) 40%, transparent);
-  --on-deep: #e8f1f8;
-  --on-deep-soft: #a9bfd6;
-
-  /* type */
-  --font-display: 'Bricolage Grotesque Variable', sans-serif;
+  /* Type. */
+  --font-display: 'Figtree Variable', sans-serif;
   --font-body: 'Figtree Variable', sans-serif;
 }

@@ -1,6 +1,6 @@
 ---
-import '@fontsource-variable/bricolage-grotesque/opsz.css';
 import '@fontsource-variable/figtree';
+import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import { settings, home } from '../lib/content';
 
@@ -32,8 +32,9 @@ const ld = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={figtreeUrl} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#f1f7fb" />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={settings.name} />
     <meta property="og:title" content={title} />

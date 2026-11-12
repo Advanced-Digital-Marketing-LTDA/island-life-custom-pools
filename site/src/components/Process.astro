@@ -2,12 +2,14 @@
 import { home } from '../lib/content';
 const p = home.process;
 ---
-<section class="section" aria-labelledby="process-title">
+<section class="process section" aria-labelledby="process-title">
   <div class="wrap">
-    <div class="section-head"><h2 id="process-title">{p.title}</h2></div>
+    <div class="process-heading">
+      <h2 id="process-title">{p.title}</h2>
+    </div>
     <ol class="steps">
       {p.steps.map((s) => (
-        <li><h3>{s.title}</h3><p>{s.text}</p></li>
+        <li><span class="step-number" aria-hidden="true"></span><h3>{s.title}</h3><p>{s.text}</p></li>
       ))}
     </ol>
     <blockquote class="process-quote">

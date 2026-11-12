@@ -4,21 +4,21 @@ import { settings } from '../lib/content';
 <footer class="deep footer on-deep">
   <div class="wrap">
     <div class="footer-grid">
-      <div>
+      <div class="footer-brand-col">
         <a class="brand" href="/" aria-label={`${settings.name}, home`}>
-          {settings.logo ? <img src={settings.logo} alt={settings.name} width="114" height="72" /> : <span class="wordmark">Island Life<small>Custom Pools</small></span>}
+          <img src={settings.logo} alt={settings.name} width="114" height="72" />
         </a>
         <p class="footer-tag">Bring your vacation dreams home</p>
+        <a class="footer-phone tnum" href={settings.phoneHref}>{settings.phone}</a>
       </div>
       <div>
         <h3>Get in touch</h3>
         <ul class="hours tnum">
           {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
         </ul>
-        <p style="margin-top:1rem"><a class="tnum" href={settings.phoneHref} style="font-size:1.25rem">{settings.phone}</a></p>
       </div>
       <div>
-        <h3>Info</h3>
+        <h3>Explore</h3>
         <ul>{settings.infoLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
       </div>
       <div>
@@ -28,6 +28,7 @@ import { settings } from '../lib/content';
     </div>
     <div class="footer-bottom">
       <span>{settings.copyright}</span>
+      <span>Tomball · Cypress · The Woodlands · Houston</span>
       <a href={settings.privacyHref}>Privacy policy</a>
     </div>
   </div>

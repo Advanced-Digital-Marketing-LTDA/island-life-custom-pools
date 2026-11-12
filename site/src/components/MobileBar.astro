@@ -1,8 +1,9 @@
 ---
 import Icon from './Icon.astro';
 import { settings } from '../lib/content';
+const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
 ---
-<div class="mobile-bar">
-  <a class="btn btn-ink" href={settings.phoneHref}><Icon name="phone" />Call</a>
-  <a class="btn btn-sun" href="#quote">Free quote</a>
-</div>
+<nav class="mobile-bar" aria-label="Quick contact">
+  <a class="btn btn-outline-dark" href={settings.phoneHref}><Icon name="phone" />Call</a>
+  <a class="btn btn-dark" href={quoteHref}>Free quote<Icon name="arrow" /></a>
+</nav>

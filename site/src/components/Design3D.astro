@@ -1,44 +1,47 @@
 ---
-import PlanDrawing from './PlanDrawing.astro';
 import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const d = home.design;
 ---
-<section class="design section" aria-labelledby="design-title">
+<section class="design" aria-labelledby="design-title">
   <div class="wrap design-grid">
-    <div class="design-copy">
+    <div class="design-heading">
       <h2 id="design-title">{d.title}</h2>
-      <p class="lead">{d.text}</p>
-      <a class="textlink" href="#quote">Get my 3D design<Icon name="arrow" /></a>
+      <p>{d.text}</p>
+      <a class="btn btn-sky" href="#quote">Get my 3D design</a>
     </div>
-    <figure>
-      <div class="reel" data-src={d.videoSrc}>
-        <div class="stage" aria-hidden="true">
-          <div class="iso"><PlanDrawing id="iso" label="" /></div>
-        </div>
+    <figure class="design-figure">
+      <div class="reel">
+        <video class="design-video" playsinline preload="none" poster="/media/design-poster.webp" aria-label={d.videoLabel}>
+          <source src="/media/island-life-design.mp4" type="video/mp4" />
+        </video>
         <button class="play" type="button" aria-label={`Play video: ${d.videoLabel}`}>
           <span class="disc"><Icon name="play" /></span>
-          <span class="lbl">{d.videoLabel}</span>
+          <span class="lbl">Watch the design come to life</span>
         </button>
+        <p class="video-status" role="status"></p>
       </div>
-      <figcaption class="reel-cap">{d.caption}</figcaption>
+      <figcaption><span>{d.caption}</span><span>Island Life Custom Pools</span></figcaption>
     </figure>
   </div>
 </section>
 
 <script>
   document.querySelectorAll<HTMLElement>('.reel').forEach((reel) => {
-    const btn = reel.querySelector<HTMLButtonElement>('.play');
-    btn?.addEventListener('click', () => {
-      const v = document.createElement('video');
-      v.src = reel.dataset.src ?? '';
-      v.controls = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      reel.append(v);
-      reel.querySelector('.stage')?.remove();
-      btn.remove();
-      v.focus();
+    const video = reel.querySelector<HTMLVideoElement>('video');
+    const button = reel.querySelector<HTMLButtonElement>('.play');
+    const status = reel.querySelector<HTMLElement>('.video-status');
+    button?.addEventListener('click', async () => {
+      if (!video) return;
+      try {
+        video.controls = true;
+        await video.play();
+        button.remove();
+        video.focus();
+      } catch {
+        video.controls = true;
+        if (status) status.textContent = 'The video could not start. Try the native video controls or call us for a design consult.';
+      }
     });
   });
 </script>
