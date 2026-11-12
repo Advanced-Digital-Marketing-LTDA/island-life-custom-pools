@@ -3,24 +3,29 @@ import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const p = home.paths;
 ---
-<section class="section tiled" aria-labelledby="paths-title">
+<section class="paths section" id="start" aria-labelledby="paths-title">
   <div class="wrap">
-    <div class="section-head"><h2 id="paths-title">{p.title}</h2></div>
-    <div class="path-grid">
-      <article class="plaque path">
+    <div class="paths-intro">
+      <h2 id="paths-title">{p.title}</h2>
+      <p>Different starting points. One considered outdoor space, designed around the way you want to live.</p>
+    </div>
+    <div class="paths-grid">
+      <article class="path">
+        <p class="path-label">The first pool</p>
         <h3>{p.first.title}</h3>
-        <p class="lead">{p.first.text}</p>
+        <p class="path-copy">{p.first.text}</p>
         <blockquote>
           <p>“{p.first.quote}”</p>
           <cite>{p.first.by}</cite>
         </blockquote>
         <a class="textlink" href="#quote" data-interest="Pool">Start my pool<Icon name="arrow" /></a>
       </article>
-      <article class="plaque path">
+      <article class="path path-upgrade">
+        <p class="path-label">The next chapter</p>
         <h3>{p.upgrade.title}</h3>
-        <p class="lead">{p.upgrade.text}</p>
+        <p class="path-copy">{p.upgrade.text}</p>
         <ul class="chips">
-          {p.upgrade.items.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+          {p.upgrade.items.map((i) => <li><a href={i.href}>{i.label}<Icon name="out" /></a></li>)}
         </ul>
         <a class="textlink" href="#quote">Plan my upgrade<Icon name="arrow" /></a>
       </article>

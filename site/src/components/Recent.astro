@@ -3,19 +3,21 @@ import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const r = home.recent;
 ---
-<section class="section tiled recent" aria-labelledby="recent-title">
-  <div class="wrap">
-    <div class="recent-head">
+<section class="recent section" aria-labelledby="recent-title">
+  <div class="wrap recent-grid">
+    <div class="recent-intro">
+      <p class="section-label">From the field</p>
       <h2 id="recent-title">{r.title}</h2>
-      <a class="btn btn-line" href={r.followHref} rel="noopener">{r.followLabel}<Icon name="out" /></a>
+      <p>Follow the latest builds, backyard upgrades, and works in progress.</p>
+      <a class="textlink" href={r.followHref} rel="noopener" target="_blank">{r.followLabel}<Icon name="out" /></a>
     </div>
     <ul class="posts">
-      {r.items.slice(0, 3).map((i) => (
+      {r.items.map((i) => (
         <li>
-          <a href={i.href} rel="noopener">
-            <span class="kind">{i.kind}</span>
-            <span class="ptitle">{i.image && <img src={i.image} alt="" loading="lazy" width="72" height="72" />}{i.title}</span>
-            <Icon name="out" />
+          <a href={i.href} rel="noopener" target="_blank">
+            <span class="post-kind">{i.kind}</span>
+            <span class="post-title">{i.title}</span>
+            <span class="post-arrow"><Icon name="out" /></span>
           </a>
         </li>
       ))}

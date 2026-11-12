@@ -3,43 +3,48 @@ import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const d = home.design;
 ---
-<section class="design section tiled" aria-labelledby="design-title">
-  <div class="wrap design-grid">
-    <div class="design-copy">
+<section class="design section on-deep" aria-labelledby="design-title">
+  <div class="wrap">
+    <div class="design-heading">
+      <p class="section-label">Drawn before dug</p>
       <h2 id="design-title">{d.title}</h2>
-      <p class="lead">{d.text}</p>
-      <a class="btn btn-brass" href="#quote">Request a free quote</a>
-    </div>
-    <figure>
-      <div class="player" data-src={d.videoSrc} data-src-small={d.videoSrc.replace(/\.mp4$/, '-sm.mp4')} data-poster={d.poster}>
-        <img src={d.poster} alt="" width="1280" height="720" loading="lazy" decoding="async" />
-        <button class="play" type="button" aria-label={d.videoLabel}>
-          <span class="disc"><Icon name="play" /></span>
-          <span>{d.videoLabel}</span>
-        </button>
+      <div class="design-copy">
+        <p>{d.text}</p>
+        <a class="textlink" href="#quote">Get my 3D design<Icon name="arrow" /></a>
       </div>
-      <figcaption class="player-cap">{d.caption}</figcaption>
+    </div>
+    <figure class="design-figure">
+      <div class="reel">
+        <video class="design-video" playsinline preload="none" poster="/media/design-poster.webp" aria-label={d.videoLabel}>
+          <source src="/media/island-life-design.mp4" type="video/mp4" />
+        </video>
+        <button class="play" type="button" aria-label={`Play video: ${d.videoLabel}`}>
+          <span class="disc"><Icon name="play" /></span>
+          <span class="lbl">Watch the design come to life</span>
+        </button>
+        <p class="video-status" role="status"></p>
+      </div>
+      <figcaption><span>{d.caption}</span><span>Island Life Custom Pools</span></figcaption>
     </figure>
   </div>
 </section>
 
 <script>
-  const phone = matchMedia('(max-width: 47.99em)');
-  document.querySelectorAll<HTMLElement>('.player').forEach((player) => {
-    const btn = player.querySelector<HTMLButtonElement>('.play');
-    btn?.addEventListener('click', () => {
-      const full = player.dataset.src ?? '';
-      const v = document.createElement('video');
-      // phones get a lighter encode; if it is missing the full file takes over
-      v.addEventListener('error', () => { if (v.getAttribute('src') !== full) { v.src = full; v.play().catch(() => {}); } });
-      v.src = (phone.matches && player.dataset.srcSmall) || full;
-      v.poster = player.dataset.poster ?? '';
-      v.setAttribute('aria-label', 'The 3D walkthrough');
-      v.controls = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      player.replaceChildren(v);
-      v.focus();
+  document.querySelectorAll<HTMLElement>('.reel').forEach((reel) => {
+    const video = reel.querySelector<HTMLVideoElement>('video');
+    const button = reel.querySelector<HTMLButtonElement>('.play');
+    const status = reel.querySelector<HTMLElement>('.video-status');
+    button?.addEventListener('click', async () => {
+      if (!video) return;
+      try {
+        video.controls = true;
+        await video.play();
+        button.remove();
+        video.focus();
+      } catch {
+        video.controls = true;
+        if (status) status.textContent = 'The video could not start. Try the native video controls or call us for a design consult.';
+      }
     });
   });
 </script>

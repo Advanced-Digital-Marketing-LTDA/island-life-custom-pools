@@ -1,7 +1,8 @@
 ---
-import '@fontsource/marcellus';
 import '@fontsource-variable/figtree';
-import marcellusUrl from '@fontsource/marcellus/files/marcellus-latin-400-normal.woff2?url';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import newsreaderUrl from '@fontsource-variable/newsreader/files/newsreader-latin-opsz-normal.woff2?url';
 import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import { settings, home } from '../lib/content';
@@ -34,10 +35,10 @@ const ld = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="preload" as="font" type="font/woff2" crossorigin href={marcellusUrl} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={newsreaderUrl} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={figtreeUrl} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#06384a" />
+    <meta name="theme-color" content="#f3f2ed" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={settings.name} />
     <meta property="og:title" content={title} />
@@ -49,14 +50,6 @@ const ld = {
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </head>
   <body>
-    <!--
-    THESIS: A spa-day circuit through your future backyard (Plunge, Lounge, Table, Fire, then the quote), refusing the aqua-photo hero over a white card grid.
-    OWN-WORLD: Deep lagoon ground, honed-stone plaques with brass inset rules and numbered brass medallions, soft pool-floor light glows, Marcellus inscription type; photos and video carry all the color.
-    STORY: In Houston heat the visitor finds a cool oasis, learns Island Life models the yard in 3D before building the rooms, then calls or requests a quote.
-    FIRST VIEWPORT: Full-bleed looping 3D flythrough under drifting steam, stone logo plate and nav on top, headline lower-left at display scale, brass quote and stone call buttons equal beneath the lead, a four-room route strip, then pause control and trust line at the foot.
-    FORM: Thermal spa circuit wayfinding, candidate 4 of 7 (re-roll 2), seed key 7edb5630.
-    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
-    -->
     <a class="skip" href="#content">Skip to content</a>
     <slot />
   </body>

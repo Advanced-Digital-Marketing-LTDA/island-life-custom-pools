@@ -19,14 +19,14 @@ npm start
 - `content/home.json`: every word on the home page.
 - `content/settings.json`: logo, phone, hours, navigation, social links and the quote form endpoint.
 - `src/styles/brand.css`: brand colors, sampled from the logo (`public/images/island-life-logo.svg` wraps the logo bitmap; a transparent PNG or SVG would let the header and footer drop the blend and the white plate).
-- `public/oasis/`: the photos and videos the home page uses. Each photo is a `<name>-1600.webp` with a `<name>-800.webp` twin for phones (keep that naming when you add one); videos are short muted H.264 loops in `public/oasis/video/` with a webp poster. The hero video should have a `-sm` twin named after it (`model-flythrough-sm.mp4`, cropped to the phone view) that portrait phones load instead; if you replace the hero video in the editor, make a matching `-sm` copy (phones fall back to the full file when it is missing, which works but costs about 3 MB more); the site only requests a video when it is about to play. Full-size originals live in `originals/` and are not shipped in the Docker image.
+- `public/media/`: the hero loops (`hero-loop.mp4`, `hero-loop-mobile.mp4`), the design film (`island-life-design.mp4`) and the poster and service stills (webp), all taken from the company’s 3D design video. The hero video has a visible pause control and is replaced by its poster for visitors who prefer reduced motion.
 - `DESIGN.md` and `PRODUCT.md`: the design system and product context.
 
 Tina edits these JSON files and commits them to Git. The production build does not use Tina: `npm run build` reads the JSON directly. `TINA_CLIENT_ID` and `TINA_TOKEN` are only for editing through Tina Cloud.
 
 ## Quote form
 
-The form posts to `/api/quote` (`quoteFormAction` in `content/settings.json`), a server route in `src/pages/api/quote.ts` that validates the fields and emails the lead through Proton SMTP. Set these as runtime variables in Coolify: `SMTP_USER` (the Proton address that owns the token), `SMTP_TOKEN` (its SMTP token), `LEAD_TO` (where leads go); `SMTP_HOST` and `SMTP_PORT` default to `smtp.protonmail.ch` and `587`. Without them the route returns 503 and the visitor is told to call. A hidden `company` field is the spam trap, and the route sends at most 3 emails per visitor IP and 30 in total per hour (in memory, so a restart resets it) to protect the Proton account. If other projects share that Proton account, create a separate SMTP token for this site so it can be revoked on its own.
+The form posts to `/api/quote` (`quoteFormAction` in `content/settings.json`), a server route in `src/pages/api/quote.ts` that validates the fields and emails the lead through Proton SMTP. Set these as runtime variables in Coolify: `SMTP_USER` (the Proton address that owns the token), `SMTP_TOKEN` (its SMTP token), `LEAD_TO` (where leads go); `SMTP_HOST` and `SMTP_PORT` default to `smtp.protonmail.ch` and `587`. Without them the route returns 503 and the visitor is told to call. A hidden `hp_site_ref` field is the spam trap, and the route sends at most 3 emails per visitor IP and 30 in total per hour (in memory, so a restart resets it) to protect the Proton account. If other projects share that Proton account, create a separate SMTP token for this site so it can be revoked on its own.
 
 ## Deploy
 
@@ -42,6 +42,6 @@ In Coolify select Dockerfile with base directory `/site`, Dockerfile `/Dockerfil
 
 ### Caching and compression
 
-The Node server sends `Cache-Control: public, max-age=0` for everything in `public/` (only the hashed `/_astro/` files are cached for a year) and does not compress responses. Both belong to the proxy: in Coolify keep gzip/brotli on, and add a response header for `/oasis/*` such as `Cache-Control: public, max-age=604800, stale-while-revalidate=86400` (not `immutable`, because those file names are not hashed). After deploy, `curl -sI -H "Accept-Encoding: gzip" https://islandlifecustompools.com/` should show `content-encoding`, and `curl -sI https://islandlifecustompools.com/oasis/lagoon-1600.webp` should show the max-age above.
+The Node server sends `Cache-Control: public, max-age=0` for everything in `public/` (only the hashed `/_astro/` files are cached for a year) and does not compress responses. Both belong to the proxy: in Coolify keep gzip/brotli on, and add a response header for `/media/*` such as `Cache-Control: public, max-age=604800, stale-while-revalidate=86400` (not `immutable`, because those file names are not hashed). After deploy, `curl -sI -H "Accept-Encoding: gzip" https://islandlifecustompools.com/` should show `content-encoding`, and `curl -sI https://islandlifecustompools.com/media/hero-poster.webp` should show the max-age above.
 
 Only the home page is built here. The navigation, footer and service links point at the existing URLs (`/custom-pools/`, `/about-us/`, ...), which return the 404 page until those pages exist or are proxied.

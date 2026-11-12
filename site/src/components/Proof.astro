@@ -2,28 +2,28 @@
 import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const p = home.proof;
-const small = (s: string) => s.replace('-1600.webp', '-800.webp');
 ---
-<section class="section proof" aria-labelledby="proof-title">
-  {p.photo && <div class="proof-bg"><img src={p.photo} srcset={p.photo.includes('-1600.webp') ? `${small(p.photo)} 800w, ${p.photo} 1600w` : undefined} sizes="100vw" alt="" width="1600" height="1066" loading="lazy" decoding="async" /></div>}
+<section class="proof section" aria-labelledby="proof-title">
   <div class="wrap">
-    <div class="section-head"><h2 id="proof-title">{p.title}</h2></div>
-    <div class="proof-top">
-      <figure class="featured">
-        <blockquote>
-          <p class="q">“{p.featured.quote}”</p>
-          <p class="more">{p.featured.more}</p>
-          <cite>{p.featured.by}</cite>
-        </blockquote>
-      </figure>
-      <div class="plaque google">
+    <div class="proof-heading">
+      <h2 id="proof-title">{p.title}</h2>
+      <div class="google">
         <strong><Icon name="check" />{p.google.title}</strong>
         <p>{p.google.text}</p>
       </div>
     </div>
+    <figure class="featured">
+      <blockquote>
+        <p class="q">“{p.featured.quote}”</p>
+        <div class="featured-foot">
+          <cite>{p.featured.by}</cite>
+          <p class="more">{p.featured.more}</p>
+        </div>
+      </blockquote>
+    </figure>
     <div class="reviews">
       {p.reviews.map((r) => (
-        <figure class="plaque review">
+        <figure class="review">
           <blockquote><p>“{r.quote}”</p></blockquote>
           <cite>{r.by}</cite>
         </figure>

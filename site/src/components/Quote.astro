@@ -1,19 +1,34 @@
 ---
+import Icon from './Icon.astro';
 import { settings, home } from '../lib/content';
 const q = home.quote;
 const next = home.process.steps[0];
-const small = (p: string) => p.replace('-1600.webp', '-800.webp');
 ---
 <section class="quote section" id="quote" aria-labelledby="quote-title">
-  {q.photo && <div class="quote-bg"><img src={q.photo} srcset={q.photo.includes('-1600.webp') ? `${small(q.photo)} 800w, ${q.photo} 1600w` : undefined} sizes="100vw" alt="" width="1600" height="1067" loading="lazy" decoding="async" /></div>}
-  <div class="steam" aria-hidden="true"></div>
   <div class="wrap quote-grid">
-    <div class="call quote-head">
-      <h2 id="quote-title">{q.title}</h2>
-      <p class="lead">{q.lead}</p>
+    <div class="call">
+      <div class="quote-head">
+        <h2 id="quote-title">{q.title}</h2>
+        <p class="lead">{q.lead}</p>
+      </div>
+      <div class="quote-info">
+        <div class="call-direct">
+          <p>{q.callTitle}</p>
+          <a class="call-num tnum" href={settings.phoneHref}>{settings.phone}</a>
+        </div>
+        <ul class="hours">
+          {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
+        </ul>
+        <div class="service-area">
+          <p>Serving</p>
+          <ul class="areas">
+            {settings.areas.map((a) => <li>{a.href ? <a href={a.href}>{a.label}</a> : a.label}</li>)}
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <form class="form plaque" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} data-phone={settings.phone} data-phone-href={settings.phoneHref} novalidate>
+    <form class="form" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} data-phone={settings.phone} data-phone-href={settings.phoneHref} novalidate>
       <div class="hp" aria-hidden="true">
         <label>Leave this empty <input name="hp_site_ref" type="text" tabindex="-1" autocomplete="off" /></label>
       </div>
@@ -38,12 +53,12 @@ const small = (p: string) => p.replace('-1600.webp', '-800.webp');
       </fieldset>
       <div class="row two">
         <div class="field">
-          <label for="q-email">Email address <span class="muted optional" data-opt="email" hidden>(optional)</span></label>
+          <label for="q-email">Email address <span data-opt="email" hidden>(optional)</span></label>
           <input id="q-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="q-email-err" />
           <span class="err" id="q-email-err">Enter a valid email address.</span>
         </div>
         <div class="field">
-          <label for="q-phone">Phone number <span class="muted optional" data-opt="phone">(optional)</span></label>
+          <label for="q-phone">Phone number <span data-opt="phone">(optional)</span></label>
           <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" pattern="[0-9 \(\)+.\-]{7,20}" aria-describedby="q-phone-err" />
           <span class="err" id="q-phone-err">Enter a phone number, 7 to 20 digits.</span>
         </div>
@@ -56,33 +71,22 @@ const small = (p: string) => p.replace('-1600.webp', '-800.webp');
         <span class="err" id="q-interest-err">Choose what you’re interested in.</span>
       </fieldset>
       <div class="field">
-        <label for="q-msg">Message <span class="muted optional">(optional)</span></label>
+        <label for="q-msg">Tell us what you’re picturing <span>(optional)</span></label>
         <textarea id="q-msg" name="message" rows="4" maxlength="2000"></textarea>
       </div>
-      <button class="btn btn-brass" type="submit">{q.submitLabel}</button>
-      <p class="reassure muted">Free design consult first. We’ll reach out by email or phone, whichever you choose.</p>
+      <div class="form-submit">
+        <button class="btn btn-dark" type="submit">{q.submitLabel}</button>
+        <p>Free design consult included with your quote request.</p>
+      </div>
       <p class="status" role="status" aria-live="polite"></p>
       <div class="sent" hidden tabindex="-1">
-        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" /></svg></span>
+        <span class="sent-mark" aria-hidden="true"><Icon name="check" /></span>
         <h3 class="sent-title">Request received<span data-name></span>.</h3>
         <p>We’ll reach out by <strong data-method>email</strong>. Next up: {next.title.toLowerCase()}.</p>
         <p>Rather talk now? <a class="tnum" href={settings.phoneHref}>{settings.phone}</a></p>
         <button class="sent-again" type="button">Send another request</button>
       </div>
     </form>
-
-    <div class="call quote-info">
-      <div>
-        <p class="muted call-title">{q.callTitle}</p>
-        <a class="call-num tnum" href={settings.phoneHref}>{settings.phone}</a>
-      </div>
-      <ul class="hours tnum">
-        {settings.hours.map((h) => <li><span>{h.days}</span><span>{h.time}</span></li>)}
-      </ul>
-      <ul class="areas">
-        {settings.areas.map((a) => <li>{a.href ? <a href={a.href}>{a.label}</a> : a.label}</li>)}
-      </ul>
-    </div>
   </div>
 </section>
 
@@ -128,8 +132,9 @@ const small = (p: string) => p.replace('-1600.webp', '-800.webp');
   try {
     const d = JSON.parse(sessionStorage.getItem(KEY) ?? 'null') as Record<string, string> | null;
     if (d) for (const [k, v] of Object.entries(d)) {
-      const els = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(`[name="${k}"]`);
-      els.forEach((el) => { if (el instanceof HTMLInputElement && el.type === 'radio') el.checked = el.value === v; else el.value = v; });
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(`[name="${k}"]`).forEach((el) => {
+        if (el instanceof HTMLInputElement && el.type === 'radio') el.checked = el.value === v; else el.value = v;
+      });
     }
   } catch { /* ignore a bad draft */ }
   form.addEventListener('input', keep);
@@ -150,6 +155,7 @@ const small = (p: string) => p.replace('-1600.webp', '-800.webp');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    form.classList.add('was-validated');
     if (!form.checkValidity()) {
       const names: Record<string, string> = { name: 'your name', zip: 'your zip code', email: 'your email address', phone: 'your phone number', interest: 'the kind of project you’re interested in' };
       const fields = [...form.querySelectorAll<HTMLInputElement>('input:invalid, textarea:invalid')];
@@ -176,6 +182,7 @@ const small = (p: string) => p.replace('-1600.webp', '-800.webp');
       sent.querySelector('[data-name]')!.textContent = first ? `, ${first}` : '';
       sent.querySelector('[data-method]')!.textContent = String(data.get('contact_method')).toLowerCase();
       form.reset();
+      form.classList.remove('was-validated');
       try { sessionStorage.removeItem(KEY); } catch { /* ignore */ }
       syncChannel();
       setStatus('');

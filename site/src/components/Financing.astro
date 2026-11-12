@@ -1,26 +1,19 @@
 ---
+import Icon from './Icon.astro';
 import { home } from '../lib/content';
-const d = home.discount;
 const f = home.financing;
 ---
-<section class="section on-stone" aria-label="Discount and financing">
-  <div class="wrap">
-    <div class="amenities-grid">
-      <div class="amenity">
-        <h2>{d.title}</h2>
-        <p class="lead">{d.text}</p>
-        <a class="btn btn-stone" href="#quote">{d.linkLabel}</a>
-      </div>
-      <div class="amenity">
-        <h2>{f.title}</h2>
-        <p class="lead">{f.text}</p>
-        <a class="btn btn-line" href={f.href}>{f.linkLabel}</a>
-      </div>
+<section class="financing section" aria-labelledby="fin-title">
+  <div class="wrap fin-grid">
+    <div class="fin-copy">
+      <h2 id="fin-title">{f.title}</h2>
+      <p class="lead">{f.text}</p>
+      <a class="btn btn-dark" href={f.href}>{f.linkLabel}<Icon name="arrow" /></a>
     </div>
     <div class="partners">
-      <p class="partners-title muted">{f.partnersTitle}</p>
-      <ul class="chips">
-        {f.partners.map((p) => <li>{p.href ? <a href={p.href} rel="noopener">{p.label}</a> : <span class="chip-plain">{p.label}</span>}</li>)}
+      <h3>{f.partnersTitle}</h3>
+      <ul>
+        {f.partners.map((p) => <li>{p.href ? <a href={p.href} rel="noopener">{p.label}<Icon name="out" /></a> : <span>{p.label}</span>}</li>)}
       </ul>
     </div>
   </div>

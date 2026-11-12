@@ -1,26 +1,9 @@
 ---
 import Icon from './Icon.astro';
 import { settings } from '../lib/content';
+const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
 ---
-<div class="mobile-bar" id="mobile-bar">
-  <a class="btn btn-stone" href={settings.phoneHref}><Icon name="phone" />Call</a>
-  <a class="btn btn-brass" href="#quote">Free quote</a>
-</div>
-
-<script>
-  // The bar is only needed once the hero's call and quote pair is not fully on screen, and it steps aside
-  // again once the quote section is well into view (it is the destination).
-  const bar = document.getElementById('mobile-bar');
-  const hero = document.querySelector('.hero .cta-pair');
-  const quote = document.getElementById('quote');
-  if (bar && hero) {
-    const covered = new Set<Element>();
-    const watch = (el: Element, rootMargin: string, minRatio: number) => new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && e.intersectionRatio >= minRatio) covered.add(el); else covered.delete(el);
-      if (covered.size) bar.dataset.hidden = ''; else delete bar.dataset.hidden;
-    }, { rootMargin, threshold: [0, 0.99, 1] }).observe(el);
-    bar.dataset.hidden = '';
-    watch(hero, '0px', 0.99);
-    if (quote) watch(quote, '0px 0px -40% 0px', 0);
-  }
-</script>
+<nav class="mobile-bar" aria-label="Quick contact">
+  <a class="btn btn-outline-dark" href={settings.phoneHref}><Icon name="phone" />Call</a>
+  <a class="btn btn-dark" href={quoteHref}>Free quote<Icon name="arrow" /></a>
+</nav>

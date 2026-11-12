@@ -1,40 +1,70 @@
 ---
 import Icon from './Icon.astro';
-import LoopVideo from './LoopVideo.astro';
 import { settings, home } from '../lib/content';
 const h = home.hero;
 ---
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-media">
-    <LoopVideo id="hero-video" src={h.video} srcSmall={h.video.replace(/\.mp4$/, '-sm.mp4')} poster={h.poster} label={h.videoAlt} />
-  </div>
-  <div class="hero-shade"></div>
-  <div class="wrap hero-body">
-    <h1 id="hero-title">{h.headline}</h1>
-    <p class="lead">{h.lead}</p>
-    <div class="cta-pair">
-      <a class="btn btn-brass" href="#quote">{h.quoteLabel}</a>
-      <a class="btn btn-stone" href={settings.phoneHref}><Icon name="phone" /><span>Call <span class="tnum">{settings.phone}</span></span></a>
+  <div class="hero-stage">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/media/hero-poster.webp">
+        <source src="/media/hero-loop.mp4" media="(min-width: 48rem)" type="video/mp4" />
+        <source src="/media/hero-loop-mobile.mp4" type="video/mp4" />
+      </video>
     </div>
-    <nav class="hero-route" aria-label="The four rooms">
-      {home.circuit.rooms.map((r, i) => <a href={`#${r.id}`}><span class="num">0{i + 1}</span>{r.name}</a>)}
-    </nav>
-    <div class="hero-foot">
-      <div class="hero-cap">
-        <button class="pause" type="button" data-pause-for="hero-video" data-state="paused" aria-label="Play background video">
-          <span data-icon="pause"><Icon name="pause" /></span>
-          <span data-icon="play"><Icon name="play" /></span>
-        </button>
-        <span>{h.videoCaption}</span>
-      </div>
-      <ul class="trust">
-        {home.trust.map((t, i) => (
-          <li>
-            <strong>{i === 0 && <Icon name="check" />}{t.title}</strong>
-            {t.text && <span>{t.text}</span>}
-          </li>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-kicker">{h.subhead}</p>
+      <h1 id="hero-title" aria-label={h.headline}>
+        {h.headline.split(' ').map((word, i) => (
+          <span class="word" aria-hidden="true" style={`--word:${i}`}><span>{word}</span></span>
         ))}
-      </ul>
+      </h1>
+      <div class="hero-bottom">
+        <p class="hero-lead">{h.lead}</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#quote">{h.quoteLabel}<Icon name="arrow" /></a>
+          <a class="btn btn-outline-light" href={settings.phoneHref}><Icon name="phone" /><span>Call <span class="tnum">{settings.phone}</span></span></a>
+        </div>
+      </div>
+      <a class="hero-scroll" href="#start">Explore the Island Life<span aria-hidden="true">↓</span></a>
+      <button class="hero-pause" type="button" aria-label="Pause hero video">Pause video</button>
+      <p class="hero-caption">3D design visualization</p>
     </div>
+  </div>
+
+  <div class="wrap titleblock" role="list" aria-label="Why choose Island Life">
+    {home.trust.map((t, i) => (
+      <div role="listitem">
+        <span class="trust-mark" aria-hidden="true">{i === 0 ? <Icon name="check" /> : '—'}</span>
+        <p><strong>{t.title}</strong>{t.text && <span>{t.text}</span>}</p>
+      </div>
+    ))}
   </div>
 </section>
+
+<script>
+  const heroVideo = document.querySelector<HTMLVideoElement>('.hero-video');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pauseBtn = document.querySelector<HTMLButtonElement>('.hero-pause');
+  let userPaused = false;
+  const label = () => {
+    if (!pauseBtn || !heroVideo) return;
+    pauseBtn.textContent = heroVideo.paused ? 'Play video' : 'Pause video';
+    pauseBtn.setAttribute('aria-label', heroVideo.paused ? 'Play hero video' : 'Pause hero video');
+  };
+  const syncMotion = () => {
+    if (!heroVideo) return;
+    if (reducedMotion.matches || userPaused) heroVideo.pause();
+    else heroVideo.play().catch(() => {});
+  };
+  heroVideo?.addEventListener('play', label);
+  heroVideo?.addEventListener('pause', label);
+  pauseBtn?.addEventListener('click', () => { userPaused = !(heroVideo?.paused); syncMotion(); });
+  syncMotion();
+  reducedMotion.addEventListener('change', syncMotion);
+  document.addEventListener('visibilitychange', () => {
+    if (!heroVideo) return;
+    if (document.hidden) heroVideo.pause();
+    else syncMotion();
+  });
+</script>
