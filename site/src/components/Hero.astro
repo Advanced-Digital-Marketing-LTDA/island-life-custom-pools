@@ -14,28 +14,22 @@ const h = home.hero;
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="hero-kicker">{h.subhead}</p>
-      <h1 id="hero-title" aria-label={h.headline}>
-        {h.headline.split(' ').map((word, i) => (
-          <span class="word" aria-hidden="true" style={`--word:${i}`}><span>{word}</span></span>
-        ))}
-      </h1>
+      <h1 id="hero-title">{h.headline}</h1>
       <div class="hero-bottom">
         <p class="hero-lead">{h.lead}</p>
         <div class="hero-actions">
-          <a class="btn btn-light" href="#quote">{h.quoteLabel}<Icon name="arrow" /></a>
+          <a class="btn btn-sky" href="#quote">{h.quoteLabel}</a>
           <a class="btn btn-outline-light" href={settings.phoneHref}><Icon name="phone" /><span>Call <span class="tnum">{settings.phone}</span></span></a>
         </div>
       </div>
-      <a class="hero-scroll" href="#start">Explore the Island Life<span aria-hidden="true">↓</span></a>
       <button class="hero-pause" type="button" aria-label="Pause hero video">Pause video</button>
       <p class="hero-caption">3D design visualization</p>
     </div>
   </div>
 
   <div class="wrap titleblock" role="list" aria-label="Why choose Island Life">
-    {home.trust.map((t, i) => (
+    {home.trust.map((t) => (
       <div role="listitem">
-        <span class="trust-mark" aria-hidden="true">{i === 0 ? <Icon name="check" /> : '—'}</span>
         <p><strong>{t.title}</strong>{t.text && <span>{t.text}</span>}</p>
       </div>
     ))}

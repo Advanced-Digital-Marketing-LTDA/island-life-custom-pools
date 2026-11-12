@@ -3,15 +3,12 @@ import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const d = home.design;
 ---
-<section class="design section on-deep" aria-labelledby="design-title">
-  <div class="wrap">
+<section class="design" aria-labelledby="design-title">
+  <div class="wrap design-grid">
     <div class="design-heading">
-      <p class="section-label">Drawn before dug</p>
       <h2 id="design-title">{d.title}</h2>
-      <div class="design-copy">
-        <p>{d.text}</p>
-        <a class="textlink" href="#quote">Get my 3D design<Icon name="arrow" /></a>
-      </div>
+      <p>{d.text}</p>
+      <a class="btn btn-sky" href="#quote">Get my 3D design</a>
     </div>
     <figure class="design-figure">
       <div class="reel">

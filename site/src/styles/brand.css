@@ -16,11 +16,14 @@
   --sun-400: oklch(0.87 0.16 95);
 
   /* Semantic roles. */
-  --surface: var(--neutral-50);
-  --surface-subtle: var(--neutral-100);
-  --surface-deep: var(--neutral-950);
-  --ink: var(--neutral-950);
-  --ink-soft: var(--neutral-700);
+  --surface: oklch(1 0 0);
+  --surface-subtle: oklch(0.965 0.012 225);
+  --surface-deep: var(--navy-900);
+  --blue: var(--aqua-500);
+  --sky: var(--aqua-300);
+  --sun: var(--sun-400);
+  --ink: oklch(0.2 0.03 265);
+  --ink-soft: oklch(0.42 0.02 265);
   --on-deep: var(--neutral-50);
   --on-deep-soft: var(--neutral-300);
   --line: color-mix(in oklab, var(--ink) 18%, transparent);
@@ -34,9 +37,9 @@
   --button-fg: var(--on-deep);
   --button-radius: 999px;
   --field-bg: transparent;
-  --header-height: 5rem;
+  --header-height: 5.5rem;
 
   /* Type. */
-  --font-display: 'Newsreader Variable', Georgia, serif;
+  --font-display: 'Figtree Variable', sans-serif;
   --font-body: 'Figtree Variable', sans-serif;
 }

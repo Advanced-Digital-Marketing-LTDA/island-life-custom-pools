@@ -4,7 +4,7 @@ import { settings } from '../lib/content';
 const primary = settings.nav.filter((n) => n.primary);
 const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
 ---
-<header class="site-header">
+<header class="site-header" data-solid={Astro.url.pathname !== '/' ? '' : undefined}>
   <div class="wrap bar">
     <a class="brand" href="/" aria-label={`${settings.name}, home`}>
       <img src={settings.logo} alt={settings.name} width="114" height="72" />
@@ -14,7 +14,7 @@ const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
     </nav>
     <div class="bar-actions">
       <a class="header-phone tnum" href={settings.phoneHref}>{settings.phone}</a>
-      <a class="btn btn-dark btn-small" href={quoteHref}>Free quote<Icon name="arrow" /></a>
+      <a class="btn btn-sun btn-small" href={quoteHref}>Free quote</a>
     </div>
     <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open navigation menu">
       <span>Menu</span><Icon name="menu" />

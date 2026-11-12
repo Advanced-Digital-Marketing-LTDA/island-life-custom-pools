@@ -1,8 +1,5 @@
 ---
 import '@fontsource-variable/figtree';
-import '@fontsource-variable/newsreader/opsz.css';
-import '@fontsource-variable/newsreader/opsz-italic.css';
-import newsreaderUrl from '@fontsource-variable/newsreader/files/newsreader-latin-opsz-normal.woff2?url';
 import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import { settings, home } from '../lib/content';
@@ -35,10 +32,9 @@ const ld = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="preload" as="font" type="font/woff2" crossorigin href={newsreaderUrl} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={figtreeUrl} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#f3f2ed" />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={settings.name} />
     <meta property="og:title" content={title} />
