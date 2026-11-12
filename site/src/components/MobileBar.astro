@@ -8,14 +8,19 @@ import { settings } from '../lib/content';
 </div>
 
 <script>
-  // The hero already shows both actions, so the bar waits until they scroll out of view.
+  // The bar is only needed once the hero's call and quote pair is not fully on screen, and it steps aside
+  // again once the quote section is well into view (it is the destination).
   const bar = document.getElementById('mobile-bar');
   const hero = document.querySelector('.hero .cta-pair');
+  const quote = document.getElementById('quote');
   if (bar && hero) {
+    const covered = new Set<Element>();
+    const watch = (el: Element, rootMargin: string, minRatio: number) => new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && e.intersectionRatio >= minRatio) covered.add(el); else covered.delete(el);
+      if (covered.size) bar.dataset.hidden = ''; else delete bar.dataset.hidden;
+    }, { rootMargin, threshold: [0, 0.99, 1] }).observe(el);
     bar.dataset.hidden = '';
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) bar.dataset.hidden = '';
-      else delete bar.dataset.hidden;
-    }).observe(hero);
+    watch(hero, '0px', 0.99);
+    if (quote) watch(quote, '0px 0px -40% 0px', 0);
   }
 </script>

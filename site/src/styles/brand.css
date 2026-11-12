@@ -21,6 +21,7 @@
   --brass: #e0b04a;           /* action fill; ink text on it */
   --brass-press: #cf9f3a;
   --brass-deep: #7a5614;      /* brass as text on stone */
+  --glow: #fdeeb4;            /* the logo's glow, undeepened: sun on the water. Light only, never text or a fill */
 
   /* type colors */
   --ink: #0a2230;             /* text on stone */

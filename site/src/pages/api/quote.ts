@@ -40,7 +40,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   // Honeypot: real visitors never see this field. Answer "ok" so bots don't retry.
-  if (form.get('company')) return json(200, { ok: true });
+  if (form.get('hp_site_ref')) return json(200, { ok: true });
 
   const v = (key: string) => String(form.get(key) ?? '').trim();
   const q = {
@@ -52,10 +52,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     interest: v('interest'),
     message: v('message'),
   };
+  // the visitor's chosen channel must be present; the other one is optional but must be well formed when given
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email) && q.email.length <= 254;
+  const phoneOk = /^[\d\s().+-]{7,20}$/.test(q.phone);
   const valid =
     q.name !== '' && q.name.length <= 100 &&
-    q.email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email) &&
-    /^[\d\s().+-]{7,20}$/.test(q.phone) &&
+    (q.email === '' ? q.contact === 'Phone' : emailOk) &&
+    (q.phone === '' ? q.contact === 'Email' : phoneOk) &&
     /^\d{5}$/.test(q.zip) &&
     ['Email', 'Phone'].includes(q.contact) &&
     home.quote.interests.includes(q.interest) &&
@@ -88,12 +91,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       .sendMail({
         from: { name: 'Island Life website', address: SMTP_USER }, // Proton only sends as the authenticated address
         to: LEAD_TO,
-        replyTo: { name: q.name, address: q.email },
+        ...(q.email ? { replyTo: { name: q.name, address: q.email } } : {}),
         subject: `Quote request: ${q.interest}`,
         text: [
           `Name: ${q.name}`,
-          `Phone: ${q.phone}`,
-          `Email: ${q.email}`,
+          `Phone: ${q.phone || '(not given)'}`,
+          `Email: ${q.email || '(not given)'}`,
           `Zip: ${q.zip}`,
           `Prefers: ${q.contact}`,
           `Interested in: ${q.interest}`,

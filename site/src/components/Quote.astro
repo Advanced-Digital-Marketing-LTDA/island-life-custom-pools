@@ -1,14 +1,77 @@
 ---
 import { settings, home } from '../lib/content';
 const q = home.quote;
+const next = home.process.steps[0];
+const small = (p: string) => p.replace('-1600.webp', '-800.webp');
 ---
 <section class="quote section" id="quote" aria-labelledby="quote-title">
-  {q.photo && <div class="quote-bg"><img src={q.photo} alt="" width="1600" height="1067" loading="lazy" decoding="async" /></div>}
+  {q.photo && <div class="quote-bg"><img src={q.photo} srcset={q.photo.includes('-1600.webp') ? `${small(q.photo)} 800w, ${q.photo} 1600w` : undefined} sizes="100vw" alt="" width="1600" height="1067" loading="lazy" decoding="async" /></div>}
   <div class="steam" aria-hidden="true"></div>
   <div class="wrap quote-grid">
-    <div class="call">
+    <div class="call quote-head">
       <h2 id="quote-title">{q.title}</h2>
       <p class="lead">{q.lead}</p>
+    </div>
+
+    <form class="form plaque" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} data-phone={settings.phone} data-phone-href={settings.phoneHref} novalidate>
+      <div class="hp" aria-hidden="true">
+        <label>Leave this empty <input name="hp_site_ref" type="text" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <div class="row two">
+        <div class="field">
+          <label for="q-name">Your name</label>
+          <input id="q-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="q-name-err" />
+          <span class="err" id="q-name-err">Enter your name.</span>
+        </div>
+        <div class="field">
+          <label for="q-zip">Zip code</label>
+          <input id="q-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required aria-describedby="q-zip-err" />
+          <span class="err" id="q-zip-err">Enter a 5-digit zip code.</span>
+        </div>
+      </div>
+      <fieldset class="field">
+        <legend>Best way to reach you</legend>
+        <div class="seg">
+          <label><input type="radio" name="contact_method" value="Email" checked /><span>Email</span></label>
+          <label><input type="radio" name="contact_method" value="Phone" /><span>Phone</span></label>
+        </div>
+      </fieldset>
+      <div class="row two">
+        <div class="field">
+          <label for="q-email">Email address <span class="muted optional" data-opt="email" hidden>(optional)</span></label>
+          <input id="q-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="q-email-err" />
+          <span class="err" id="q-email-err">Enter a valid email address.</span>
+        </div>
+        <div class="field">
+          <label for="q-phone">Phone number <span class="muted optional" data-opt="phone">(optional)</span></label>
+          <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" pattern="[0-9 \(\)+.\-]{7,20}" aria-describedby="q-phone-err" />
+          <span class="err" id="q-phone-err">Enter a phone number, 7 to 20 digits.</span>
+        </div>
+      </div>
+      <fieldset class="field">
+        <legend>What are you interested in?</legend>
+        <div class="seg">
+          {q.interests.map((i) => <label><input type="radio" name="interest" value={i} required /><span>{i}</span></label>)}
+        </div>
+        <span class="err" id="q-interest-err">Choose what you’re interested in.</span>
+      </fieldset>
+      <div class="field">
+        <label for="q-msg">Message <span class="muted optional">(optional)</span></label>
+        <textarea id="q-msg" name="message" rows="4" maxlength="2000"></textarea>
+      </div>
+      <button class="btn btn-brass" type="submit">{q.submitLabel}</button>
+      <p class="reassure muted">Free design consult first. We’ll reach out by email or phone, whichever you choose.</p>
+      <p class="status" role="status" aria-live="polite"></p>
+      <div class="sent" hidden tabindex="-1">
+        <span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" /></svg></span>
+        <h3 class="sent-title">Request received<span data-name></span>.</h3>
+        <p>We’ll reach out by <strong data-method>email</strong>. Next up: {next.title.toLowerCase()}.</p>
+        <p>Rather talk now? <a class="tnum" href={settings.phoneHref}>{settings.phone}</a></p>
+        <button class="sent-again" type="button">Send another request</button>
+      </div>
+    </form>
+
+    <div class="call quote-info">
       <div>
         <p class="muted call-title">{q.callTitle}</p>
         <a class="call-num tnum" href={settings.phoneHref}>{settings.phone}</a>
@@ -20,81 +83,78 @@ const q = home.quote;
         {settings.areas.map((a) => <li>{a.href ? <a href={a.href}>{a.label}</a> : a.label}</li>)}
       </ul>
     </div>
-
-    <form class="form plaque" method="post" action={settings.quoteFormAction} data-endpoint={settings.quoteFormAction} data-phone={settings.phone} novalidate>
-      <div class="hp" aria-hidden="true">
-        <label>Leave this empty <input name="company" type="text" tabindex="-1" autocomplete="off" /></label>
-      </div>
-      <div class="row two">
-        <div class="field">
-          <label for="q-name">Your name</label>
-          <input id="q-name" name="name" type="text" autocomplete="name" required aria-describedby="q-name-err" />
-          <span class="err" id="q-name-err">Enter your name.</span>
-        </div>
-        <div class="field">
-          <label for="q-zip">Zip code</label>
-          <input id="q-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required aria-describedby="q-zip-err" />
-          <span class="err" id="q-zip-err">Enter a 5-digit zip code.</span>
-        </div>
-      </div>
-      <div class="row two">
-        <div class="field">
-          <label for="q-email">Email address</label>
-          <input id="q-email" name="email" type="email" autocomplete="email" required aria-describedby="q-email-err" />
-          <span class="err" id="q-email-err">Enter a valid email address.</span>
-        </div>
-        <div class="field">
-          <label for="q-phone">Phone number</label>
-          <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="q-phone-err" />
-          <span class="err" id="q-phone-err">Enter your phone number.</span>
-        </div>
-      </div>
-      <fieldset class="field">
-        <legend>Best way to reach you</legend>
-        <div class="seg">
-          <label><input type="radio" name="contact_method" value="Email" checked /><span>Email</span></label>
-          <label><input type="radio" name="contact_method" value="Phone" /><span>Phone</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="field">
-        <legend>What are you interested in?</legend>
-        <div class="seg">
-          {q.interests.map((i) => <label><input type="radio" name="interest" value={i} required /><span>{i}</span></label>)}
-        </div>
-      </fieldset>
-      <div class="field">
-        <label for="q-msg">Message <span class="muted optional">(optional)</span></label>
-        <textarea id="q-msg" name="message" rows="4"></textarea>
-      </div>
-      <button class="btn btn-brass" type="submit">{q.submitLabel}</button>
-      <p class="status" role="status" aria-live="polite"></p>
-    </form>
   </div>
 </section>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('.quote .form');
-  const status = form?.querySelector<HTMLElement>('.status');
+  const form = document.querySelector<HTMLFormElement>('.quote .form')!;
+  const status = form.querySelector<HTMLElement>('.status')!;
+  const sent = form.querySelector<HTMLElement>('.sent')!;
+  const email = form.querySelector<HTMLInputElement>('#q-email')!;
+  const phone = form.querySelector<HTMLInputElement>('#q-phone')!;
   const setStatus = (msg: string, state = '') => {
-    if (!status) return;
     status.textContent = msg;
     status.dataset.state = state;
   };
+  // A failed send always leaves the visitor a way to reach the company: the number is a tap-to-call link.
+  const failed = () => {
+    status.dataset.state = 'error';
+    const call = document.createElement('a');
+    call.href = form.dataset.phoneHref ?? '';
+    call.className = 'tnum';
+    call.textContent = form.dataset.phone ?? '';
+    status.replaceChildren('That didn’t send. Please call us at ', call, '.');
+  };
+
+  // Only the channel the visitor chose is required; the other is optional.
+  const syncChannel = () => {
+    const byPhone = form.querySelector<HTMLInputElement>('input[name="contact_method"]:checked')?.value === 'Phone';
+    phone.required = byPhone;
+    email.required = !byPhone;
+    form.querySelector<HTMLElement>('[data-opt="phone"]')!.hidden = byPhone;
+    form.querySelector<HTMLElement>('[data-opt="email"]')!.hidden = !byPhone;
+  };
+  form.querySelectorAll('input[name="contact_method"]').forEach((r) => r.addEventListener('change', syncChannel));
+
+  // Keep a half-finished request if the tab is reloaded or discarded.
+  const KEY = 'quote-draft';
+  const keep = () => {
+    try {
+      const d: Record<string, string> = {};
+      new FormData(form).forEach((v, k) => { if (k !== 'hp_site_ref') d[k] = String(v); });
+      sessionStorage.setItem(KEY, JSON.stringify(d));
+    } catch { /* storage unavailable: nothing to keep */ }
+  };
+  try {
+    const d = JSON.parse(sessionStorage.getItem(KEY) ?? 'null') as Record<string, string> | null;
+    if (d) for (const [k, v] of Object.entries(d)) {
+      const els = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(`[name="${k}"]`);
+      els.forEach((el) => { if (el instanceof HTMLInputElement && el.type === 'radio') el.checked = el.value === v; else el.value = v; });
+    }
+  } catch { /* ignore a bad draft */ }
+  form.addEventListener('input', keep);
+  syncChannel();
+
+  sent.querySelector('.sent-again')?.addEventListener('click', () => {
+    delete form.dataset.sent;
+    sent.hidden = true;
+    form.querySelector<HTMLInputElement>('#q-name')?.focus();
+  });
 
   document.querySelectorAll<HTMLElement>('[data-interest]').forEach((el) => {
     el.addEventListener('click', () => {
-      const radio = form?.querySelector<HTMLInputElement>(`input[name="interest"][value="${el.dataset.interest}"]`);
-      if (radio) radio.checked = true;
+      const radio = form.querySelector<HTMLInputElement>(`input[name="interest"][value="${el.dataset.interest}"]`);
+      if (radio) { radio.checked = true; keep(); }
     });
   });
 
-  form?.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const failed = () => setStatus(`That didn’t send. Please call us at ${form.dataset.phone}.`, 'error');
     if (!form.checkValidity()) {
       const names: Record<string, string> = { name: 'your name', zip: 'your zip code', email: 'your email address', phone: 'your phone number', interest: 'the kind of project you’re interested in' };
-      const bad = [...new Set([...form.querySelectorAll<HTMLInputElement>(':invalid')].map((el) => names[el.name]).filter(Boolean))];
-      form.querySelector<HTMLElement>(':invalid')?.focus();
+      const fields = [...form.querySelectorAll<HTMLInputElement>('input:invalid, textarea:invalid')];
+      const bad = [...new Set(fields.map((el) => names[el.name]).filter(Boolean))];
+      fields[0]?.focus();
       setStatus(`Please check ${new Intl.ListFormat('en', { type: 'conjunction' }).format(bad)}.`, 'error');
       return;
     }
@@ -106,16 +166,27 @@ const q = home.quote;
     const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
     if (btn) btn.disabled = true;
     setStatus('Sending…');
+    const timeout = new AbortController();
+    const timer = setTimeout(() => timeout.abort(), 15000);
     try {
-      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form) });
+      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), signal: timeout.signal });
       if (!res.ok) throw new Error(String(res.status));
-      const method = (new FormData(form).get('contact_method') as string).toLowerCase();
+      const data = new FormData(form);
+      const first = String(data.get('name') ?? '').trim().split(/\s+/)[0];
+      sent.querySelector('[data-name]')!.textContent = first ? `, ${first}` : '';
+      sent.querySelector('[data-method]')!.textContent = String(data.get('contact_method')).toLowerCase();
       form.reset();
-      setStatus(`Thanks. We’ll reach out by ${method}.`);
+      try { sessionStorage.removeItem(KEY); } catch { /* ignore */ }
+      syncChannel();
+      setStatus('');
+      form.dataset.sent = '';
+      sent.hidden = false;
+      sent.focus();
     } catch (err) {
       console.error('Quote form submit failed', err);
       failed();
     } finally {
+      clearTimeout(timer);
       if (btn) btn.disabled = false;
     }
   });

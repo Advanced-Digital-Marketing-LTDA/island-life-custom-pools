@@ -8,10 +8,10 @@ const d = home.design;
     <div class="design-copy">
       <h2 id="design-title">{d.title}</h2>
       <p class="lead">{d.text}</p>
-      <a class="btn btn-brass" href="#quote">Get my 3D design</a>
+      <a class="btn btn-brass" href="#quote">Request a free quote</a>
     </div>
     <figure>
-      <div class="player" data-src={d.videoSrc} data-poster={d.poster}>
+      <div class="player" data-src={d.videoSrc} data-src-small={d.videoSrc.replace(/\.mp4$/, '-sm.mp4')} data-poster={d.poster}>
         <img src={d.poster} alt="" width="1280" height="720" loading="lazy" decoding="async" />
         <button class="play" type="button" aria-label={d.videoLabel}>
           <span class="disc"><Icon name="play" /></span>
@@ -24,13 +24,17 @@ const d = home.design;
 </section>
 
 <script>
+  const phone = matchMedia('(max-width: 47.99em)');
   document.querySelectorAll<HTMLElement>('.player').forEach((player) => {
     const btn = player.querySelector<HTMLButtonElement>('.play');
     btn?.addEventListener('click', () => {
+      const full = player.dataset.src ?? '';
       const v = document.createElement('video');
-      v.src = player.dataset.src ?? '';
+      // phones get a lighter encode; if it is missing the full file takes over
+      v.addEventListener('error', () => { if (v.getAttribute('src') !== full) { v.src = full; v.play().catch(() => {}); } });
+      v.src = (phone.matches && player.dataset.srcSmall) || full;
       v.poster = player.dataset.poster ?? '';
-      v.setAttribute('aria-label', btn?.getAttribute('aria-label') ?? 'Video');
+      v.setAttribute('aria-label', 'The 3D walkthrough');
       v.controls = true;
       v.autoplay = true;
       v.playsInline = true;

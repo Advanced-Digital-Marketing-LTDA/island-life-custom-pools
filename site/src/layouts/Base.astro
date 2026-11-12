@@ -1,6 +1,8 @@
 ---
 import '@fontsource/marcellus';
 import '@fontsource-variable/figtree';
+import marcellusUrl from '@fontsource/marcellus/files/marcellus-latin-400-normal.woff2?url';
+import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import { settings, home } from '../lib/content';
 
@@ -32,6 +34,8 @@ const ld = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={marcellusUrl} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={figtreeUrl} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#06384a" />
     <meta property="og:type" content="website" />

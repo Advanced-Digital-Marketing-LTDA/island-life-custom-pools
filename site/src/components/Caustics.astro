@@ -1,0 +1,146 @@
+---
+// Sunlight drifting across the hero as soft dappled light, as if the viewer were just under the pool's surface,
+// with a ripple where the pointer moves or taps. Raw WebGL, no dependency, drawn at reduced resolution.
+// It starts when the page is idle, is skipped for reduced motion, Save-Data and low-core devices, and
+// pauses off screen. Without it the steam layer carries the hero as before.
+---
+<canvas class="caustics" aria-hidden="true"></canvas>
+
+<script>
+  const VERT = 'attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }';
+  // Sun on water as soft light: four warped sine layers, no divisions or powers of negatives, so it stays finite on
+  // any GPU. Ripples from the pointer bend the field. The output is premultiplied, so it can only ever add light.
+  const FRAG = `
+    #ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+    #else
+    precision mediump float;
+    #endif
+    uniform vec2 uRes;
+    uniform float uTime;
+    uniform vec3 uTint;
+    uniform vec4 uRip[4];
+    float field(vec2 p, float t) {
+      vec2 q = p;
+      float v = 0.0;
+      for (int n = 0; n < 4; n++) {
+        float f = 1.0 + 0.8 * float(n);
+        q += (0.6 / f) * vec2(sin(q.y * f + t * (0.55 + 0.2 * float(n))), cos(q.x * f - t * (0.4 + 0.17 * float(n))));
+        v += 0.5 + 0.5 * sin(q.x * 1.4 + q.y * 1.1 + float(n) * 1.7);
+      }
+      return v * 0.25;
+    }
+    void main() {
+      vec2 uv = gl_FragCoord.xy / uRes;
+      vec2 q = uv * vec2(uRes.x / uRes.y, 1.0);
+      vec2 p = q * 2.6;
+      for (int k = 0; k < 4; k++) {
+        vec4 r = uRip[k];
+        float age = uTime - r.z;
+        if (r.w > 0.0 && age > 0.0 && age < 3.5) {
+          vec2 d = q - r.xy;
+          float dist = length(d) + 0.0001;
+          float wave = sin(dist * 30.0 - age * 8.0) * exp(-dist * 3.0) * exp(-age * 1.3);
+          p += (d / dist) * wave * 0.45;
+        }
+      }
+      float light = smoothstep(0.42, 0.6, field(p, uTime));
+      float a = clamp(light * light * 0.85, 0.0, 1.0);
+      gl_FragColor = vec4(uTint * a, a);
+    }`;
+
+  const canvas = document.querySelector<HTMLCanvasElement>('.caustics');
+  const hero = canvas?.closest<HTMLElement>('.hero') ?? null;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+
+  if (canvas && hero && !reduce.matches && !saveData && (navigator.hardwareConcurrency ?? 4) > 2) {
+    const go = () => init(canvas, hero);
+    if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 2500 });
+    else setTimeout(go, 1200);
+  } else {
+    canvas?.remove();
+  }
+
+  function init(canvas: HTMLCanvasElement, hero: HTMLElement) {
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: false, premultipliedAlpha: true, powerPreference: 'low-power' });
+    if (!gl) return canvas.remove();
+    const shader = (type: number, src: string) => {
+      const s = gl.createShader(type)!;
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+    };
+    const vs = shader(gl.VERTEX_SHADER, VERT);
+    const fs = shader(gl.FRAGMENT_SHADER, FRAG);
+    const prog = gl.createProgram()!;
+    if (!vs || !fs) return canvas.remove();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return canvas.remove();
+    gl.useProgram(prog);
+
+    // one oversized triangle covers the viewport
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const at = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(at);
+    gl.vertexAttribPointer(at, 2, gl.FLOAT, false, 0, 0);
+    const uRes = gl.getUniformLocation(prog, 'uRes');
+    const uTime = gl.getUniformLocation(prog, 'uTime');
+    const uRip = gl.getUniformLocation(prog, 'uRip[0]');
+
+    // the light takes its colour from the brand token, not a literal
+    const hex = getComputedStyle(canvas).getPropertyValue('--glow').trim().replace('#', '');
+    const n = parseInt(hex.length === 6 ? hex : 'fdeeb4', 16);
+    gl.uniform3f(gl.getUniformLocation(prog, 'uTint'), ((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
+
+    const coarse = matchMedia('(pointer: coarse)').matches;
+    const scale = coarse ? 0.4 : 0.5;
+    const t0 = performance.now();
+    const ripples = new Float32Array(16);
+    // the hero's pause control stops the light too
+    const vid = hero.querySelector<HTMLVideoElement>('video');
+    let slot = 0, raf = 0, last = 0, visible = false;
+
+    const frame = (now: number) => {
+      raf = requestAnimationFrame(frame);
+      if (coarse && now - last < 33) return; // phones: 30 fps is plenty for slow light
+      last = now;
+      const w = Math.max(2, Math.round(canvas.clientWidth * scale));
+      const h = Math.max(2, Math.round(canvas.clientHeight * scale));
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+      gl.uniform2f(uRes, w, h);
+      gl.uniform1f(uTime, (now - t0) / 1000);
+      gl.uniform4fv(uRip, ripples);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+    const run = () => { if (!raf && visible && !document.hidden && !reduce.matches && !vid?.paused) raf = requestAnimationFrame(frame); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    const ripple = (e: PointerEvent) => {
+      const r = canvas.getBoundingClientRect();
+      ripples.set([((e.clientX - r.left) / r.width) * (r.width / r.height), 1 - (e.clientY - r.top) / r.height, (performance.now() - t0) / 1000, 1], (slot++ % 4) * 4);
+    };
+    let lx = -1e3, ly = -1e3, lt = 0;
+    hero.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const now = performance.now();
+      if (now - lt < 140 || Math.hypot(e.clientX - lx, e.clientY - ly) < 48) return;
+      lt = now; lx = e.clientX; ly = e.clientY;
+      ripple(e);
+    });
+    hero.addEventListener('pointerdown', ripple);
+
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) run(); else stop(); }).observe(hero);
+    vid?.addEventListener('pause', () => stop());
+    vid?.addEventListener('play', () => run());
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else run(); });
+    reduce.addEventListener('change', () => {
+      if (reduce.matches) { stop(); canvas.classList.remove('is-on'); } else { canvas.classList.add('is-on'); run(); }
+    });
+    canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); stop(); canvas.remove(); });
+    canvas.classList.add('is-on');
+  }
+</script>

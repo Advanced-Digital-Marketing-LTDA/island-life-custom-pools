@@ -23,7 +23,8 @@ const stops = [...home.circuit.rooms.map((r) => ({ id: r.id, name: r.name })), {
   const update = () => {
     queued = false;
     const max = root.scrollHeight - innerHeight;
-    const tops = sections.map((s) => s.getBoundingClientRect().top);
+    const rects = sections.map((s) => s.getBoundingClientRect());
+    const tops = rects.map((r) => r.top);
     const y = scrollY;
     line?.style.setProperty('--p', String(max > 0 ? Math.min(1, y / max) : 0));
     if (!sections.length) return;
@@ -32,7 +33,9 @@ const stops = [...home.circuit.rooms.map((r) => ({ id: r.id, name: r.name })), {
     const c = last > first ? (y + innerHeight * 0.4 - first) / (last - first) : 0;
     wf?.style.setProperty('--c', String(Math.max(0, Math.min(1, c))));
     wf?.toggleAttribute('data-show', y > innerHeight * 0.6);
-    const current = tops.findLastIndex((t) => t <= innerHeight * 0.45);
+    let current = tops.findLastIndex((t) => t <= innerHeight * 0.45);
+    // past the last room and not yet at the quote (process, proof, financing...) no stop is current
+    if (current === sections.length - 2 && rects[current].bottom < innerHeight * 0.45) current = -1;
     links.forEach((a, i) => (i === current ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
   };
   const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };

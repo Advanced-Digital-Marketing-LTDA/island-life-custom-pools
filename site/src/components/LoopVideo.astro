@@ -17,6 +17,7 @@ const { id, src, srcSmall, poster, label } = Astro.props;
     const btn = document.querySelector<HTMLButtonElement>(`[data-pause-for="${v.id}"]`);
     let userPaused = reduce.matches || saveData;
     const sync = () => {
+      v.closest('.hero')?.toggleAttribute('data-paused', v.paused); // the hero control owns the whole scene (steam, sunlight)
       if (!btn) return;
       btn.dataset.state = v.paused ? 'paused' : 'playing';
       btn.setAttribute('aria-label', v.paused ? 'Play background video' : 'Pause background video');

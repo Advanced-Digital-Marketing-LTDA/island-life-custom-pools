@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import LoopVideo from './LoopVideo.astro';
+import Caustics from './Caustics.astro';
 import { settings, home } from '../lib/content';
 const h = home.hero;
 ---
@@ -8,6 +9,7 @@ const h = home.hero;
   <div class="hero-media">
     <LoopVideo id="hero-video" src={h.video} srcSmall={h.video.replace(/\.mp4$/, '-sm.mp4')} poster={h.poster} label={h.videoAlt} />
   </div>
+  <Caustics />
   <div class="hero-shade"></div>
   <div class="steam" aria-hidden="true"></div>
   <div class="wrap hero-body">

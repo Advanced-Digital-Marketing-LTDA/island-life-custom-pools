@@ -12,9 +12,6 @@ const set = (p: string) => (p.includes('-1600.webp') ? `${small(p)} 800w, ${p} 1
     <div class="section-head">
       <h2 id="circuit-title">{c.title}</h2>
       <p class="lead">{c.lead}</p>
-      <ul class="room-nav">
-        {c.rooms.map((r, i) => <li><a href={`#${r.id}`}><span class="tnum">0{i + 1}</span> {r.name}</a></li>)}
-      </ul>
     </div>
   </div>
 </section>
@@ -34,7 +31,7 @@ const set = (p: string) => (p.includes('-1600.webp') ? `${small(p)} 800w, ${p} 1
         </div>
         {r.video && r.gallery.length > 0 && (
           <ul class="room-strip">
-            {r.gallery.map((g) => (
+            {r.gallery.slice(0, 2).map((g) => (
               <li><img src={g.photo} srcset={set(g.photo)} sizes="(min-width: 60em) 9rem, 30vw" alt={g.alt} width="1600" height="1067" loading="lazy" decoding="async" /></li>
             ))}
           </ul>
@@ -50,7 +47,7 @@ const set = (p: string) => (p.includes('-1600.webp') ? `${small(p)} 800w, ${p} 1
         </div>
       ) : r.gallery.length > 0 && (
         <ul class="room-strip">
-          {r.gallery.map((g) => (
+          {r.gallery.slice(0, 2).map((g) => (
             <li><img src={g.photo} srcset={set(g.photo)} sizes="(min-width: 60em) 20vw, 30vw" alt={g.alt} width="1600" height="1067" loading="lazy" decoding="async" /></li>
           ))}
         </ul>
