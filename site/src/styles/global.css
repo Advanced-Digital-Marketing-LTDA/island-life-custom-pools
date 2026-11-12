@@ -429,28 +429,20 @@ fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
   .wf-dot { transition: background-color 0.25s, border-color 0.25s; }
 }
 
-/* ---------- motion: the circuit energizes ---------- */
-/* The one authored moment. On load the headline surfaces, then the four route medallions light in order,
-   each drawing the brass hairline back to the one before it. Everything is visible without it. */
-.btn:active { scale: 0.98; }
+/* ---------- motion ---------- */
+/* The photography and the loops supply the movement. The one authored motion is the circuit: a stop medallion lights as you reach it
+   (room tags here, build steps and the sent seal elsewhere), and a pressed button gives a small acknowledgement. */
 @media (prefers-reduced-motion: no-preference) {
-  .hero h1 { animation: surface 1s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
-  .hero .lead, .cta-pair { animation: lift 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
-  .hero .lead { animation-delay: 0.12s; }
-  .cta-pair { animation-delay: 0.24s; }
-  .hero-foot { animation: lift 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.5s backwards; }
-  .hero-route a { --d: 0.6s; animation: appear 0.4s ease-out var(--d) backwards; }
-  .hero-route a:nth-child(2) { --d: 0.85s; }
-  .hero-route a:nth-child(3) { --d: 1.1s; }
-  .hero-route a:nth-child(4) { --d: 1.35s; }
-  .hero-route .num { animation: energize 0.7s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--d) + 0.15s) backwards; }
-  .hero-route a + a::before { transform-origin: left; animation: draw 0.35s cubic-bezier(0.16, 1, 0.3, 1) var(--d) backwards; }
+  .btn:active { scale: 0.98; }
 }
-@keyframes surface { from { translate: 0 0.75rem; filter: blur(8px); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .room-tag .num { animation: lit-brass linear both; animation-timeline: view(); animation-range: entry 25% entry 70%; }
+  }
+}
+@keyframes lit-brass { from { background-color: transparent; color: var(--brass); box-shadow: inset 0 0 0 1.5px var(--brass); } }
 @keyframes lift { from { opacity: 0; translate: 0 0.75rem; } }
-@keyframes appear { from { opacity: 0; } }
 @keyframes energize { from { background-color: transparent; color: var(--brass); box-shadow: inset 0 0 0 1.5px var(--brass); scale: 0.82; } 55% { scale: 1.1; } }
-@keyframes draw { from { scale: 0 1; } }
 
 /* ---------- quote sent ---------- */
 /* On success the form gives way to a confirmation: a brass seal draws its check, the visitor is told how and what comes next. */
@@ -484,28 +476,6 @@ fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
 /* the Instagram list is a link list, not a destination, so it gets less ceremony than the sections that sell */
 .recent { padding-block: clamp(3rem, 2rem + 4vw, 6rem); }
 
-/* ---------- overdrive: sunlight on the water ---------- */
-/* Caustics: a WebGL layer (Caustics.astro) of moving sun-on-water light between the hero video and its scrims. It stays transparent until the script has started it. */
-.caustics { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity 1.6s ease-out;
-  /* keep the light off the text column: it plays on the pool side on wide screens and in the lower frame on phones */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 40%, black 78%); mask-image: linear-gradient(90deg, transparent 0%, transparent 40%, black 78%); }
-.caustics.is-on { opacity: 0.42; }
-@media (max-width: 47.99em) {
-  .caustics { -webkit-mask-image: linear-gradient(180deg, transparent 30%, black 90%); mask-image: linear-gradient(180deg, transparent 30%, black 90%); }
-  .caustics.is-on { opacity: 0.4; }
-}
-
-/* Rising water: each room's photo is revealed by a waterline that climbs the frame as the room enters.
-   Static (fully revealed) where scroll timelines are unsupported or motion is reduced. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .room-bg { animation: waterlevel linear both; animation-timeline: view(); animation-range: entry 0% entry 62%; }
-    .room-bg::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-top: 2px solid; border-image: linear-gradient(90deg, transparent, var(--sky) 18%, var(--glow) 50%, var(--sky) 82%, transparent) 1; animation: waterline linear both; animation-timeline: view(); animation-range: entry 0% entry 62%; }
-  }
-}
-@keyframes waterlevel { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes waterline { from { translate: 0 100%; opacity: 1; } 88% { opacity: 1; } to { translate: 0 0; opacity: 0; } }
-
 /* ---------- critique fixes ---------- */
 /* Quote: the form comes straight after the heading on small screens, so "Request a free quote" lands on the first field;
    the call number, hours and areas follow it (beside it on wide screens). */
@@ -519,9 +489,6 @@ fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
 .reassure { font-size: var(--text-small); }
 .status a { color: inherit; }
 .field:has(:user-invalid) fieldset ~ .err, fieldset.field:has(:user-invalid) .err { display: block; }
-
-/* One control owns the whole hero scene: paused means the steam stops as well as the video and the sunlight. */
-.hero[data-paused] .steam, .hero[data-paused] .steam::before { animation-play-state: paused; }
 
 /* The fixed bar must not hide what has keyboard focus. */
 @media (max-width: 74.99em) { html { scroll-padding-bottom: 5.5rem; } }
