@@ -1,17 +1,27 @@
 ---
 import { home } from '../lib/content';
+interface Props { steps?: number[]; intro?: boolean }
 const p = home.process;
+const first = home.paths.first;
+const { steps = p.steps.map((_, i) => i), intro = true } = Astro.props;
+const shown = steps.map((i) => p.steps[i]);
 ---
-<section class="process section" aria-labelledby="process-title">
-  <div class="wrap">
-    <div class="process-heading">
+<section class="process" aria-labelledby="process-title">
+  <div class="wrap process-grid">
+    <div class="process-intro">
       <h2 id="process-title">{p.title}</h2>
+      {intro && (<>
+        <h3>{first.title}</h3>
+        <p>{first.text}</p>
+      </>)}
     </div>
     <ol class="steps">
-      {p.steps.map((s) => (
-        <li><span class="step-number" aria-hidden="true"></span><h3>{s.title}</h3><p>{s.text}</p></li>
+      {shown.map((s) => (
+        <li><h3>{s.title}</h3><p>{s.text}</p></li>
       ))}
     </ol>
+  </div>
+  <div class="wrap">
     <blockquote class="process-quote">
       <p>“{p.quote}”</p>
       <cite>{p.by}</cite>

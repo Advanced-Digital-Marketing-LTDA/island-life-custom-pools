@@ -2,6 +2,9 @@
 import Icon from './Icon.astro';
 import { home } from '../lib/content';
 const s = home.services;
+const up = home.paths.upgrade;
+const covered = new Set(s.items.map((i) => i.href));
+const also = up.items.filter((i) => !covered.has(i.href));
 const images: Record<string, string> = {
   pool: '/media/service-pool.webp',
   patio: '/media/service-patio.webp',
@@ -10,15 +13,21 @@ const images: Record<string, string> = {
 ---
 <section class="services" aria-labelledby="services-title">
   <h2 id="services-title" class="sr-only">{s.title}</h2>
-  {s.items.map((i) => (
-    <a class="panel" href={i.href}>
-      <img src={images[i.id]} alt="" loading="lazy" width="1600" height="900" />
-      <span class="panel-tag">3D design visualization</span>
-      <span class="panel-copy">
-        <h3>{i.title}</h3>
-        <p>{i.text}</p>
-        <span class="panel-link">{i.linkLabel}<Icon name="arrow" /></span>
-      </span>
-    </a>
-  ))}
+  <div class="services-grid">
+    {s.items.map((i) => (
+      <a class="panel" href={i.href}>
+        <img src={images[i.id]} alt="" loading="lazy" width="1600" height="756" />
+        <span class="panel-copy">
+          <h3>{i.title}</h3>
+          <p>{i.text}</p>
+          <span class="panel-link">{i.linkLabel}<Icon name="arrow" /></span>
+        </span>
+      </a>
+    ))}
+  </div>
+  <div class="wrap services-note">
+    <p>{up.text}</p>
+    <ul>{also.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+    <p class="caption">All images on this site are 3D design visualizations, not photographs of finished projects.</p>
+  </div>
 </section>

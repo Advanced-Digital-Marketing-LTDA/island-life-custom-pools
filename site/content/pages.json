@@ -1,0 +1,234 @@
+[
+  {
+    "slug": "custom-pools",
+    "eyebrow": "Custom pool builds",
+    "title": "Custom pool builds",
+    "seoTitle": "Custom Pool Builds in Houston | Island Life Custom Pools",
+    "seoDescription": "Spectacular backyard pools that transport you to your own island paradise, designed around your vision and installed by our team.",
+    "lead": "Spectacular backyard pools that transport you to your own island paradise, designed around your vision and installed by our team.",
+    "body": [
+      "Never built a pool before? You don’t need to know how it works. We walk you through design, excavation, structure, and start-up, and answer every question along the way."
+    ],
+    "image": "/media/service-pool.webp",
+    "imageAlt": "A pool and spa in an Island Life 3D backyard design",
+    "image2": "/media/design-night-pool.webp",
+    "image2Alt": "An Island Life 3D backyard design at night",
+    "sections": [
+      "overview",
+      "process",
+      "design",
+      "proof",
+      "quote"
+    ],
+    "processSteps": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "slug": "custom-patios",
+    "eyebrow": "Custom patios",
+    "title": "Custom patios",
+    "seoTitle": "Custom Patios and Patio Covers in Houston | Island Life Custom Pools",
+    "seoDescription": "Patio covers are an important part of our pool builds. We craft an outdoor space you can be proud of: the perfect home away from home.",
+    "lead": "Patio covers are an important part of our pool builds. We craft an outdoor space you can be proud of: the perfect home away from home.",
+    "body": [
+      "Add a patio cover, an outdoor kitchen, or a pickleball court. We design the whole space to work together."
+    ],
+    "image": "/media/service-patio.webp",
+    "imageAlt": "A covered patio in an Island Life 3D backyard design",
+    "image2": "/media/design-spa-pavilion.webp",
+    "image2Alt": "An Island Life 3D backyard design at night",
+    "sections": [
+      "overview",
+      "process",
+      "design",
+      "proof",
+      "quote"
+    ],
+    "processSteps": [
+      0,
+      1,
+      3
+    ]
+  },
+  {
+    "slug": "outdoor-kitchens",
+    "eyebrow": "Custom outdoor kitchens",
+    "title": "Custom outdoor kitchens",
+    "seoTitle": "Custom Outdoor Kitchens in Houston | Island Life Custom Pools",
+    "seoDescription": "Outdoor kitchens made for entertaining and relaxing, designed to fit your pool and patio.",
+    "lead": "Outdoor kitchens made for entertaining and relaxing, designed to fit your pool and patio.",
+    "body": [
+      "Pool, spa, fire pit, fireplace: we design the whole space to work together, so the kitchen fits the pool and patio around it."
+    ],
+    "image": "/media/service-kitchen.webp",
+    "imageAlt": "An outdoor kitchen in an Island Life 3D backyard design",
+    "image2": "/media/design-lounge-fire.webp",
+    "image2Alt": "An Island Life 3D backyard design at night",
+    "sections": [
+      "overview",
+      "process",
+      "design",
+      "proof",
+      "quote"
+    ],
+    "processSteps": [
+      0,
+      1,
+      3
+    ]
+  },
+  {
+    "slug": "about-us",
+    "eyebrow": "About us",
+    "title": "About Island Life Custom Pools",
+    "seoTitle": "About Island Life Custom Pools | Island Life Custom Pools",
+    "seoDescription": "Custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, and Houston.",
+    "lead": "Custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, and Houston.",
+    "sections": [
+      "overview",
+      "proof",
+      "quote"
+    ],
+    "placeholder": true,
+    "body": [
+      "Never built a pool before? You don’t need to know how it works. We walk you through design, excavation, structure, and start-up, and answer every question along the way.",
+      "Add a patio cover, an outdoor kitchen, or a pickleball court. Pool, spa, fire pit, fireplace: we design the whole space to work together."
+    ],
+    "image": "/media/design-night-pool.webp",
+    "imageAlt": "A pool and spa at night in an Island Life 3D backyard design",
+    "image2": "/media/design-spa-pavilion.webp",
+    "image2Alt": "A covered spa pavilion in an Island Life 3D backyard design"
+  },
+  {
+    "slug": "gallery",
+    "eyebrow": "Gallery",
+    "title": "Gallery",
+    "seoTitle": "Gallery | Island Life Custom Pools",
+    "seoDescription": "3D design visualizations from Island Life Custom Pools. Each image is a render of a planned backyard, not a finished project.",
+    "lead": "3D design visualizations from Island Life Custom Pools. Each image is a render of a planned backyard, not a finished project.",
+    "sections": [
+      "gallery",
+      "quote"
+    ],
+    "placeholder": true,
+    "gallery": [
+      [
+        "design-night-pool.webp",
+        "A pool and spa at night"
+      ],
+      [
+        "design-grotto-pool.webp",
+        "A pool with a grotto"
+      ],
+      [
+        "design-spa-pavilion.webp",
+        "A covered spa pavilion"
+      ],
+      [
+        "design-lounge-fire.webp",
+        "A lounge with a fireplace"
+      ],
+      [
+        "service-patio.webp",
+        "A covered patio"
+      ],
+      [
+        "service-kitchen.webp",
+        "An outdoor kitchen"
+      ]
+    ]
+  },
+  {
+    "slug": "financing",
+    "eyebrow": "Financing",
+    "title": "Financing",
+    "seoTitle": "Financing | Island Life Custom Pools",
+    "seoDescription": "We work with several partners so that you can secure your dream pool without financial worry.",
+    "lead": "We work with several partners so that you can secure your dream pool without financial worry.",
+    "sections": [
+      "financing",
+      "quote"
+    ],
+    "placeholder": true,
+    "actions": false
+  },
+  {
+    "slug": "hayward-equipment",
+    "eyebrow": "Equipment",
+    "title": "Hayward equipment",
+    "seoTitle": "Hayward Equipment | Island Life Custom Pools",
+    "seoDescription": "We build with equipment from partners including Hayward, Paramount, NPT, Ledge Lounger and AquaStar.",
+    "lead": "We build with equipment from partners including Hayward, Paramount, NPT, Ledge Lounger and AquaStar.",
+    "sections": [
+      "partners",
+      "quote"
+    ],
+    "placeholder": true
+  },
+  {
+    "slug": "contact",
+    "eyebrow": "Contact",
+    "title": "Contact us",
+    "seoTitle": "Contact | Island Life Custom Pools",
+    "seoDescription": "Tell us what you're picturing and how you'd like us to reach you.",
+    "lead": "Tell us what you're picturing and how you'd like us to reach you.",
+    "sections": [
+      "quote"
+    ],
+    "actions": false
+  },
+  {
+    "slug": "custom-pool-builders-tomball",
+    "eyebrow": "Tomball, TX",
+    "title": "Custom pool builders in Tomball, TX",
+    "seoTitle": "Custom Pool Builders in Tomball, TX | Island Life Custom Pools",
+    "seoDescription": "Custom pools, patios, and outdoor kitchens in Tomball. We build a 3D model of your pool and outdoor space, so you see it before it's built.",
+    "lead": "Custom pools, patios, and outdoor kitchens in Tomball. We build a 3D model of your pool and outdoor space, so you see it before it's built.",
+    "sections": [
+      "services",
+      "design",
+      "proof",
+      "quote"
+    ],
+    "placeholder": true
+  },
+  {
+    "slug": "custom-pool-builders-cypress",
+    "eyebrow": "Cypress, TX",
+    "title": "Custom pool builders in Cypress, TX",
+    "seoTitle": "Custom Pool Builders in Cypress, TX | Island Life Custom Pools",
+    "seoDescription": "Custom pools, patios, and outdoor kitchens in Cypress. We build a 3D model of your pool and outdoor space, so you see it before it's built.",
+    "lead": "Custom pools, patios, and outdoor kitchens in Cypress. We build a 3D model of your pool and outdoor space, so you see it before it's built.",
+    "sections": [
+      "services",
+      "design",
+      "proof",
+      "quote"
+    ],
+    "placeholder": true
+  },
+  {
+    "slug": "gdpr-privacy-policy",
+    "eyebrow": "Legal",
+    "title": "Privacy policy",
+    "seoTitle": "Privacy Policy | Island Life Custom Pools",
+    "seoDescription": "How the quote form on this site uses the details you send us.",
+    "lead": "How the quote form on this site uses the details you send us.",
+    "sections": [
+      "prose"
+    ],
+    "placeholder": true,
+    "actions": false,
+    "noindex": true,
+    "prose": [
+      "When you request a quote, the details you enter (your name, email address, phone number, zip code, preferred way to be reached, project interest and message) are emailed to Island Life Custom Pools so we can reply to you.",
+      "To contact us about your details, call (832) 304-4092 or email us through the quote form.",
+      "This page is a short summary of what the form does. A full privacy policy is being prepared."
+    ]
+  }
+]

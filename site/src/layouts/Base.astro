@@ -1,5 +1,7 @@
 ---
 import '@fontsource-variable/figtree';
+import '@fontsource-variable/archivo/wdth.css';
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
 import figtreeUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import { settings, home } from '../lib/content';
@@ -7,7 +9,6 @@ import { settings, home } from '../lib/content';
 interface Props { title?: string; description?: string; noindex?: boolean }
 const { title = home.seoTitle, description = home.seoDescription, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const logoUrl = new URL(settings.logo, Astro.site).href;
 const logoIsSvg = settings.logo.endsWith('.svg');
 const ld = {
   '@context': 'https://schema.org',
@@ -33,6 +34,7 @@ const ld = {
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" as="font" type="font/woff2" crossorigin href={figtreeUrl} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={archivoUrl} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
@@ -41,7 +43,8 @@ const ld = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_US" />
-    {!logoIsSvg && <meta property="og:image" content={logoUrl} />}
+    <meta property="og:image" content={new URL('/media/hero-poster.webp', Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href={settings.logo} type={logoIsSvg ? 'image/svg+xml' : 'image/webp'} />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </head>

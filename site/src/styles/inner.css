@@ -1,0 +1,64 @@
+/* Inner pages and blog */
+.page-hero { padding-block: clamp(2rem, 1.5rem + 2vw, 3.5rem) clamp(2.5rem, 2rem + 3vw, 5rem); border-bottom: 2px solid var(--ink); }
+.page-hero-grid { display: grid; gap: 2rem; align-items: end; }
+.page-hero-copy { display: grid; gap: 1.25rem; justify-items: start; }
+.page-hero h1 { max-width: 14ch; font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4.25rem); line-height: 1.04; }
+.page-hero .lead { max-width: 34rem; color: var(--ink-soft); }
+.page-hero-img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.crumbs ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--ink-soft); }
+.crumbs li + li::before { content: '/'; margin-right: 0.5rem; opacity: 0.55; }
+.crumbs a { display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 0.25rem; }
+.crumbs a { color: var(--ink-soft); }
+.crumbs [aria-current] { color: var(--ink); }
+
+.overview { padding-block: clamp(4rem, 3rem + 5vw, 8rem); }
+.overview-grid { display: grid; gap: 2.5rem; align-items: center; }
+.overview-copy { display: grid; gap: 1.25rem; }
+.overview-copy p { max-width: 36rem; font-size: 1.125rem; }
+.overview-img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+
+.blog { padding-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(4rem, 3rem + 5vw, 8rem); }
+.blog-more { background: var(--surface-subtle); }
+.blog-more h2 { margin-bottom: 2rem; font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem); }
+.post-lead, .post-card { color: inherit; text-decoration: none; }
+.post-lead { display: grid; gap: 1.5rem; align-items: center; margin-bottom: clamp(3rem, 2rem + 3vw, 5rem); }
+.post-lead img, .post-card img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 400ms ease-out; }
+.post-lead:hover img, .post-card:hover img { transform: scale(1.015); }
+.post-lead-copy { display: grid; gap: 1rem; justify-items: start; }
+.post-lead h2 { font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem); }
+.post-meta { font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.post-more { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--blue); font-weight: 650; text-decoration: underline; text-underline-offset: 0.25em; }
+.post-grid { list-style: none; padding: 0; display: grid; gap: 2.5rem; }
+.post-card { display: grid; gap: 0.75rem; align-content: start; }
+.post-card h3 { font-size: 1.5rem; }
+.post-card p { color: var(--ink-soft); }
+.post-card:hover h3 { color: var(--blue); }
+
+.article { padding-block: clamp(2.5rem, 2rem + 3vw, 5rem) clamp(4rem, 3rem + 5vw, 7rem); }
+.article-img { width: min(100%, 60rem); height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin: 0 auto clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.prose { max-width: 40rem; margin-inline: auto; font-size: 1.125rem; line-height: 1.75; }
+.prose > * + * { margin-top: 1.25rem; }
+.prose h2 { margin-top: 2.5rem; font-size: clamp(1.5rem, 1.3rem + 0.9vw, 2rem); }
+.prose h2 + * { margin-top: 0.75rem; }
+.prose ol, .prose ul { padding-left: 1.4rem; }
+.prose li + li { margin-top: 0.5rem; }
+.prose a { color: var(--blue); }
+.prose strong { font-weight: 650; }
+
+@media (min-width: 48rem) {
+  .page-hero-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 4rem; }
+  .overview-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 4rem; }
+  .post-lead { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 3rem; }
+  .post-grid { grid-template-columns: 1fr 1fr; gap: 3rem 2.5rem; }
+}
+@media (min-width: 64rem) { .post-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.gallery { padding-block: clamp(3rem, 2rem + 4vw, 6rem); }
+.gallery-grid { list-style: none; padding: 0; display: grid; gap: 1.5rem; }
+.gallery-grid figure { display: grid; gap: 0.5rem; }
+.gallery-grid img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.gallery-grid figcaption { font-size: 0.8125rem; color: var(--ink-soft); letter-spacing: 0.04em; }
+.partners-page h2 { margin-bottom: 1.5rem; font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem); }
+.partners-page ul { max-width: 32rem; grid-template-columns: 1fr; }
+@media (min-width: 48rem) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64rem) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }

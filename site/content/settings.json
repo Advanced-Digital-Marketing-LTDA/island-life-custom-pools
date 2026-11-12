@@ -6,7 +6,7 @@
   "quoteFormAction": "/api/quote",
   "hours": [
     {
-      "days": "Monday – Friday",
+      "days": "Monday - Friday",
       "time": "8am to 7pm"
     },
     {

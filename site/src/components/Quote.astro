@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import { settings, home } from '../lib/content';
 const q = home.quote;
 const next = home.process.steps[0];
+const disc = home.discount;
 ---
 <section class="quote section" id="quote" aria-labelledby="quote-title">
   <div class="wrap quote-grid">
@@ -10,6 +11,7 @@ const next = home.process.steps[0];
       <div class="quote-head">
         <h2 id="quote-title">{q.title}</h2>
         <p class="lead">{q.lead}</p>
+        <p class="note"><strong>{disc.title}.</strong> {disc.text}</p>
       </div>
       <div class="quote-info">
         <div class="call-direct">
@@ -63,7 +65,7 @@ const next = home.process.steps[0];
           <span class="err" id="q-phone-err">Enter a phone number, 7 to 20 digits.</span>
         </div>
       </div>
-      <fieldset class="field">
+      <fieldset class="field" aria-describedby="q-interest-err">
         <legend>What are you interested in?</legend>
         <div class="seg">
           {q.interests.map((i) => <label><input type="radio" name="interest" value={i} required /><span>{i}</span></label>)}
@@ -75,7 +77,7 @@ const next = home.process.steps[0];
         <textarea id="q-msg" name="message" rows="4" maxlength="2000"></textarea>
       </div>
       <div class="form-submit">
-        <button class="btn btn-dark" type="submit">{q.submitLabel}</button>
+        <button class="btn btn-sun" type="submit">{q.submitLabel}</button>
         <p>Free design consult included with your quote request.</p>
       </div>
       <p class="status" role="status" aria-live="polite"></p>
@@ -153,6 +155,7 @@ const next = home.process.steps[0];
     });
   });
 
+  form.addEventListener('input', (e) => { const el = e.target as HTMLInputElement; if (el.hasAttribute('aria-invalid')) el.setAttribute('aria-invalid', String(!el.validity.valid)); });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     form.classList.add('was-validated');
@@ -160,6 +163,7 @@ const next = home.process.steps[0];
       const names: Record<string, string> = { name: 'your name', zip: 'your zip code', email: 'your email address', phone: 'your phone number', interest: 'the kind of project you’re interested in' };
       const fields = [...form.querySelectorAll<HTMLInputElement>('input:invalid, textarea:invalid')];
       const bad = [...new Set(fields.map((el) => names[el.name]).filter(Boolean))];
+      form.querySelectorAll<HTMLInputElement>('input, textarea').forEach((el) => el.setAttribute('aria-invalid', String(!el.validity.valid)));
       fields[0]?.focus();
       setStatus(`Please check ${new Intl.ListFormat('en', { type: 'conjunction' }).format(bad)}.`, 'error');
       return;
