@@ -7,10 +7,7 @@ const p = home.proof;
   <div class="wrap">
     <div class="proof-heading">
       <h2 id="proof-title">{p.title}</h2>
-      <div class="google">
-        <strong><Icon name="check" />{p.google.title}</strong>
-        <p>{p.google.text}</p>
-      </div>
+      <p class="google"><Icon name="check" /><span><strong>{p.google.title}.</strong> {p.google.text}</span></p>
     </div>
     <figure class="featured">
       <blockquote>

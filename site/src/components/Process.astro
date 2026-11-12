@@ -5,7 +5,7 @@ const p = home.process;
 const { steps = p.steps.map((_, i) => i) } = Astro.props;
 const shown = steps.map((i) => p.steps[i]);
 ---
-<section class="process section" aria-labelledby="process-title">
+<section class="process section on-deep" aria-labelledby="process-title">
   <div class="wrap">
     <div class="process-heading">
       <h2 id="process-title">{p.title}</h2>

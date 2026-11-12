@@ -1,8 +1,8 @@
 ---
 import Icon from './Icon.astro';
 import { settings } from '../lib/content';
-interface Props { crumbs: { label: string; href?: string }[]; eyebrow?: string; title: string; lead?: string; image?: string; imageAlt?: string; actions?: boolean }
-const { crumbs, eyebrow, title, lead, image, imageAlt = '', actions = true } = Astro.props;
+interface Props { crumbs: { label: string; href?: string }[]; title: string; lead?: string; image?: string; imageAlt?: string; actions?: boolean }
+const { crumbs, title, lead, image, imageAlt = '', actions = true } = Astro.props;
 ---
 <section class="page-hero on-deep">
   <div class="wrap page-hero-grid">
@@ -12,7 +12,6 @@ const { crumbs, eyebrow, title, lead, image, imageAlt = '', actions = true } = A
           {crumbs.map((c, i) => <li>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
         </ol>
       </nav>
-      {eyebrow && <p class="section-label">{eyebrow}</p>}
       <h1>{title}</h1>
       {lead && <p class="lead">{lead}</p>}
       {actions && (

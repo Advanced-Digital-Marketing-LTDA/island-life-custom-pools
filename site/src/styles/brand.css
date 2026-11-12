@@ -35,7 +35,8 @@
   /* Component tokens. */
   --button-bg: var(--ink);
   --button-fg: var(--on-deep);
-  --button-radius: 999px;
+  --button-radius: 999px; /* buttons are pills; photos and video use --radius-media */
+  --radius-media: 1rem;
   --field-bg: transparent;
   --header-height: 5.5rem;
 

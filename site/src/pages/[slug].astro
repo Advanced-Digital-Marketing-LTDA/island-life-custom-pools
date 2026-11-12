@@ -25,13 +25,13 @@ const has = (s: string) => page.sections.includes(s);
 <Base title={page.seoTitle} description={page.seoDescription} noindex={page.noindex}>
   <Header />
   <main id="content">
-    <PageHero crumbs={[{ label: 'Home', href: '/' }, { label: page.title }]} eyebrow={page.eyebrow} title={page.title} lead={page.lead} image={page.image} imageAlt={page.imageAlt} actions={page.actions !== false} />
+    <PageHero crumbs={[{ label: 'Home', href: '/' }, { label: page.title }]} title={page.title} lead={page.lead} image={page.image} imageAlt={page.imageAlt} actions={page.actions !== false} />
     {has('overview') && (
       <section class="overview">
         <div class="wrap overview-grid">
           <div class="overview-copy">
-            <h2>Designed around your yard</h2>
-            {page.body.map((p: string) => <p>{p}</p>)}
+            <h2 class="sr-only">Overview</h2>
+            {page.body.map((p: string) => <p class="lead">{p}</p>)}
           </div>
           <img class="overview-img" src={page.image2 ?? page.image} alt={page.image2Alt ?? page.imageAlt} loading="lazy" width="1280" height="720" />
         </div>
