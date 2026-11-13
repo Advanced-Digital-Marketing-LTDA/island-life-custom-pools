@@ -1,70 +1,37 @@
 ---
-interface Step { title?: string; description?: string; meta?: string; image?: string; alt?: string }
-interface Props { label?: string; title?: string; titleEm?: string; steps?: Step[]; anchor?: string; headingId: string }
-const { label = '', title = '', titleEm = '', steps = [], anchor, headingId } = Astro.props;
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Step { title?: string; description?: string }
+interface Props {
+  label?: string; title?: string; titleEm?: string; intro?: string; cta?: string; ctaHref?: string; steps?: Step[]; anchor?: string; headingId: string;
+}
+const { label = '', title = '', titleEm = '', intro = '', cta = '', ctaHref = '#quote', steps = [], anchor, headingId } = Astro.props;
 ---
-<section class="process section" id={anchor || undefined} aria-labelledby={headingId} data-steps={JSON.stringify(steps.map(({ meta, alt }) => ({ meta, alt })))}>
-  <div class="page-shell">
+<section class="process section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell process__layout">
     <div class="process__heading">
       <p class="section-label">{label}</p>
-      <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<em>{titleEm}</em></Fragment>}</h2>
+      {intro && <p>{intro}</p>}
+      {cta && (
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
     </div>
-    <div class="process__layout">
-      <div class="process__steps">
-        {steps.map((step, index) => (
-          <div class:list={['process-step', { 'is-active': index === 0 }]} data-step={index}>
-            <span class="process-step__number">0{index + 1}</span>
+    <ol class="process__steps">
+      {steps.map((step, index) => (
+        <li class="process-step">
+          <span class="process-step__number">0{index + 1}</span>
+          <div>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
-            <span class="process-step__meta">{step.meta}</span>
           </div>
-        ))}
-      </div>
-      <div class="process__visual" aria-live="polite">
-        <div class="process__visual-frame">
-          {steps.map((step, index) => (
-            <img class={index === 0 ? 'is-active' : ''} src={step.image} alt={index === 0 ? step.alt : ''} loading="lazy" aria-hidden={index !== 0 ? 'true' : 'false'} />
-          ))}
-          <div class="process__progress" aria-hidden="true">
-            <span style={`transform: scaleY(${1 / (steps.length || 1)});`}></span>
-          </div>
-          <p class="process__caption">{steps[0]?.meta}</p>
-        </div>
-      </div>
-    </div>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
-
-<script>
-  type Step = { meta: string; alt: string };
-
-  document.querySelectorAll<HTMLElement>('.process').forEach((root) => {
-    const steps: Step[] = JSON.parse(root.dataset.steps || '[]');
-    const items = root.querySelectorAll<HTMLElement>('.process-step');
-    if (!steps.length || !items.length) return;
-    const images = root.querySelectorAll<HTMLImageElement>('.process__visual-frame > img');
-    const progress = root.querySelector<HTMLElement>('.process__progress span')!;
-    const caption = root.querySelector('.process__caption')!;
-
-    function show(active: number) {
-      items.forEach((item, index) => item.classList.toggle('is-active', index === active));
-      images.forEach((image, index) => {
-        image.classList.toggle('is-active', index === active);
-        image.alt = index === active ? steps[index].alt : '';
-        image.setAttribute('aria-hidden', String(index !== active));
-      });
-      progress.style.transform = `scaleY(${(active + 1) / steps.length})`;
-      caption.textContent = steps[active].meta;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) show(Number((entry.target as HTMLElement).dataset.step));
-        });
-      },
-      { rootMargin: '-32% 0px -46% 0px', threshold: 0 },
-    );
-    items.forEach((item) => observer.observe(item));
-  });
-</script>

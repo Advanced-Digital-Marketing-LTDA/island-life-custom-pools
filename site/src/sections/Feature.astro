@@ -13,7 +13,7 @@ const { image = '', imageAlt = '', eyebrow = '', title = '', text = '', linkLabe
       {image && <img src={image} alt={imageAlt} loading="lazy" />}
     </figure>
     <div class="inner-detail__copy">
-      <p class="section-label section-label--light">{eyebrow}</p>
+      {eyebrow && <p class="section-label section-label--light">{eyebrow}</p>}
       <h2 id={headingId}>{title}</h2>
       <p>{text}</p>
       {linkLabel && <a class="text-link text-link--light" href={linkHref}>{linkLabel} <Icon name="arrow-up-right" size={18} /></a>}

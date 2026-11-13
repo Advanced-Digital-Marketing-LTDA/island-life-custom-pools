@@ -29,10 +29,10 @@ const prefix = homePrefix(Astro.url);
       <Icon name="arrow-up" size={22} strokeWidth={1.4} />
     </a>
   </div>
-  <div class="footer__wordmark" aria-hidden="true">{footer.wordmark}</div>
   <div class="page-shell footer__bottom">
     <span>© <span data-year>{new Date().getFullYear()}</span> {footer.copyright}</span>
     <span>{footer.tagline}</span>
+    {footer.credit && <span class="footer__credit">{footer.creditHref ? <a href={footer.creditHref}>{footer.credit}</a> : footer.credit}</span>}
   </div>
 </footer>
 

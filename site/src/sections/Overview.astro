@@ -7,16 +7,18 @@ const { label = '', title = '', lede = '', checklist = [], anchor, headingId } =
 <section class="inner-overview section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell inner-overview__grid">
     <div>
-      <p class="section-label">{label}</p>
+      {label && <p class="section-label">{label}</p>}
       <h2 id={headingId}>{title}</h2>
     </div>
     <div class="inner-overview__content">
       <p class="inner-overview__lede">{lede}</p>
-      <ul class="inner-considerations">
-        {checklist.map((item) => (
-          <li><Icon name="check" size={20} strokeWidth={1.6} /><span>{item}</span></li>
-        ))}
-      </ul>
+      {checklist.length > 0 && (
+        <ul class="inner-considerations">
+          {checklist.map((item) => (
+            <li><Icon name="check" size={20} strokeWidth={1.6} /><span>{item}</span></li>
+          ))}
+        </ul>
+      )}
     </div>
   </div>
 </section>

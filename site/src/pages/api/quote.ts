@@ -54,11 +54,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     interest: v('interest'),
     message: v('message'),
   };
-  // Same limits as the form: the email is always required; the phone only when it is the preferred channel.
+  // Same limits as the form: the email and the phone number are both required.
   const valid =
     q.name.length >= 2 && q.name.length <= 120 &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email) && q.email.length <= 320 &&
-    q.phone.length <= 40 && (q.contact !== 'Phone' || q.phone !== '') &&
+    q.phone.length >= 1 && q.phone.length <= 40 &&
     /^\d{5}(-\d{4})?$/.test(q.zip) &&
     (contactMethods as readonly string[]).includes(q.contact) &&
     interests.includes(q.interest) &&
@@ -98,7 +98,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         text: [
           `Reference: ${reference}`,
           `Name: ${q.name}`,
-          `Phone: ${q.phone || '(not given)'}`,
+          `Phone: ${q.phone}`,
           `Email: ${q.email}`,
           `Zip: ${q.zip}`,
           `Prefers: ${q.contact}`,

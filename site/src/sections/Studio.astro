@@ -1,4 +1,6 @@
 ---
+import Lines from '../components/Lines.astro';
+
 interface Props {
   label?: string; title?: string; titleEm?: string; lede?: string; image?: string; imageAlt?: string; caption?: string;
   services?: { id?: string; title?: string; description?: string }[]; details?: string; anchor?: string; headingId: string;
@@ -9,7 +11,7 @@ const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = 
   <div class="page-shell studio__grid">
     <div class="studio__statement">
       <p class="section-label">{label}</p>
-      <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
+      <h2 id={headingId}><Lines text={title} />{' '}<br /><em>{titleEm}</em></h2>
       <p class="studio__lede">{lede}</p>
     </div>
     <figure class="studio__image-wrap">

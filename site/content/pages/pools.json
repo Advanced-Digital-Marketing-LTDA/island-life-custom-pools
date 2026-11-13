@@ -12,7 +12,7 @@
       "ctaLabel": "Start with a free design consult",
       "ctaHref": "#quote",
       "image": "/images/backyard.webp",
-      "imageAlt": "a custom pool, spa, patio, and outdoor living space at dusk",
+      "imageAlt": "A custom pool, spa, patio, and outdoor living space at dusk",
       "scrollLabel": "Explore the possibilities",
       "scrollHref": "#overview"
     },
@@ -32,11 +32,11 @@
     {
       "_template": "feature",
       "image": "/images/pool.webp",
-      "imageAlt": "a geometric custom pool with a raised spa and tropical planting",
+      "imageAlt": "Freeform custom pool with a raised spa, a waterfall wall, and tropical planting",
       "eyebrow": "See it before we build it",
       "title": "From first conversation to first swim.",
       "text": "Your free design consult leads into a custom 3D design, followed by excavation, structure, and start-up. Throughout the process, the goal stays simple: a beautiful, coordinated outdoor space and clear communication about what comes next.",
-      "linkLabel": "Tell us what you’re imagining",
+      "linkLabel": "Request a free design consult",
       "linkHref": "#quote"
     },
     {

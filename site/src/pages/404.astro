@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Icon from '../components/Icon.astro';
 import Footer from '../sections/Footer.astro';
 import { settings } from '../lib/content';
+const { phone, phoneHref } = settings;
 ---
 <Base title={`Page not found | ${settings.name}`} description="That page doesn’t exist, or it moved." noindex>
   <Header solid />
@@ -11,7 +12,7 @@ import { settings } from '../lib/content';
     <header class="page-shell blog-index__hero">
       <p class="section-label">Page not found</p>
       <h1>That page{' '}<br /><em>moved on.</em></h1>
-      <p>It doesn’t exist, or it has a new address. Start from the home page and we’ll point you to the right place.</p>
+      <p>The page may have moved, or the address may be mistyped. Go to the home page, or call us at <a href={phoneHref}>{phone}</a>.</p>
     </header>
     <section class="page-shell blog-index__posts" aria-label="Next step">
       <a class="button button--dark" href="/">

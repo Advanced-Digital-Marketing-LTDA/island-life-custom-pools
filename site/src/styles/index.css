@@ -19,19 +19,26 @@
 
 @layer base {
   :root {
-    --primitive-navy: oklch(0.25 0.065 255);
-    --primitive-navy-soft: oklch(0.31 0.055 255);
-    --primitive-taupe: oklch(0.52 0.035 75);
-    --primitive-paper: oklch(0.965 0.004 90);
-    --primitive-paper-deep: oklch(0.935 0.005 90);
-    --primitive-paper-light: oklch(0.985 0.004 90);
-    --primitive-line: oklch(0.85 0.008 85);
+    --brand-blue: #0290fc;
+    --brand-aqua: #71c6d5;
+    --brand-sand: #ffefb2;
+    --brand-blue-text: #0068b8;
+    --brand-ink: #00243b;
+    --brand-sand-light: #fffdf4;
+    --brand-aqua-light: #e5f5f7;
+    --primitive-navy: var(--brand-ink);
+    --primitive-navy-soft: #064b78;
+    --primitive-taupe: var(--brand-blue-text);
+    --primitive-paper: var(--brand-sand-light);
+    --primitive-paper-deep: var(--brand-aqua-light);
+    --primitive-paper-light: #fffef9;
+    --primitive-line: #b7dfe4;
     --page-bg: var(--primitive-paper);
     --page-text: var(--primitive-navy);
     --surface-muted: var(--primitive-paper-deep);
     --surface-dark: var(--primitive-navy);
-    --text-on-dark: var(--primitive-paper-light);
-    --accent-earth: var(--primitive-taupe);
+    --text-on-dark: var(--brand-sand);
+    --accent-earth: var(--brand-blue);
     --type-label: 1rem;
     --type-detail: 1rem;
     --tracking-label: 0.05em;
@@ -39,25 +46,25 @@
   --motion-state: 200ms;
   --motion-view: 320ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --background: 60 3% 95%;
-    --foreground: 232 30% 20%;
-    --card: 60 3% 95%;
-    --card-foreground: 232 30% 20%;
-    --popover: 60 3% 95%;
-    --popover-foreground: 232 30% 20%;
-    --primary: 232 30% 20%;
-    --primary-foreground: 60 5% 98%;
-    --secondary: 50 4% 91%;
-    --secondary-foreground: 232 30% 20%;
-    --muted: 50 4% 91%;
-    --muted-foreground: 35 10% 39%;
-    --accent: 50 4% 91%;
-    --accent-foreground: 232 30% 20%;
+    --background: 48 100% 98%;
+    --foreground: 201 100% 12%;
+    --card: 48 100% 98%;
+    --card-foreground: 201 100% 12%;
+    --popover: 48 100% 98%;
+    --popover-foreground: 201 100% 12%;
+    --primary: 204 98% 50%;
+    --primary-foreground: 201 100% 12%;
+    --secondary: 188 54% 64%;
+    --secondary-foreground: 201 100% 12%;
+    --muted: 188 52% 93%;
+    --muted-foreground: 201 100% 12%;
+    --accent: 47 100% 85%;
+    --accent-foreground: 201 100% 12%;
     --destructive: 5 65% 42%;
-    --destructive-foreground: 60 5% 98%;
-    --border: 45 6% 82%;
-    --input: 45 6% 82%;
-    --ring: 232 30% 20%;
+    --destructive-foreground: 47 100% 85%;
+    --border: 188 45% 81%;
+    --input: 188 45% 81%;
+    --ring: 204 98% 50%;
     --radius: 0.3rem;
   }
 
@@ -94,8 +101,8 @@
   button:disabled { cursor: wait; }
   img { display: block; max-width: 100%; }
   ::selection {
-    background: var(--primitive-taupe);
-    color: var(--primitive-paper-light);
+    background: var(--brand-blue);
+    color: var(--brand-ink);
   }
   :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
   #root { min-height: 100dvh; }
@@ -109,8 +116,7 @@
     transition-property: color, background-color, border-color, opacity, visibility !important;
     transition-duration: 120ms !important;
   }
-  .hero__image, .hero__content, .mobile-menu,
-  .process__visual-frame > img {
+  .hero__image, .hero__content, .mobile-menu {
     transform: none !important;
   }
   .hero__content { opacity: 1 !important; }

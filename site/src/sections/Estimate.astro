@@ -6,6 +6,9 @@ import { contactMethods } from '../data/quote';
 interface Props { anchor?: string; headingId?: string }
 const { anchor = 'quote', headingId = 'estimate-title' } = Astro.props;
 const { phone, phoneHref, quote } = settings;
+// {phone} in the error text becomes a call link; {method} in the thank-you text is filled in from the visitor's choice.
+const errorParts = quote.errorText.split('{phone}');
+const successParts = quote.successText.split('{method}');
 ---
 <section class="estimate section" id={anchor} aria-labelledby={headingId}>
   <div class="page-shell estimate__grid">
@@ -25,12 +28,13 @@ const { phone, phoneHref, quote } = settings;
         <span class="form-success__icon"><Icon name="check" size={30} strokeWidth={1.4} /></span>
         <p class="section-label section-label--light">{quote.successLabel}</p>
         <h3>{quote.successTitleLine}{' '}<br /><em>{quote.successTitleEm}</em></h3>
-        <p>{quote.successLead} <strong data-reference></strong>. {quote.successText}</p>
+        <p>{quote.successLead} <strong data-reference></strong>. {successParts[0]}{successParts.length > 1 && <span data-method>email</span>}{successParts.slice(1).join('')}</p>
         <button class="text-link text-link--light" type="button">
           {quote.successButton} <Icon name="arrow-right" size={17} />
         </button>
       </div>
       <form class="estimate-form" method="post" action="/api/quote" data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel}>
+        <p class="estimate-form__required">* Required</p>
         <div class="form-row">
           <label>
             <span>Name *</span>
@@ -38,7 +42,7 @@ const { phone, phoneHref, quote } = settings;
           </label>
           <label>
             <span>ZIP code *</span>
-            <input name="zipCode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" maxlength="10" required placeholder="77377" />
+            <input name="zipCode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" title="A 5-digit ZIP code, for example 77377" maxlength="10" required placeholder="77377" />
           </label>
         </div>
         <div class="form-row">
@@ -47,12 +51,12 @@ const { phone, phoneHref, quote } = settings;
             <input name="email" type="email" autocomplete="email" maxlength="320" required placeholder="jane@example.com" />
           </label>
           <label>
-            <span data-phone-label>Phone number (optional)</span>
-            <input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(832) 555-0123" />
+            <span>Phone number *</span>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="40" required placeholder="(832) 555-0123" />
           </label>
         </div>
         <fieldset class="contact-preference">
-          <legend>Preferred contact method *</legend>
+          <legend>Best way to reach you *</legend>
           <div>
             {contactMethods.map((method) => (
               <label>
@@ -77,7 +81,7 @@ const { phone, phoneHref, quote } = settings;
           <span>Leave this empty</span>
           <input name="website" type="text" tabindex="-1" autocomplete="off" />
         </label>
-        <p class="form-error" role="alert" hidden>{quote.errorText.replace('{phone}', phone)}</p>
+        <p class="form-error" role="alert" hidden>{errorParts.map((part, i) => <Fragment>{i > 0 && <a href={phoneHref}>{phone}</a>}{part}</Fragment>)}</p>
         <div class="estimate-form__submit">
           <button class="button button--light" type="submit">
             <span class="button__label">{quote.submitLabel}</span>
@@ -97,18 +101,10 @@ const { phone, phoneHref, quote } = settings;
     const form = root.querySelector<HTMLFormElement>('.estimate-form')!;
     const success = root.querySelector<HTMLElement>('.form-success')!;
     const error = root.querySelector<HTMLElement>('.form-error')!;
-    const phone = form.elements.namedItem('phone') as HTMLInputElement;
-    const phoneLabel = form.querySelector('[data-phone-label]')!;
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const submitLabel = submit.querySelector('.button__label')!;
     const [arrow, spinner] = submit.querySelectorAll<SVGElement>(':scope > svg');
 
-    // Phone is only required when it is the preferred way to reach the visitor.
-    const syncContact = () => {
-      const byPhone = form.querySelector<HTMLInputElement>('input[name="preferredContact"]:checked')?.value === 'Phone';
-      phone.required = byPhone;
-      phoneLabel.textContent = byPhone ? 'Phone number *' : 'Phone number (optional)';
-    };
     const setPending = (pending: boolean) => {
       submit.disabled = pending;
       submitLabel.textContent = pending ? form.dataset.pendingLabel! : form.dataset.label!;
@@ -116,8 +112,6 @@ const { phone, phoneHref, quote } = settings;
       spinner.style.display = pending ? '' : 'none';
     };
     setPending(false);
-    syncContact();
-    form.querySelectorAll('input[name="preferredContact"]').forEach((radio) => radio.addEventListener('change', syncContact));
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -127,9 +121,11 @@ const { phone, phoneHref, quote } = settings;
         const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
         const result = await response.json().catch(() => null);
         if (!response.ok || !result?.reference) throw new Error(`Quote request failed (${response.status})`);
+        const method = (form.querySelector<HTMLInputElement>('input[name="preferredContact"]:checked')?.value ?? 'Email').toLowerCase();
         form.reset();
-        syncContact();
         success.querySelector('[data-reference]')!.textContent = result.reference;
+        const methodSlot = success.querySelector('[data-method]');
+        if (methodSlot) methodSlot.textContent = method;
         form.hidden = true;
         success.hidden = false;
         success.focus();

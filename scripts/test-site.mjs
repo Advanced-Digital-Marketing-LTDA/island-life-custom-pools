@@ -38,9 +38,12 @@ for (const page of pages) {
   assert.match(html, /<div id="root">/, `Missing #root on ${where}`);
   assert.match(html, /class="skip-link" href="#top"/, `Missing skip link on ${where}`);
   assert.match(html, /<main id="top">/, `Missing main#top on ${where}`);
+  const credit = escapeHtml(settings.footer.credit);
+  assert.ok(html.includes(`<span class="footer__credit"><a href="${settings.footer.creditHref}">${credit}</a></span>`), `Missing footer credit link on ${where}`);
+  assert.ok(!html.includes('footer__wordmark'), `The big footer wordmark should be gone from ${where}`);
 
   // One h1 for each section that carries the page title.
-  const expectedH1 = visible.filter((block) => ['hero', 'pageHero', 'heading'].includes(block._template)).length;
+  const expectedH1 = visible.filter((block) => ['hero', 'pageHero', 'splitHero', 'heading'].includes(block._template)).length;
   assert.equal([...html.matchAll(/<h1\b/g)].length, expectedH1, `${where} should have ${expectedH1} h1`);
   // The header floats over the page only when the first section is a hero.
   const overlay = visible.length > 0 && overlayBlocks.includes(visible[0]._template);
@@ -102,8 +105,8 @@ assert.ok(home.includes(escapeHtml(settings.footer.tagline)), 'settings.json foo
 // The home page's scripts take over from markup that must render in its resting state.
 const front = pageHtml('');
 assert.match(front, /class="hero__image"[^>]*style="transform: translate3d\(0px, 0%, 0px\) scale\(1\.04\);"/);
-assert.match(front, /<blockquote style="opacity: 1; transform: translate3d\(0px, 0px, 0px\);">/);
-assert.equal([...front.matchAll(/class="process-step is-active"/g)].length, 1);
+assert.match(front, /<div class="testimonial__slides" style="opacity: 1; transform: translate3d\(0px, 0px, 0px\);">/);
+assert.equal([...front.matchAll(/class="testimonial-slide"/g)].length, 3);
 assert.match(front, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
 
 // The gallery's closing section offers the phone number and reaches the home page quote form.

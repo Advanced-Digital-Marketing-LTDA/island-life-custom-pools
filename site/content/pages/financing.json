@@ -1,43 +1,51 @@
 {
-  "seoTitle": "Financing | Island Life Custom Pools",
-  "seoDescription": "Ask about financing through HFS home improvement loans for your custom pool, patio, or outdoor kitchen in Tomball, Cypress, The Woodlands, and Houston.",
+  "seoTitle": "Pool Financing & Payment Estimator | Island Life Custom Pools",
+  "seoDescription": "Explore pool and outdoor living financing through Lyon Financial and HFS Financial, and estimate a monthly payment for your Houston-area project.",
   "blocks": [
     {
-      "_template": "pageHero",
+      "_template": "splitHero",
       "homeLabel": "Home",
       "eyebrow": "Financing",
-      "title": "Your backyard.",
-      "italicTitle": "Within reach.",
-      "introduction": "Ask about financing through HFS home improvement loans. We can discuss the available options as we plan a space that fits your goals.",
-      "ctaLabel": "Ask about financing",
-      "ctaHref": "#quote",
-      "image": "/images/backyard.webp",
-      "imageAlt": "Backyard with a pool, raised spa, covered patio, fire feature, and recreation space",
-      "scrollLabel": "See how it works",
-      "scrollHref": "#overview"
+      "title": "Bring the island life",
+      "titleEm": "within reach.",
+      "text": "Explore third-party financing and estimate a monthly payment for your pool, patio, or outdoor kitchen.",
+      "buttonLabel": "Estimate your payment",
+      "buttonHref": "#payment-estimator",
+      "image": "/images/gallery-curved-evening-pool.webp",
+      "imageAlt": "Curved custom pool and spa illuminated in the evening"
     },
     {
-      "_template": "overview",
-      "anchor": "overview",
-      "label": "Flexible ways to begin",
-      "title": "Plan first, then the options.",
-      "lede": "Financing is available through HFS home improvement loans. We can discuss the available options as we plan your space, and your free design consultation is included with your quote request.",
-      "checklist": [
-        "Custom pools, spas, and water features",
-        "Patios, covers, and outdoor kitchens",
-        "Fire pits, fireplaces, and recreation",
-        "Equipment, finishes, and the details between"
+      "_template": "estimator",
+      "label": "Finance estimator",
+      "title": "Explore your project",
+      "titleEm": "month to month.",
+      "intro": "Adjust the loan amount, interest rate, and term to see an estimated payment.",
+      "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
+      "amount": 75000,
+      "rate": 8,
+      "years": 15,
+      "anchor": "payment-estimator"
+    },
+    {
+      "_template": "lenders",
+      "label": "Third-party financing",
+      "title": "Choose where to",
+      "titleEm": "explore your options.",
+      "intro": "Visit either financing partner directly to learn about its current loan programs and application process.",
+      "lenders": [
+        {
+          "name": "Lyon Financial",
+          "description": "Explore pool financing options directly through Lyon Financial.",
+          "href": "https://www.lyonfinancial.net/",
+          "label": "Visit Lyon Financial"
+        },
+        {
+          "name": "HFS Financial",
+          "description": "Explore home improvement loan options directly through HFS Financial.",
+          "href": "https://www.hfsfinancial.net/",
+          "label": "Visit HFS Financial"
+        }
       ]
-    },
-    {
-      "_template": "feature",
-      "image": "/images/gallery-spa-at-dusk.webp",
-      "imageAlt": "Backyard spa, umbrella, and fire pit on a paved terrace at dusk",
-      "eyebrow": "For those who serve",
-      "title": "Thank you for your service.",
-      "text": "Military personnel, first responders, and teachers receive a generous discount. Ask about it when you request your quote.",
-      "linkLabel": "Ask about financing",
-      "linkHref": "#quote"
     },
     {
       "_template": "quoteForm",

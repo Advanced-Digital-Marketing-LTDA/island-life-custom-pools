@@ -6,6 +6,7 @@ type Fields = any[];
 
 const str = (name: string, label: string, description?: string) => ({ type: 'string' as const, name, label, description });
 const text = (name: string, label: string, description?: string) => ({ type: 'string' as const, name, label, description, ui: { component: 'textarea' } });
+const num = (name: string, label: string, description?: string) => ({ type: 'number' as const, name, label, description });
 const image = (name: string, label: string) => ({ type: 'image' as const, name, label });
 const strings = (name: string, label: string, description?: string) => ({ type: 'string' as const, name, label, description, list: true });
 const items = (name: string, label: string, itemLabel: string, fields: Fields, description?: string) => ({
@@ -23,6 +24,11 @@ const links = (name: string, label: string, description?: string) =>
 
 // Titles are written as two lines: the first in the normal color, the second ("emphasis") in the accent color.
 const heading = () => [str('title', 'Heading, first line'), str('titleEm', 'Heading, second line (accent color)')];
+// The same two lines, where the first part can itself run over several lines (press Enter for a new line).
+const headingLines = () => [
+  text('title', 'Heading, first part', 'Press Enter to start a new line.'),
+  str('titleEm', 'Heading, last line (accent color)', 'Optional.'),
+];
 const href = (name: string, label: string) =>
   str(name, label, 'Use "#name" for a section on this page, "/page" for another page, or "/#name" for a section on the home page.');
 
@@ -48,7 +54,7 @@ const common: Fields = [
 ];
 const labelOf = (item: Item) => {
   const first = ['title', 'line1', 'eyebrow', 'label', 'readLabel'].map((key) => item?.[key]).find((value) => typeof value === 'string' && value);
-  return `${item?.hidden ? '(hidden) ' : ''}${(first as string) ?? ''}`;
+  return `${item?.hidden ? '(hidden) ' : ''}${((first as string) ?? '').replace(/\s*\n\s*/g, ' ')}`;
 };
 const block = (name: (typeof blockNames)[number], label: string, fields: Fields, defaultItem?: Item) => ({
   name,
@@ -66,7 +72,7 @@ const templates = [
     { type: 'boolean', name: 'scrim', label: 'Dark band behind the text', description: 'Turn on for bright photos, so the text stays easy to read.' },
   ], { ctaHref: '#quote' }),
   block('about', 'About and services', [
-    str('label', 'Small heading'), ...heading(), text('lede', 'Introduction'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
+    str('label', 'Small heading'), ...headingLines(), text('lede', 'Introduction'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
     str('caption', 'Photo caption'),
     items('services', 'Services', 'title', [str('id', 'Link name', 'Links such as "#patios" jump to this row.'), str('title', 'Title'), text('description', 'Description')]),
     text('details', 'Closing note'),
@@ -78,15 +84,16 @@ const templates = [
       str('name', 'Title'), str('category', 'Tags'), str('detail', 'Caption'), image('image', 'Photo'), str('alt', 'Photo description'),
     ]),
   ]),
-  block('reviews', 'Reviews', [
-    str('label', 'Small heading'), str('googleTitle', 'Google badge title'), str('googleText', 'Google badge text'),
-    items('reviews', 'Reviews', 'name', [str('name', 'Client name'), str('detail', 'Detail line'), text('quote', 'Review')]),
-    strings('assurances', 'Promises under the reviews'),
-  ]),
-  block('process', 'Process steps', [
-    str('label', 'Small heading'), ...heading(),
-    items('steps', 'Steps', 'title', [str('title', 'Title'), text('description', 'Description'), str('meta', 'Tags'), image('image', 'Photo'), str('alt', 'Photo description')]),
-  ]),
+  block('reviews', 'Reviews (three at a time)', [
+    str('label', 'Small heading'), text('title', 'Heading', 'Press Enter to start a new line.'),
+    items('reviews', 'Reviews', 'name', [str('name', 'Client name'), str('detail', 'Detail line'), text('quote', 'Review')],
+      'Each review is shown with five stars. They rotate by themselves, three at a time.'),
+    str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { ctaHref: '#quote' }),
+  block('process', 'Steps', [
+    str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
+    items('steps', 'Steps', 'title', [str('title', 'Title'), text('description', 'Description')]),
+  ], { ctaHref: '#quote' }),
   block('financing', 'Financing offer', [
     str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'), str('partnersLabel', 'Partners heading'), strings('partners', 'Partners'),
     str('offerLabel', 'Offer small heading'), str('offerLine1', 'Offer heading, line 1'), str('offerLine2', 'Offer heading, line 2'),
@@ -122,6 +129,27 @@ const templates = [
   ], { buttonHref: '/#quote' }),
   block('heading', 'Page title (journal style)', [str('label', 'Small heading'), ...heading(), text('intro', 'Introduction')]),
   block('postList', 'Journal article list', [str('readLabel', 'Article link label')], { readLabel: 'Read the article' }),
+  block('panorama', 'Heading, wide photo and text', [
+    ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'),
+  ]),
+  block('spotlight', 'Heading, photo, text and button', [
+    ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'), str('buttonLabel', 'Button label'), href('buttonHref', 'Button link'),
+  ], { buttonHref: '#quote' }),
+  block('trust', 'Trust badge and statement', [
+    str('badgeLine1', 'Badge text, line 1'), str('badgeLine2', 'Badge text, line 2'), str('title', 'Heading'), text('text', 'Text'),
+  ]),
+  block('splitHero', 'Page opening: text, button and photo', [
+    str('homeLabel', 'Breadcrumb home label'), str('eyebrow', 'Breadcrumb page name'), ...headingLines(), text('text', 'Introduction'),
+    str('buttonLabel', 'Button label'), href('buttonHref', 'Button link'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
+  ], { homeLabel: 'Home', buttonHref: '#payment-estimator' }),
+  block('estimator', 'Monthly payment estimator', [
+    str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'), text('note', 'Note under the results'),
+    num('amount', 'Starting loan amount ($)', 'What the visitor sees before changing anything.'), num('rate', 'Starting interest rate (%)'), num('years', 'Starting term (years)'),
+  ], { amount: 75000, rate: 8, years: 15 }),
+  block('lenders', 'Financing partners', [
+    str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'),
+    items('lenders', 'Partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address'), str('label', 'Link label')]),
+  ]),
 ];
 
 export default defineConfig({
@@ -149,9 +177,10 @@ export default defineConfig({
           strings('areas', 'Service areas'),
           str('hoursTitle', 'Hours heading'),
           items('hours', 'Hours', 'days', [str('days', 'Days'), str('time', 'Hours')]),
-          str('wordmark', 'Large wordmark'),
           str('copyright', 'Copyright name', 'Shown after © and the current year.'),
           str('tagline', 'Bottom line'),
+          str('credit', 'Credit line', 'Small text at the very bottom of every page. Leave empty to hide it.'),
+          str('creditHref', 'Credit link', 'Where the credit line goes when clicked. Leave empty for plain text.'),
         ]),
         links('social', 'Social and review links', 'Used for search engines; not shown on the page. Links with "review" in the label are left out.'),
         group('quote', 'Quote form (every page)', [
@@ -170,7 +199,7 @@ export default defineConfig({
           str('successTitleLine', 'Thank-you heading, first line'),
           str('successTitleEm', 'Thank-you heading, second line (accent color)'),
           str('successLead', 'Thank-you text before the reference number'),
-          text('successText', 'Thank-you text after the reference number'),
+          text('successText', 'Thank-you text after the reference number', 'Use {method} where “email” or “phone” should appear.'),
           str('successButton', 'Send another request label'),
         ]),
       ]),

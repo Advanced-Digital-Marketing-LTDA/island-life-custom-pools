@@ -1,0 +1,6 @@
+---
+// Text with line breaks in it: each new line becomes a <br>, with a space before it so screen readers keep the words apart.
+const { text = '' } = Astro.props;
+const lines = String(text).split('\n');
+---
+{lines.map((line, index) => <Fragment>{line}{index < lines.length - 1 && <Fragment>{' '}<br /></Fragment>}</Fragment>)}
