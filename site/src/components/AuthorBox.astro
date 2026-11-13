@@ -1,0 +1,17 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { blog } from '../lib/content';
+
+const { author } = blog;
+---
+<section class="author-box" aria-labelledby="author-name">
+  <div class="author-box__avatar"><Brand /></div>
+  <div class="author-box__content">
+    <p class="author-box__label">{author.label}</p>
+    <h2 id="author-name">{author.name}</h2>
+    <p class="author-box__role">{author.role}</p>
+    <p>{author.bio}</p>
+    <a class="text-link" href="#quote">{author.link} <Icon name="arrow-up-right" size={18} /></a>
+  </div>
+</section>

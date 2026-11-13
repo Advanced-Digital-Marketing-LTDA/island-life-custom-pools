@@ -1,0 +1,30 @@
+---
+import { home } from '../lib/content';
+
+const { projects } = home;
+---
+<section class="projects section" id="gallery" aria-labelledby="projects-title">
+  <div class="page-shell">
+    <div class="projects__heading">
+      <p class="section-label">{projects.label}</p>
+      <h2 id="projects-title">{projects.title}<br /><em>{projects.titleEm}</em></h2>
+      <p>{projects.intro}</p>
+    </div>
+    <div class="projects__grid">
+      {projects.items.map((item) => (
+        <figure class={`project project--${item.layout}`}>
+          <div class="project__image">
+            <img src={item.image} alt={item.alt} loading="lazy" />
+          </div>
+          <figcaption>
+            <div>
+              <h3>{item.name}</h3>
+              <p>{item.detail}</p>
+            </div>
+            <span>{item.category}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

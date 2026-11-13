@@ -1,22 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import MobileBar from '../components/MobileBar.astro';
+import Icon from '../components/Icon.astro';
+import Footer from '../sections/Footer.astro';
 import { settings } from '../lib/content';
 ---
-<Base title={`Page not found | ${settings.name}`} noindex>
-  <Header />
-  <main id="content" class="section not-found">
-    <div class="wrap">
-      <h1>Page not found</h1>
-      <p class="lead">That page doesn’t exist, or it moved. Start from the home page, or call us and we’ll point you to the right place.</p>
-      <div class="cta-pair">
-        <a class="btn btn-dark" href="/">Go to the home page</a>
-        <a class="btn btn-outline-dark" href={settings.phoneHref}>Call {settings.phone}</a>
-      </div>
-    </div>
+<Base title={`Page not found | ${settings.name}`} description="That page doesn’t exist, or it moved." noindex>
+  <Header solid />
+  <main id="top" class="blog-index">
+    <header class="page-shell blog-index__hero">
+      <p class="section-label">Page not found</p>
+      <h1>That page<br /><em>moved on.</em></h1>
+      <p>It doesn’t exist, or it has a new address. Start from the home page and we’ll point you to the right place.</p>
+    </header>
+    <section class="page-shell blog-index__posts" aria-label="Next step">
+      <a class="button button--dark" href="/">
+        <span class="button__label">Go to the home page</span>
+        <span class="button__wash" aria-hidden="true"></span>
+        <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+      </a>
+    </section>
   </main>
   <Footer />
-  <MobileBar />
 </Base>

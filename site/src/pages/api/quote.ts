@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
-import { home } from '../../lib/content';
+import { randomInt } from 'node:crypto';
+import { contactMethods } from '../../data/quote';
+import { interests } from '../../lib/content';
 
 export const prerender = false;
 
@@ -40,28 +42,26 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   // Honeypot: real visitors never see this field. Answer "ok" so bots don't retry.
-  if (form.get('hp_site_ref')) return json(200, { ok: true });
+  if (form.get('website')) return json(200, { ok: true, reference: 'IL-RECEIVED' });
 
   const v = (key: string) => String(form.get(key) ?? '').trim();
   const q = {
     name: v('name'),
     email: v('email'),
     phone: v('phone'),
-    zip: v('zip'),
-    contact: v('contact_method'),
+    zip: v('zipCode'),
+    contact: v('preferredContact'),
     interest: v('interest'),
     message: v('message'),
   };
-  // the visitor's chosen channel must be present; the other one is optional but must be well formed when given
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email) && q.email.length <= 254;
-  const phoneOk = /^[\d\s().+-]{7,20}$/.test(q.phone);
+  // Same limits as the form: the email is always required; the phone only when it is the preferred channel.
   const valid =
-    q.name !== '' && q.name.length <= 100 &&
-    (q.email === '' ? q.contact === 'Phone' : emailOk) &&
-    (q.phone === '' ? q.contact === 'Email' : phoneOk) &&
-    /^\d{5}$/.test(q.zip) &&
-    ['Email', 'Phone'].includes(q.contact) &&
-    home.quote.interests.includes(q.interest) &&
+    q.name.length >= 2 && q.name.length <= 120 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email) && q.email.length <= 320 &&
+    q.phone.length <= 40 && (q.contact !== 'Phone' || q.phone !== '') &&
+    /^\d{5}(-\d{4})?$/.test(q.zip) &&
+    (contactMethods as readonly string[]).includes(q.contact) &&
+    interests.includes(q.interest) &&
     q.message.length <= 2000;
   if (!valid) return json(400, { error: 'invalid' });
 
@@ -75,6 +75,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json(503, { error: 'not_configured' });
   }
 
+  // No database: the reference is a short random code shown to the visitor and included in the email subject.
+  const reference = `IL-${String(randomInt(0, 100_000)).padStart(5, '0')}`;
   const port = Number(SMTP_PORT);
   try {
     await nodemailer
@@ -91,12 +93,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       .sendMail({
         from: { name: 'Island Life website', address: SMTP_USER }, // Proton only sends as the authenticated address
         to: LEAD_TO,
-        ...(q.email ? { replyTo: { name: q.name, address: q.email } } : {}),
-        subject: `Quote request: ${q.interest}`,
+        replyTo: { name: q.name, address: q.email },
+        subject: `Quote request ${reference}: ${q.interest}`,
         text: [
+          `Reference: ${reference}`,
           `Name: ${q.name}`,
           `Phone: ${q.phone || '(not given)'}`,
-          `Email: ${q.email || '(not given)'}`,
+          `Email: ${q.email}`,
           `Zip: ${q.zip}`,
           `Prefers: ${q.contact}`,
           `Interested in: ${q.interest}`,
@@ -109,5 +112,5 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.error('Quote form: send failed', (err as { code?: string }).code ?? 'unknown');
     return json(502, { error: 'send_failed' });
   }
-  return json(200, { ok: true });
+  return json(200, { ok: true, reference });
 };

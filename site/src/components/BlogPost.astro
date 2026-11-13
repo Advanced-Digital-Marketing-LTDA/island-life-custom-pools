@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Icon from './Icon.astro';
+import TableOfContents from './TableOfContents.astro';
+import AuthorBox from './AuthorBox.astro';
+import Estimate from '../sections/Estimate.astro';
+import Footer from '../sections/Footer.astro';
+import { blog, type Post } from '../lib/content';
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const words = post.sections.flatMap((section) => [...section.paragraphs.map((paragraph) => paragraph.text), ...(section.bullets ?? [])]).join(' ').split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(words / 220));
+---
+<Base title={post.seoTitle} description={post.seoDescription}>
+  <Header solid />
+  <main id="top" class="blog-page">
+    <article>
+      <header class="article-hero">
+        <div class="page-shell article-hero__inner">
+          <p class="article-hero__breadcrumb"><a href="/blog"><Icon name="arrow-left" size={17} />{blog.backLabel}</a></p>
+          <p class="section-label">{post.category} · {readingTime} min read</p>
+          <h1>{post.title}</h1>
+        </div>
+        <figure class="article-hero__visual">
+          <img src={post.image} alt={post.imageAlt} fetchpriority="high" />
+        </figure>
+      </header>
+
+      <div class="page-shell article-layout">
+        <aside class="article-layout__aside"><TableOfContents sections={post.sections} /></aside>
+        <div class="article-body">
+          <p class="article-body__intro">{post.excerpt}</p>
+          {post.sections.map((section) => (
+            <section class="article-section" id={section.id} aria-labelledby={`${section.id}-title`}>
+              <h2 id={`${section.id}-title`}>{section.title}</h2>
+              {section.paragraphs.map((paragraph) => <p>{paragraph.text}</p>)}
+              {section.bullets?.length ? <ul>{section.bullets.map((bullet) => <li>{bullet}</li>)}</ul> : null}
+            </section>
+          ))}
+          <AuthorBox />
+        </div>
+      </div>
+    </article>
+
+    <section class="article-next" aria-label="Start your project">
+      <div class="page-shell article-next__inner">
+        <p>{blog.ctaPrompt}</p>
+        <a href="#quote">{blog.ctaLink} <Icon name="arrow-up-right" size={22} /></a>
+      </div>
+    </section>
+    <Estimate />
+  </main>
+  <Footer />
+</Base>

@@ -1,24 +1,18 @@
 ---
-const { name } = Astro.props as { name: 'phone' | 'arrow' | 'check' | 'play' | 'pause' | 'menu' | 'out' | 'close' };
+// Path data from lucide-react 0.562.0 (the version the React site used), so the icons are identical.
+const icons = {
+  'arrow-down': ['M12 5v14', 'm19 12-7 7-7-7'],
+  'arrow-left': ['m12 19-7-7 7-7', 'M19 12H5'],
+  'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7'],
+  'arrow-up': ['m5 12 7-7 7 7', 'M12 19V5'],
+  'arrow-up-right': ['M7 7h10v10', 'M7 17 17 7'],
+  check: ['M20 6 9 17l-5-5'],
+  'loader-circle': ['M21 12a9 9 0 1 1-6.219-8.56'],
+  menu: ['M4 5h16', 'M4 12h16', 'M4 19h16'],
+  'shield-check': ['M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z', 'm9 12 2 2 4-4'],
+  x: ['M18 6 6 18', 'm6 6 12 12'],
+};
+interface Props { name: keyof typeof icons; size?: number; strokeWidth?: number; class?: string }
+const { name, size = 24, strokeWidth = 2, class: className } = Astro.props;
 ---
-{name === 'phone' && (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
-)}
-{name === 'arrow' && (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-)}
-{name === 'check' && (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 14.6 5l3.6-.2.9 3.5 3 2-1.4 3.3 1.4 3.3-3 2-.9 3.5-3.6-.2L12 21.5 9.4 19l-3.6.2-.9-3.5-3-2 1.4-3.3L1.9 9.5l3-2 .9-3.5 3.6.2Z"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8"/></svg>
-)}
-{name === 'play' && (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5Z"/></svg>
-)}
-{name === 'pause' && (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
-)}
-{name === 'menu' && (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-)}
-{name === 'out' && (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-)}
+<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={strokeWidth} stroke-linecap="round" stroke-linejoin="round" class:list={['lucide', `lucide-${name}`, className]} aria-hidden="true">{icons[name].map((d) => <path d={d} />)}</svg>

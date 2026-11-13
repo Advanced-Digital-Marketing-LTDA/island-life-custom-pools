@@ -1,0 +1,68 @@
+---
+import { home } from '../lib/content';
+
+const { steps, ...section } = home.process;
+---
+<section class="process section" id="process" aria-labelledby="process-title" data-steps={JSON.stringify(steps.map(({ meta, alt }) => ({ meta, alt })))}>
+  <div class="page-shell">
+    <div class="process__heading">
+      <p class="section-label">{section.label}</p>
+      <h2 id="process-title">{section.title}<br /><em>{section.titleEm}</em></h2>
+    </div>
+    <div class="process__layout">
+      <div class="process__steps">
+        {steps.map((step, index) => (
+          <div class:list={['process-step', { 'is-active': index === 0 }]} data-step={index}>
+            <span class="process-step__number">0{index + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+            <span class="process-step__meta">{step.meta}</span>
+          </div>
+        ))}
+      </div>
+      <div class="process__visual" aria-live="polite">
+        <div class="process__visual-frame">
+          {steps.map((step, index) => (
+            <img class={index === 0 ? 'is-active' : ''} src={step.image} alt={index === 0 ? step.alt : ''} loading="lazy" aria-hidden={index !== 0 ? 'true' : 'false'} />
+          ))}
+          <div class="process__progress" aria-hidden="true">
+            <span style={`transform: scaleY(${1 / steps.length});`}></span>
+          </div>
+          <p class="process__caption">{steps[0].meta}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Step = { meta: string; alt: string };
+
+  const root = document.querySelector<HTMLElement>('.process')!;
+  const steps: Step[] = JSON.parse(root.dataset.steps!);
+  const items = root.querySelectorAll<HTMLElement>('.process-step');
+  const images = root.querySelectorAll<HTMLImageElement>('.process__visual-frame > img');
+  const progress = root.querySelector<HTMLElement>('.process__progress span')!;
+  const caption = root.querySelector('.process__caption')!;
+
+  function show(active: number) {
+    items.forEach((item, index) => item.classList.toggle('is-active', index === active));
+    images.forEach((image, index) => {
+      image.classList.toggle('is-active', index === active);
+      image.alt = index === active ? steps[index].alt : '';
+      image.setAttribute('aria-hidden', String(index !== active));
+    });
+    progress.style.transform = `scaleY(${(active + 1) / steps.length})`;
+    caption.textContent = steps[active].meta;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) show(Number((entry.target as HTMLElement).dataset.step));
+      });
+    },
+    { rootMargin: '-32% 0px -46% 0px', threshold: 0 },
+  );
+  items.forEach((item) => observer.observe(item));
+</script>

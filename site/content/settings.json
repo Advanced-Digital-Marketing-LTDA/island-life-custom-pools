@@ -1,149 +1,66 @@
 {
   "name": "Island Life Custom Pools",
-  "logo": "/images/island-life-logo.svg",
+  "logo": "/images/island-life-logo.png",
   "phone": "(832) 304-4092",
-  "phoneHref": "tel:8323044092",
-  "quoteFormAction": "/api/quote",
-  "hours": [
-    {
-      "days": "Monday - Friday",
-      "time": "8am to 7pm"
-    },
-    {
-      "days": "Saturday",
-      "time": "8am to 12pm"
-    },
-    {
-      "days": "Sunday",
-      "time": "Closed"
-    }
-  ],
+  "phoneHref": "tel:+18323044092",
   "nav": [
-    {
-      "label": "About us",
-      "href": "/about-us/",
-      "short": "About",
-      "primary": true
-    },
-    {
-      "label": "Custom pool builds",
-      "href": "/custom-pools/",
-      "short": "Pools",
-      "primary": true
-    },
-    {
-      "label": "Custom patios",
-      "href": "/custom-patios/",
-      "short": "Patios",
-      "primary": true
-    },
-    {
-      "label": "Custom outdoor kitchen builds",
-      "href": "/outdoor-kitchens/",
-      "short": "Outdoor kitchens",
-      "primary": true
-    },
-    {
-      "label": "Hayward equipment",
-      "href": "/hayward-equipment/",
-      "short": "",
-      "primary": false
-    },
-    {
-      "label": "Gallery",
-      "href": "/gallery/",
-      "short": "Gallery",
-      "primary": true
-    },
-    {
-      "label": "Financing",
-      "href": "/financing/",
-      "short": "Financing",
-      "primary": true
-    },
-    {
-      "label": "Blog",
-      "href": "/blog/",
-      "short": "",
-      "primary": false
-    },
-    {
-      "label": "Contact",
-      "href": "/contact/",
-      "short": "",
-      "primary": false
-    }
+    { "label": "About", "href": "#about" },
+    { "label": "Pools", "href": "/pools" },
+    { "label": "Patios", "href": "#patios" },
+    { "label": "Outdoor kitchens", "href": "#outdoor-kitchens" },
+    { "label": "Gallery", "href": "#gallery" },
+    { "label": "Financing", "href": "#financing" }
   ],
-  "areas": [
-    {
-      "label": "Tomball, TX",
-      "href": "/custom-pool-builders-tomball/"
-    },
-    {
-      "label": "Cypress, TX",
-      "href": "/custom-pool-builders-cypress/"
-    },
-    {
-      "label": "The Woodlands, TX",
-      "href": ""
-    },
-    {
-      "label": "Houston, TX",
-      "href": ""
-    }
-  ],
+  "headerCta": "Free quote",
+  "menuCta": "Get a free quote",
+  "footer": {
+    "blurbLine1": "Houston pool & patio builders.",
+    "blurbLine2": "Bring your vacation dreams home.",
+    "nav": [
+      { "label": "About", "href": "#about" },
+      { "label": "Pools", "href": "/pools" },
+      { "label": "Patios", "href": "#patios" },
+      { "label": "Outdoor kitchens", "href": "#outdoor-kitchens" },
+      { "label": "Gallery", "href": "#gallery" },
+      { "label": "Journal", "href": "/blog" },
+      { "label": "Financing", "href": "#financing" },
+      { "label": "Free quote", "href": "#quote" }
+    ],
+    "areasTitle": "Service areas",
+    "areas": ["Tomball", "Cypress", "The Woodlands", "Houston"],
+    "hoursTitle": "Hours",
+    "hours": [
+      { "days": "Monday–Friday", "time": "8am–7pm" },
+      { "days": "Saturday", "time": "8am–12pm" },
+      { "days": "Sunday", "time": "Closed" }
+    ],
+    "wordmark": "Island Life",
+    "copyright": "Island Life Custom Pools",
+    "tagline": "Fast service. Fair pricing."
+  },
   "social": [
-    {
-      "label": "Facebook",
-      "href": "https://www.facebook.com/profile.php?id=61551256792315"
-    },
-    {
-      "label": "Instagram",
-      "href": "https://www.instagram.com/islandlifepools/"
-    },
-    {
-      "label": "Houzz",
-      "href": "https://www.houzz.com/professionals/swimming-pool-builders/island-life-custom-pools-pfvwus-pf~347442001"
-    },
-    {
-      "label": "Leave a Google review",
-      "href": "https://g.page/r/CZ5MBp0OJiSTEAg/review"
-    }
+    { "label": "Facebook", "href": "https://www.facebook.com/profile.php?id=61551256792315" },
+    { "label": "Instagram", "href": "https://www.instagram.com/islandlifepools/" },
+    { "label": "Houzz", "href": "https://www.houzz.com/professionals/swimming-pool-builders/island-life-custom-pools-pfvwus-pf~347442001" },
+    { "label": "Leave a Google review", "href": "https://g.page/r/CZ5MBp0OJiSTEAg/review" }
   ],
-  "infoLinks": [
-    {
-      "label": "About",
-      "href": "/about-us/"
-    },
-    {
-      "label": "Custom pools",
-      "href": "/custom-pools/"
-    },
-    {
-      "label": "Custom patios",
-      "href": "/custom-patios/"
-    },
-    {
-      "label": "Outdoor kitchens",
-      "href": "/outdoor-kitchens/"
-    },
-    {
-      "label": "Gallery",
-      "href": "/gallery/"
-    },
-    {
-      "label": "Hayward equipment",
-      "href": "/hayward-equipment/"
-    },
-    {
-      "label": "Financing",
-      "href": "/financing/"
-    },
-    {
-      "label": "Contact",
-      "href": "/contact/"
-    }
-  ],
-  "privacyHref": "/gdpr-privacy-policy/",
-  "copyright": "© 2026 Island Life Custom Pools. All rights reserved."
+  "quote": {
+    "label": "Your free design consult starts here",
+    "titleLine": "Let’s bring",
+    "titleEm": "vacation home.",
+    "intro": "Tell us what you are imagining. Your quote request includes a free design consultation, so we can listen, answer questions, and explore what is possible.",
+    "callLabel": "Prefer to talk?",
+    "discount": "Military personnel, first responders, and teachers receive a generous discount.",
+    "interests": ["Pool", "Patio", "Outdoor kitchen", "Fire feature", "Not sure yet"],
+    "submitLabel": "Send my request",
+    "submitPendingLabel": "Sending your request",
+    "note": "Free design consult included. No pressure—just a conversation about your backyard.",
+    "errorText": "We couldn’t send your request. Please check your details and try again, or call {phone}.",
+    "successLabel": "Request received",
+    "successTitleLine": "Your island life",
+    "successTitleEm": "starts here.",
+    "successLead": "Thank you. Your request reference is",
+    "successText": "The Island Life team will be in touch to arrange your free design consultation.",
+    "successButton": "Send another request"
+  }
 }

@@ -1,0 +1,42 @@
+---
+import Brand from '../components/Brand.astro';
+import Icon from '../components/Icon.astro';
+import { settings, linkTo } from '../lib/content';
+import { homePrefix } from '../lib/nav';
+
+const { phone, phoneHref, footer } = settings;
+const prefix = homePrefix(Astro.url);
+---
+<footer class="footer">
+  <div class="page-shell footer__top">
+    <div>
+      <a class="footer__brand" href={`${prefix}#top`} aria-label={`${settings.name} home`}><Brand /></a>
+      <p>{footer.blurbLine1}<br />{footer.blurbLine2}</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      {footer.nav.map((item) => <a href={linkTo(Astro.url, item.href)}>{item.label}</a>)}
+    </nav>
+    <div class="footer__contact">
+      <span>{footer.areasTitle}</span>
+      <p>{footer.areas.map((area, index) => <Fragment>{index > 0 && <br />}{area}</Fragment>)}</p>
+    </div>
+    <div class="footer__hours">
+      <span>{footer.hoursTitle}</span>
+      <p>{footer.hours.map((row, index) => <Fragment>{index > 0 && <br />}{row.days}{' '}<strong>{row.time}</strong></Fragment>)}</p>
+      <a href={phoneHref}>{phone}</a>
+    </div>
+    <a class="footer__top-link" href={`${prefix}#top`} aria-label="Back to top">
+      <Icon name="arrow-up" size={22} strokeWidth={1.4} />
+    </a>
+  </div>
+  <div class="footer__wordmark" aria-hidden="true">{footer.wordmark}</div>
+  <div class="page-shell footer__bottom">
+    <span>© <span data-year>{new Date().getFullYear()}</span> {footer.copyright}</span>
+    <span>{footer.tagline}</span>
+  </div>
+</footer>
+
+<script>
+  // The site is built ahead of time, so keep the year current in the browser.
+  document.querySelector('[data-year]')!.textContent = String(new Date().getFullYear());
+</script>

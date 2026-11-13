@@ -1,27 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Design3D from '../components/Design3D.astro';
-import Process from '../components/Process.astro';
-import Services from '../components/Services.astro';
-import Proof from '../components/Proof.astro';
-import Financing from '../components/Financing.astro';
-import Quote from '../components/Quote.astro';
-import Footer from '../components/Footer.astro';
-import MobileBar from '../components/MobileBar.astro';
+import Hero from '../sections/Hero.astro';
+import Studio from '../sections/Studio.astro';
+import Projects from '../sections/Projects.astro';
+import Testimonial from '../sections/Testimonial.astro';
+import Process from '../sections/Process.astro';
+import Investment from '../sections/Investment.astro';
+import Estimate from '../sections/Estimate.astro';
+import Footer from '../sections/Footer.astro';
+import { home } from '../lib/content';
 ---
-<Base>
+<Base title={home.seoTitle} description={home.seoDescription} preloadHero>
   <Header />
-  <main id="content">
+  <main>
     <Hero />
-    <Services />
-    <Design3D />
+    <Studio />
+    <Projects />
+    <Testimonial />
     <Process />
-    <Proof />
-    <Financing />
-    <Quote />
+    <Investment />
+    <Estimate />
   </main>
   <Footer />
-  <MobileBar />
 </Base>

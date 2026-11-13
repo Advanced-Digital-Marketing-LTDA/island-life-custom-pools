@@ -1,257 +1,171 @@
 {
-  "seoTitle": "Custom Pool and Patio Builders | Island Life Custom Pools",
-  "seoDescription": "Book a free design consult with Custom Pool And Patio Builders at Island Life Custom Pools and enjoy resort living.",
+  "seoTitle": "Island Life Custom Pools | Houston Pool & Patio Builders",
+  "seoDescription": "Island Life Custom Pools designs and builds custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, and Houston. See your space in 3D and request a free quote.",
   "hero": {
-    "headline": "Bring your vacation dreams home",
-    "subhead": "Houston pool & patio builders",
-    "lead": "Custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, and Houston. We build a 3D model of your pool and outdoor space, so you see it before it’s built.",
-    "quoteLabel": "Request a free quote",
-    "hotspots": [
+    "image": "/images/hero.webp",
+    "imageAlt": "Custom Island Life pool and backyard glowing at dusk",
+    "kicker": "Houston pool & patio builders · Tomball · Cypress · The Woodlands",
+    "line1": "Bring your",
+    "line2": "vacation",
+    "line3": "dreams home.",
+    "intro": "Custom pools, patios, and outdoor kitchens—visualized in 3D and built around the way you want to live.",
+    "cta": "Get my free quote",
+    "scrollLabel": "Free design consult included",
+    "foot": ["Pools", "Patios", "Outdoor kitchens"]
+  },
+  "studio": {
+    "label": "One backyard. One coordinated vision.",
+    "title": "See your island life",
+    "titleEm": "before we build it.",
+    "lede": "Island Life Custom Pools designs and builds complete outdoor spaces across Tomball, Cypress, The Woodlands, and Houston. Your custom 3D model lets you explore the pool, patio, kitchen, and details before construction begins.",
+    "image": "/images/pool.webp",
+    "imageAlt": "Custom geometric pool with a raised spa",
+    "caption": "Custom pool & spa",
+    "services": [
       {
-        "id": "pool",
-        "label": "Custom pools",
-        "href": "/custom-pools/"
+        "id": "pools",
+        "title": "Custom pools",
+        "description": "A pool and spa designed for your property, your routines, and your idea of an escape—not pulled from a catalogue."
       },
       {
-        "id": "patio",
-        "label": "Custom patios",
-        "href": "/custom-patios/"
+        "id": "patios",
+        "title": "Patios & covers",
+        "description": "Shade, comfort, and architectural continuity, with custom patios and patio covers that make the outdoors feel like another room."
       },
       {
-        "id": "kitchen",
-        "label": "Outdoor kitchens",
-        "href": "/outdoor-kitchens/"
+        "id": "outdoor-kitchens",
+        "title": "Outdoor kitchens",
+        "description": "Cook, gather, and stay in the moment with a kitchen planned as part of the complete backyard, not added as an afterthought."
       }
     ],
-    "plateNote": "Illustrative plan"
+    "details": "Complete the space with spas, fire pits, fireplaces, pickleball courts, and dependable Hayward equipment—all coordinated by one team."
   },
-  "trust": [
-    {
-      "title": "Google Guaranteed",
-      "text": "Vetted and endorsed by Google"
-    },
-    {
-      "title": "Free design consult",
-      "text": "Book yours with your quote request"
-    },
-    {
-      "title": "Fast service. Fair pricing.",
-      "text": ""
-    }
-  ],
-  "paths": {
-    "title": "First pool or next upgrade, we start the same way: with your yard",
-    "first": {
-      "title": "Building your first pool",
-      "text": "Never built a pool before? You don’t need to know how it works. We walk you through design, excavation, structure, and start-up, and answer every question along the way.",
-      "quote": "If you don’t know anything about pools, don’t worry, he walks you through every step of the way.",
-      "by": "Annette"
-    },
-    "upgrade": {
-      "title": "Upgrading your backyard",
-      "text": "Add a patio cover, an outdoor kitchen, or a pickleball court. Pool, spa, fire pit, fireplace: we design the whole space to work together.",
-      "items": [
-        {
-          "label": "Patio covers",
-          "href": "/custom-patios/"
-        },
-        {
-          "label": "Outdoor kitchens",
-          "href": "/outdoor-kitchens/"
-        },
-        {
-          "label": "Pickleball courts",
-          "href": "https://www.instagram.com/p/DCUsTqtS3AK/"
-        },
-        {
-          "label": "Hayward equipment",
-          "href": "/hayward-equipment/"
-        }
-      ]
-    }
-  },
-  "design": {
-    "title": "See your pool before it’s built",
-    "text": "At Island Life Custom Pools we create a 3D model of your pool and outdoor space so you can see your vision come to life.",
-    "videoSrc": "https://s2s.558.myftpupload.com/wp-content/uploads/2023/10/Island-Life-Skaggs-Family-Revisions_StoryBoard_01_001.mp4",
-    "videoLabel": "Our 3D design software in action",
-    "caption": "3D model, design review"
-  },
-  "process": {
-    "title": "How a build runs",
-    "steps": [
-      {
-        "title": "Free design consult",
-        "text": "Tell us what you want and what you must have. We listen first."
-      },
-      {
-        "title": "3D design",
-        "text": "We model your pool and outdoor space so you can see it before we build."
-      },
-      {
-        "title": "Excavation",
-        "text": "The crew arrives and the yard becomes a pool."
-      },
-      {
-        "title": "Structure",
-        "text": "Pool, spa, patio, fireplace: the build takes shape."
-      },
-      {
-        "title": "Start-up",
-        "text": "The pool is started up and ready to swim."
-      }
-    ],
-    "quote": "Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way.",
-    "by": "Jasmine H."
-  },
-  "services": {
-    "title": "Pools, patios, and outdoor kitchens",
+  "projects": {
+    "label": "Design gallery",
+    "title": "Your possibilities,",
+    "titleEm": "made visible.",
+    "intro": "From the first idea to the smallest detail, custom 3D design helps you see how every part of your outdoor space belongs together.",
     "items": [
       {
-        "id": "pool",
-        "title": "Custom pools",
-        "text": "Spectacular backyard pools that transport you to your own island paradise, designed around your vision and installed by our team.",
-        "linkLabel": "Explore custom pools",
-        "href": "/custom-pools/"
+        "layout": "pool",
+        "name": "Pool & spa",
+        "category": "Custom water · Raised spa",
+        "detail": "A private escape, shaped around you",
+        "image": "/images/backyard.webp",
+        "alt": "a complete backyard with a pool, spa, fire pit, patio, and pickleball court"
       },
       {
-        "id": "patio",
-        "title": "Custom patios",
-        "text": "Patio covers are an important part of our pool builds. We craft an outdoor space you can be proud of: the perfect home away from home.",
-        "linkLabel": "Explore custom patios",
-        "href": "/custom-patios/"
+        "layout": "patio",
+        "name": "Patio living",
+        "category": "Patio cover · Fireplace",
+        "detail": "Comfort that carries the outdoors further",
+        "image": "/images/patio.webp",
+        "alt": "a covered patio with a fireplace beside a custom pool"
       },
       {
-        "id": "kitchen",
-        "title": "Custom outdoor kitchens",
-        "text": "Outdoor kitchens made for entertaining and relaxing, designed to fit your pool and patio.",
-        "linkLabel": "Explore outdoor kitchens",
-        "href": "/outdoor-kitchens/"
+        "layout": "kitchen",
+        "name": "Outdoor kitchen",
+        "category": "Cooking · Dining · Gathering",
+        "detail": "Everything for an evening outside",
+        "image": "/images/kitchen.webp",
+        "alt": "a custom stone outdoor kitchen with a grill and bar seating"
       }
     ]
   },
-  "discount": {
-    "title": "Military, first responders, and teachers get a generous discount",
-    "text": "Ask about it when you request your quote.",
-    "linkLabel": "Request a free quote"
-  },
-  "proof": {
-    "title": "Hear what our clients have to say",
-    "google": {
-      "title": "Google Guaranteed",
-      "text": "Google vetted Island Life Custom Pools and endorsed us as a reliable, authentic business. Not every company earns the badge."
-    },
-    "featured": {
-      "quote": "The quality and craftsmanship of the final product exceed our expectations and we came in on time and on budget.",
-      "by": "Sam M.",
-      "more": "I think what sets Tim apart as a builder is his superb communication skills. We were always given a thorough understanding each step of the way from design, to excavation, to the structure and fireplace, all the way to start up!"
-    },
+  "testimonial": {
+    "label": "Words from Island Life homeowners",
+    "googleTitle": "Google Guaranteed",
+    "googleText": "Vetted and endorsed by Google",
     "reviews": [
       {
-        "quote": "Huge thanks to Island Life Custom Pools for converting our backyard into our own personal oasis. Tim (the owner) made the process very easy and stress free. He is an honest man who constantly kept his word and heard our every want/must haves and made it happen. Tim is very responsive and answered all calls and text fast. He knew how our dogs are spoiled and even made a cute trail for them!",
-        "by": "Annette"
+        "name": "Jasmine H.",
+        "detail": "Pool · Spa · Fire pit",
+        "quote": "Tim and Jose kept us in the loop with a weekly calendar and constant communication. The pool, spa, and fire pit are beautiful, and every crew was polite."
       },
       {
-        "quote": "We had a wonderful experience using Island Life to build our pool, spa and fire pit. … Even the construction crews were very nice and polite. We are so impressed with how everything turned out. It is so beautiful and we are so happy with it.",
-        "by": "Jasmine H."
+        "name": "Sam M.",
+        "detail": "On time · On budget",
+        "quote": "The craftsmanship exceeded our expectations. The project was completed on time and on budget."
       },
       {
-        "quote": "From the design to close-out, Tim and Eric were amazing! They addressed any issue big or small, listened to our needs and concerns and started working on them immediately. Our pool is beautiful.",
-        "by": "Dee G."
+        "name": "Annette",
+        "detail": "A personal oasis",
+        "quote": "They created our personal oasis. The owner was honest and responsive, listened to our wants and must-haves—even adding a trail for the dogs."
       },
       {
-        "quote": "Tim exceeded our expectations with the construction of our beautiful pool. He was extremely communicative, detail oriented and surrounded himself with quality subs.",
-        "by": "Jeff L."
+        "name": "Dee G.",
+        "detail": "Design through close-out",
+        "quote": "From design through close-out, Tim and Eric listened and addressed every issue that came up."
+      },
+      {
+        "name": "Jeff L.",
+        "detail": "Thoughtful construction",
+        "quote": "Communicative and detail-oriented throughout construction, with quality subcontractors on every part of the job."
       }
-    ]
-  },
-  "recent": {
-    "title": "Recent work on Instagram",
-    "followLabel": "Follow on Instagram",
-    "followHref": "https://www.instagram.com/islandlifepools/",
-    "items": [
-      {
-        "title": "Patio covers are an important part of our pool builds",
-        "kind": "Post",
-        "href": "https://www.instagram.com/p/DC1_EHVRg6_/",
-        "image": ""
-      },
-      {
-        "title": "Add a pickleball court to your backyard pool build. We build ’em.",
-        "kind": "Post",
-        "href": "https://www.instagram.com/p/DCUsTqtS3AK/",
-        "image": ""
-      },
-      {
-        "title": "Night time is the best time",
-        "kind": "Post",
-        "href": "https://www.instagram.com/p/DBl-mvyOGiJ/",
-        "image": ""
-      },
-      {
-        "title": "Lake front on Lake Conroe, Texas",
-        "kind": "Reel",
-        "href": "https://www.instagram.com/reel/DA3X0xwO9Xe/",
-        "image": ""
-      },
-      {
-        "title": "Commercial project in Houston Galleria",
-        "kind": "Reel",
-        "href": "https://www.instagram.com/reel/DAlmzHPvq9l/",
-        "image": ""
-      },
-      {
-        "title": "So relaxing! The smoothness of this project makes it one of our favorites.",
-        "kind": "Reel",
-        "href": "https://www.instagram.com/reel/DAQxwKxOWHn/",
-        "image": ""
-      }
-    ]
-  },
-  "financing": {
-    "title": "Explore financing options",
-    "text": "We work with several partners so that you can secure your dream pool without financial worry.",
-    "linkLabel": "Get financing",
-    "href": "/financing/",
-    "partnersTitle": "Our partners",
-    "partners": [
-      {
-        "label": "Hayward",
-        "href": "https://hayward.com/"
-      },
-      {
-        "label": "Paramount",
-        "href": "https://www.1paramount.com/"
-      },
-      {
-        "label": "NPT",
-        "href": "https://www.nptpool.com/"
-      },
-      {
-        "label": "Ledge Lounger",
-        "href": "https://ledgeloungers.com/"
-      },
-      {
-        "label": "AquaStar",
-        "href": "https://www.aquastarpoolproducts.com/"
-      },
-      {
-        "label": "HFS home improvement loans",
-        "href": ""
-      }
-    ]
-  },
-  "quote": {
-    "title": "Request a free quote",
-    "lead": "Tell us what you’re picturing and how you’d like us to reach you.",
-    "callTitle": "Prefer to talk? Call us.",
-    "interests": [
-      "Pool",
-      "Patio",
-      "Outdoor kitchen",
-      "Fire feature",
-      "Not sure yet"
     ],
-    "submitLabel": "Send my request"
+    "assurances": ["Free design consultation", "Fast service. Fair pricing.", "Custom 3D design"]
+  },
+  "process": {
+    "label": "From first conversation to first swim",
+    "title": "Five clear steps.",
+    "titleEm": "One exciting arrival.",
+    "steps": [
+      {
+        "title": "Free design consult.",
+        "description": "We start with your wish list, your property, and the way you want to live outside. Your design consultation is included when you request a quote.",
+        "meta": "Listen · Explore · Prioritize",
+        "image": "/images/patio.webp",
+        "alt": "Pool and patio design with a shaded gathering space"
+      },
+      {
+        "title": "See it in 3D.",
+        "description": "Your custom model brings the pool, patio, outdoor kitchen, and features together so you can understand the space before construction begins.",
+        "meta": "Custom model · Materials · Details",
+        "image": "/images/backyard.webp",
+        "alt": "a coordinated pool and complete backyard"
+      },
+      {
+        "title": "Excavation.",
+        "description": "With the plan resolved, we prepare the site and shape the space. Clear communication keeps you connected to what is happening and what comes next.",
+        "meta": "Site preparation · Layout · Excavation",
+        "image": "/images/pool.webp",
+        "alt": "Geometric custom pool and spa layout"
+      },
+      {
+        "title": "Structure.",
+        "description": "The structure, plumbing, equipment, and outdoor living details take shape as one coordinated build, with quality craftsmanship at every stage.",
+        "meta": "Craft · Coordination · Hayward equipment",
+        "image": "/images/kitchen.webp",
+        "alt": "coordinated outdoor kitchen materials and details"
+      },
+      {
+        "title": "Start-up.",
+        "description": "We bring the systems online, prepare the water, and walk you through your new space. Then it is time to settle into your own island life.",
+        "meta": "Systems · Water · Welcome home",
+        "image": "/images/hero.webp",
+        "alt": "an illuminated backyard pool at dusk"
+      }
+    ]
+  },
+  "investment": {
+    "label": "Flexible ways to begin",
+    "title": "Your backyard.",
+    "titleEm": "Within reach.",
+    "intro": "Ask about financing through HFS home improvement loans. We can discuss the available options as we plan a space that fits your goals.",
+    "partnersLabel": "Trusted products & partners",
+    "partners": ["Hayward", "Paramount", "NPT", "Ledge Lounger", "AquaStar"],
+    "offerLabel": "HFS home improvement loans",
+    "offerLine1": "Ask about",
+    "offerLine2": "financing.",
+    "possibilities": [
+      "Custom pools, spas, and water features",
+      "Patios, covers, and outdoor kitchens",
+      "Fire pits, fireplaces, and recreation",
+      "Equipment, finishes, and the details between"
+    ],
+    "note": "Your free design consultation is included with your quote request.",
+    "discountTitle": "A thank-you for your service.",
+    "discountText": "Military personnel, first responders, and teachers receive a generous discount.",
+    "cta": "Ask about financing"
   }
 }

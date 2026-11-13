@@ -1,0 +1,89 @@
+---
+import Icon from '../components/Icon.astro';
+import { home } from '../lib/content';
+
+const { testimonial } = home;
+const { reviews } = testimonial;
+const pad = (n: number) => String(n).padStart(2, "0");
+const review = reviews[0];
+---
+<section class="testimonial section" aria-labelledby="testimonial-title" data-reviews={JSON.stringify(reviews)}>
+  <div class="page-shell testimonial__inner">
+    <div class="testimonial__top">
+      <p class="section-label section-label--light" id="testimonial-title">{testimonial.label}</p>
+      <div class="testimonial__google"><Icon name="shield-check" size={23} strokeWidth={1.5} /><span><strong>{testimonial.googleTitle}</strong>{testimonial.googleText}</span></div>
+    </div>
+    <div class="testimonial__review" aria-live="polite">
+      <blockquote style="opacity: 1; transform: translate3d(0px, 0px, 0px);">
+        <p>“{review.quote}”</p>
+        <footer>
+          <span>{review.name}</span>
+          <span>{review.detail}</span>
+        </footer>
+      </blockquote>
+    </div>
+    <div class="testimonial__controls">
+      <span>{pad(1)} / {pad(reviews.length)}</span>
+      <div>
+        <button type="button" data-step="-1" aria-label="Previous customer review"><Icon name="arrow-left" size={21} strokeWidth={1.5} /></button>
+        <button type="button" data-step="1" aria-label="Next customer review"><Icon name="arrow-right" size={21} strokeWidth={1.5} /></button>
+      </div>
+    </div>
+    <div class="testimonial__assurances" aria-label="Service assurances">
+      {testimonial.assurances.map((item) => <span>{item}</span>)}
+    </div>
+  </div>
+</section>
+
+<script>
+  type Review = { name: string; detail: string; quote: string };
+
+  const root = document.querySelector<HTMLElement>('.testimonial')!;
+  const reviews: Review[] = JSON.parse(root.dataset.reviews!);
+  const quote = root.querySelector<HTMLElement>('blockquote')!;
+  const text = quote.querySelector('p')!;
+  const [name, detail] = quote.querySelectorAll('footer span');
+  const counter = root.querySelector('.testimonial__controls > span')!;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const ease = 'cubic-bezier(0.16, 1, 0.3, 1)';
+  const rest = { opacity: 1, transform: 'translate3d(0px, 0px, 0px)' };
+
+  // The counter follows each click at once; the quote swaps out and in (exit, then enter), like AnimatePresence "wait".
+  let active = 0;
+  let shown = 0;
+  let busy = false;
+
+  const play = (from: Keyframe, to: Keyframe) => {
+    const reduced = reducedMotion.matches;
+    const fade = (frame: Keyframe) => (reduced ? { opacity: frame.opacity } : frame);
+    return quote.animate([fade(from), fade(to)], { duration: reduced ? 120 : 160, easing: ease }).finished;
+  };
+
+  async function sync() {
+    if (busy) return;
+    busy = true;
+    while (shown !== active) {
+      await play(rest, { opacity: 0, transform: 'translate3d(0px, -6px, 0px)' });
+      // Hold the quote hidden while the text swaps. (fill: 'forwards' would do it, but it leaves
+      // the page below the slider drawn with grayscale instead of subpixel text antialiasing.)
+      quote.style.opacity = '0';
+      shown = active;
+      const review = reviews[shown];
+      text.textContent = `“${review.quote}”`;
+      name.textContent = review.name;
+      detail.textContent = review.detail;
+      await play({ opacity: 0, transform: 'translate3d(0px, 8px, 0px)' }, rest);
+      quote.style.opacity = '1';
+    }
+    busy = false;
+  }
+
+  root.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => {
+    button.addEventListener('click', () => {
+      active = (active + Number(button.dataset.step) + reviews.length) % reviews.length;
+      counter.textContent = `${pad(active + 1)} / ${pad(reviews.length)}`;
+      sync();
+    });
+  });
+</script>

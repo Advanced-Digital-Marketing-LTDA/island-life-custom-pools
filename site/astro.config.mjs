@@ -17,6 +17,16 @@ export default defineConfig({
     allowedDomains: [{ protocol: site.protocol.slice(0, -1), hostname: site.hostname, port: site.port || undefined }],
   },
   output: 'static',
+  // Old page URLs that now live on the home page or /pools.
+  redirects: {
+    '/custom-pools': '/pools',
+    '/about-us': '/#about',
+    '/custom-patios': '/#patios',
+    '/outdoor-kitchens': '/#outdoor-kitchens',
+    '/gallery': '/#gallery',
+    '/financing': '/#financing',
+    '/contact': '/#quote',
+  },
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },
   devToolbar: { enabled: false },

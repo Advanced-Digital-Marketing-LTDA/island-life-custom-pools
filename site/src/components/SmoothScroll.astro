@@ -1,0 +1,44 @@
+<script>
+  import Lenis from 'lenis';
+
+  const smoothScrollOptions = { duration: 1.05, smoothWheel: true };
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+  function start(reduceMotion: boolean) {
+    const lenis = reduceMotion ? null : new Lenis(smoothScrollOptions);
+    let frame = 0;
+
+    const raf = (time: number) => {
+      lenis?.raf(time);
+      frame = requestAnimationFrame(raf);
+    };
+    if (lenis) frame = requestAnimationFrame(raf);
+
+    const onAnchorClick = (event: MouseEvent) => {
+      if (!lenis || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+      if (!anchor) return;
+      const selector = anchor.getAttribute('href');
+      if (!selector) return;
+      const target = document.querySelector(selector);
+      if (!target) return;
+      event.preventDefault();
+      const offset = target instanceof HTMLElement && target.classList.contains('article-section') ? 0 : target.id === 'top' ? 0 : -72;
+      lenis.scrollTo(target as HTMLElement, { offset });
+    };
+    document.addEventListener('click', onAnchorClick);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener('click', onAnchorClick);
+      lenis?.destroy();
+    };
+  }
+
+  // Like the React effect, restart when the visitor flips their reduced-motion setting.
+  let stop = start(reducedMotion.matches);
+  reducedMotion.addEventListener('change', () => {
+    stop();
+    stop = start(reducedMotion.matches);
+  });
+</script>

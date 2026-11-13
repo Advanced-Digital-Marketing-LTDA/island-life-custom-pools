@@ -1,0 +1,146 @@
+---
+import Icon from '../components/Icon.astro';
+import { settings, interests } from '../lib/content';
+import { contactMethods } from '../data/quote';
+
+const { phone, phoneHref, quote } = settings;
+---
+<section class="estimate section" id="quote" aria-labelledby="estimate-title">
+  <div class="page-shell estimate__grid">
+    <div class="estimate__intro">
+      <p class="section-label section-label--light">{quote.label}</p>
+      <h2 id="estimate-title">{quote.titleLine}<br /><em>{quote.titleEm}</em></h2>
+      <p>{quote.intro}</p>
+      <div class="estimate__contact">
+        <span>{quote.callLabel}</span>
+        <a href={phoneHref}>{phone}</a>
+      </div>
+      <p class="estimate__discount">{quote.discount}</p>
+    </div>
+
+    <div class="estimate__form-wrap">
+      <div class="form-success" tabindex="-1" role="status" hidden>
+        <span class="form-success__icon"><Icon name="check" size={30} strokeWidth={1.4} /></span>
+        <p class="section-label section-label--light">{quote.successLabel}</p>
+        <h3>{quote.successTitleLine}<br /><em>{quote.successTitleEm}</em></h3>
+        <p>{quote.successLead} <strong data-reference></strong>. {quote.successText}</p>
+        <button class="text-link text-link--light" type="button">
+          {quote.successButton} <Icon name="arrow-right" size={17} />
+        </button>
+      </div>
+      <form class="estimate-form" method="post" action="/api/quote" data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel}>
+        <div class="form-row">
+          <label>
+            <span>Name *</span>
+            <input name="name" type="text" autocomplete="name" minlength="2" maxlength="120" required placeholder="Jane Smith" />
+          </label>
+          <label>
+            <span>ZIP code *</span>
+            <input name="zipCode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" maxlength="10" required placeholder="77377" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Email address *</span>
+            <input name="email" type="email" autocomplete="email" maxlength="320" required placeholder="jane@example.com" />
+          </label>
+          <label>
+            <span data-phone-label>Phone number (optional)</span>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(832) 555-0123" />
+          </label>
+        </div>
+        <fieldset class="contact-preference">
+          <legend>Preferred contact method *</legend>
+          <div>
+            {contactMethods.map((method) => (
+              <label>
+                <input type="radio" name="preferredContact" value={method} checked={method === 'Email'} required />
+                <span>{method}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <label>
+          <span>I’m interested in *</span>
+          <select name="interest" required>
+            <option value="" disabled selected>Select a project</option>
+            {interests.map((interest) => <option value={interest}>{interest}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Tell us about your project (optional)</span>
+          <textarea name="message" rows="3" maxlength="2000" placeholder="A pool and spa, a shaded patio, room for family dinners…"></textarea>
+        </label>
+        <label class="hp-field" aria-hidden="true">
+          <span>Leave this empty</span>
+          <input name="website" type="text" tabindex="-1" autocomplete="off" />
+        </label>
+        <p class="form-error" role="alert" hidden>{quote.errorText.replace('{phone}', phone)}</p>
+        <div class="estimate-form__submit">
+          <button class="button button--light" type="submit">
+            <span class="button__label">{quote.submitLabel}</span>
+            <span class="button__wash" aria-hidden="true"></span>
+            <Icon name="arrow-right" size={18} />
+            <Icon name="loader-circle" size={18} class="spin" />
+          </button>
+          <p>{quote.note}</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.estimate')!;
+  const form = root.querySelector<HTMLFormElement>('.estimate-form')!;
+  const success = root.querySelector<HTMLElement>('.form-success')!;
+  const error = root.querySelector<HTMLElement>('.form-error')!;
+  const phone = form.elements.namedItem('phone') as HTMLInputElement;
+  const phoneLabel = form.querySelector('[data-phone-label]')!;
+  const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  const submitLabel = submit.querySelector('.button__label')!;
+  const [arrow, spinner] = submit.querySelectorAll<SVGElement>(':scope > svg');
+
+  // Phone is only required when it is the preferred way to reach the visitor.
+  const syncContact = () => {
+    const byPhone = form.querySelector<HTMLInputElement>('input[name="preferredContact"]:checked')?.value === 'Phone';
+    phone.required = byPhone;
+    phoneLabel.textContent = byPhone ? 'Phone number *' : 'Phone number (optional)';
+  };
+  const setPending = (pending: boolean) => {
+    submit.disabled = pending;
+    submitLabel.textContent = pending ? form.dataset.pendingLabel! : form.dataset.label!;
+    arrow.style.display = pending ? 'none' : '';
+    spinner.style.display = pending ? '' : 'none';
+  };
+  setPending(false);
+  syncContact();
+  form.querySelectorAll('input[name="preferredContact"]').forEach((radio) => radio.addEventListener('change', syncContact));
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    error.hidden = true;
+    setPending(true);
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.reference) throw new Error(`Quote request failed (${response.status})`);
+      form.reset();
+      syncContact();
+      success.querySelector('[data-reference]')!.textContent = result.reference;
+      form.hidden = true;
+      success.hidden = false;
+      success.focus();
+    } catch (err) {
+      console.error(err);
+      error.hidden = false;
+    } finally {
+      setPending(false);
+    }
+  });
+
+  success.querySelector('button')!.addEventListener('click', () => {
+    success.hidden = true;
+    form.hidden = false;
+  });
+</script>

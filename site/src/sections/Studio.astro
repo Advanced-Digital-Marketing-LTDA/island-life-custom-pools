@@ -1,0 +1,28 @@
+---
+import { home } from '../lib/content';
+
+const { studio } = home;
+---
+<section class="studio section" id="about" aria-labelledby="studio-title">
+  <div class="page-shell studio__grid">
+    <div class="studio__statement">
+      <p class="section-label">{studio.label}</p>
+      <h2 id="studio-title">{studio.title}<br /><em>{studio.titleEm}</em></h2>
+      <p class="studio__lede">{studio.lede}</p>
+    </div>
+    <figure class="studio__image-wrap">
+      <img src={studio.image} alt={studio.imageAlt} loading="lazy" />
+      <figcaption>{studio.caption}</figcaption>
+    </figure>
+    <div class="studio__services">
+      {studio.services.map((service, index) => (
+        <div class="service-row" id={service.id}>
+          <span class="service-row__index">0{index + 1}</span>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      ))}
+      <p class="studio__details">{studio.details}</p>
+    </div>
+  </div>
+</section>
