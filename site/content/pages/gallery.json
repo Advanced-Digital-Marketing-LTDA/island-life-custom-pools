@@ -11,8 +11,8 @@
       "introduction": "See how water, shade, fire, and food can come together in one beautifully coordinated backyard.",
       "ctaLabel": "Start with a free design consult",
       "ctaHref": "/#quote",
-      "image": "/images/gallery-hero.webp",
-      "imageAlt": "Resort-style pool, spa, and outdoor kitchen at sunset",
+      "image": "/images/travertine-pool-loungers.webp",
+      "imageAlt": "Backyard pool with a travertine deck, lounge chairs, and an umbrella beside a brick home at dusk",
       "scrollLabel": "Explore the collection",
       "scrollHref": "#gallery-collection"
     },
@@ -28,163 +28,165 @@
       "photos": [
         {
           "layout": "feature",
-          "title": "The complete backyard",
-          "category": "Pool · Spa · Patio · Recreation",
-          "description": "A coordinated outdoor space, designed around the way you want to live.",
-          "image": "/images/backyard.webp",
-          "alt": "Backyard with a pool, raised spa, covered patio, fire feature, and recreation space"
+          "title": "Sunset, lit from below",
+          "category": "Pool · Spa · Color lighting",
+          "description": "A raised spa, a lit pool, and a sky worth staying out for.",
+          "image": "/images/gallery-sunset-spa.webp",
+          "alt": "Raised spa and pool glowing purple under a bright orange sunset sky"
         },
         {
           "layout": "portrait",
-          "title": "Water, made personal",
-          "category": "Custom pool · Raised spa",
-          "description": "Clean lines, considered details, and a private place to unwind.",
-          "image": "/images/pool.webp",
-          "alt": "Freeform custom pool with a raised spa, a waterfall wall, and tropical planting"
+          "title": "Water you can hear",
+          "category": "Rock waterfall · Pool",
+          "description": "Falling water gives the whole backyard a soundtrack.",
+          "image": "/images/gallery-rock-waterfall.webp",
+          "alt": "Rock waterfall spilling into a blue pool"
         },
         {
           "layout": "portrait-offset",
-          "title": "A conversation, sunken in",
-          "category": "Sunken lounge · Fire pit",
-          "description": "A sheltered gathering place that brings fire, water, and comfortable seating into one composition.",
-          "image": "/images/gallery-sunken-lounge.webp",
-          "alt": "Sunken lounge with a central fire pit surrounded by water and a slatted patio cover"
+          "title": "Color after dark",
+          "category": "Water blade · Pool lighting",
+          "description": "A sheet of water and a colored light change the mood of the pool.",
+          "image": "/images/gallery-purple-water-blade.webp",
+          "alt": "Water pouring from a black-tile wall into a purple-lit pool"
         },
         {
           "layout": "wide",
-          "title": "The evening gathering place",
-          "category": "Fireplace · Outdoor kitchen",
-          "description": "A warm focal point, an easy place to cook, and plenty of room for everyone to settle in.",
-          "image": "/images/gallery-fireplace-kitchen.webp",
-          "alt": "Stone fireplace, outdoor kitchen, and lounge seating beneath string lights"
+          "title": "Long lines, open lawn",
+          "category": "Pool · Cabana · Patio",
+          "description": "A long pool, a wide deck, and a covered cabana across the lawn.",
+          "image": "/images/gallery-lawn-cabana-pool.webp",
+          "alt": "Rectangular pool with a wide deck, a house, and a covered cabana under a blue sky"
         },
         {
           "layout": "portrait",
-          "title": "Fire, reflected",
-          "category": "Spa · Water wall · Fire bowls",
-          "description": "Layered light and moving water turn a poolside evening into something worth staying out for.",
-          "image": "/images/gallery-fire-water.webp",
-          "alt": "Illuminated spa and water wall with fire bowls beside a pool at dusk"
+          "title": "A fire feature of its own",
+          "category": "Fire pit · Black tile",
+          "description": "A clean, low fire pit with room to sit around it.",
+          "image": "/images/gallery-black-tile-fire-pit.webp",
+          "alt": "Rectangular fire pit faced in black tile with a white cap"
         },
         {
           "layout": "portrait-offset",
-          "title": "A softer edge",
-          "category": "Freeform pool · Spa · Waterfall",
-          "description": "Organic curves and natural stone create a relaxed escape with room to swim and soak.",
-          "image": "/images/gallery-freeform-pool.webp",
-          "alt": "Freeform swimming pool with a round spa and natural stone waterfall"
+          "title": "Stone, spa and falling water",
+          "category": "Rock waterfall · Raised spa",
+          "description": "A rock waterfall and raised spa add height to a freeform pool.",
+          "image": "/images/gallery-grotto-spa.webp",
+          "alt": "Rock waterfall and raised spa beside a freeform pool"
         },
         {
           "layout": "feature",
-          "title": "Every hour, outside",
-          "category": "Pool · Spa · Covered patio",
-          "description": "A comfortable transition from shaded afternoons to evenings around the water.",
-          "image": "/images/gallery-desert-retreat.webp",
-          "alt": "Long pool and raised spa beside a covered patio and glowing fire features at sunset"
+          "title": "The last light of the day",
+          "category": "Pool · Sunset",
+          "description": "Still water catches the colors of the evening.",
+          "image": "/images/gallery-sunset-reflections.webp",
+          "alt": "Sunset reflected in a pool beside a covered patio"
         },
         {
           "layout": "portrait",
-          "title": "Stay a little longer",
-          "category": "Patio cover · Fireplace",
-          "description": "Shade, warmth, and a comfortable setting for time together outside.",
-          "image": "/images/patio.webp",
-          "alt": "Covered patio with seating and a fireplace beside a custom pool"
+          "title": "A bar of its own",
+          "category": "Cabana · Outdoor bar",
+          "description": "A cedar-framed cabana with seating for the whole group.",
+          "image": "/images/gallery-cedar-bar.webp",
+          "alt": "Cedar-framed cabana with an outdoor bar and stools beside a pool at sunset"
         },
         {
           "layout": "portrait-offset",
-          "title": "Room for everyone",
-          "category": "Patio cover · Dining · Outdoor kitchen",
-          "description": "Cooking, dining, and lounging come together beneath one generous covered space.",
-          "image": "/images/gallery-texas-patio.webp",
-          "alt": "Covered patio with dining furniture, lounge seating, grill, and fireplace"
+          "title": "Dinner, outdoors",
+          "category": "Patio dining · Umbrella",
+          "description": "A shaded table and a view of the pool beyond.",
+          "image": "/images/gallery-patio-dining.webp",
+          "alt": "Patio dining table under an umbrella with a pool in the background"
         },
         {
           "layout": "wide",
           "title": "Clean lines, easy living",
-          "category": "Geometric pool · Spa · Patio",
-          "description": "A crisp pool shape and an uncluttered deck make the whole backyard feel open and effortless.",
-          "image": "/images/gallery-geometric-pool.webp",
-          "alt": "Geometric pool with a raised spa, pale stone deck, and covered outdoor kitchen"
+          "category": "Pool · Water scuppers",
+          "description": "Water scuppers and a simple black wall give the pool a modern edge.",
+          "image": "/images/gallery-scuppers.webp",
+          "alt": "Pool with three water scuppers on a black wall and bubbling jets"
         },
         {
           "layout": "feature",
-          "title": "Cook where you gather",
-          "category": "Cooking · Dining · Gathering",
-          "description": "An outdoor kitchen that brings cooking and conversation into the same space.",
-          "image": "/images/kitchen.webp",
-          "alt": "Stone outdoor kitchen with a grill, generous counter, and bar seating"
+          "title": "Room for everyone",
+          "category": "Covered patio · Dining",
+          "description": "A deep covered patio with ceiling fans and a view of the yard.",
+          "image": "/images/gallery-covered-patio-view.webp",
+          "alt": "Large covered patio with ceiling fans and a dining table overlooking the yard"
         },
         {
           "layout": "landscape-left",
           "title": "An evening in blue",
-          "category": "Freeform pool · Fire feature",
-          "description": "Curved lines, underwater light, and a fire-lit lounge give the backyard its own after-dark rhythm.",
-          "image": "/images/gallery-curved-evening-pool.webp",
-          "alt": "Curved illuminated pool with waterfalls and a circular fire feature at dusk"
+          "category": "Pool · Cabana · Lighting",
+          "description": "Underwater light turns the pool into the center of the evening.",
+          "image": "/images/gallery-blue-pool-cabana.webp",
+          "alt": "Blue-lit pool with a spa and a covered cabana at dusk"
         },
         {
           "layout": "landscape-right",
-          "title": "Your own tropical hour",
-          "category": "Pool · Fire pit · Lounge",
-          "description": "Palms, comfortable seating, and a glowing fire pit make an ordinary evening feel like a getaway.",
-          "image": "/images/gallery-tropical-fire-pit.webp",
-          "alt": "Tropical poolside lounge with a round fire pit and palm trees at twilight"
+          "title": "Lit for the evening",
+          "category": "Rock waterfall · Pool lighting",
+          "description": "Rock, water, and magenta light make a dramatic end to the day.",
+          "image": "/images/gallery-rock-slide-glow.webp",
+          "alt": "Rock waterfall and slide beside a pool glowing magenta at dusk"
         },
         {
           "layout": "wide",
-          "title": "A little more drama",
-          "category": "Pool · Water wall · Fire bowls",
-          "description": "Symmetry, flame, and a sheet of falling water create a bold view from every angle.",
-          "image": "/images/gallery-linear-fire-pool.webp",
-          "alt": "Linear illuminated pool framed by fire bowls and a central water wall"
+          "title": "The whole picture",
+          "category": "Pool · Patio · Cabana",
+          "description": "Pool, patio, and cabana laid out as one space, seen at dusk.",
+          "image": "/images/gallery-estate-dusk.webp",
+          "alt": "Home with a lit pool, patio, and cabana at dusk"
         },
         {
           "layout": "portrait",
-          "title": "Shade, warmth, connection",
-          "category": "Patio cover · Fireplace · Kitchen",
-          "description": "A sheltered outdoor room with everything needed for a long, comfortable evening together.",
-          "image": "/images/gallery-outdoor-room.webp",
-          "alt": "Covered patio with a stone fireplace, built-in grill, and deep seating"
+          "title": "From above",
+          "category": "Freeform pool · Spa · Cabana",
+          "description": "The curves of a freeform pool and spa, seen from the air.",
+          "image": "/images/gallery-aerial-freeform.webp",
+          "alt": "Aerial view of a freeform pool and spa beside a cedar cabana",
+          "position": "60% center"
         },
         {
           "layout": "portrait-offset",
-          "title": "The quiet corner",
-          "category": "Spa · Fire pit · Evening lighting",
-          "description": "A private spa and softly lit terrace give the backyard a calmer place to land.",
-          "image": "/images/gallery-spa-at-dusk.webp",
-          "alt": "Backyard spa, umbrella, and fire pit on a paved terrace at dusk"
+          "title": "Fire beside the water",
+          "category": "Spa · Fire pit",
+          "description": "A lit spa and a fire pit side by side at dusk.",
+          "image": "/images/gallery-spa-fire-dusk.webp",
+          "alt": "Lit spa next to a rectangular fire pit with flames at dusk",
+          "position": "78% center"
         },
         {
           "layout": "wide",
-          "title": "Naturally inviting",
-          "category": "Freeform pool · Spa · Stone",
-          "description": "Natural textures and relaxed curves bring an easy, organic character to the water.",
-          "image": "/images/gallery-natural-pool.webp",
-          "alt": "Freeform pool and round spa with natural stone accents and a small waterfall"
+          "title": "Green light, warm home",
+          "category": "Pool · Raised spa · Terrace",
+          "description": "A softly lit pool and terrace in front of the house.",
+          "image": "/images/gallery-green-light-terrace.webp",
+          "alt": "Green-lit pool and raised spa on a travertine terrace beside a brick home at dusk"
         },
         {
           "layout": "landscape-left",
-          "title": "The weekend, uninterrupted",
-          "category": "Pool · Spa · Fire pit",
-          "description": "Spaces for swimming, soaking, and gathering are arranged to make the whole evening flow.",
-          "image": "/images/gallery-hillside-retreat.webp",
-          "alt": "Illuminated backyard pool and spa with lounge chairs and a circular fire pit"
+          "title": "A wall of water",
+          "category": "Water wall · Stone",
+          "description": "Three sheets of water fall from a stone wall into the pool.",
+          "image": "/images/gallery-water-wall.webp",
+          "alt": "Three sheets of water falling from a stone-faced wall into a pool"
         },
         {
           "layout": "landscape-right",
-          "title": "A seat by the fire",
-          "category": "Patio · Lounge · Fire feature",
-          "description": "A simple, inviting lounge turns a quiet corner of the patio into the favorite seat outside.",
-          "image": "/images/gallery-patio-fire-feature.webp",
-          "alt": "Modern patio lounge with sofas and a low rectangular fire feature"
+          "title": "Golden hour, straight lines",
+          "category": "Pool · Spa · Scuppers",
+          "description": "Straight lines, a raised spa, and scuppers in warm evening light.",
+          "image": "/images/gallery-geometric-golden.webp",
+          "alt": "Rectangular pool with a raised spa and scuppers in golden evening light"
         },
         {
           "layout": "feature",
-          "title": "Modern from every angle",
-          "category": "Pool · Outdoor kitchen · Lounge",
-          "description": "Clear geometry and a direct connection to the house make outdoor living feel beautifully natural.",
-          "image": "/images/gallery-modern-pool.webp",
-          "alt": "Modern geometric pool beside a white outdoor kitchen and lounge"
+          "title": "Home, pool, and patio as one",
+          "category": "Pool · Patio · Loungers",
+          "description": "Loungers by the water and a covered patio steps from the door.",
+          "image": "/images/gallery-house-pool-loungers.webp",
+          "alt": "Brick home with lounge chairs beside a pool at sunset"
         }
       ]
     },

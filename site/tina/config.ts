@@ -65,7 +65,11 @@ const block = (name: (typeof blockNames)[number], label: string, fields: Fields,
 
 const templates = [
   block('hero', 'Hero: full-width photo', [
-    image('image', 'Photo'), str('imageAlt', 'Photo description'), str('kicker', 'Line above the heading'),
+    image('image', 'Photo'), str('imageAlt', 'Photo description'),
+    str('video', 'Background video (optional)', 'The file name in public/videos, for example "/videos/island-life-hero.mp4". A .webm file with the same name is used as a fallback.'),
+    str('videoMobile', 'Smaller video for phones (optional)', 'For example "/videos/island-life-hero-mobile.mp4". Needs a .webm with the same name too.'),
+    image('videoPoster', 'Still shown before the video loads, and when motion is reduced'),
+    str('kicker', 'Line above the heading'),
     str('line1', 'Heading, line 1'), str('line2', 'Heading, line 2 (accent color)'), str('line3', 'Heading, line 3'),
     text('intro', 'Introduction'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
     str('scrollLabel', 'Scroll link label'), href('scrollHref', 'Scroll link'), strings('foot', 'Bottom-right list'),

@@ -65,3 +65,12 @@ In Coolify select Dockerfile with base directory `/site`, Dockerfile `/Dockerfil
 The Node server sends `Cache-Control: public, max-age=0` for everything in `public/` (only the hashed `/_astro/` files are cached for a year) and does not compress responses. Both belong to the proxy: in Coolify keep gzip/brotli on, and add a response header for `/images/*` and `/fonts/*` such as `Cache-Control: public, max-age=604800, stale-while-revalidate=86400` (not `immutable`, because those file names are not hashed). After deploy, `curl -sI -H "Accept-Encoding: gzip" https://islandlifecustompools.com/` should show `content-encoding`, and `curl -sI https://islandlifecustompools.com/images/hero.webp` should show the max-age above.
 
 Old page URLs (`/custom-pools/`, `/custom-patios/`, `/about-us/`, `/contact/`) redirect to their closest place on the new site (`astro.config.mjs`). Other old URLs return the 404 page.
+
+## Images and videos on the CDN
+
+Images and videos are not in Git (`public/images`, `public/videos` and `public/media` are git-ignored); the site loads them from
+Bunny (`https://ilcpmedia.b-cdn.net/public/...`). The content stores a path (`/images/hero-video-poster.webp`) and
+`src/lib/assets.ts` lists every file that is on the CDN and swaps its path for the CDN address when the site is built. To add a
+photo or video: upload it to the CDN's `public/images` (or `public/videos`) folder, then add its file name to that list.
+A path that is not on the list is not served (the file is not in the repository), and `scripts/test-site.mjs` fails on it.
+Fonts, the favicon and `robots.txt` stay in `public` and are served by the site.

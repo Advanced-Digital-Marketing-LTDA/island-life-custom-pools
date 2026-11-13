@@ -3,17 +3,18 @@ import rawBlog from '../../content/blog.json';
 import { homePrefix } from './nav';
 import { blockNames, defaultAnchors, type Block } from './blocks';
 import { redirects } from './redirects.mjs';
+import { withAssetUrls } from './assets';
 
 // Tina leaves out a field or list an editor empties, so fill in what the templates loop over: an empty list must never
 // stop the build.
-export const settings = {
+export const settings = withAssetUrls({
   ...rawSettings,
   nav: rawSettings.nav ?? [],
   social: rawSettings.social ?? [],
-  ogImage: rawSettings.ogImage || '/images/hero.webp',
+  ogImage: rawSettings.ogImage || '/images/og-share.jpg',
   footer: { ...rawSettings.footer, credit: rawSettings.footer?.credit ?? '', creditHref: rawSettings.footer?.creditHref ?? '', nav: rawSettings.footer?.nav ?? [], areas: rawSettings.footer?.areas ?? [], hours: rawSettings.footer?.hours ?? [] },
   quote: { ...rawSettings.quote, interests: rawSettings.quote?.interests ?? [], errorText: rawSettings.quote?.errorText ?? '' },
-};
+});
 export const blog = { ...rawBlog, author: rawBlog.author ?? ({} as Partial<typeof rawBlog.author>) };
 
 // Every page is a document in content/pages: its file name is its URL ("home" is the front page) and its
@@ -36,7 +37,7 @@ const loaded: Page[] = Object.entries(pageFiles).map(([file, doc]) => {
     if (anchors.has(anchor)) throw new Error(`${where}: the link name "${anchor}" is used by more than one section (section ${index + 1}). Link names must be unique on a page.`);
     anchors.add(anchor);
   });
-  return { slug: name === 'home' ? '' : name, seoTitle: doc.seoTitle ?? '', seoDescription: doc.seoDescription ?? '', blocks };
+  return { slug: name === 'home' ? '' : name, seoTitle: doc.seoTitle ?? '', seoDescription: doc.seoDescription ?? '', blocks: withAssetUrls(blocks) };
 });
 // Tina lets an editor delete any page, so make sure the front page cannot quietly disappear from a published build.
 if (!loaded.some((page) => page.slug === '')) {
@@ -60,14 +61,14 @@ export interface Post {
 
 // One JSON file per post in content/posts; the file name is the URL slug. Newest first.
 const files = import.meta.glob<Omit<Post, 'slug'>>('../../content/posts/*.json', { eager: true, import: 'default' });
-export const posts: Post[] = Object.entries(files)
+export const posts: Post[] = withAssetUrls(Object.entries(files)
   .map(([path, post]) => ({
     ...post,
     date: post.date ?? '',
     slug: path.split('/').pop()!.replace(/\.json$/, ''),
     sections: (post.sections ?? []).map((section) => ({ ...section, paragraphs: section.paragraphs ?? [] })),
   }))
-  .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
+  .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug)));
 
 // "#section" links point at the home page, so other pages need the "/" in front; "/page" links stay as written.
 export const linkTo = (url: URL, target: string) => (target.startsWith('#') ? `${homePrefix(url)}${target}` : target);

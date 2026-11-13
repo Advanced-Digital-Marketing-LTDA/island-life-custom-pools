@@ -16,7 +16,8 @@ const first = blocks[0];
 const overlay = !!first && overlayBlocks.includes(first._template);
 // A first section that was not built to open a page needs room below the fixed header.
 const needsClearance = !!first && !clearsHeader.includes(first._template);
-const preload = first?._template === 'hero' && typeof first.image === 'string' ? first.image : undefined;
+const heroStill = typeof first?.video === 'string' && first.video && typeof first.videoPoster === 'string' ? first.videoPoster : first?.image;
+const preload = first?._template === 'hero' && typeof heroStill === 'string' ? heroStill : undefined;
 ---
 <Base title={page.seoTitle || settings.name} description={page.seoDescription || settings.name} preload={preload}>
   <Header solid={!overlay} />

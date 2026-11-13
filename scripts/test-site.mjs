@@ -68,6 +68,8 @@ for (const page of pages) {
   for (const [, href] of html.matchAll(/<a\b[^>]*href="(#[^"]+)"/g)) assert.ok(ids.includes(href.slice(1)), `Dead in-page link ${href} on ${where}`);
   const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, '');
   assert.doesNotMatch(text, /undefined|\[object Object\]|NaN/, `Broken value rendered on ${where}`);
+  // Images and videos are not in Git: a local path here would be a broken file on the live site.
+  assert.doesNotMatch(html, /(?:src|href|poster|content)="\/(?:images|videos)\/[^"]+/, `${where} uses an image or video that is not on the CDN list (src/lib/assets.ts)`);
   // A forced line break with no space beside it makes screen readers join the two words.
   for (const [heading] of html.matchAll(/<h[1-3]\b[\s\S]*?<\/h[1-3]>/g)) assert.doesNotMatch(heading, /\S<br>/, `Heading runs words together: ${heading.slice(0, 80)}`);
 }
