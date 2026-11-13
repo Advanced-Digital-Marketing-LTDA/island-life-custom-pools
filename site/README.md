@@ -70,7 +70,6 @@ Old page URLs (`/custom-pools/`, `/custom-patios/`, `/about-us/`, `/contact/`) r
 
 Images and videos are not in Git (`public/images`, `public/videos` and `public/media` are git-ignored); the site loads them from
 Bunny (`https://ilcpmedia.b-cdn.net/public/...`). The content stores a path (`/images/hero-video-poster.webp`) and
-`src/lib/assets.ts` lists every file that is on the CDN and swaps its path for the CDN address when the site is built. To add a
-photo or video: upload it to the CDN's `public/images` (or `public/videos`) folder, then add its file name to that list.
-A path that is not on the list is not served (the file is not in the repository), and `scripts/test-site.mjs` fails on it.
+`src/lib/assets.ts` turns every `/images/...` and `/videos/...` path into its CDN address when the site is built. To add a photo
+or video, upload it to the CDN's `public/images` (or `public/videos`) folder and use that path in Tina; nothing else is needed.
 Fonts, the favicon and `robots.txt` stay in `public` and are served by the site.
