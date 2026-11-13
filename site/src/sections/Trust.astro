@@ -1,0 +1,18 @@
+---
+import Icon from '../components/Icon.astro';
+
+interface Props { badgeLine1?: string; badgeLine2?: string; title?: string; text?: string; anchor?: string; headingId: string }
+const { badgeLine1 = '', badgeLine2 = '', title = '', text = '', anchor, headingId } = Astro.props;
+---
+<section class="trust" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell trust__grid">
+    <div class="trust__badge">
+      <Icon name="shield-check" size={54} strokeWidth={1.25} />
+      <p>{badgeLine1}{badgeLine2 && <Fragment>{' '}<br />{badgeLine2}</Fragment>}</p>
+    </div>
+    <div class="trust__copy">
+      <h2 id={headingId}>{title}</h2>
+      <p>{text}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+interface Props {
+  label?: string; title?: string; titleEm?: string; intro?: string;
+  cards?: { layout?: string; name?: string; category?: string; detail?: string; image?: string; alt?: string }[];
+  anchor?: string; headingId: string;
+}
+const { label = '', title = '', titleEm = '', intro = '', cards = [], anchor, headingId } = Astro.props;
+---
+<section class="projects section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell">
+    <div class="projects__heading">
+      <p class="section-label">{label}</p>
+      <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
+      <p>{intro}</p>
+    </div>
+    <div class="projects__grid">
+      {cards.map((item) => (
+        <figure class={`project project--${item.layout || 'pool'}`}>
+          <div class="project__image">
+            {item.image && <img src={item.image} alt={item.alt} loading="lazy" />}
+          </div>
+          <figcaption>
+            <div>
+              <h3>{item.name}</h3>
+              <p>{item.detail}</p>
+            </div>
+            <span>{item.category}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

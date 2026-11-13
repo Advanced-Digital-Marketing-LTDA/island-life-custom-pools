@@ -36,11 +36,11 @@ Keep: name "Island Life Custom Pools", logo, "Bring Your Vacation Dreams Home!",
 
 ## Evidence on Hand
 
-Five real client reviews on the homepage (Sam M., Jasmine H., Annette, Dee G., Jeff L.). Google Guaranteed status. A 3D design software video. Eight Instagram posts (patio covers, pickleball, work in progress, night swim, Lake Conroe lakefront, Houston Galleria commercial project). The site imagery is 3D visualization footage and stills extracted from the company’s own design video (`public/media/`: hero loops, a design film, three service stills), always captioned as 3D visualizations, never as completed projects. The set of project photos copied from the old site earlier was removed because their ownership was never confirmed (it remains in git history; `originals/` stays local and untracked). Hayward equipment shots, partner logos, and the Google Guaranteed badge were deliberately left out (third-party assets). Do not fabricate photography, generated pool imagery, ratings, review counts, prices, or timelines.
+Five real client reviews on the homepage (Sam M., Jasmine H., Annette, Dee G., Jeff L.). Google Guaranteed status. A 3D design software video. Eight Instagram posts (patio covers, pickleball, work in progress, night swim, Lake Conroe lakefront, Houston Galleria commercial project). The site imagery is the company’s own project photography, supplied by the owner from its marketing library in November 2026 (file names and camera metadata are not published), plus the hero video. The earlier AI-generated 3D concept images were removed. A photo is only described as what it shows, and 3D design visuals appear only if they are the company’s own and are captioned as visualizations. The set of project photos copied from the old site earlier was removed because their ownership was never confirmed (it remains in git history; `originals/` stays local and untracked). Hayward equipment shots, partner logos, and the Google Guaranteed badge were deliberately left out (third-party assets). Do not fabricate photography, generated pool imagery, ratings, review counts, prices, or timelines.
 
 ## Product Principles
 
-- Show the design process, not stock photography: the homeowner should see their backyard before it exists.
+- Show real finished work, not stock photography, and show the design process where it explains how the project starts: the homeowner should see their backyard before it exists.
 - Phone and quote form get equal prominence everywhere a decision is asked for.
 - Serve first-pool buyers and upgraders with the same page, no audience split in the nav.
 - Only claim what the current site or its reviews already say.

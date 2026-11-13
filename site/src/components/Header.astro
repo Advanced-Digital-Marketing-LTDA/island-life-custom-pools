@@ -1,66 +1,113 @@
 ---
+import Brand from './Brand.astro';
 import Icon from './Icon.astro';
-import { settings } from '../lib/content';
-const primary = settings.nav.filter((n) => n.primary);
-const quoteHref = Astro.url.pathname === '/' ? '#quote' : '/#quote';
----
-<header class="site-header" data-solid={Astro.url.pathname !== '/' ? '' : undefined}>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label={`${settings.name}, home`}>
-      <img src={settings.logo} alt={settings.name} width="114" height="72" />
-    </a>
-    <nav class="nav-inline" aria-label="Main navigation">
-      {primary.map((n) => <a href={n.href} aria-current={Astro.url.pathname === n.href ? 'page' : undefined}>{n.short || n.label}</a>)}
-    </nav>
-    <div class="bar-actions">
-      <a class="btn btn-sun btn-small" href={quoteHref}>Free quote</a>
-    </div>
-    <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="menu">
-      <span>Menu</span><Icon name="menu" />
-    </button>
-  </div>
+import { settings, linkTo } from '../lib/content';
+import { homePrefix as prefixOf, pathOf } from '../lib/nav';
 
-  <div id="menu" popover class="menu-panel on-deep">
-    <div class="menu-top">
-      <span class="menu-brand">Island Life <em>Custom Pools</em></span>
-      <button class="menu-close" type="button" popovertarget="menu" popovertargetaction="hide" aria-label="Close navigation menu">Close</button>
+interface Props { solid?: boolean }
+const { solid = false } = Astro.props;
+const pathname = pathOf(Astro.url);
+const homePrefix = prefixOf(Astro.url);
+
+const { phone, phoneHref } = settings;
+const navItems = settings.nav.map((item) => ({ ...item, target: linkTo(Astro.url, item.href) }));
+---
+<header class:list={['site-header', { 'site-header--solid': solid }]}>
+  <nav class="site-header__inner" aria-label="Main navigation">
+    <a class="site-header__brand" href={`${homePrefix}#top`} aria-label={`${settings.name} home`}>
+      <Brand />
+    </a>
+    <div class="site-header__links">
+      {navItems.map((item) => <a href={item.target} aria-current={pathname === item.target ? 'page' : undefined}>{item.label}</a>)}
     </div>
-    <nav aria-label="Menu navigation">
-      <ul class="menu-list">
-        {settings.nav.map((n) => <li><a href={n.href}>{n.label}<Icon name="arrow" /></a></li>)}
-      </ul>
-    </nav>
-    <div class="menu-footer">
-      <div class="menu-meta tnum">
-        {settings.hours.map((h) => <span>{h.days}: {h.time}</span>)}
-      </div>
-      <div class="menu-actions">
-        <a class="btn btn-light" href={quoteHref}>Request a free quote</a>
-        <a class="btn btn-outline-light" href={settings.phoneHref}><Icon name="phone" /><span class="tnum">{settings.phone}</span></a>
-      </div>
-    </div>
-  </div>
+    <a class="button button--light site-header__cta" href={`${homePrefix}#quote`}>
+      <span class="button__label">{settings.headerCta}</span>
+      <span class="button__wash" aria-hidden="true"></span>
+      <Icon name="arrow-up-right" size={17} strokeWidth={1.7} />
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <Icon name="menu" size={25} strokeWidth={1.5} />
+    </button>
+  </nav>
 </header>
 
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true" inert>
+  <div class="mobile-menu__top">
+    <Brand />
+    <button class="menu-toggle menu-toggle--close" type="button" aria-label="Close navigation menu" tabindex="-1">
+      <Icon name="x" size={26} strokeWidth={1.4} />
+    </button>
+  </div>
+  <div class="mobile-menu__links">
+    {navItems.map((item, index) => <a href={item.target} aria-current={pathname === item.target ? 'page' : undefined} tabindex="-1"><span>0{index + 1}</span>{item.label}</a>)}
+  </div>
+  <div class="mobile-menu__bottom">
+    <a class="button button--light" href={`${homePrefix}#quote`} tabindex="-1">
+      <span class="button__label">{settings.menuCta}</span>
+      <span class="button__wash" aria-hidden="true"></span>
+      <Icon name="arrow-up-right" size={18} />
+    </a>
+    <a href={phoneHref} tabindex="-1">{phone}</a>
+  </div>
+</div>
+
 <script>
-  const menu = document.getElementById('menu');
-  menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => menu.hidePopover());
-  });
-  // Modal behaviour: everything behind the panel is inert and the page does not scroll.
-  const behind = () => [...document.querySelectorAll<HTMLElement>('.site-header .bar, main, footer, .mobile-bar, .skip')];
-  const opener = document.querySelector<HTMLElement>('.menu-btn');
-  menu?.addEventListener('beforetoggle', (e) => {
-    const open = (e as ToggleEvent).newState === 'open';
-    behind().forEach((el) => { el.inert = open; });
-    document.documentElement.style.overflow = open ? 'hidden' : '';
-    opener?.setAttribute('aria-expanded', String(open));
-  });
-  menu?.addEventListener('toggle', (e) => {
-    if ((e as ToggleEvent).newState === 'open') menu.querySelector<HTMLElement>('.menu-close')?.focus();
-    else opener?.focus();
-  });
-  matchMedia('(min-width: 76rem)').addEventListener('change', (e) => {
-    if (e.matches && menu?.matches(':popover-open')) menu.hidePopover();
-  });
+  const header = document.querySelector<HTMLElement>('.site-header')!;
+  const brand = header.querySelector<HTMLElement>('.brand')!;
+  const trigger = header.querySelector<HTMLButtonElement>('.menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const closeButton = menu.querySelector<HTMLButtonElement>('.menu-toggle--close')!;
+  const controls = menu.querySelectorAll<HTMLElement>('a[href], button');
+
+  const onScroll = () => {
+    const scrolled = window.scrollY > 48;
+    header.classList.toggle('is-scrolled', scrolled);
+    brand.classList.toggle('brand--compact', scrolled);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  let previousOverflow = '';
+  let focusFrame = 0;
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') setOpen(false);
+    if (event.key === 'Tab') {
+      const focusable = menu.querySelectorAll<HTMLElement>('a[href], button:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  };
+
+  function setOpen(open: boolean) {
+    if (open === menu.classList.contains('is-open')) return;
+    menu.classList.toggle('is-open', open);
+    header.classList.toggle('menu-is-open', open);
+    menu.setAttribute('aria-hidden', String(!open));
+    menu.inert = !open;
+    trigger.setAttribute('aria-expanded', String(open));
+    controls.forEach((el) => { el.tabIndex = open ? 0 : -1; });
+    if (open) {
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      focusFrame = requestAnimationFrame(() => closeButton.focus());
+      window.addEventListener('keydown', onKeyDown);
+    } else {
+      cancelAnimationFrame(focusFrame);
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+      trigger.focus();
+    }
+  }
+
+  trigger.addEventListener('click', () => setOpen(true));
+  closeButton.addEventListener('click', () => setOpen(false));
+  menu.querySelectorAll('.mobile-menu__links a, .mobile-menu__bottom .button').forEach((el) => el.addEventListener('click', () => setOpen(false)));
 </script>

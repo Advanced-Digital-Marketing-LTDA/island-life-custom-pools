@@ -1,0 +1,97 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+import { estimate, money } from '../lib/estimate';
+
+interface Props {
+  label?: string; title?: string; titleEm?: string; intro?: string; note?: string;
+  amount?: number; rate?: number; years?: number; anchor?: string; headingId: string;
+}
+const { label = '', title = '', titleEm = '', intro = '', note = '', amount = 75000, rate = 8, years = 15, anchor, headingId } = Astro.props;
+const result = estimate(amount, rate, years);
+const shown = (value: number) => (result.valid ? money(value) : '—');
+---
+<section class="estimator section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell">
+    <div class="estimator__heading">
+      <p class="section-label">{label}</p>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+      <p>{intro}</p>
+    </div>
+    <div class="estimator__grid" data-defaults={JSON.stringify({ amount: String(amount), rate: String(rate), years: String(years) })}>
+      <form class="estimator__form" onsubmit="return false">
+        <div class="estimator__field">
+          <label for={`${headingId}-amount`}>Loan amount</label>
+          <div class="estimator__input-wrap">
+            <span aria-hidden="true">$</span>
+            <input id={`${headingId}-amount`} name="amount" type="number" inputmode="decimal" min="1000" max="1000000" step="500" value={amount} required />
+          </div>
+          <p>Enter the amount you would like to finance.</p>
+        </div>
+        <div class="estimator__field">
+          <label for={`${headingId}-rate`}>Interest rate</label>
+          <div class="estimator__input-wrap estimator__input-wrap--suffix">
+            <input id={`${headingId}-rate`} name="rate" type="number" inputmode="decimal" min="0" max="40" step="0.01" value={rate} required />
+            <span aria-hidden="true">%</span>
+          </div>
+          <p>Enter the annual interest rate from your lender.</p>
+        </div>
+        <div class="estimator__field">
+          <label for={`${headingId}-years`}>Loan term</label>
+          <div class="estimator__input-wrap estimator__input-wrap--suffix">
+            <input id={`${headingId}-years`} name="years" type="number" inputmode="numeric" min="1" max="30" step="1" value={years} required />
+            <span aria-hidden="true">years</span>
+          </div>
+          <p>Choose a repayment term from 1 to 30 years.</p>
+        </div>
+        <button class="text-link estimator__reset" type="button">
+          <Icon name="rotate-ccw" size={17} strokeWidth={1.5} />
+          Reset estimator
+        </button>
+      </form>
+
+      <div class="estimator__results" aria-live="polite" aria-atomic="true">
+        <p class="estimator__results-label">Estimated monthly payment</p>
+        <output class="estimator__monthly" aria-label="Estimated monthly payment" data-monthly>{shown(result.monthly)}</output>
+        <p class="estimator__error" data-error hidden={result.valid}>Enter an amount from $1,000 to $1,000,000, a rate from 0% to 40%, and a term from 1 to 30 years.</p>
+        <dl class="estimator__totals">
+          <div>
+            <dt>Total of payments</dt>
+            <dd data-total>{shown(result.total)}</dd>
+          </div>
+          <div>
+            <dt>Estimated interest</dt>
+            <dd data-interest>{shown(result.interest)}</dd>
+          </div>
+        </dl>
+        {note && <p class="estimator__note">{note}</p>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { estimate, money } from '../lib/estimate';
+
+  document.querySelectorAll<HTMLElement>('.estimator__grid').forEach((root) => {
+    const inputs = ['amount', 'rate', 'years'].map((name) => root.querySelector<HTMLInputElement>(`input[name="${name}"]`)!);
+    const [monthly, total, interest] = ['monthly', 'total', 'interest'].map((key) => root.querySelector<HTMLElement>(`[data-${key}]`)!);
+    const error = root.querySelector<HTMLElement>('[data-error]')!;
+    const defaults = JSON.parse(root.dataset.defaults || '{}');
+
+    const update = () => {
+      const result = estimate(inputs[0].value, inputs[1].value, inputs[2].value);
+      monthly.textContent = result.valid ? money(result.monthly) : '—';
+      total.textContent = result.valid ? money(result.total) : '—';
+      interest.textContent = result.valid ? money(result.interest) : '—';
+      error.hidden = result.valid;
+    };
+    inputs.forEach((input) => input.addEventListener('input', update));
+    root.querySelector('.estimator__reset')!.addEventListener('click', () => {
+      inputs[0].value = defaults.amount;
+      inputs[1].value = defaults.rate;
+      inputs[2].value = defaults.years;
+      update();
+    });
+  });
+</script>

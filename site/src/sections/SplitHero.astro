@@ -1,0 +1,32 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Props {
+  homeLabel?: string; eyebrow?: string; title?: string; titleEm?: string; text?: string; buttonLabel?: string; buttonHref?: string;
+  image?: string; imageAlt?: string; anchor?: string; headingId: string;
+}
+const {
+  homeLabel = 'Home', eyebrow = '', title = '', titleEm = '', text = '', buttonLabel = '', buttonHref = '#payment-estimator',
+  image = '', imageAlt = '', anchor, headingId,
+} = Astro.props;
+---
+<section class="financing-hero" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell financing-hero__grid">
+    <div class="financing-hero__copy">
+      <p class="inner-hero__breadcrumb"><a href="/">{homeLabel}</a><span aria-hidden="true">/</span>{eyebrow}</p>
+      <h1 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h1>
+      <p>{text}</p>
+      {buttonLabel && (
+        <a class="button button--dark" href={buttonHref}>
+          <span class="button__label">{buttonLabel}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-down" size={18} strokeWidth={1.7} />
+        </a>
+      )}
+    </div>
+    <figure class="financing-hero__visual">
+      {image && <img src={image} alt={imageAlt} fetchpriority="high" />}
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+{
+  "seoTitle": "Pool Financing & Payment Estimator | Island Life Custom Pools",
+  "seoDescription": "Explore pool and outdoor living financing through Lyon Financial and HFS Financial, and estimate a monthly payment for your Houston-area project.",
+  "blocks": [
+    {
+      "_template": "splitHero",
+      "homeLabel": "Home",
+      "eyebrow": "Financing",
+      "title": "Bring the island life",
+      "titleEm": "within reach.",
+      "text": "Explore third-party financing and estimate a monthly payment for your pool, patio, or outdoor kitchen.",
+      "buttonLabel": "Estimate your payment",
+      "buttonHref": "#payment-estimator",
+      "image": "/images/pool-cabana-sunset.webp",
+      "imageAlt": "Pool and spa with water scuppers and a covered fireplace patio at sunset"
+    },
+    {
+      "_template": "estimator",
+      "label": "Finance estimator",
+      "title": "Explore your project",
+      "titleEm": "month to month.",
+      "intro": "Adjust the loan amount, interest rate, and term to see an estimated payment.",
+      "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
+      "amount": 75000,
+      "rate": 8,
+      "years": 15,
+      "anchor": "payment-estimator"
+    },
+    {
+      "_template": "lenders",
+      "label": "Third-party financing",
+      "title": "Choose where to",
+      "titleEm": "explore your options.",
+      "intro": "Visit either financing partner directly to learn about its current loan programs and application process.",
+      "lenders": [
+        {
+          "name": "Lyon Financial",
+          "description": "Explore pool financing options directly through Lyon Financial.",
+          "href": "https://www.lyonfinancial.net/",
+          "label": "Visit Lyon Financial"
+        },
+        {
+          "name": "HFS Financial",
+          "description": "Explore home improvement loan options directly through HFS Financial.",
+          "href": "https://www.hfsfinancial.net/",
+          "label": "Visit HFS Financial"
+        }
+      ]
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+---
+// Renders a page's sections in order. Each section type is a component that takes its fields as props; the names here
+// are the block names in src/lib/blocks.ts and the templates in tina/config.ts.
+import Hero from '../sections/Hero.astro';
+import Studio from '../sections/Studio.astro';
+import Projects from '../sections/Projects.astro';
+import Testimonial from '../sections/Testimonial.astro';
+import Process from '../sections/Process.astro';
+import Investment from '../sections/Investment.astro';
+import Estimate from '../sections/Estimate.astro';
+import PageHero from '../sections/PageHero.astro';
+import Overview from '../sections/Overview.astro';
+import Feature from '../sections/Feature.astro';
+import Collection from '../sections/Collection.astro';
+import CallToAction from '../sections/CallToAction.astro';
+import Heading from '../sections/Heading.astro';
+import PostList from '../sections/PostList.astro';
+import Panorama from '../sections/Panorama.astro';
+import Spotlight from '../sections/Spotlight.astro';
+import Trust from '../sections/Trust.astro';
+import SplitHero from '../sections/SplitHero.astro';
+import Estimator from '../sections/Estimator.astro';
+import Lenders from '../sections/Lenders.astro';
+import { defaultAnchors, type Block, type BlockName } from '../lib/blocks';
+
+interface Props { blocks: Block[] }
+const { blocks } = Astro.props;
+
+const components: Record<BlockName, any> = {
+  hero: Hero, about: Studio, showcase: Projects, reviews: Testimonial, process: Process, financing: Investment, quoteForm: Estimate,
+  pageHero: PageHero, overview: Overview, feature: Feature, collection: Collection, callToAction: CallToAction, heading: Heading, postList: PostList,
+  panorama: Panorama, spotlight: Spotlight, trust: Trust, splitHero: SplitHero, estimator: Estimator, lenders: Lenders,
+};
+---
+{blocks.map(({ _template, hidden, anchor, ...fields }, index) => {
+  const Section = components[_template];
+  const id = anchor || defaultAnchors[_template];
+  // The heading's id comes from the section's link name, so it stays unique when sections move or repeat.
+  return <Section {...fields} anchor={id} headingId={id ? `${id}-title` : `section-${index + 1}-title`} />;
+})}

@@ -1,0 +1,22 @@
+---
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  image?: string; imageAlt?: string; eyebrow?: string; title?: string; text?: string; linkLabel?: string; linkHref?: string;
+  anchor?: string; headingId: string;
+}
+const { image = '', imageAlt = '', eyebrow = '', title = '', text = '', linkLabel = '', linkHref = '#quote', anchor, headingId } = Astro.props;
+---
+<section class="inner-detail" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell inner-detail__grid">
+    <figure class="inner-detail__visual">
+      {image && <img src={image} alt={imageAlt} loading="lazy" />}
+    </figure>
+    <div class="inner-detail__copy">
+      {eyebrow && <p class="section-label section-label--light">{eyebrow}</p>}
+      <h2 id={headingId}>{title}</h2>
+      <p>{text}</p>
+      {linkLabel && <a class="text-link text-link--light" href={linkHref}>{linkLabel} <Icon name="arrow-up-right" size={18} /></a>}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+---
+import Icon from '../components/Icon.astro';
+
+interface Props { label?: string; title?: string; lede?: string; checklist?: string[]; anchor?: string; headingId: string }
+const { label = '', title = '', lede = '', checklist = [], anchor, headingId } = Astro.props;
+---
+<section class="inner-overview section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell inner-overview__grid">
+    <div>
+      {label && <p class="section-label">{label}</p>}
+      <h2 id={headingId}>{title}</h2>
+    </div>
+    <div class="inner-overview__content">
+      <p class="inner-overview__lede">{lede}</p>
+      {checklist.length > 0 && (
+        <ul class="inner-considerations">
+          {checklist.map((item) => (
+            <li><Icon name="check" size={20} strokeWidth={1.6} /><span>{item}</span></li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</section>

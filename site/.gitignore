@@ -8,6 +8,11 @@ dist/
 tina/__generated__/
 public/admin/
 
+# Images, videos and the old media folder live on the CDN (Bunny); Git only keeps their addresses (src/lib/assets.ts).
+public/images/
+public/videos/
+public/media/
+
 # Raw scraped photos: rights unconfirmed, not needed to build (see PRODUCT.md)
 originals/
 .impeccable/questions/
@@ -44,3 +49,5 @@ plugins/impeccable-live.client.ts
 app/plugins/impeccable-live.client.ts
 src/plugins/impeccable-live.client.ts
 # impeccable-live-ignore-end
+
+dist-test*/

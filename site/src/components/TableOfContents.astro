@@ -1,0 +1,65 @@
+---
+import { blog, type BlogSection } from '../lib/content';
+
+interface Props { sections: BlogSection[] }
+const { sections } = Astro.props;
+---
+<nav class="article-toc" aria-labelledby="article-toc-title">
+  <p id="article-toc-title">{blog.tocLabel}</p>
+  <ol>
+    {sections.map((section, index) => (
+      <li>
+        <a href={`#${section.id}`} aria-current={index === 0 ? 'location' : undefined}>
+          {section.title}
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script>
+  const list = document.querySelector<HTMLOListElement>('.article-toc ol')!;
+  const links = [...list.querySelectorAll<HTMLAnchorElement>('a')];
+  const ids = links.map((link) => link.getAttribute('href')!.slice(1));
+  let activeId = ids[0] ?? '';
+
+  // On narrow screens the contents is a horizontal strip: keep the active link centered.
+  const centerActive = () => {
+    const activeLink = list.querySelector<HTMLAnchorElement>(`a[href="#${activeId}"]`);
+    if (!activeLink || list.scrollWidth <= list.clientWidth) return;
+    const listBounds = list.getBoundingClientRect();
+    const linkBounds = activeLink.getBoundingClientRect();
+    const left = list.scrollLeft + linkBounds.left - listBounds.left - (list.clientWidth - linkBounds.width) / 2;
+    list.scrollTo({ left, behavior: 'instant' });
+  };
+
+  let frame = 0;
+  const updateActive = () => {
+    const toc = document.querySelector<HTMLElement>('.article-layout__aside');
+    const readingLine = window.innerWidth < 900 && toc ? toc.getBoundingClientRect().bottom + 120 : window.innerHeight * 0.35;
+    let currentId = ids[0] ?? '';
+    ids.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section && section.getBoundingClientRect().top <= readingLine) currentId = id;
+    });
+    if (currentId === activeId) return;
+    activeId = currentId;
+    links.forEach((link) => {
+      if (link.getAttribute('href') === `#${activeId}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    centerActive();
+  };
+  const requestUpdate = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      updateActive();
+    });
+  };
+
+  updateActive();
+  centerActive();
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+</script>

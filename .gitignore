@@ -7,3 +7,8 @@ __pycache__/
 coverage/
 reports/
 *.log
+
+# Local tool caches that hooks regenerate
+**/.claude/*.local.json
+.impeccable/hook.cache.json
+.impeccable/live/app-root.json

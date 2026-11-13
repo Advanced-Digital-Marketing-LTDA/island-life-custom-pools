@@ -1,0 +1,17 @@
+---
+import Lines from '../components/Lines.astro';
+
+interface Props { title?: string; titleEm?: string; image?: string; imageAlt?: string; text?: string; anchor?: string; headingId: string }
+const { title = '', titleEm = '', image = '', imageAlt = '', text = '', anchor, headingId } = Astro.props;
+---
+<section class="outdoor-life section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell outdoor-life__heading">
+    <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+  </div>
+  <figure class="outdoor-life__visual">
+    {image && <img src={image} alt={imageAlt} loading="lazy" />}
+  </figure>
+  <div class="page-shell outdoor-life__copy">
+    <p>{text}</p>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+{
+  "seoTitle": "Custom Patios and Patio Covers in Houston | Island Life Custom Pools",
+  "seoDescription": "Custom patios and patio covers in Tomball, Cypress, The Woodlands, and Houston, designed together with your pool, kitchen, and fire features. Request a free design consultation.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Patios & covers",
+      "title": "Outdoor living,",
+      "italicTitle": "under cover.",
+      "introduction": "Island Life Custom Pools designs and builds custom patios and patio covers for homes in Tomball, Cypress, The Woodlands, and Houston—shade, comfort, and a setting that makes the outdoors feel like another room.",
+      "ctaLabel": "Start with a free design consult",
+      "ctaHref": "#quote",
+      "image": "/images/patio-cover-spa.webp",
+      "imageAlt": "Covered patio with a fireplace and seating beside a stone-faced raised spa",
+      "scrollLabel": "Explore the possibilities",
+      "scrollHref": "#overview"
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Designed for your property",
+      "title": "Shade, designed with the rest of the yard.",
+      "lede": "A patio cover is an important part of our pool builds. We design it together with the pool, spa, outdoor kitchen, and fire features, so the shade, the seating, and the view all belong to one plan—and you can explore that plan in a custom 3D model before construction begins.",
+      "checklist": [
+        "Custom patios and patio covers that carry the architecture of your home outdoors",
+        "Fireplaces and fire pits planned together with the seating around them",
+        "Lounge, dining, and kitchen areas arranged as one coordinated space",
+        "A custom 3D model to explore the space before construction"
+      ]
+    },
+    {
+      "_template": "feature",
+      "image": "/images/covered-patio-lakeside.webp",
+      "imageAlt": "Large covered patio with ceiling fans, a stone fireplace, and outdoor dining",
+      "eyebrow": "See it before we build it",
+      "title": "Planned in 3D, then built.",
+      "text": "Your patio starts with the free design consultation and a custom 3D design, so you can see the shade, the seating, and the fire features in place before construction begins. Clear communication keeps you connected to what comes next.",
+      "linkLabel": "Request a free design consult",
+      "linkHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

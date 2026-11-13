@@ -6,7 +6,7 @@ COPY package.json package-lock.json ./
 RUN --mount=type=secret,id=build_ca \
     if [ -f /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
     npm install --global npm@11.9.0 --ignore-scripts && npm ci --ignore-scripts
-COPY astro.config.mjs tsconfig.json ./
+COPY astro.config.mjs tsconfig.json postcss.config.mjs tailwind.config.mjs ./
 COPY src ./src
 COPY content ./content
 COPY public ./public

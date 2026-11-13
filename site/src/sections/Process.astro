@@ -1,0 +1,37 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Step { title?: string; description?: string }
+interface Props {
+  label?: string; title?: string; titleEm?: string; intro?: string; cta?: string; ctaHref?: string; steps?: Step[]; anchor?: string; headingId: string;
+}
+const { label = '', title = '', titleEm = '', intro = '', cta = '', ctaHref = '#quote', steps = [], anchor, headingId } = Astro.props;
+---
+<section class="process section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell process__layout">
+    <div class="process__heading">
+      <p class="section-label">{label}</p>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<em>{titleEm}</em></Fragment>}</h2>
+      {intro && <p>{intro}</p>}
+      {cta && (
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
+    </div>
+    <ol class="process__steps">
+      {steps.map((step, index) => (
+        <li class="process-step">
+          <span class="process-step__number">0{index + 1}</span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

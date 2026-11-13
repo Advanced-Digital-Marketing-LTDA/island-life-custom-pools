@@ -1,0 +1,25 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Props { title?: string; titleEm?: string; image?: string; imageAlt?: string; text?: string; buttonLabel?: string; buttonHref?: string; anchor?: string; headingId: string }
+const { title = '', titleEm = '', image = '', imageAlt = '', text = '', buttonLabel = '', buttonHref = '#quote', anchor, headingId } = Astro.props;
+---
+<section class="island-life section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell island-life__grid">
+    <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+    <figure class="island-life__visual">
+      {image && <img src={image} alt={imageAlt} loading="lazy" />}
+    </figure>
+    <div class="island-life__copy">
+      <p>{text}</p>
+      {buttonLabel && (
+        <a class="button button--dark" href={buttonHref}>
+          <span class="button__label">{buttonLabel}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
+    </div>
+  </div>
+</section>

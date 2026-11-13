@@ -1,0 +1,32 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Lender { name?: string; description?: string; href?: string; label?: string }
+interface Props { label?: string; title?: string; titleEm?: string; intro?: string; lenders?: Lender[]; anchor?: string; headingId: string }
+const { label = '', title = '', titleEm = '', intro = '', lenders = [], anchor, headingId } = Astro.props;
+---
+<section class="financing-partners section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell financing-partners__layout">
+    <div class="financing-partners__intro">
+      <p class="section-label section-label--light">{label}</p>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+      <p>{intro}</p>
+    </div>
+    <div class="financing-partners__list">
+      {lenders.map((lender, index) => (
+        <article class="financing-partner">
+          <span class="financing-partner__number">0{index + 1}</span>
+          <div>
+            <h3>{lender.name}</h3>
+            <p>{lender.description}</p>
+            <a class="text-link text-link--light" href={lender.href} target="_blank" rel="noreferrer">
+              {lender.label}<Icon name="arrow-up-right" size={18} strokeWidth={1.6} />
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

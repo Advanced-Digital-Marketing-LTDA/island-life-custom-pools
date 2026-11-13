@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
+import { redirects } from './src/lib/redirects.mjs';
 
 try {
   process.loadEnvFile();
@@ -17,6 +18,8 @@ export default defineConfig({
     allowedDomains: [{ protocol: site.protocol.slice(0, -1), hostname: site.hostname, port: site.port || undefined }],
   },
   output: 'static',
+  // Old page URLs that now live on another page or on the home page.
+  redirects,
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },
   devToolbar: { enabled: false },

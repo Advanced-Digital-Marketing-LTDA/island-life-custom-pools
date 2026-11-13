@@ -1,0 +1,7 @@
+---
+import { settings } from '../lib/content';
+
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<span class:list={['brand', { 'brand--compact': compact }]}><img src={settings.logo} alt={settings.name} width="235" height="163" /></span>

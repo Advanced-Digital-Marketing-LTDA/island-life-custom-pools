@@ -1,0 +1,36 @@
+---
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  homeLabel?: string; eyebrow?: string; title?: string; italicTitle?: string; introduction?: string; ctaLabel?: string; ctaHref?: string;
+  image?: string; imageAlt?: string; scrollLabel?: string; scrollHref?: string; anchor?: string; headingId: string;
+}
+const {
+  homeLabel = 'Home', eyebrow = '', title = '', italicTitle = '', introduction = '', ctaLabel = '', ctaHref = '#quote',
+  image = '', imageAlt = '', scrollLabel = '', scrollHref = '', anchor, headingId,
+} = Astro.props;
+---
+<section class="inner-hero" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell inner-hero__grid">
+    <div class="inner-hero__copy">
+      <p class="inner-hero__breadcrumb"><a href="/">{homeLabel}</a><span aria-hidden="true">/</span>{eyebrow}</p>
+      <h1 id={headingId}>{title}{italicTitle && <>{' '}<br /><em>{italicTitle}</em></>}</h1>
+      <p class="inner-hero__intro">{introduction}</p>
+      {ctaLabel && (
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{ctaLabel}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
+    </div>
+    <figure class="inner-hero__visual">
+      {image && <img src={image} alt={imageAlt} fetchpriority="high" />}
+    </figure>
+  </div>
+  {scrollHref && (
+    <a class="inner-hero__scroll" href={scrollHref}>
+      {scrollLabel} <Icon name="arrow-down" size={17} />
+    </a>
+  )}
+</section>

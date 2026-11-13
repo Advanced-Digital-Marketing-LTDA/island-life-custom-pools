@@ -1,0 +1,151 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Review { name?: string; detail?: string; quote?: string }
+interface Props {
+  label?: string; title?: string; reviews?: Review[]; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
+}
+const { label = '', title = '', reviews = [], cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
+// Three reviews show side by side on wide screens; each step moves all three along by one.
+const shown = reviews.slice(0, Math.min(3, reviews.length));
+---
+{reviews.length > 0 && (
+<section class="testimonial section" id={anchor || undefined} aria-labelledby={headingId} data-reviews={JSON.stringify(reviews)}>
+  <div class="page-shell testimonial__inner">
+    <div class="testimonial__top">
+      <div>
+        <p class="section-label">{label}</p>
+        <h2 id={headingId}><Lines text={title} /></h2>
+      </div>
+      {cta && (
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
+    </div>
+
+    <div class="testimonial__review" aria-live="off">
+      <div class="testimonial__slides" style="opacity: 1; transform: translate3d(0px, 0px, 0px);">
+        {shown.map((review) => (
+          <blockquote class="testimonial-slide">
+            <p>“{review.quote}”</p>
+            <div class="testimonial-slide__stars" aria-label="5 out of 5 stars">
+              {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={19} strokeWidth={1.4} fill />)}
+            </div>
+            <footer>
+              <span>{review.name}</span>
+              <span>{review.detail}</span>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+
+    <div class="testimonial__controls">
+      <span>{pad(1)} / {pad(reviews.length)}</span>
+      <div class="testimonial__controls-buttons">
+        <button type="button" data-step="-1" aria-label="Previous customer reviews"><Icon name="arrow-left" size={20} strokeWidth={1.5} /></button>
+        <button class="testimonial__pause" type="button" aria-label="Pause automatic review rotation">
+          <Icon name="pause" size={18} strokeWidth={1.5} class="pause-icon" />
+          <Icon name="play" size={18} strokeWidth={1.5} class="play-icon" />
+          <span>Pause</span>
+        </button>
+        <button type="button" data-step="1" aria-label="Next customer reviews"><Icon name="arrow-right" size={20} strokeWidth={1.5} /></button>
+      </div>
+    </div>
+  </div>
+</section>
+)}
+
+<script>
+  type Review = { name: string; detail: string; quote: string };
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const ease = 'cubic-bezier(0.16, 1, 0.3, 1)';
+  const rest = { opacity: 1, transform: 'translate3d(0px, 0px, 0px)' };
+
+  document.querySelectorAll<HTMLElement>('.testimonial').forEach((root) => {
+    const reviews: Review[] = JSON.parse(root.dataset.reviews || '[]');
+    const slides = root.querySelector<HTMLElement>('.testimonial__slides');
+    const cards = [...root.querySelectorAll<HTMLElement>('.testimonial-slide')];
+    if (!reviews.length || !slides || !cards.length) return;
+    const live = root.querySelector('.testimonial__review')!;
+    const counter = root.querySelector('.testimonial__controls > span')!;
+    const pauseButton = root.querySelector<HTMLButtonElement>('.testimonial__pause')!;
+    const pauseLabel = pauseButton.querySelector('span')!;
+    const pauseIcon = pauseButton.querySelector<SVGElement>('.pause-icon')!;
+    const playIcon = pauseButton.querySelector<SVGElement>('.play-icon')!;
+    playIcon.style.display = 'none';
+
+    // The counter follows each click at once; the three reviews swap out and in (exit, then enter), like AnimatePresence "wait".
+    let active = 0;
+    let shown = 0;
+    let busy = false;
+    let paused = false;
+    let timer = 0;
+
+    const play = (from: Keyframe, to: Keyframe) => {
+      const reduced = reducedMotion.matches;
+      const fade = (frame: Keyframe) => (reduced ? { opacity: frame.opacity } : frame);
+      return slides.animate([fade(from), fade(to)], { duration: reduced ? 120 : 240, easing: ease }).finished;
+    };
+
+    const fill = (start: number) => cards.forEach((card, offset) => {
+      const review = reviews[(start + offset) % reviews.length];
+      card.querySelector('p')!.textContent = `“${review.quote}”`;
+      const [name, detail] = card.querySelectorAll('footer span');
+      name.textContent = review.name;
+      detail.textContent = review.detail;
+    });
+
+    async function sync() {
+      if (busy) return;
+      busy = true;
+      while (shown !== active) {
+        await play(rest, { opacity: 0, transform: 'translate3d(-24px, 0px, 0px)' });
+        // Hold the reviews hidden while the text swaps. (fill: 'forwards' would do it, but it leaves
+        // the page below drawn with grayscale instead of subpixel text antialiasing.)
+        slides!.style.opacity = '0';
+        shown = active;
+        fill(shown);
+        await play({ opacity: 0, transform: 'translate3d(24px, 0px, 0px)' }, rest);
+        slides!.style.opacity = '1';
+      }
+      busy = false;
+    }
+
+    const go = (step: number) => {
+      active = (active + step + reviews.length) % reviews.length;
+      counter.textContent = `${pad(active + 1)} / ${pad(reviews.length)}`;
+      sync();
+    };
+
+    // Rotate by itself every 6.5 seconds until the visitor pauses it, steps through by hand, or prefers reduced motion.
+    const schedule = () => {
+      window.clearInterval(timer);
+      live.setAttribute('aria-live', paused || reducedMotion.matches ? 'polite' : 'off');
+      if (paused || reducedMotion.matches) return;
+      timer = window.setInterval(() => { if (!document.hidden) go(1); }, 6500);
+    };
+    const setPaused = (value: boolean) => {
+      paused = value;
+      pauseButton.setAttribute('aria-label', paused ? 'Resume automatic review rotation' : 'Pause automatic review rotation');
+      pauseLabel.textContent = paused ? 'Resume' : 'Pause';
+      pauseIcon.style.display = paused ? 'none' : '';
+      playIcon.style.display = paused ? '' : 'none';
+      schedule();
+    };
+
+    root.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => {
+      button.addEventListener('click', () => { setPaused(true); go(Number(button.dataset.step)); });
+    });
+    pauseButton.addEventListener('click', () => setPaused(!paused));
+    reducedMotion.addEventListener('change', schedule);
+    schedule();
+  });
+</script>
