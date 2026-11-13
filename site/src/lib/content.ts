@@ -3,9 +3,10 @@ import settings from '../../content/settings.json';
 import home from '../../content/home.json';
 import pools from '../../content/pools.json';
 import blog from '../../content/blog.json';
+import gallery from '../../content/gallery.json';
 import { homePrefix } from './nav';
 
-export { settings, home, pools, blog };
+export { settings, home, pools, blog, gallery };
 
 export interface BlogSection { id: string; title: string; paragraphs: { text: string }[]; bullets?: string[] | null }
 export interface Post {

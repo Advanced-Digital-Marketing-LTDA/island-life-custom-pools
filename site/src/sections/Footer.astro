@@ -11,18 +11,18 @@ const prefix = homePrefix(Astro.url);
   <div class="page-shell footer__top">
     <div>
       <a class="footer__brand" href={`${prefix}#top`} aria-label={`${settings.name} home`}><Brand /></a>
-      <p>{footer.blurbLine1}<br />{footer.blurbLine2}</p>
+      <p>{footer.blurbLine1}{' '}<br />{footer.blurbLine2}</p>
     </div>
     <nav aria-label="Footer navigation">
       {footer.nav.map((item) => <a href={linkTo(Astro.url, item.href)}>{item.label}</a>)}
     </nav>
     <div class="footer__contact">
       <span>{footer.areasTitle}</span>
-      <p>{footer.areas.map((area, index) => <Fragment>{index > 0 && <br />}{area}</Fragment>)}</p>
+      <p>{footer.areas.map((area, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{area}</Fragment>)}</p>
     </div>
     <div class="footer__hours">
       <span>{footer.hoursTitle}</span>
-      <p>{footer.hours.map((row, index) => <Fragment>{index > 0 && <br />}{row.days}{' '}<strong>{row.time}</strong></Fragment>)}</p>
+      <p>{footer.hours.map((row, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{row.days}{' '}<strong>{row.time}</strong></Fragment>)}</p>
       <a href={phoneHref}>{phone}</a>
     </div>
     <a class="footer__top-link" href={`${prefix}#top`} aria-label="Back to top">

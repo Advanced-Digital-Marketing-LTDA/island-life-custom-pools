@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Icon from '../components/Icon.astro';
+import Hero from '../sections/Hero.astro';
+import Footer from '../sections/Footer.astro';
+import { gallery, settings, linkTo } from '../lib/content';
+
+interface GalleryItem { layout: string; title: string; category: string; description: string; image: string; alt: string; position?: string }
+const { hero, collection, cta } = gallery;
+const items: GalleryItem[] = collection.items;
+const { phone, phoneHref } = settings;
+const hours = settings.footer.hours[0];
+---
+<Base title={gallery.seoTitle} description={gallery.seoDescription}>
+  <Header />
+  <main class="gallery-page">
+    <Hero image={hero.image} imageAlt={hero.imageAlt} quoteHref="/#quote" scrollHref="#gallery-collection" />
+
+    <section class="gallery-collection section" id="gallery-collection" aria-labelledby="collection-title">
+      <div class="page-shell">
+        <div class="gallery-collection__intro">
+          <p class="section-label">{collection.label}</p>
+          <h2 id="collection-title">{collection.title}{' '}<br /><em>{collection.titleEm}</em></h2>
+          <p>{collection.intro} <a href={linkTo(Astro.url, collection.linkHref)}>{collection.linkLabel}</a></p>
+        </div>
+
+        <div class="gallery-collection__grid">
+          {items.map((item, index) => (
+            <figure class={`gallery-item gallery-item--${item.layout}`}>
+              <div class="gallery-item__image">
+                <img src={item.image} alt={item.alt} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />
+              </div>
+              <figcaption>
+                <span class="gallery-item__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <p class="gallery-item__category">{item.category}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-cta" aria-labelledby="gallery-cta-title">
+      <div class="page-shell gallery-cta__inner">
+        <p class="section-label section-label--light">{cta.label}</p>
+        <h2 id="gallery-cta-title">{cta.title}{' '}<br /><em>{cta.titleEm}</em></h2>
+        <div class="gallery-cta__action">
+          <p>{cta.text}</p>
+          <div class="gallery-cta__buttons">
+            <a class="button button--light" href="/#quote">
+              <span class="button__label">{cta.button}</span>
+              <span class="button__wash" aria-hidden="true"></span>
+              <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+            </a>
+            <p class="gallery-cta__call">{cta.callLabel} <a href={phoneHref}>{phone}</a><span>{hours.days} {hours.time}</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

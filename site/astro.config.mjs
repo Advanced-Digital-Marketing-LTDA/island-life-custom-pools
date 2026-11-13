@@ -23,7 +23,6 @@ export default defineConfig({
     '/about-us': '/#about',
     '/custom-patios': '/#patios',
     '/outdoor-kitchens': '/#outdoor-kitchens',
-    '/gallery': '/#gallery',
     '/financing': '/#financing',
     '/contact': '/#quote',
   },

@@ -9,7 +9,7 @@ const { phone, phoneHref, quote } = settings;
   <div class="page-shell estimate__grid">
     <div class="estimate__intro">
       <p class="section-label section-label--light">{quote.label}</p>
-      <h2 id="estimate-title">{quote.titleLine}<br /><em>{quote.titleEm}</em></h2>
+      <h2 id="estimate-title">{quote.titleLine}{' '}<br /><em>{quote.titleEm}</em></h2>
       <p>{quote.intro}</p>
       <div class="estimate__contact">
         <span>{quote.callLabel}</span>
@@ -22,7 +22,7 @@ const { phone, phoneHref, quote } = settings;
       <div class="form-success" tabindex="-1" role="status" hidden>
         <span class="form-success__icon"><Icon name="check" size={30} strokeWidth={1.4} /></span>
         <p class="section-label section-label--light">{quote.successLabel}</p>
-        <h3>{quote.successTitleLine}<br /><em>{quote.successTitleEm}</em></h3>
+        <h3>{quote.successTitleLine}{' '}<br /><em>{quote.successTitleEm}</em></h3>
         <p>{quote.successLead} <strong data-reference></strong>. {quote.successText}</p>
         <button class="text-link text-link--light" type="button">
           {quote.successButton} <Icon name="arrow-right" size={17} />

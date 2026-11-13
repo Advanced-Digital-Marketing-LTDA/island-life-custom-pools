@@ -13,6 +13,7 @@ const { quote: { interests } } = content('settings');
 const pages = {
   '': { title: content('home').seoTitle },
   pools: { title: content('pools').seoTitle },
+  gallery: { title: content('gallery').seoTitle },
   blog: { title: content('blog').seoTitle },
   ...Object.fromEntries(readdirSync(new URL('content/posts/', site)).filter((f) => f.endsWith('.json')).map((f) => [`blog/${f.slice(0, -5)}`, { title: content(`posts/${f.slice(0, -5)}`).seoTitle }])),
 };
@@ -24,8 +25,11 @@ for (const [slug, { title }] of Object.entries(pages)) {
   assert.match(html, /<meta name="description" content="[^"]{40,}"/, `Missing description on /${slug}`);
   assert.match(html, /<link rel="canonical"/, `Missing canonical on /${slug}`);
   assert.match(html, /<div id="root">/, `Missing #root on /${slug}`);
+  assert.match(html, /class="skip-link" href="#top"/, `Missing skip link on /${slug}`);
+  // A forced line break with no space beside it makes screen readers join the two words.
+  for (const [heading] of html.matchAll(/<h[1-3]\b[\s\S]*?<\/h[1-3]>/g)) assert.doesNotMatch(heading, /\S<br>/, `Heading runs words together: ${heading.slice(0, 80)}`);
   // Pages without a quote section would leave every "Free quote" link dead.
-  if (slug !== 'blog') {
+  if (!['blog', 'gallery'].includes(slug)) {
     assert.match(html, /<section class="estimate section" id="quote"/, `Missing quote form on /${slug}`);
   }
   for (const [, href] of html.matchAll(/<a\b[^>]*href="(#[^"]+)"/g)) {
@@ -57,6 +61,17 @@ assert.match(home, /<blockquote style="opacity: 1; transform: translate3d\(0px, 
 assert.equal([...home.matchAll(/class="process-step is-active"/g)].length, 1);
 assert.match(home, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
 
+// The gallery has its own page: both menus link to it, and it marks itself as the current page.
+for (const slug of ['', 'pools', 'blog']) {
+  const html = read(`dist/client/${slug ? `${slug}/` : ''}index.html`);
+  assert.match(html, /<a href="\/gallery"[^>]*>Gallery<\/a>/, `Gallery link should go to /gallery on /${slug}`);
+}
+const galleryHtml = read('dist/client/gallery/index.html');
+assert.match(galleryHtml, /<a href="\/gallery" aria-current="page">Gallery<\/a>/);
+assert.equal([...galleryHtml.matchAll(/class="gallery-item gallery-item--/g)].length, content('gallery').collection.items.length);
+assert.match(galleryHtml, /<section class="hero" id="top"/, 'Gallery should open with the shared hero');
+assert.match(galleryHtml, /href="\/#quote"/, 'Gallery call to action should reach the home page quote form');
+assert.ok(galleryHtml.includes(`href="${content('settings').phoneHref}"`), 'Gallery call to action should offer the phone number');
 // The pools page marks itself as the current page in the navigation.
 assert.match(read('dist/client/pools/index.html'), /<a href="\/pools" aria-current="page">Pools<\/a>/);
 

@@ -21,7 +21,7 @@ The site is a port of the React/Vite design in `Kimi_Agent_Island Life Custom Po
 
 - `content/settings.json`: business name, logo, phone, menu, footer, search/social links and the quote form copy and project choices (shown on every page).
 - `content/home.json`: every section of the home page.
-- `content/pools.json`: the `/pools` page. `content/blog.json`: the `/blog` page and the shared text on articles (back link, contents heading, author box).
+- `content/pools.json`: the `/pools` page. `content/gallery.json`: the `/gallery` page. `content/blog.json`: the `/blog` page and the shared text on articles (back link, contents heading, author box).
 - `content/posts/*.json`: one file per journal article; the file name is the URL (`/blog/<file name>`), newest `date` first.
 - `tina/config.ts`: the editor schema. Every key in these files is a Tina field, so saving in Tina does not drop anything. After changing the schema run `npx tinacms build --local --skip-cloud-checks` to refresh `tina/tina-lock.json` and commit it.
 - Photos are chosen in Tina from `public/images/`.
@@ -30,9 +30,9 @@ Not editable in Tina: the page layouts, field labels and placeholders inside the
 
 Code map:
 
-- `src/pages/`: `/` (home), `/pools`, `/blog`, `/blog/[slug]`, `/404`, plus the server routes `api/quote`, `healthz` and `build.json`.
+- `src/pages/`: `/` (home), `/pools`, `/gallery`, `/blog`, `/blog/[slug]`, `/404`, plus the server routes `api/quote`, `healthz` and `build.json`.
 - `src/sections/` and `src/components/`: one `.astro` file per React component of the original, with the behavior in the `<script>` next to the markup (header and menu, hero parallax, testimonial slider, process steps, contents scroll-spy, quote form, Lenis smooth scroll).
-- `src/styles/index.css` and `app.css`: the original stylesheets, unchanged. Tailwind runs only for its base reset (`@tailwind base`), because the markup uses its own classes.
+- `src/styles/index.css` and `app.css`: the original stylesheets. `app.css` ends with a labelled block of deliberate changes to the original design (visible focus ring on the light buttons, the quote button in the mobile header, gallery fixes). Tailwind runs only for its base reset (`@tailwind base`), because the markup uses its own classes.
 
 Leftovers from the previous design that no page reads: `content/pages.json`, `content/blog/*.md` and `public/media/`.
 
@@ -56,4 +56,4 @@ In Coolify select Dockerfile with base directory `/site`, Dockerfile `/Dockerfil
 
 The Node server sends `Cache-Control: public, max-age=0` for everything in `public/` (only the hashed `/_astro/` files are cached for a year) and does not compress responses. Both belong to the proxy: in Coolify keep gzip/brotli on, and add a response header for `/images/*` and `/fonts/*` such as `Cache-Control: public, max-age=604800, stale-while-revalidate=86400` (not `immutable`, because those file names are not hashed). After deploy, `curl -sI -H "Accept-Encoding: gzip" https://islandlifecustompools.com/` should show `content-encoding`, and `curl -sI https://islandlifecustompools.com/images/hero.webp` should show the max-age above.
 
-Old page URLs (`/custom-pools/`, `/about-us/`, `/custom-patios/`, `/outdoor-kitchens/`, `/gallery/`, `/financing/`, `/contact/`) redirect to their closest place on the new site (`astro.config.mjs`). Other old URLs return the 404 page.
+Old page URLs (`/custom-pools/`, `/about-us/`, `/custom-patios/`, `/outdoor-kitchens/`, `/financing/`, `/contact/`) redirect to their closest place on the new site (`astro.config.mjs`). Other old URLs return the 404 page.

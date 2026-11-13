@@ -8,7 +8,7 @@ const { investment } = home;
   <div class="page-shell investment__grid">
     <div class="investment__intro">
       <p class="section-label section-label--light">{investment.label}</p>
-      <h2 id="investment-title">{investment.title}<br /><em>{investment.titleEm}</em></h2>
+      <h2 id="investment-title">{investment.title}{' '}<br /><em>{investment.titleEm}</em></h2>
       <p>{investment.intro}</p>
       <div class="investment__partners" aria-label="Product partners">
         <span>{investment.partnersLabel}</span>
@@ -16,7 +16,7 @@ const { investment } = home;
       </div>
     </div>
     <div class="investment__offer">
-      <p class="investment__price"><span>{investment.offerLabel}</span>{investment.offerLine1}<br />{investment.offerLine2}</p>
+      <p class="investment__price"><span>{investment.offerLabel}</span>{investment.offerLine1}{' '}<br />{investment.offerLine2}</p>
       <ul>
         {investment.possibilities.map((item) => (
           <li><Icon name="check" size={18} strokeWidth={1.6} />{item}</li>

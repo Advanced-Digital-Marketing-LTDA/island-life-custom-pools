@@ -643,5 +643,134 @@
   .mobile-menu__bottom { padding-top: 10px; }
 }
 
+.gallery-page { background: var(--primitive-paper); }
+.gallery-collection { background: var(--primitive-paper); }
+.gallery-collection__intro { display: grid; gap: 28px; }
+.gallery-collection__intro h2 { font-size: clamp(38px, 10vw, 64px); letter-spacing: 0; line-height: 1.08; }
+.gallery-collection__intro h2 em { color: var(--primitive-taupe); }
+.gallery-collection__intro > p:last-child { max-width: 590px; line-height: 1.75; }
+.gallery-collection__grid { display: grid; gap: 72px; margin-top: 72px; }
+.gallery-item { min-width: 0; }
+.gallery-item__image { overflow: hidden; background: var(--primitive-paper-deep); }
+.gallery-item__image img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms var(--ease-out); }
+.gallery-item__image:hover img { transform: scale(1.025); }
+.gallery-item--feature .gallery-item__image,
+.gallery-item--wide .gallery-item__image,
+.gallery-item--landscape-left .gallery-item__image,
+.gallery-item--landscape-right .gallery-item__image { aspect-ratio: 4 / 3; }
+.gallery-item--portrait .gallery-item__image,
+.gallery-item--portrait-offset .gallery-item__image { aspect-ratio: 4 / 5; }
+.gallery-item figcaption { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; margin-top: 20px; }
+.gallery-item__number { padding-top: 4px; color: var(--primitive-taupe); font-size: 16px; font-variant-numeric: tabular-nums; }
+.gallery-item__category { color: var(--primitive-taupe); font-size: 16px; letter-spacing: 0.02em; line-height: 1.55; }
+.gallery-item h3 { max-width: 650px; margin-top: 8px; font-size: clamp(24px, 6.5vw, 38px); line-height: 1.18; text-wrap: balance; }
+.gallery-item figcaption div > p:last-child { max-width: 540px; margin-top: 12px; line-height: 1.7; }
+
+.gallery-cta { background: var(--primitive-navy); color: var(--text-on-dark); }
+.gallery-cta__inner { padding-block: 88px; }
+.gallery-cta h2 { margin-top: 20px; font-size: clamp(36px, 9vw, 64px); letter-spacing: 0; line-height: 1.12; }
+.gallery-cta__action { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; margin-top: 40px; }
+.gallery-cta__action p { max-width: 540px; line-height: 1.75; }
+
+@media (min-width: 768px) {
+  .gallery-collection__intro { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+  .gallery-collection__intro > .section-label { grid-column: 1 / 13; }
+  .gallery-collection__intro h2 { grid-column: 1 / 8; }
+  .gallery-collection__intro > p:last-child { grid-column: 8 / 13; align-self: end; }
+  .gallery-collection__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 96px 24px; }
+  .gallery-item--feature,
+  .gallery-item--wide { grid-column: 1 / 3; }
+  .gallery-item--feature .gallery-item__image,
+  .gallery-item--wide .gallery-item__image { aspect-ratio: 16 / 9; }
+  .gallery-item--portrait-offset,
+  .gallery-item--landscape-right { margin-top: 80px; }
+}
+
+@media (min-width: 1024px) {
+  .gallery-collection__intro > .section-label { grid-column: 1 / 4; grid-row: 1; }
+  .gallery-collection__intro h2 { grid-column: 1 / 8; grid-row: 2; font-size: clamp(54px, 5.4vw, 82px); }
+  .gallery-collection__intro > p:last-child { grid-column: 9 / 13; grid-row: 2; }
+  .gallery-collection__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 24px; margin-top: 120px; }
+  .gallery-item--feature { grid-column: 1 / 13; margin-top: 140px; }
+  .gallery-item--feature:first-child { margin-top: 0; }
+  .gallery-item--wide { grid-column: 3 / 13; margin-top: 140px; }
+  .gallery-item--portrait { grid-column: 1 / 7; margin-top: 120px; }
+  .gallery-item--portrait-offset { grid-column: 8 / 13; margin-top: 260px; }
+  .gallery-item--landscape-left { grid-column: 1 / 7; margin-top: 120px; }
+  .gallery-item--landscape-right { grid-column: 7 / 13; margin-top: 240px; }
+  .gallery-item--feature figcaption,
+  .gallery-item--wide figcaption { grid-template-columns: 48px minmax(0, 1fr); }
+  .gallery-item h3 { font-size: clamp(28px, 2.7vw, 42px); }
+  .gallery-cta__inner { padding-block: 120px; }
+  .gallery-cta h2 { font-size: clamp(54px, 5.6vw, 86px); }
+  .gallery-cta__action { flex-direction: row; align-items: center; justify-content: space-between; margin-left: 33.333%; }
+  .gallery-cta__action .button { flex-shrink: 0; }
+}
+
+/* ---- Changes to the original design, from the gallery critique ---- */
+
+/* Keyboard focus: the light buttons turn navy on focus and the ring follows the text color, so it vanished
+   against navy surfaces. Keep the ring on the resting color of each surface instead. */
+.button--light:focus-visible { outline-color: var(--primitive-paper-light); }
+.site-header.is-scrolled .button--light:focus-visible,
+.site-header--solid .button--light:focus-visible { outline-color: var(--primitive-navy); }
+
+/* Header on small screens: keep the quote button visible next to the menu, as on desktop. */
+@media (max-width: 1023px) {
+  .site-header__cta { display: inline-flex; min-height: 44px; margin-left: auto; margin-right: 4px; gap: 8px; padding: 10px 14px; font-size: 16px; }
+  .site-header__cta > svg { display: none; }
+  .site-header.is-scrolled .button--light, .site-header--solid .button--light { color: var(--primitive-navy); }
+  .site-header.is-scrolled .button--light .button__wash, .site-header--solid .button--light .button__wash { background: var(--primitive-navy); }
+  .site-header.is-scrolled .button--light:hover, .site-header.is-scrolled .button--light:focus-visible,
+  .site-header--solid .button--light:hover, .site-header--solid .button--light:focus-visible { color: var(--text-on-dark); }
+}
+@media (max-width: 359px) {
+  .site-header .brand img { width: 72px; }
+}
+
+/* Skip link: off screen until a keyboard user reaches it. */
+.skip-link { position: fixed; z-index: 70; top: 8px; left: 8px; border-radius: 0.35em; padding: 12px 16px; background: var(--primitive-paper-light); color: var(--primitive-navy); font-size: 16px; line-height: 1.2; transform: translateY(calc(-100% - 16px)); }
+.skip-link:focus-visible { transform: none; }
+#top:focus { outline: none; }
+
+/* Where you are: the current page keeps the nav underline that hover draws, and its row in the mobile menu a full-strength rule. */
+.mobile-menu__links a[aria-current="page"] { border-bottom-color: var(--primitive-paper-light); }
+.text-link { transition: box-shadow var(--motion-feedback) var(--ease-out); }
+.text-link:hover { box-shadow: 0 1px 0 currentColor; }
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item__image:hover img, .blog-card__image:hover img { transform: none; }
+}
+
+/* The gallery photo is brighter than the home one, which leaves the hero text under 4.5:1 on tablets and phones:
+   a soft dark band behind the text block, full width, feathered top and bottom. It moves and fades with the text. */
+.gallery-page .hero__content::before { position: absolute; z-index: -1; top: -90px; bottom: -70px; right: calc(50% - 50vw); left: calc(50% - 50vw); background: linear-gradient(180deg, transparent, rgba(8,24,39,.4) 22%, rgba(8,24,39,.4) 78%, transparent); content: ""; pointer-events: none; }
+
+/* Gallery type */
+.gallery-collection__intro h2, .gallery-cta h2 { text-wrap: balance; }
+.gallery-collection__intro > p, .gallery-item figcaption div > p, .gallery-cta__action p { text-wrap: pretty; }
+/* Light text on dark reads a touch tighter than it is: a little more tracking. */
+.gallery-cta__action p { letter-spacing: 0.01em; }
+/* Below the desktop layout the forced break only strands words ("your", "like?"): let the heading flow and balance. */
+@media (max-width: 1023px) { .gallery-collection__intro h2 br, .gallery-cta h2 br { display: none; } }
+/* On tablets the heading's seven-column cell is narrower than one word at this size: give it the full row. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery-collection__intro h2 { grid-column: 1 / 13; }
+  .gallery-collection__intro > p:last-child { grid-column: 1 / 9; align-self: start; }
+}
+
+/* Gallery */
+.gallery-collection__intro p a { border-bottom: 1px solid currentColor; }
+.gallery-cta .button--light { background: var(--primitive-paper-light); color: var(--primitive-navy); }
+.gallery-cta .button--light .button__wash { background: var(--primitive-navy); }
+.gallery-cta .button--light:hover, .gallery-cta .button--light:focus-visible { color: var(--text-on-dark); }
+.gallery-cta__buttons { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.gallery-cta__call span { display: block; }
+.gallery-cta__call a { padding-block: 10px; text-decoration: underline; text-underline-offset: 4px; }
+
+@media (min-width: 1024px) {
+  .site-header__links a[aria-current="page"]::after { transform: scaleX(1); }
+  .gallery-cta__buttons { flex-shrink: 0; }
+}
+
 /* Astro swaps the form and success panel with [hidden]; the display rules above would otherwise win. */
 .estimate [hidden] { display: none !important; }

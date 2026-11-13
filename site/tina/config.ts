@@ -183,6 +183,44 @@ export default defineConfig({
         str('detailLink', 'Link label'),
       ]),
 
+      singleton('gallery', 'Gallery page', [
+        str('seoTitle', 'Search title'),
+        text('seoDescription', 'Search description'),
+        group('hero', 'Top of the page', [
+          image('image', 'Photo'),
+          str('imageAlt', 'Photo description'),
+        ]),
+        group('collection', 'Collection', [
+          str('label', 'Small heading'),
+          ...heading(),
+          text('intro', 'Introduction'),
+          str('linkLabel', 'Link label (end of the introduction)'),
+          str('linkHref', 'Link', '"#section" jumps to a section of the home page; "/page" opens another page.'),
+          items('items', 'Gallery items', 'title', [
+            {
+              type: 'string',
+              name: 'layout',
+              label: 'Position',
+              description: 'How the photo sits in the grid. Alternate wide or feature photos with pairs of portrait, portrait-offset, landscape-left and landscape-right photos to keep the rhythm.',
+              options: ['feature', 'wide', 'portrait', 'portrait-offset', 'landscape-left', 'landscape-right'],
+            },
+            str('title', 'Title'),
+            str('category', 'Tags'),
+            text('description', 'Description'),
+            image('image', 'Photo'),
+            str('alt', 'Photo description'),
+            str('position', 'Crop focus (optional)', 'Where the crop is anchored, for example "center top" or "60% center". Defaults to the center.'),
+          ]),
+        ]),
+        group('cta', 'Closing call to action', [
+          str('label', 'Small heading'),
+          ...heading(),
+          text('text', 'Text'),
+          str('button', 'Button label'),
+          str('callLabel', 'Phone label', 'Shown before the phone number from Site settings, with the first row of the footer hours.'),
+        ]),
+      ]),
+
       singleton('blog', 'Journal page', [
         str('seoTitle', 'Search title'),
         text('seoDescription', 'Search description'),

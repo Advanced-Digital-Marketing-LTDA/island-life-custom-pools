@@ -49,8 +49,18 @@ const ld = {
   </head>
   <body>
     <div id="root">
+      <a class="skip-link" href="#top">Skip to main content</a>
       <SmoothScroll />
       <slot />
     </div>
+    <script>
+      // Lenis intercepts in-page links and scrolls itself, so move keyboard focus to the content explicitly.
+      document.querySelector('.skip-link')!.addEventListener('click', () => {
+        const target = document.getElementById('top');
+        if (!target) return;
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      });
+    </script>
   </body>
 </html>

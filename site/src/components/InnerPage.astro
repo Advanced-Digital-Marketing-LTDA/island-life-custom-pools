@@ -15,7 +15,7 @@ const slug = 'pools';
       <div class="page-shell inner-hero__grid">
         <div class="inner-hero__copy">
           <p class="inner-hero__breadcrumb"><a href="/">{content.homeLabel}</a><span aria-hidden="true">/</span>{content.eyebrow}</p>
-          <h1 id="inner-title">{content.title}{content.italicTitle && <><br /><em>{content.italicTitle}</em></>}</h1>
+          <h1 id="inner-title">{content.title}{content.italicTitle && <>{' '}<br /><em>{content.italicTitle}</em></>}</h1>
           <p class="inner-hero__intro">{content.introduction}</p>
           <a class="button button--dark" href="#quote">
             <span class="button__label">{content.heroCta}</span>

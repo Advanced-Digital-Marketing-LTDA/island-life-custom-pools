@@ -2,21 +2,23 @@
 import Icon from '../components/Icon.astro';
 import { home, escapeHtml } from '../lib/content';
 
+interface Props { image?: string; imageAlt?: string; quoteHref?: string; scrollHref?: string }
 const { hero } = home;
+const { image = hero.image, imageAlt = hero.imageAlt, quoteHref = '#quote', scrollHref = '#about' } = Astro.props;
 ---
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <img class="hero__image" src={hero.image} alt={hero.imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
+  <img class="hero__image" src={image} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="hero__content page-shell" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
     <p class="hero__kicker">{hero.kicker}</p>
     <h1 id="hero-title" class="hero__title">
-      <span>{hero.line1}</span>
-      <span><em>{hero.line2}</em></span>
+      <span>{hero.line1}</span>{' '}
+      <span><em>{hero.line2}</em></span>{' '}
       <span>{hero.line3}</span>
     </h1>
     <div class="hero__intro">
       <p>{hero.intro}</p>
-      <a class="button button--light" href="#quote">
+      <a class="button button--light" href={quoteHref}>
         <span class="button__label">{hero.cta}</span>
         <span class="button__wash" aria-hidden="true"></span>
         <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
@@ -24,7 +26,7 @@ const { hero } = home;
     </div>
   </div>
   <div class="hero__foot page-shell">
-    <a class="hero__scroll" href="#about">
+    <a class="hero__scroll" href={scrollHref}>
       <Icon name="arrow-down" size={17} strokeWidth={1.5} />
       <span>{hero.scrollLabel}</span>
     </a>
