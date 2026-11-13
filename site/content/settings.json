@@ -14,11 +14,11 @@
     },
     {
       "label": "Patios",
-      "href": "#patios"
+      "href": "/patios"
     },
     {
       "label": "Outdoor kitchens",
-      "href": "#outdoor-kitchens"
+      "href": "/outdoor-kitchens"
     },
     {
       "label": "Gallery",
@@ -26,7 +26,7 @@
     },
     {
       "label": "Financing",
-      "href": "#financing"
+      "href": "/financing"
     }
   ],
   "headerCta": "Free quote",
@@ -45,11 +45,11 @@
       },
       {
         "label": "Patios",
-        "href": "#patios"
+        "href": "/patios"
       },
       {
         "label": "Outdoor kitchens",
-        "href": "#outdoor-kitchens"
+        "href": "/outdoor-kitchens"
       },
       {
         "label": "Gallery",
@@ -61,7 +61,7 @@
       },
       {
         "label": "Financing",
-        "href": "#financing"
+        "href": "/financing"
       },
       {
         "label": "Free quote",

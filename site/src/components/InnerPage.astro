@@ -4,9 +4,10 @@ import Header from './Header.astro';
 import Icon from './Icon.astro';
 import Estimate from '../sections/Estimate.astro';
 import Footer from '../sections/Footer.astro';
-import { pools as content } from '../lib/content';
+import type { InnerPageContent } from '../lib/content';
 
-const slug = 'pools';
+interface Props { slug: string; content: InnerPageContent }
+const { slug, content } = Astro.props;
 ---
 <Base title={content.seoTitle} description={content.seoDescription}>
   <Header solid />

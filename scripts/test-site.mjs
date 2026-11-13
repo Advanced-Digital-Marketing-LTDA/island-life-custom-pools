@@ -14,6 +14,9 @@ const pages = {
   '': { title: content('home').seoTitle },
   pools: { title: content('pools').seoTitle },
   gallery: { title: content('gallery').seoTitle },
+  patios: { title: content('patios').seoTitle },
+  'outdoor-kitchens': { title: content('kitchens').seoTitle },
+  financing: { title: content('financing').seoTitle },
   blog: { title: content('blog').seoTitle },
   ...Object.fromEntries(readdirSync(new URL('content/posts/', site)).filter((f) => f.endsWith('.json')).map((f) => [`blog/${f.slice(0, -5)}`, { title: content(`posts/${f.slice(0, -5)}`).seoTitle }])),
 };
@@ -60,6 +63,16 @@ assert.match(home, /class="hero__image"[^>]*style="transform: translate3d\(0px, 
 assert.match(home, /<blockquote style="opacity: 1; transform: translate3d\(0px, 0px, 0px\);">/);
 assert.equal([...home.matchAll(/class="process-step is-active"/g)].length, 1);
 assert.match(home, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
+
+// Patios, outdoor kitchens and financing have their own pages: both menus link to them and each marks itself as current.
+for (const slug of ['patios', 'outdoor-kitchens', 'financing']) {
+  const label = content('settings').nav.find((item) => item.href === `/${slug}`).label;
+  for (const page of ['', 'pools', slug]) {
+    const html = read(`dist/client/${page ? `${page}/` : ''}index.html`);
+    assert.ok(html.includes(`<a href="/${slug}"`), `Missing /${slug} link on /${page}`);
+    assert.ok(html.includes(`<a href="/${slug}"${page === slug ? ' aria-current="page"' : ''}>${label}</a>`) || page !== slug, `/${slug} should mark itself current`);
+  }
+}
 
 // The gallery has its own page: both menus link to it, and it marks itself as the current page.
 for (const slug of ['', 'pools', 'blog']) {

@@ -32,6 +32,31 @@ const singleton = (name: string, label: string, fields: any[]) => ({
   fields,
 });
 
+// The pools, patios, outdoor kitchens and financing pages share one layout, so they share one field list.
+const innerPageFields = [
+  str('seoTitle', 'Search title'),
+  text('seoDescription', 'Search description'),
+  str('homeLabel', 'Breadcrumb home label'),
+  str('eyebrow', 'Breadcrumb page name'),
+  str('title', 'Heading, first line'),
+  str('italicTitle', 'Heading, second line (accent color)'),
+  text('introduction', 'Introduction'),
+  str('heroCta', 'Button label'),
+  image('heroImage', 'Top photo'),
+  str('heroImageAlt', 'Top photo description'),
+  str('scrollLabel', 'Scroll link label'),
+  str('overviewLabel', 'Overview small heading'),
+  str('overviewTitle', 'Overview heading'),
+  text('overview', 'Overview text'),
+  strings('considerations', 'Checklist'),
+  image('detailImage', 'Second photo'),
+  str('detailImageAlt', 'Second photo description'),
+  str('detailEyebrow', 'Second section small heading'),
+  str('detailTitle', 'Second section heading'),
+  text('detail', 'Second section text'),
+  str('detailLink', 'Link label'),
+];
+
 export default defineConfig({
   branch: process.env.GITHUB_BRANCH || process.env.HEAD || 'main',
   clientId: process.env.TINA_CLIENT_ID,
@@ -159,29 +184,10 @@ export default defineConfig({
         ]),
       ]),
 
-      singleton('pools', 'Pools page', [
-        str('seoTitle', 'Search title'),
-        text('seoDescription', 'Search description'),
-        str('homeLabel', 'Breadcrumb home label'),
-        str('eyebrow', 'Breadcrumb page name'),
-        str('title', 'Heading, first line'),
-        str('italicTitle', 'Heading, second line (accent color)'),
-        text('introduction', 'Introduction'),
-        str('heroCta', 'Button label'),
-        image('heroImage', 'Top photo'),
-        str('heroImageAlt', 'Top photo description'),
-        str('scrollLabel', 'Scroll link label'),
-        str('overviewLabel', 'Overview small heading'),
-        str('overviewTitle', 'Overview heading'),
-        text('overview', 'Overview text'),
-        strings('considerations', 'Checklist'),
-        image('detailImage', 'Second photo'),
-        str('detailImageAlt', 'Second photo description'),
-        str('detailEyebrow', 'Second section small heading'),
-        str('detailTitle', 'Second section heading'),
-        text('detail', 'Second section text'),
-        str('detailLink', 'Link label'),
-      ]),
+      singleton('pools', 'Pools page', innerPageFields),
+      singleton('patios', 'Patios page', innerPageFields),
+      singleton('kitchens', 'Outdoor kitchens page', innerPageFields),
+      singleton('financing', 'Financing page', innerPageFields),
 
       singleton('gallery', 'Gallery page', [
         str('seoTitle', 'Search title'),

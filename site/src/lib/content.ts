@@ -2,11 +2,22 @@
 import settings from '../../content/settings.json';
 import home from '../../content/home.json';
 import pools from '../../content/pools.json';
+import patios from '../../content/patios.json';
+import kitchens from '../../content/kitchens.json';
+import financing from '../../content/financing.json';
 import blog from '../../content/blog.json';
 import gallery from '../../content/gallery.json';
 import { homePrefix } from './nav';
 
-export { settings, home, pools, blog, gallery };
+export { settings, home, pools, patios, kitchens, financing, blog, gallery };
+
+// The pages built on the shared inner-page layout: same fields, one content file each.
+export interface InnerPageContent {
+  seoTitle: string; seoDescription: string; homeLabel: string; eyebrow: string; title: string; italicTitle?: string;
+  introduction: string; heroCta: string; heroImage: string; heroImageAlt: string; scrollLabel: string;
+  overviewLabel: string; overviewTitle: string; overview: string; considerations: string[];
+  detailImage: string; detailImageAlt: string; detailEyebrow: string; detailTitle: string; detail: string; detailLink: string;
+}
 
 export interface BlogSection { id: string; title: string; paragraphs: { text: string }[]; bullets?: string[] | null }
 export interface Post {
