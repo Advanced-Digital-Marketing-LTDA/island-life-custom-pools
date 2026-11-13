@@ -1,0 +1,47 @@
+{
+  "seoTitle": "Custom Outdoor Kitchens in Houston | Island Life Custom Pools",
+  "seoDescription": "Outdoor kitchens made for entertaining and relaxing, designed to fit your pool and patio in Tomball, Cypress, The Woodlands, and Houston. Request a free design consultation.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Outdoor kitchens",
+      "title": "Cook, gather,",
+      "italicTitle": "stay in the moment.",
+      "introduction": "Island Life Custom Pools designs and builds outdoor kitchens made for entertaining and relaxing, planned to fit the pool and patio around them, for homes in Tomball, Cypress, The Woodlands, and Houston.",
+      "ctaLabel": "Start with a free design consult",
+      "ctaHref": "#quote",
+      "image": "/images/kitchen.webp",
+      "imageAlt": "Stone outdoor kitchen with a grill, generous counter, and bar seating",
+      "scrollLabel": "Explore the possibilities",
+      "scrollHref": "#overview"
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Designed for your property",
+      "title": "A kitchen planned with the backyard.",
+      "lede": "An outdoor kitchen works best as part of the complete backyard, not an afterthought. We design it together with the pool, spa, patio, fire pit, and fireplace, so cooking, dining, and conversation all happen in the same place—and you can explore the layout in a custom 3D model before construction begins.",
+      "checklist": [
+        "A kitchen planned as part of the complete backyard, not added afterward",
+        "Counters, a grill, and bar seating arranged for cooking and conversation",
+        "Coordinated with the patio cover, fireplace, and pool around it",
+        "A custom 3D model to explore the space before construction"
+      ]
+    },
+    {
+      "_template": "feature",
+      "image": "/images/gallery-fireplace-kitchen.webp",
+      "imageAlt": "Stone fireplace, outdoor kitchen, and lounge seating beneath string lights",
+      "eyebrow": "See it before we build it",
+      "title": "Cook where you gather.",
+      "text": "Your free design consult leads into a custom 3D design, so you can see the kitchen, the seating, and the space around them before construction begins. The goal stays simple: an easy place to cook and plenty of room for everyone to settle in.",
+      "linkLabel": "Tell us what you’re imagining",
+      "linkHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

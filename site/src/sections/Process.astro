@@ -1,13 +1,13 @@
 ---
-import { home } from '../lib/content';
-
-const { steps, ...section } = home.process;
+interface Step { title?: string; description?: string; meta?: string; image?: string; alt?: string }
+interface Props { label?: string; title?: string; titleEm?: string; steps?: Step[]; anchor?: string; headingId: string }
+const { label = '', title = '', titleEm = '', steps = [], anchor, headingId } = Astro.props;
 ---
-<section class="process section" id="process" aria-labelledby="process-title" data-steps={JSON.stringify(steps.map(({ meta, alt }) => ({ meta, alt })))}>
+<section class="process section" id={anchor || undefined} aria-labelledby={headingId} data-steps={JSON.stringify(steps.map(({ meta, alt }) => ({ meta, alt })))}>
   <div class="page-shell">
     <div class="process__heading">
-      <p class="section-label">{section.label}</p>
-      <h2 id="process-title">{section.title}{' '}<br /><em>{section.titleEm}</em></h2>
+      <p class="section-label">{label}</p>
+      <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
     </div>
     <div class="process__layout">
       <div class="process__steps">
@@ -26,9 +26,9 @@ const { steps, ...section } = home.process;
             <img class={index === 0 ? 'is-active' : ''} src={step.image} alt={index === 0 ? step.alt : ''} loading="lazy" aria-hidden={index !== 0 ? 'true' : 'false'} />
           ))}
           <div class="process__progress" aria-hidden="true">
-            <span style={`transform: scaleY(${1 / steps.length});`}></span>
+            <span style={`transform: scaleY(${1 / (steps.length || 1)});`}></span>
           </div>
-          <p class="process__caption">{steps[0].meta}</p>
+          <p class="process__caption">{steps[0]?.meta}</p>
         </div>
       </div>
     </div>
@@ -38,31 +38,33 @@ const { steps, ...section } = home.process;
 <script>
   type Step = { meta: string; alt: string };
 
-  const root = document.querySelector<HTMLElement>('.process')!;
-  const steps: Step[] = JSON.parse(root.dataset.steps!);
-  const items = root.querySelectorAll<HTMLElement>('.process-step');
-  const images = root.querySelectorAll<HTMLImageElement>('.process__visual-frame > img');
-  const progress = root.querySelector<HTMLElement>('.process__progress span')!;
-  const caption = root.querySelector('.process__caption')!;
+  document.querySelectorAll<HTMLElement>('.process').forEach((root) => {
+    const steps: Step[] = JSON.parse(root.dataset.steps || '[]');
+    const items = root.querySelectorAll<HTMLElement>('.process-step');
+    if (!steps.length || !items.length) return;
+    const images = root.querySelectorAll<HTMLImageElement>('.process__visual-frame > img');
+    const progress = root.querySelector<HTMLElement>('.process__progress span')!;
+    const caption = root.querySelector('.process__caption')!;
 
-  function show(active: number) {
-    items.forEach((item, index) => item.classList.toggle('is-active', index === active));
-    images.forEach((image, index) => {
-      image.classList.toggle('is-active', index === active);
-      image.alt = index === active ? steps[index].alt : '';
-      image.setAttribute('aria-hidden', String(index !== active));
-    });
-    progress.style.transform = `scaleY(${(active + 1) / steps.length})`;
-    caption.textContent = steps[active].meta;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) show(Number((entry.target as HTMLElement).dataset.step));
+    function show(active: number) {
+      items.forEach((item, index) => item.classList.toggle('is-active', index === active));
+      images.forEach((image, index) => {
+        image.classList.toggle('is-active', index === active);
+        image.alt = index === active ? steps[index].alt : '';
+        image.setAttribute('aria-hidden', String(index !== active));
       });
-    },
-    { rootMargin: '-32% 0px -46% 0px', threshold: 0 },
-  );
-  items.forEach((item) => observer.observe(item));
+      progress.style.transform = `scaleY(${(active + 1) / steps.length})`;
+      caption.textContent = steps[active].meta;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) show(Number((entry.target as HTMLElement).dataset.step));
+        });
+      },
+      { rootMargin: '-32% 0px -46% 0px', threshold: 0 },
+    );
+    items.forEach((item) => observer.observe(item));
+  });
 </script>

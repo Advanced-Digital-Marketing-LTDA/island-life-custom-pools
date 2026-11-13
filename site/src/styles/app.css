@@ -741,9 +741,13 @@
   .gallery-item__image:hover img, .blog-card__image:hover img { transform: none; }
 }
 
-/* The gallery photo is brighter than the home one, which leaves the hero text under 4.5:1 on tablets and phones:
-   a soft dark band behind the text block, full width, feathered top and bottom. It moves and fades with the text. */
-.gallery-page .hero__content::before { position: absolute; z-index: -1; top: -90px; bottom: -70px; right: calc(50% - 50vw); left: calc(50% - 50vw); background: linear-gradient(180deg, transparent, rgba(8,24,39,.4) 22%, rgba(8,24,39,.4) 78%, transparent); content: ""; pointer-events: none; }
+/* A hero with the scrim option (the gallery photo is brighter than the home one, which left the hero text under 4.5:1
+   on tablets and phones): a soft dark band behind the text block, full width, feathered top and bottom. It moves and fades with the text. */
+.hero--scrim .hero__content::before { position: absolute; z-index: -1; top: -90px; bottom: -70px; right: calc(50% - 50vw); left: calc(50% - 50vw); background: linear-gradient(180deg, transparent, rgba(8,24,39,.4) 22%, rgba(8,24,39,.4) 78%, transparent); content: ""; pointer-events: none; }
+
+/* A first section that does not open with its own header clearance. */
+.header-clearance { height: 76px; }
+@media (min-width: 1024px) { .header-clearance { height: 92px; } }
 
 /* Gallery type */
 .gallery-collection__intro h2, .gallery-cta h2 { text-wrap: balance; }

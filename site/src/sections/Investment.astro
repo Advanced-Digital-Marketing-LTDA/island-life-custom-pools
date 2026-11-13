@@ -1,31 +1,38 @@
 ---
 import Icon from '../components/Icon.astro';
-import { home } from '../lib/content';
 
-const { investment } = home;
+interface Props {
+  label?: string; title?: string; titleEm?: string; intro?: string; partnersLabel?: string; partners?: string[];
+  offerLabel?: string; offerLine1?: string; offerLine2?: string; possibilities?: string[]; note?: string;
+  discountTitle?: string; discountText?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
+}
+const {
+  label = '', title = '', titleEm = '', intro = '', partnersLabel = '', partners = [], offerLabel = '', offerLine1 = '', offerLine2 = '',
+  possibilities = [], note = '', discountTitle = '', discountText = '', cta = '', ctaHref = '#quote', anchor, headingId,
+} = Astro.props;
 ---
-<section class="investment section" id="financing" aria-labelledby="investment-title">
+<section class="investment section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell investment__grid">
     <div class="investment__intro">
-      <p class="section-label section-label--light">{investment.label}</p>
-      <h2 id="investment-title">{investment.title}{' '}<br /><em>{investment.titleEm}</em></h2>
-      <p>{investment.intro}</p>
+      <p class="section-label section-label--light">{label}</p>
+      <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
+      <p>{intro}</p>
       <div class="investment__partners" aria-label="Product partners">
-        <span>{investment.partnersLabel}</span>
-        <p>{investment.partners.join(" · ")}</p>
+        <span>{partnersLabel}</span>
+        <p>{partners.join(" · ")}</p>
       </div>
     </div>
     <div class="investment__offer">
-      <p class="investment__price"><span>{investment.offerLabel}</span>{investment.offerLine1}{' '}<br />{investment.offerLine2}</p>
+      <p class="investment__price"><span>{offerLabel}</span>{offerLine1}{' '}<br />{offerLine2}</p>
       <ul>
-        {investment.possibilities.map((item) => (
+        {possibilities.map((item) => (
           <li><Icon name="check" size={18} strokeWidth={1.6} />{item}</li>
         ))}
       </ul>
-      <p class="investment__note">{investment.note}</p>
-      <p class="investment__discount"><strong>{investment.discountTitle}</strong> {investment.discountText}</p>
-      <a class="button button--dark" href="#quote">
-        <span class="button__label">{investment.cta}</span>
+      <p class="investment__note">{note}</p>
+      <p class="investment__discount"><strong>{discountTitle}</strong> {discountText}</p>
+      <a class="button button--dark" href={ctaHref}>
+        <span class="button__label">{cta}</span>
         <span class="button__wash" aria-hidden="true"></span>
         <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
       </a>

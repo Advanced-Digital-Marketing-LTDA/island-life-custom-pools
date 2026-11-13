@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Blocks from '../components/Blocks.astro';
+import Footer from '../sections/Footer.astro';
+import { pages, settings } from '../lib/content';
+import { clearsHeader, overlayBlocks } from '../lib/blocks';
+
+export function getStaticPaths() {
+  return pages.map((page) => ({ params: { slug: page.slug || undefined }, props: { page } }));
+}
+const { page } = Astro.props;
+const blocks = page.blocks.filter((block) => !block.hidden);
+const first = blocks[0];
+// The header floats over the page only when the first section is a full-bleed photo built for it.
+const overlay = !!first && overlayBlocks.includes(first._template);
+// A first section that was not built to open a page needs room below the fixed header.
+const needsClearance = !!first && !clearsHeader.includes(first._template);
+const preload = first?._template === 'hero' && typeof first.image === 'string' ? first.image : undefined;
+---
+<Base title={page.seoTitle || settings.name} description={page.seoDescription || settings.name} preload={preload}>
+  <Header solid={!overlay} />
+  <main id="top">
+    {needsClearance && <div class="header-clearance" aria-hidden="true"></div>}
+    <Blocks blocks={blocks} />
+  </main>
+  <Footer />
+</Base>

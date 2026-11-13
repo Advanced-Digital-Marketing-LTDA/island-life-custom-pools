@@ -1,28 +1,32 @@
 import { defineConfig } from 'tinacms';
+import { blockNames } from '../src/lib/blocks';
 
-type Item = Record<string, string>;
+type Item = Record<string, unknown>;
+type Fields = any[];
 
 const str = (name: string, label: string, description?: string) => ({ type: 'string' as const, name, label, description });
 const text = (name: string, label: string, description?: string) => ({ type: 'string' as const, name, label, description, ui: { component: 'textarea' } });
 const image = (name: string, label: string) => ({ type: 'image' as const, name, label });
 const strings = (name: string, label: string, description?: string) => ({ type: 'string' as const, name, label, description, list: true });
-const items = (name: string, label: string, itemLabel: string, fields: any[], description?: string) => ({
+const items = (name: string, label: string, itemLabel: string, fields: Fields, description?: string) => ({
   type: 'object' as const,
   name,
   label,
   description,
   list: true,
-  ui: { itemProps: (item: Item) => ({ label: item?.[itemLabel] }) },
+  ui: { itemProps: (item: Item) => ({ label: item?.[itemLabel] as string }) },
   fields,
 });
+const group = (name: string, label: string, fields: Fields) => ({ type: 'object' as const, name, label, fields });
 const links = (name: string, label: string, description?: string) =>
   items(name, label, 'label', [str('label', 'Label'), str('href', 'Link', '"#section" jumps to a section of the home page; "/page" opens another page.')], description);
-const group = (name: string, label: string, fields: any[]) => ({ type: 'object' as const, name, label, fields });
 
 // Titles are written as two lines: the first in the normal color, the second ("emphasis") in the accent color.
-const heading = (prefix = '') => [str(`${prefix}title`, 'Heading, first line'), str(`${prefix}titleEm`, 'Heading, second line (accent color)')];
+const heading = () => [str('title', 'Heading, first line'), str('titleEm', 'Heading, second line (accent color)')];
+const href = (name: string, label: string) =>
+  str(name, label, 'Use "#name" for a section on this page, "/page" for another page, or "/#name" for a section on the home page.');
 
-const singleton = (name: string, label: string, fields: any[]) => ({
+const singleton = (name: string, label: string, fields: Fields) => ({
   name,
   label,
   path: 'content',
@@ -32,29 +36,92 @@ const singleton = (name: string, label: string, fields: any[]) => ({
   fields,
 });
 
-// The pools, patios, outdoor kitchens and financing pages share one layout, so they share one field list.
-const innerPageFields = [
-  str('seoTitle', 'Search title'),
-  text('seoDescription', 'Search description'),
-  str('homeLabel', 'Breadcrumb home label'),
-  str('eyebrow', 'Breadcrumb page name'),
-  str('title', 'Heading, first line'),
-  str('italicTitle', 'Heading, second line (accent color)'),
-  text('introduction', 'Introduction'),
-  str('heroCta', 'Button label'),
-  image('heroImage', 'Top photo'),
-  str('heroImageAlt', 'Top photo description'),
-  str('scrollLabel', 'Scroll link label'),
-  str('overviewLabel', 'Overview small heading'),
-  str('overviewTitle', 'Overview heading'),
-  text('overview', 'Overview text'),
-  strings('considerations', 'Checklist'),
-  image('detailImage', 'Second photo'),
-  str('detailImageAlt', 'Second photo description'),
-  str('detailEyebrow', 'Second section small heading'),
-  str('detailTitle', 'Second section heading'),
-  text('detail', 'Second section text'),
-  str('detailLink', 'Link label'),
+// A new document's file name (its URL) is made from its title.
+const slugifyFrom = (field: string) => (values: Record<string, unknown>) =>
+  String(values?.[field] ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
+
+// ---- Page sections ("blocks"). Each one is a design; its fields are its content. The names are the section
+// types in src/lib/blocks.ts and the components in src/components/Blocks.astro.
+const common: Fields = [
+  str('anchor', 'Link name', 'A name other links can jump to: "about" makes "#about" work. Lowercase letters, numbers and dashes. Must be unique on the page.'),
+  { type: 'boolean', name: 'hidden', label: 'Hide this section', description: 'Keeps the section here but does not show it on the site.' },
+];
+const labelOf = (item: Item) => {
+  const first = ['title', 'line1', 'eyebrow', 'label', 'readLabel'].map((key) => item?.[key]).find((value) => typeof value === 'string' && value);
+  return `${item?.hidden ? '(hidden) ' : ''}${(first as string) ?? ''}`;
+};
+const block = (name: (typeof blockNames)[number], label: string, fields: Fields, defaultItem?: Item) => ({
+  name,
+  label,
+  ui: { itemProps: (item: Item) => ({ label: `${label}${labelOf(item) ? ' — ' + labelOf(item) : ''}` }), defaultItem },
+  fields: [...fields, ...common],
+});
+
+const templates = [
+  block('hero', 'Hero: full-width photo', [
+    image('image', 'Photo'), str('imageAlt', 'Photo description'), str('kicker', 'Line above the heading'),
+    str('line1', 'Heading, line 1'), str('line2', 'Heading, line 2 (accent color)'), str('line3', 'Heading, line 3'),
+    text('intro', 'Introduction'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
+    str('scrollLabel', 'Scroll link label'), href('scrollHref', 'Scroll link'), strings('foot', 'Bottom-right list'),
+    { type: 'boolean', name: 'scrim', label: 'Dark band behind the text', description: 'Turn on for bright photos, so the text stays easy to read.' },
+  ], { ctaHref: '#quote' }),
+  block('about', 'About and services', [
+    str('label', 'Small heading'), ...heading(), text('lede', 'Introduction'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
+    str('caption', 'Photo caption'),
+    items('services', 'Services', 'title', [str('id', 'Link name', 'Links such as "#patios" jump to this row.'), str('title', 'Title'), text('description', 'Description')]),
+    text('details', 'Closing note'),
+  ]),
+  block('showcase', 'Design gallery (three photos)', [
+    str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'),
+    items('cards', 'Gallery items', 'name', [
+      { type: 'string', name: 'layout', label: 'Position', description: 'The layout fits one of each.', options: ['pool', 'patio', 'kitchen'] },
+      str('name', 'Title'), str('category', 'Tags'), str('detail', 'Caption'), image('image', 'Photo'), str('alt', 'Photo description'),
+    ]),
+  ]),
+  block('reviews', 'Reviews', [
+    str('label', 'Small heading'), str('googleTitle', 'Google badge title'), str('googleText', 'Google badge text'),
+    items('reviews', 'Reviews', 'name', [str('name', 'Client name'), str('detail', 'Detail line'), text('quote', 'Review')]),
+    strings('assurances', 'Promises under the reviews'),
+  ]),
+  block('process', 'Process steps', [
+    str('label', 'Small heading'), ...heading(),
+    items('steps', 'Steps', 'title', [str('title', 'Title'), text('description', 'Description'), str('meta', 'Tags'), image('image', 'Photo'), str('alt', 'Photo description')]),
+  ]),
+  block('financing', 'Financing offer', [
+    str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'), str('partnersLabel', 'Partners heading'), strings('partners', 'Partners'),
+    str('offerLabel', 'Offer small heading'), str('offerLine1', 'Offer heading, line 1'), str('offerLine2', 'Offer heading, line 2'),
+    strings('possibilities', 'What it can cover'), text('note', 'Note'), str('discountTitle', 'Discount heading'), text('discountText', 'Discount text'),
+    str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { ctaHref: '#quote' }),
+  block('quoteForm', 'Quote form', [], { anchor: 'quote' }),
+  block('pageHero', 'Page opening: title and photo', [
+    str('homeLabel', 'Breadcrumb home label'), str('eyebrow', 'Breadcrumb page name'), str('title', 'Heading, first line'),
+    str('italicTitle', 'Heading, second line (accent color)'), text('introduction', 'Introduction'), str('ctaLabel', 'Button label'), href('ctaHref', 'Button link'),
+    image('image', 'Photo'), str('imageAlt', 'Photo description'), str('scrollLabel', 'Scroll link label'), href('scrollHref', 'Scroll link'),
+  ], { homeLabel: 'Home', ctaHref: '#quote', scrollHref: '#overview' }),
+  block('overview', 'Overview with checklist', [str('label', 'Small heading'), str('title', 'Heading'), text('lede', 'Text'), strings('checklist', 'Checklist')], { anchor: 'overview' }),
+  block('feature', 'Photo and text band', [
+    image('image', 'Photo'), str('imageAlt', 'Photo description'), str('eyebrow', 'Small heading'), str('title', 'Heading'), text('text', 'Text'),
+    str('linkLabel', 'Link label'), href('linkHref', 'Link'),
+  ], { linkHref: '#quote' }),
+  block('collection', 'Photo collection', [
+    str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'), str('linkLabel', 'Link label (end of the introduction)'), href('linkHref', 'Link'),
+    items('photos', 'Gallery items', 'title', [
+      {
+        type: 'string', name: 'layout', label: 'Position',
+        description: 'How the photo sits in the grid. Alternate wide or feature photos with pairs of portrait, portrait-offset, landscape-left and landscape-right photos to keep the rhythm.',
+        options: ['feature', 'wide', 'portrait', 'portrait-offset', 'landscape-left', 'landscape-right'],
+      },
+      str('title', 'Title'), str('category', 'Tags'), text('description', 'Description'), image('image', 'Photo'), str('alt', 'Photo description'),
+      str('position', 'Crop focus (optional)', 'Where the crop is anchored, for example "center top" or "60% center". Defaults to the center.'),
+    ]),
+  ]),
+  block('callToAction', 'Call to action band', [
+    str('label', 'Small heading'), ...heading(), text('text', 'Text'), str('button', 'Button label'), href('buttonHref', 'Button link'),
+    str('callLabel', 'Phone label', 'Shown before the phone number from Site settings, with the first row of the footer hours. Leave empty to hide the phone line.'),
+  ], { buttonHref: '/#quote' }),
+  block('heading', 'Page title (journal style)', [str('label', 'Small heading'), ...heading(), text('intro', 'Introduction')]),
+  block('postList', 'Journal article list', [str('readLabel', 'Article link label')], { readLabel: 'Read the article' }),
 ];
 
 export default defineConfig({
@@ -68,6 +135,7 @@ export default defineConfig({
       singleton('settings', 'Site settings', [
         str('name', 'Business name'),
         image('logo', 'Logo'),
+        image('ogImage', 'Link preview image', 'The photo shown when a page is shared in a message or on social media.'),
         str('phone', 'Phone (as shown)'),
         str('phoneHref', 'Phone link', 'The tel: link, for example tel:+18323044092.'),
         links('nav', 'Main menu', 'Header and mobile menu.'),
@@ -107,139 +175,38 @@ export default defineConfig({
         ]),
       ]),
 
-      singleton('home', 'Home page', [
-        str('seoTitle', 'Search title'),
-        text('seoDescription', 'Search description'),
-        group('hero', 'Hero', [
-          image('image', 'Photo'),
-          str('imageAlt', 'Photo description'),
-          str('kicker', 'Line above the heading'),
-          str('line1', 'Heading, line 1'),
-          str('line2', 'Heading, line 2 (accent color)'),
-          str('line3', 'Heading, line 3'),
-          text('intro', 'Introduction'),
-          str('cta', 'Button label'),
-          str('scrollLabel', 'Scroll link label'),
-          strings('foot', 'Bottom-right list'),
-        ]),
-        group('studio', 'About and services', [
-          str('label', 'Small heading'),
-          ...heading(),
-          text('lede', 'Introduction'),
-          image('image', 'Photo'),
-          str('imageAlt', 'Photo description'),
-          str('caption', 'Photo caption'),
-          items('services', 'Services', 'title', [
-            str('id', 'Link name', 'Menu links such as "#patios" jump to this. Change it only together with the menu.'),
-            str('title', 'Title'),
-            text('description', 'Description'),
-          ]),
-          text('details', 'Closing note'),
-        ]),
-        group('projects', 'Design gallery', [
-          str('label', 'Small heading'),
-          ...heading(),
-          text('intro', 'Introduction'),
-          items('items', 'Gallery items', 'name', [
-            { type: 'string', name: 'layout', label: 'Position', description: 'The gallery is laid out for one of each.', options: ['pool', 'patio', 'kitchen'] },
-            str('name', 'Title'),
-            str('category', 'Tags'),
-            str('detail', 'Caption'),
-            image('image', 'Photo'),
-            str('alt', 'Photo description'),
-          ]),
-        ]),
-        group('testimonial', 'Reviews', [
-          str('label', 'Small heading'),
-          str('googleTitle', 'Google badge title'),
-          str('googleText', 'Google badge text'),
-          items('reviews', 'Reviews', 'name', [str('name', 'Client name'), str('detail', 'Detail line'), text('quote', 'Review')]),
-          strings('assurances', 'Promises under the reviews'),
-        ]),
-        group('process', 'Process', [
-          str('label', 'Small heading'),
-          ...heading(),
-          items('steps', 'Steps', 'title', [
-            str('title', 'Title'),
-            text('description', 'Description'),
-            str('meta', 'Tags'),
-            image('image', 'Photo'),
-            str('alt', 'Photo description'),
-          ]),
-        ]),
-        group('investment', 'Financing', [
-          str('label', 'Small heading'),
-          ...heading(),
-          text('intro', 'Introduction'),
-          str('partnersLabel', 'Partners heading'),
-          strings('partners', 'Partners'),
-          str('offerLabel', 'Offer small heading'),
-          str('offerLine1', 'Offer heading, line 1'),
-          str('offerLine2', 'Offer heading, line 2'),
-          strings('possibilities', 'What it can cover'),
-          text('note', 'Note'),
-          str('discountTitle', 'Discount heading'),
-          text('discountText', 'Discount text'),
-          str('cta', 'Button label'),
-        ]),
-      ]),
+      {
+        name: 'pages',
+        label: 'Pages',
+        path: 'content/pages',
+        format: 'json',
+        ui: {
+          // Pages are flat files: the file name is the address, so no folders.
+          allowedActions: { createNestedFolder: false },
+          filename: { slugify: slugifyFrom('seoTitle') },
+          defaultItem: () => ({ seoTitle: 'New page', blocks: [] }),
+        },
+        fields: [
+          { ...str('seoTitle', 'Page title', 'Also the title in search results and browser tabs. The file name becomes the page address: "patios" is /patios. The page named "home" is the front page: never delete it, or the site stops building.'), isTitle: true, required: true },
+          text('seoDescription', 'Search description'),
+          {
+            type: 'object',
+            name: 'blocks',
+            label: 'Sections',
+            description: 'Drag to reorder. Add, hide or delete sections to change the page. A page opens best with a hero, a page opening or a page title.',
+            list: true,
+            ui: { visualSelector: false },
+            templates,
+          },
+        ],
+      },
 
-      singleton('pools', 'Pools page', innerPageFields),
-      singleton('patios', 'Patios page', innerPageFields),
-      singleton('kitchens', 'Outdoor kitchens page', innerPageFields),
-      singleton('financing', 'Financing page', innerPageFields),
-
-      singleton('gallery', 'Gallery page', [
-        str('seoTitle', 'Search title'),
-        text('seoDescription', 'Search description'),
-        group('hero', 'Top of the page', [
-          image('image', 'Photo'),
-          str('imageAlt', 'Photo description'),
-        ]),
-        group('collection', 'Collection', [
-          str('label', 'Small heading'),
-          ...heading(),
-          text('intro', 'Introduction'),
-          str('linkLabel', 'Link label (end of the introduction)'),
-          str('linkHref', 'Link', '"#section" jumps to a section of the home page; "/page" opens another page.'),
-          items('items', 'Gallery items', 'title', [
-            {
-              type: 'string',
-              name: 'layout',
-              label: 'Position',
-              description: 'How the photo sits in the grid. Alternate wide or feature photos with pairs of portrait, portrait-offset, landscape-left and landscape-right photos to keep the rhythm.',
-              options: ['feature', 'wide', 'portrait', 'portrait-offset', 'landscape-left', 'landscape-right'],
-            },
-            str('title', 'Title'),
-            str('category', 'Tags'),
-            text('description', 'Description'),
-            image('image', 'Photo'),
-            str('alt', 'Photo description'),
-            str('position', 'Crop focus (optional)', 'Where the crop is anchored, for example "center top" or "60% center". Defaults to the center.'),
-          ]),
-        ]),
-        group('cta', 'Closing call to action', [
-          str('label', 'Small heading'),
-          ...heading(),
-          text('text', 'Text'),
-          str('button', 'Button label'),
-          str('callLabel', 'Phone label', 'Shown before the phone number from Site settings, with the first row of the footer hours.'),
-        ]),
-      ]),
-
-      singleton('blog', 'Journal page', [
-        str('seoTitle', 'Search title'),
-        text('seoDescription', 'Search description'),
-        str('label', 'Small heading'),
-        str('title', 'Heading, first line'),
-        str('titleEm', 'Heading, second line (accent color)'),
-        text('intro', 'Introduction'),
-        str('readLabel', 'Article link label'),
-        str('backLabel', 'Back link label (on articles)'),
-        str('tocLabel', 'Contents heading (on articles)'),
-        str('ctaPrompt', 'Closing question (on articles)'),
-        str('ctaLink', 'Closing link label (on articles)'),
-        group('author', 'Author box (on articles)', [
+      singleton('blog', 'Journal article text', [
+        str('backLabel', 'Back link label'),
+        str('tocLabel', 'Contents heading'),
+        str('ctaPrompt', 'Closing question'),
+        str('ctaLink', 'Closing link label'),
+        group('author', 'Author box', [
           str('label', 'Small heading'),
           str('name', 'Name'),
           str('role', 'Role'),
@@ -253,12 +220,7 @@ export default defineConfig({
         label: 'Journal articles',
         path: 'content/posts',
         format: 'json',
-        ui: {
-          filename: {
-            slugify: (values: Record<string, unknown>) =>
-              String(values?.title ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80),
-          },
-        },
+        ui: { filename: { slugify: slugifyFrom('title') } },
         fields: [
           { type: 'datetime', name: 'date', label: 'Date', required: true, description: 'Only used to put the newest article first.' },
           str('category', 'Category'),

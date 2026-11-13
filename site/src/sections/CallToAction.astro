@@ -1,0 +1,31 @@
+---
+import Icon from '../components/Icon.astro';
+import { settings } from '../lib/content';
+
+interface Props {
+  label?: string; title?: string; titleEm?: string; text?: string; button?: string; buttonHref?: string; callLabel?: string;
+  anchor?: string; headingId: string;
+}
+const { label = '', title = '', titleEm = '', text = '', button = '', buttonHref = '/#quote', callLabel = '', anchor, headingId } = Astro.props;
+const { phone, phoneHref } = settings;
+const hours = settings.footer.hours[0];
+---
+<section class="gallery-cta" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell gallery-cta__inner">
+    <p class="section-label section-label--light">{label}</p>
+    <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
+    <div class="gallery-cta__action">
+      <p>{text}</p>
+      <div class="gallery-cta__buttons">
+        {button && (
+          <a class="button button--light" href={buttonHref}>
+            <span class="button__label">{button}</span>
+            <span class="button__wash" aria-hidden="true"></span>
+            <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+          </a>
+        )}
+        {callLabel && <p class="gallery-cta__call">{callLabel} <a href={phoneHref}>{phone}</a>{hours && <span>{hours.days} {hours.time}</span>}</p>}
+      </div>
+    </div>
+  </div>
+</section>

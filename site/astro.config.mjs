@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
+import { redirects } from './src/lib/redirects.mjs';
 
 try {
   process.loadEnvFile();
@@ -18,12 +19,7 @@ export default defineConfig({
   },
   output: 'static',
   // Old page URLs that now live on another page or on the home page.
-  redirects: {
-    '/custom-pools': '/pools',
-    '/about-us': '/#about',
-    '/custom-patios': '/patios',
-    '/contact': '/#quote',
-  },
+  redirects,
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },
   devToolbar: { enabled: false },

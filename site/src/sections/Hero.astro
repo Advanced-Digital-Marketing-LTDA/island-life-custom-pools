@@ -1,65 +1,77 @@
 ---
 import Icon from '../components/Icon.astro';
-import { home, escapeHtml } from '../lib/content';
+import { escapeHtml } from '../lib/content';
 
-interface Props { image?: string; imageAlt?: string; quoteHref?: string; scrollHref?: string }
-const { hero } = home;
-const { image = hero.image, imageAlt = hero.imageAlt, quoteHref = '#quote', scrollHref = '#about' } = Astro.props;
+interface Props {
+  image?: string; imageAlt?: string; kicker?: string; line1?: string; line2?: string; line3?: string; intro?: string;
+  cta?: string; ctaHref?: string; scrollLabel?: string; scrollHref?: string; foot?: string[]; scrim?: boolean;
+  anchor?: string; headingId: string;
+}
+const {
+  image = '', imageAlt = '', kicker = '', line1 = '', line2 = '', line3 = '', intro = '', cta = '', ctaHref = '#quote',
+  scrollLabel = '', scrollHref = '', foot = [], scrim = false, anchor, headingId,
+} = Astro.props;
 ---
-<section class="hero" id="top" aria-labelledby="hero-title">
-  <img class="hero__image" src={image} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
+<section class:list={['hero', { 'hero--scrim': scrim }]} id={anchor || undefined} aria-labelledby={headingId}>
+  {image && <img class="hero__image" src={image} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />}
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="hero__content page-shell" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
-    <p class="hero__kicker">{hero.kicker}</p>
-    <h1 id="hero-title" class="hero__title">
-      <span>{hero.line1}</span>{' '}
-      <span><em>{hero.line2}</em></span>{' '}
-      <span>{hero.line3}</span>
+    <p class="hero__kicker">{kicker}</p>
+    <h1 id={headingId} class="hero__title">
+      <span>{line1}</span>{' '}
+      <span><em>{line2}</em></span>{' '}
+      <span>{line3}</span>
     </h1>
     <div class="hero__intro">
-      <p>{hero.intro}</p>
-      <a class="button button--light" href={quoteHref}>
-        <span class="button__label">{hero.cta}</span>
+      <p>{intro}</p>
+      <a class="button button--light" href={ctaHref}>
+        <span class="button__label">{cta}</span>
         <span class="button__wash" aria-hidden="true"></span>
         <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
       </a>
     </div>
   </div>
   <div class="hero__foot page-shell">
-    <a class="hero__scroll" href={scrollHref}>
-      <Icon name="arrow-down" size={17} strokeWidth={1.5} />
-      <span>{hero.scrollLabel}</span>
-    </a>
-    <p set:html={hero.foot.map(escapeHtml).join(' <span>·</span> ')} />
+    {scrollHref && (
+      <a class="hero__scroll" href={scrollHref}>
+        <Icon name="arrow-down" size={17} strokeWidth={1.5} />
+        <span>{scrollLabel}</span>
+      </a>
+    )}
+    <p set:html={foot.map(escapeHtml).join(' <span>·</span> ')} />
   </div>
 </section>
 
 <script>
-  // Parallax as the React site had it (framer-motion useScroll): progress runs from 0 when the hero's top
+  // Parallax as the React site had it (framer-motion useScroll): progress runs from 0 when a hero's top
   // meets the viewport top to 1 when its bottom does, and drives four linear ranges.
   // framer fades the content with a native scroll timeline wherever ScrollTimeline exists, and that timeline
   // starts below the page's scroll-padding-top (76px), so the fade runs that much ahead of the transforms.
-  const fadeInset = 'ScrollTimeline' in window ? parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0 : 0;
-  const hero = document.querySelector<HTMLElement>('.hero')!;
-  const image = hero.querySelector<HTMLElement>('.hero__image')!;
-  const content = hero.querySelector<HTMLElement>('.hero__content')!;
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const clamp = (n: number) => Math.min(Math.max(n, 0), 1);
-  const lerp = (progress: number, from: number, to: number) => from + (to - from) * progress;
+  const heroes = [...document.querySelectorAll<HTMLElement>('.hero')].map((hero) => ({
+    hero, image: hero.querySelector<HTMLElement>('.hero__image'), content: hero.querySelector<HTMLElement>('.hero__content')!,
+  }));
+  if (heroes.length) {
+    const fadeInset = 'ScrollTimeline' in window ? parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0 : 0;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const clamp = (n: number) => Math.min(Math.max(n, 0), 1);
+    const lerp = (progress: number, from: number, to: number) => from + (to - from) * progress;
 
-  let frame = 0;
-  const update = () => {
-    frame = 0;
-    if (reducedMotion.matches) return;
-    const { top, height } = hero.getBoundingClientRect();
-    const progress = clamp(-top / height);
-    image.style.transform = `translate3d(0px, ${lerp(progress, 0, 16)}%, 0px) scale(${lerp(progress, 1.04, 1.09)})`;
-    content.style.transform = `translate3d(0px, ${lerp(progress, 0, -90)}px, 0px)`;
-    content.style.opacity = String(1 - clamp((fadeInset - top) / height / 0.82));
-  };
-  const request = () => { frame ||= requestAnimationFrame(update); };
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (reducedMotion.matches) return;
+      for (const { hero, image, content } of heroes) {
+        const { top, height } = hero.getBoundingClientRect();
+        const progress = clamp(-top / height);
+        if (image) image.style.transform = `translate3d(0px, ${lerp(progress, 0, 16)}%, 0px) scale(${lerp(progress, 1.04, 1.09)})`;
+        content.style.transform = `translate3d(0px, ${lerp(progress, 0, -90)}px, 0px)`;
+        content.style.opacity = String(1 - clamp((fadeInset - top) / height / 0.82));
+      }
+    };
+    const request = () => { frame ||= requestAnimationFrame(update); };
 
-  update();
-  window.addEventListener('scroll', request, { passive: true });
-  window.addEventListener('resize', request);
+    update();
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+  }
 </script>

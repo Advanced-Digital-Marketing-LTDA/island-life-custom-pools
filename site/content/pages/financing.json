@@ -1,0 +1,47 @@
+{
+  "seoTitle": "Financing | Island Life Custom Pools",
+  "seoDescription": "Ask about financing through HFS home improvement loans for your custom pool, patio, or outdoor kitchen in Tomball, Cypress, The Woodlands, and Houston.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Financing",
+      "title": "Your backyard.",
+      "italicTitle": "Within reach.",
+      "introduction": "Ask about financing through HFS home improvement loans. We can discuss the available options as we plan a space that fits your goals.",
+      "ctaLabel": "Ask about financing",
+      "ctaHref": "#quote",
+      "image": "/images/backyard.webp",
+      "imageAlt": "Backyard with a pool, raised spa, covered patio, fire feature, and recreation space",
+      "scrollLabel": "See how it works",
+      "scrollHref": "#overview"
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Flexible ways to begin",
+      "title": "Plan first, then the options.",
+      "lede": "Financing is available through HFS home improvement loans. We can discuss the available options as we plan your space, and your free design consultation is included with your quote request.",
+      "checklist": [
+        "Custom pools, spas, and water features",
+        "Patios, covers, and outdoor kitchens",
+        "Fire pits, fireplaces, and recreation",
+        "Equipment, finishes, and the details between"
+      ]
+    },
+    {
+      "_template": "feature",
+      "image": "/images/gallery-spa-at-dusk.webp",
+      "imageAlt": "Backyard spa, umbrella, and fire pit on a paved terrace at dusk",
+      "eyebrow": "For those who serve",
+      "title": "Thank you for your service.",
+      "text": "Military personnel, first responders, and teachers receive a generous discount. Ask about it when you request your quote.",
+      "linkLabel": "Ask about financing",
+      "linkHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

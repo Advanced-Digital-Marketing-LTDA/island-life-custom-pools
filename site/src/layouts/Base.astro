@@ -2,12 +2,12 @@
 import '../styles/index.css';
 import '../styles/app.css';
 import SmoothScroll from '../components/SmoothScroll.astro';
-import { home, settings } from '../lib/content';
+import { settings } from '../lib/content';
 
-interface Props { title: string; description: string; preloadHero?: boolean; noindex?: boolean }
-const { title, description, preloadHero = false, noindex = false } = Astro.props;
+interface Props { title: string; description: string; preload?: string; noindex?: boolean }
+const { title, description, preload, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL(home.hero.image, Astro.site).href;
+const ogImage = new URL(settings.ogImage, Astro.site).href;
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
@@ -32,7 +32,7 @@ const ld = {
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {preloadHero && <link rel="preload" as="image" href={home.hero.image} fetchpriority="high" />}
+    {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
     <link rel="preload" as="font" href="/fonts/michroma-regular.woff2" type="font/woff2" crossorigin />
     <link rel="preload" as="font" href="/fonts/montserrat-regular.woff2" type="font/woff2" crossorigin />
     <link rel="canonical" href={canonical} />
