@@ -3,24 +3,18 @@
   "seoDescription": "Explore custom pool, spa, patio, outdoor kitchen, and backyard design possibilities from Island Life Custom Pools.",
   "blocks": [
     {
-      "_template": "hero",
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Gallery",
+      "title": "Island Life Custom Pools",
+      "italicTitle": "Gallery",
+      "introduction": "See how water, shade, fire, and food can come together in one beautifully coordinated backyard.",
+      "ctaLabel": "Start with a free design consult",
+      "ctaHref": "/#quote",
       "image": "/images/gallery-hero.webp",
       "imageAlt": "Resort-style pool, spa, and outdoor kitchen at sunset",
-      "kicker": "Houston pool & patio builders · Tomball · Cypress · The Woodlands",
-      "line1": "Bring your",
-      "line2": "vacation",
-      "line3": "dreams home.",
-      "intro": "Custom pools, patios, and outdoor kitchens—visualized in 3D and built around the way you want to live.",
-      "cta": "Get my free quote",
-      "ctaHref": "/#quote",
-      "scrollHref": "#gallery-collection",
-      "scrim": true,
-      "scrollLabel": "Free design consult included",
-      "foot": [
-        "Pools",
-        "Patios",
-        "Outdoor kitchens"
-      ]
+      "scrollLabel": "Explore the collection",
+      "scrollHref": "#gallery-collection"
     },
     {
       "_template": "collection",
