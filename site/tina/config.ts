@@ -132,8 +132,8 @@ const templates = [
     str('label', 'Small heading'), ...heading(), text('text', 'Text'), str('button', 'Button label'), href('buttonHref', 'Button link'),
     str('callLabel', 'Phone label', 'Shown before the phone number from Site settings, with the first row of the footer hours. Leave empty to hide the phone line.'),
   ], { buttonHref: '/#quote' }),
-  block('heading', 'Page title (journal style)', [str('label', 'Small heading'), ...heading(), text('intro', 'Introduction')]),
-  block('postList', 'Journal article list', [str('readLabel', 'Article link label')], { readLabel: 'Read the article' }),
+  block('heading', 'Page title (blog style)', [str('label', 'Small heading'), ...heading(), text('intro', 'Introduction')]),
+  block('postList', 'Blog article list', [str('readLabel', 'Article link label')], { readLabel: 'Read the article' }),
   block('panorama', 'Heading, wide photo and text', [
     ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
   ], { ctaHref: '#quote' }),
@@ -238,7 +238,7 @@ export default defineConfig({
         ],
       },
 
-      singleton('blog', 'Journal article text', [
+      singleton('blog', 'Blog article text', [
         str('backLabel', 'Back link label'),
         str('tocLabel', 'Contents heading'),
         str('ctaPrompt', 'Closing question'),
@@ -254,7 +254,7 @@ export default defineConfig({
 
       {
         name: 'posts',
-        label: 'Journal articles',
+        label: 'Blog articles',
         path: 'content/posts',
         format: 'json',
         ui: { filename: { slugify: slugifyFrom('title') } },

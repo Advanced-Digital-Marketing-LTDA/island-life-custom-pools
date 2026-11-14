@@ -22,7 +22,7 @@ The site is a port of the React/Vite design in `Kimi_Agent_Island Life Custom Po
 
 - `content/pages/*.json`: **every page**. The file name is the address (`patios.json` is `/patios`, `home.json` is the front page) and the page is a list of sections ("blocks"). Editors reorder, add, hide and delete sections in Tina; new pages are built from the same sections.
 - `content/settings.json`: business name, logo, share image, phone, menu, footer, search/social links and the quote form copy and project choices (shown on every page).
-- `content/posts/*.json`: one file per journal article; the file name is the URL (`/blog/<file name>`), newest `date` first. `content/blog.json`: the text shared by every article (back link, contents heading, author box).
+- `content/posts/*.json`: one file per blog article; the file name is the URL (`/blog/<file name>`), newest `date` first. `content/blog.json`: the text shared by every article (back link, contents heading, author box).
 - `tina/config.ts`: the editor schema. Every key in these files is a Tina field, so saving in Tina does not drop anything. After changing the schema run `npx tinacms build --local --skip-cloud-checks` to refresh `tina/tina-lock.json` and commit it.
 - Photos are chosen in Tina from `public/images/`.
 
