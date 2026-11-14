@@ -196,6 +196,7 @@ export default defineConfig({
         image('ogImage', 'Link preview image', 'The photo shown when a page is shared in a message or on social media.'),
         str('phone', 'Phone (as shown)'),
         str('phoneHref', 'Phone link', 'The tel: link, for example tel:+18323044092.'),
+        group('address', 'Business address', [str('street', 'Street'), str('city', 'City'), str('region', 'State'), str('postalCode', 'ZIP code'), num('latitude', 'Latitude'), num('longitude', 'Longitude')]),
         str('ownerName', 'Owner name', 'Named in the search-engine description of the business.'),
         str('ownerRole', 'Owner role'),
         str('foundingDate', 'Year the business started', 'For example "2016".'),

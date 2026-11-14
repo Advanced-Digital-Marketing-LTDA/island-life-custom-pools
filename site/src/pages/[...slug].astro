@@ -36,6 +36,18 @@ if (service) extraLd.push({
   provider: { '@id': `${Astro.site?.href}#business` },
   areaServed: settings.footer.areas.map((area) => ({ '@type': 'City', name: `${area.name}, TX` })),
 });
+// A city page describes the pool design and construction service for that city.
+const city = settings.footer.areas.find((area) => area.href === `/${page.slug}/`);
+if (city) extraLd.push({
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: `Custom pool builders in ${city.name}`, serviceType: services[0].name, url: pageUrl, description: page.seoDescription,
+  provider: { '@id': `${Astro.site?.href}#business` },
+  areaServed: { '@type': 'City', name: `${city.name}, TX` },
+});
+if (!page.slug) extraLd.push({
+  '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${Astro.site?.href}#website`,
+  url: Astro.site?.href, name: settings.name, publisher: { '@id': `${Astro.site?.href}#business` },
+});
 if (faqs.length) extraLd.push({
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faqs.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),

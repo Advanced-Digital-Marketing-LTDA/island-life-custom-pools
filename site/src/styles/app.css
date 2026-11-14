@@ -1022,3 +1022,8 @@
   .faq--wide .faq__list { columns: 2; column-gap: 72px; border-top: 0; }
   .faq--wide .faq__item { break-inside: avoid; border-top: 1px solid var(--primitive-line); border-bottom: 0; }
 }
+
+/* The business address in the footer */
+.footer__address { margin-top: 20px; font-size: var(--type-detail); font-style: normal; line-height: 1.7; }
+.footer__address a { text-underline-offset: 4px; }
+.footer__address a:hover, .footer__address a:focus-visible { text-decoration: underline; }

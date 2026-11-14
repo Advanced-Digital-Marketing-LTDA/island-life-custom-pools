@@ -79,5 +79,9 @@ export const linkTo = (url: URL, target: string) => (target.startsWith('#') ? `$
 
 export const interests: string[] = settings.quote.interests;
 
+// A Google Maps link for the business address, for the footer and the business schema.
+const place = settings.address;
+export const mapUrl = place ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.street}, ${place.city}, ${place.region} ${place.postalCode}`)}` : '';
+
 export const escapeHtml = (text: string) =>
   text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

@@ -3,6 +3,14 @@
   "logo": "/images/island-life-logo.png",
   "phone": "(832) 304-4092",
   "phoneHref": "tel:+18323044092",
+  "address": {
+    "street": "20102 Stone Lake Cir",
+    "city": "Tomball",
+    "region": "TX",
+    "postalCode": "77377",
+    "latitude": 30.057761,
+    "longitude": -95.728349
+  },
   "ownerName": "Justin Hall",
   "ownerRole": "Owner",
   "foundingDate": "2016",
@@ -158,6 +166,10 @@
     {
       "label": "Houzz",
       "href": "https://www.houzz.com/professionals/swimming-pool-builders/island-life-custom-pools-pfvwus-pf~347442001"
+    },
+    {
+      "label": "Google Business Profile",
+      "href": "https://www.google.com/search?kgmid=/g/11fzrrtxfd"
     },
     {
       "label": "Leave a Google review",
