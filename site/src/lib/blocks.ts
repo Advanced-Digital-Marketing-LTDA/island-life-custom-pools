@@ -3,7 +3,7 @@
 export const blockNames = [
   'hero', 'about', 'showcase', 'reviews', 'process', 'financing', 'quoteForm',
   'pageHero', 'overview', 'feature', 'collection', 'callToAction', 'heading', 'postList',
-  'panorama', 'spotlight', 'trust', 'splitHero', 'estimator', 'lenders',
+  'panorama', 'spotlight', 'trust', 'splitHero', 'estimator', 'lenders', 'faq', 'prose',
 ] as const;
 export type BlockName = (typeof blockNames)[number];
 

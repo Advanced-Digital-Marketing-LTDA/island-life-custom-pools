@@ -1,5 +1,6 @@
 ---
 import Icon from '../components/Icon.astro';
+import CallLink from '../components/CallLink.astro';
 import Lines from '../components/Lines.astro';
 
 interface Props {
@@ -18,11 +19,14 @@ const {
       <h1 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h1>
       <p>{text}</p>
       {buttonLabel && (
-        <a class="button button--dark" href={buttonHref}>
-          <span class="button__label">{buttonLabel}</span>
-          <span class="button__wash" aria-hidden="true"></span>
-          <Icon name="arrow-down" size={18} strokeWidth={1.7} />
-        </a>
+        <div class="hero-actions">
+          <a class="button button--dark" href={buttonHref}>
+            <span class="button__label">{buttonLabel}</span>
+            <span class="button__wash" aria-hidden="true"></span>
+            <Icon name="arrow-down" size={18} strokeWidth={1.7} />
+          </a>
+          <CallLink />
+        </div>
       )}
     </div>
     <figure class="financing-hero__visual">

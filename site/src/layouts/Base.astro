@@ -2,20 +2,35 @@
 import '../styles/index.css';
 import '../styles/app.css';
 import SmoothScroll from '../components/SmoothScroll.astro';
-import { settings } from '../lib/content';
+import { settings, pages } from '../lib/content';
+import { services } from '../lib/services';
 
-interface Props { title: string; description: string; preload?: string; noindex?: boolean }
-const { title, description, preload, noindex = false } = Astro.props;
+interface Props { title: string; description: string; preload?: string; noindex?: boolean; extraLd?: object[] }
+const { title, description, preload, noindex = false, extraLd = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(settings.ogImage, Astro.site).href;
+// The business description is the same on every page: the home page's.
+const businessDescription = pages.find((page) => page.slug === '')?.seoDescription || description;
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
+  '@id': `${Astro.site?.href}#business`,
   name: settings.name,
   url: Astro.site?.href,
+  logo: new URL(settings.logo, Astro.site).href,
+  image: ogImage,
   telephone: settings.phone,
-  description,
-  areaServed: settings.footer.areas.map((area) => `${area}, TX`),
+  description: businessDescription,
+  alternateName: 'Island Life Pools',
+  areaServed: [{ '@type': 'AdministrativeArea', name: 'Greater Houston, TX' }, ...settings.footer.areas.map((area) => ({ '@type': 'City', name: `${area.name}, TX` }))],
+  ...(settings.ownerName ? { employee: { '@type': 'Person', name: settings.ownerName, jobTitle: settings.ownerRole || 'Owner' } } : {}),
+  ...(settings.foundingDate ? { foundingDate: settings.foundingDate } : {}),
+  ...(settings.awards.length ? { award: settings.awards } : {}),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: services.map((service) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: service.name, url: new URL(`/${service.slug}/`, Astro.site).href } })),
+  },
   sameAs: settings.social.filter((link) => !link.label.toLowerCase().includes('review')).map((link) => link.href),
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '19:00' },
@@ -47,6 +62,7 @@ const ld = {
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    {extraLd.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
     <title>{title}</title>
   </head>
   <body>

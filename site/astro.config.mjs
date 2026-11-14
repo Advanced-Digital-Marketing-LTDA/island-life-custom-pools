@@ -18,7 +18,7 @@ export default defineConfig({
     allowedDomains: [{ protocol: site.protocol.slice(0, -1), hostname: site.hostname, port: site.port || undefined }],
   },
   output: 'static',
-  // Old page URLs that now live on another page or on the home page.
+  // The old blog addresses now live under /blog/.
   redirects,
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },

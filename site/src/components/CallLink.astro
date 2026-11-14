@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import { settings } from '../lib/content';
+
+// A plain "call us" link that sits beside a quote button: the phone number and the quote form carry equal weight.
+const { phone, phoneHref } = settings;
+---
+<a class="call-link" href={phoneHref}><Icon name="phone" size={18} strokeWidth={1.6} />Call {phone}</a>

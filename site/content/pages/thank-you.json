@@ -1,0 +1,24 @@
+{
+  "seoTitle": "Thank You | Island Life Custom Pools",
+  "seoDescription": "Thank you for contacting Island Life Custom Pools. We will be in contact with you shortly.",
+  "noindex": true,
+  "blocks": [
+    {
+      "_template": "heading",
+      "label": "Request received",
+      "title": "Thank you for contacting",
+      "titleEm": "Island Life.",
+      "intro": "We will be in contact with you shortly. We look forward to creating your backyard oasis."
+    },
+    {
+      "_template": "callToAction",
+      "label": "While you wait",
+      "title": "Explore",
+      "titleEm": "financing options.",
+      "text": "Estimate a monthly payment for your pool, patio, or outdoor kitchen.",
+      "button": "Financing options",
+      "buttonHref": "/financing/",
+      "callLabel": "Prefer to talk?"
+    }
+  ]
+}

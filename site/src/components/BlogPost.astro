@@ -14,12 +14,12 @@ const words = post.sections.flatMap((section) => [...section.paragraphs.map((par
 const readingTime = Math.max(1, Math.ceil(words / 220));
 ---
 <Base title={post.seoTitle} description={post.seoDescription}>
-  <Header solid />
+  <Header solid hasQuote />
   <main id="top" class="blog-page">
     <article>
       <header class="article-hero">
         <div class="page-shell article-hero__inner">
-          <p class="article-hero__breadcrumb"><a href="/blog"><Icon name="arrow-left" size={17} />{blog.backLabel}</a></p>
+          <p class="article-hero__breadcrumb"><a href="/blog/"><Icon name="arrow-left" size={17} />{blog.backLabel}</a></p>
           <p class="section-label">{post.category} · {readingTime} min read</p>
           <h1>{post.title}</h1>
         </div>
@@ -52,5 +52,5 @@ const readingTime = Math.max(1, Math.ceil(words / 220));
     </section>
     <Estimate />
   </main>
-  <Footer />
+  <Footer hasQuote />
 </Base>

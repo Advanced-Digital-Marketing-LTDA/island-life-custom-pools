@@ -1,0 +1,198 @@
+{
+  "seoTitle": "Custom Pool Design & Construction | Island Life Custom Pools",
+  "seoDescription": "Custom pool and spa design and construction for homes across the Houston area. See your pool in 3D before we build, and request a free design consultation.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Custom pools",
+      "title": "Custom pool design",
+      "italicTitle": "& construction.",
+      "introduction": "Island Life Custom Pools designs and builds custom pools and spas for homes across the Houston area, including Tomball, Cypress, The Woodlands, and Katy, planned around your property and the way you want to live. Your own escape, right outside.",
+      "ctaLabel": "Start with a free design consult",
+      "ctaHref": "#quote",
+      "image": "/images/freeform-pool-cabana.webp",
+      "imageAlt": "Freeform pool with a rock waterfall, a spa, and a cedar cabana",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Designed for your property",
+      "title": "One backyard. One coordinated vision.",
+      "lede": "A custom pool should feel connected to your home, not dropped into the leftover space. We consider the pool, spa, patio, outdoor kitchen, and gathering areas together, then bring the plan to life in a custom 3D model before construction begins.",
+      "checklist": [
+        "Pool and spa forms shaped around your property, routines, and priorities",
+        "Coordinated patios, covers, outdoor kitchens, and fire features",
+        "Dependable Hayward equipment and a clear start-up walkthrough",
+        "A custom 3D model to explore the space before construction"
+      ]
+    },
+    {
+      "_template": "feature",
+      "image": "/images/freeform-pool-bubblers.webp",
+      "imageAlt": "Freeform pool with a stamped-concrete shelf and bubbling jets",
+      "eyebrow": "See it before we build it",
+      "title": "From first conversation to first swim.",
+      "text": "Your free design consult leads into a custom 3D design, followed by excavation, structure, and start-up. Throughout the process, the goal stays simple: a beautiful, coordinated outdoor space and clear communication about what comes next.",
+      "linkLabel": "Request a free design consult",
+      "linkHref": "#quote"
+    },
+    {
+      "_template": "process",
+      "anchor": "process",
+      "label": "Our process",
+      "title": "The build,\nstep by step.",
+      "titleEm": "",
+      "intro": "Every project is custom, so the details change. The sequence stays the same.",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "steps": [
+        {
+          "title": "Free design consultation.",
+          "description": "We talk through your property, your priorities, and the next steps."
+        },
+        {
+          "title": "Custom 3D design.",
+          "description": "We model your pool and outdoor space in 3D, so you can see the design before construction begins."
+        },
+        {
+          "title": "Excavation.",
+          "description": "Construction begins with excavation of your pool site."
+        },
+        {
+          "title": "Structure.",
+          "description": "The pool structure goes in, along with the features planned in your design."
+        },
+        {
+          "title": "Start-up.",
+          "description": "We keep you informed through the build, then walk you through start-up when your pool is ready."
+        }
+      ]
+    },
+    {
+      "_template": "overview",
+      "anchor": "compare-quotes",
+      "label": "Comparing builders",
+      "title": "What to compare when you get pool quotes.",
+      "lede": "Pool quotes are easy to misread when each one covers different work. Ask every builder the same questions and compare the answers side by side. Island Life Custom Pools includes a free design consultation with every quote request, so you can ask yours in person.",
+      "checklist": [
+        "What the price includes and what it leaves out, such as decking, fencing, electrical work, and permits",
+        "Which equipment is included, by brand and model",
+        "Who handles permits and inspections, and what that costs",
+        "How payments are scheduled, and how changes to the plan are priced",
+        "What warranty terms are offered, in writing",
+        "The builder’s license and insurance, and how you can verify them",
+        "Whether you will see a 3D design of your own yard before you commit (we create a custom 3D model before construction begins)"
+      ]
+    },
+    {
+      "_template": "reviews",
+      "label": "Client reviews",
+      "title": "Hear what our clients\nhave to say.",
+      "reviews": [
+        {
+          "name": "Jeff L.",
+          "detail": "Pool construction",
+          "quote": "Having recently moved to a new area, we relied on a friend who highly recommended Island Life Custom Pools. We are so glad that we heeded their advice. Tim exceeded our expectations with the construction of our beautiful pool. He was extremely communicative, detail oriented and surrounded himself with quality subs. In addition, his passion for assisting us with aesthetics was greatly appreciated. In essence, we would highly recommend Tim and his team to create your own slice of paradise."
+        },
+        {
+          "name": "Sam M.",
+          "detail": "On time · On budget",
+          "quote": "We had an amazing experience with Island Life custom pools. Tim and team took amazing care in helping us develop and execute on our vision. We really wanted to build a pool and an outdoor space we could use year round to bring people together. The quality and craftsmanship of the final product exceed our expectations and we came in on time and on budget. I think what sets Tim apart as a builder is his superb communication skills. We were always given a thorough understanding each step of the way from design, to excavation, to the structure and fireplace, all the way to start up! The crews are top notch and all materials feel premium I would highly recommend Island Life Custom Pools."
+        },
+        {
+          "name": "Jasmine H.",
+          "detail": "Pool · Spa · Fire pit",
+          "quote": "We had a wonderful experience using Island Life to build our pool, spa and fire pit. Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way. Even the construction crews were very nice and polite. We are so impressed with how everything turned out. It is so beautiful and we are so happy with it. We highly recommend."
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "trust",
+      "badgeLine1": "Vetted and endorsed",
+      "badgeLine2": "by Google",
+      "title": "Google Guaranteed",
+      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
+      "badgeAlt": "Google Guaranteed Service Provider badge"
+    },
+    {
+      "_template": "faq",
+      "label": "Custom pool questions",
+      "title": "Before you build",
+      "titleEm": "a custom pool.",
+      "questions": [
+        {
+          "question": "What kinds of custom pools do you build?",
+          "answer": "We design pools and spas around your property, your routines, and the look you want, from freeform shapes to clean geometric lines. Features such as raised spas, waterfalls, water blades, fire pits, and fireplaces can be planned in from the start.",
+          "linkLabel": "See pool photos",
+          "linkHref": "/gallery/"
+        },
+        {
+          "question": "What pool features can I add?",
+          "answer": "Features in our projects include rock waterfalls and slides, raised spas, water blades and wall waterfalls, scuppers and bubbler jets, color lighting, and fire pits. Tell us what you picture and we will plan it into your design.",
+          "linkLabel": "See the gallery",
+          "linkHref": "/gallery/"
+        },
+        {
+          "question": "How much does a custom pool cost in Houston?",
+          "answer": "The cost depends on the size and shape of the pool, the features and finishes you choose, the equipment, and what else is built around it. After your free design consultation we provide a quote for your project. To plan a monthly payment first, use our financing estimator.",
+          "linkLabel": "Estimate a monthly payment",
+          "linkHref": "/financing/#payment-estimator"
+        },
+        {
+          "question": "How long does it take to build a pool?",
+          "answer": "The schedule depends on your design, your property, and the features you choose. The build moves through design, excavation, structure, and start-up, and we keep you informed about what is happening and what comes next. We can talk through timing for your project during the consultation."
+        },
+        {
+          "question": "How do I compare pool quotes?",
+          "answer": "Ask each builder the same questions about what the price includes, the equipment, permits, payment schedule, warranty, and license and insurance, so the quotes line up. Our checklist above lists them.",
+          "linkLabel": "See what to compare",
+          "linkHref": "#compare-quotes"
+        },
+        {
+          "question": "Can I see the design before construction starts?",
+          "answer": "Yes. We create a 3D model of your pool and outdoor space, so you can see your vision come to life before construction begins.",
+          "linkLabel": "See the 3D design software in action",
+          "linkHref": "/#gallery"
+        },
+        {
+          "question": "Do you build patio covers with the pool?",
+          "answer": "Yes. A patio cover is an important part of our pool builds, so we design the shade, the seating, and the view together with the pool and spa.",
+          "linkLabel": "See custom patios & covers",
+          "linkHref": "/custom-patios/"
+        },
+        {
+          "question": "Can you build a spa, fire pit, or outdoor kitchen with the pool?",
+          "answer": "Yes. We plan the pool, spa, patio, outdoor kitchen, and fire features together as one backyard, so they fit each other and your home.",
+          "linkLabel": "See outdoor kitchens",
+          "linkHref": "/outdoor-kitchens/"
+        },
+        {
+          "question": "What equipment do you use?",
+          "answer": "We install Hayward pool equipment, and we walk you through start-up when your pool is ready.",
+          "linkLabel": "See Hayward equipment",
+          "linkHref": "/hayward-equipment/"
+        },
+        {
+          "question": "Which cities do you build pools in?",
+          "answer": "We build pools for homes in Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas. Each city has its own page.",
+          "linkLabel": "See pool builders in Houston",
+          "linkHref": "/custom-pool-builders-houston/"
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ const json = (path) => JSON.parse(read(path));
 const escapeHtml = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const { contactMethods } = await import(new URL('src/data/quote.ts', site));
 const { blockNames, defaultAnchors, overlayBlocks } = await import(new URL('src/lib/blocks.ts', site));
+const { redirects } = await import(new URL('src/lib/redirects.mjs', site));
 const settings = json('content/settings.json');
 const { quote: { interests } } = settings;
 
@@ -24,8 +25,9 @@ const pages = readdirSync(new URL('content/pages/', site)).filter((f) => f.endsW
   return { slug, path: slug === 'home' ? '' : slug, ...json(`content/pages/${f}`) };
 });
 assert.ok(pages.some((page) => page.slug === 'home'), 'content/pages/home.json (the front page) is missing');
-const pageHtml = (path) => read(`dist/client/${path ? `${path}/` : ''}index.html`);
-const outputExists = (path) => existsSync(new URL(`dist/client/${path ? `${path}/` : ''}index.html`, site));
+const folder = (path) => path.replace(/^\/+|\/+$/g, '');
+const pageHtml = (path) => read(`dist/client/${folder(path) ? `${folder(path)}/` : ''}index.html`);
+const outputExists = (path) => existsSync(new URL(`dist/client/${folder(path) ? `${folder(path)}/` : ''}index.html`, site));
 
 for (const page of pages) {
   const html = pageHtml(page.path);
@@ -39,7 +41,7 @@ for (const page of pages) {
   assert.match(html, /class="skip-link" href="#top"/, `Missing skip link on ${where}`);
   assert.match(html, /<main id="top">/, `Missing main#top on ${where}`);
   const credit = escapeHtml(settings.footer.credit);
-  assert.ok(html.includes(`<span class="footer__credit"><a href="${settings.footer.creditHref}">${credit}</a></span>`), `Missing footer credit link on ${where}`);
+  assert.ok(html.includes(`<span class="footer__credit"><a href="${settings.footer.creditHref}" target="_blank" rel="noopener">${credit}</a></span>`), `Missing footer credit link on ${where}`);
   assert.ok(!html.includes('footer__wordmark'), `The big footer wordmark should be gone from ${where}`);
 
   // One h1 for each section that carries the page title.
@@ -68,9 +70,48 @@ for (const page of pages) {
   for (const [, href] of html.matchAll(/<a\b[^>]*href="(#[^"]+)"/g)) assert.ok(ids.includes(href.slice(1)), `Dead in-page link ${href} on ${where}`);
   const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, '');
   assert.doesNotMatch(text, /undefined|\[object Object\]|NaN/, `Broken value rendered on ${where}`);
+  // Every external link opens in a new tab and keeps rel="noopener".
+  for (const [tag] of html.matchAll(/<a\b[^>]*href="https?:\/\/[^"]+"[^>]*>/g)) assert.ok(/target="_blank"/.test(tag) && /rel="[^"]*noopener/.test(tag), `External link without target="_blank" rel="noopener" on ${where}: ${tag.slice(0, 120)}`);
+  // Canonical addresses end in a slash, like the old site's. Only a page marked noindex says so.
+  assert.match(html, new RegExp(`<link rel="canonical" href="[^"]+${page.path ? `/${page.path}/` : '/'}"`), `Canonical on ${where} should end in a slash`);
+  assert.equal(/<meta name="robots" content="noindex"/.test(html), !!page.noindex, `noindex is wrong on ${where}`);
+  // The phone number sits in the header, and a page with its own quote form keeps its buttons on that form.
+  assert.ok(html.includes(`class="site-header__phone" href="${settings.phoneHref}"`), `Header phone link missing on ${where}`);
+  if (visible.some((block) => block._template === 'quoteForm')) assert.ok(/class="button button--light site-header__cta" href="#quote"/.test(html), `The header quote button should stay on the page's own form on ${where}`);
+  // Internal links: use the slash form and point at a page that was built.
+  for (const [, href] of html.matchAll(/<a\b[^>]*href="(\/[^"]*)"/g)) {
+    const path = href.split(/[?#]/)[0];
+    if (path === '/' || path.startsWith('//')) continue;
+    if (/\.[a-z0-9]+$/i.test(path)) continue;
+    assert.ok(path.endsWith('/'), `Internal link ${href} on ${where} should end in a slash`);
+    assert.ok(outputExists(path), `Internal link ${href} on ${where} points at a page that was not built`);
+  }
+  // Gallery photos carry their own alt text.
+  for (const block of visible.filter((b) => b._template === 'collection')) for (const photo of block.photos ?? []) assert.ok(html.includes(`alt="${escapeHtml(photo.alt || photo.description || photo.title)}"`), `Photo alt text missing on ${where}: ${photo.title}`);
+  // A page with an FAQ section shows every question and describes the same questions in its structured data.
+  const faqBlocks = visible.filter((block) => block._template === 'faq');
+  if (faqBlocks.length) {
+    const questions = faqBlocks.flatMap((block) => block.questions ?? []);
+    for (const item of questions) assert.ok(html.includes(escapeHtml(item.question)), `FAQ question missing from ${where}: ${item.question}`);
+    assert.equal((html.match(/"@type":"Question"/g) ?? []).length, questions.length, `FAQ structured data and visible questions differ on ${where}`);
+  }
   // A forced line break with no space beside it makes screen readers join the two words.
   for (const [heading] of html.matchAll(/<h[1-3]\b[\s\S]*?<\/h[1-3]>/g)) assert.doesNotMatch(heading, /\S<br>/, `Heading runs words together: ${heading.slice(0, 80)}`);
 }
+
+// Sitemaps keep the addresses of the old site: /sitemap_index.xml (also /sitemap.xml) lists /page-sitemap.xml and /post-sitemap.xml.
+for (const index of ['sitemap_index.xml', 'sitemap.xml']) {
+  const html = read(`dist/client/${index}`);
+  assert.ok(html.includes('/page-sitemap.xml</loc>') && html.includes('/post-sitemap.xml</loc>'), `${index} should list the page and post sitemaps`);
+}
+const pageSitemap = read('dist/client/page-sitemap.xml');
+for (const page of pages) {
+  const loc = `/${page.path ? `${page.path}/` : ''}</loc>`;
+  assert.equal(pageSitemap.includes(loc), !page.noindex, `page-sitemap.xml should ${page.noindex ? 'leave out' : 'list'} /${page.path}`);
+}
+const postSitemap = read('dist/client/post-sitemap.xml');
+for (const f of readdirSync(new URL('content/posts/', site)).filter((name) => name.endsWith('.json'))) assert.ok(postSitemap.includes(`/blog/${f.slice(0, -5)}/</loc>`), `post-sitemap.xml is missing the post ${f}`);
+assert.match(read('dist/client/robots.txt'), /^Sitemap: https?:\/\/.+\/sitemap_index\.xml$/m, 'robots.txt should point to the sitemap');
 
 // Posts, and the 404 page.
 for (const f of readdirSync(new URL('content/posts/', site)).filter((name) => name.endsWith('.json'))) {
@@ -82,13 +123,31 @@ for (const f of readdirSync(new URL('content/posts/', site)).filter((name) => na
 }
 assert.match(read('dist/client/404.html'), /Page not found/);
 
+// Every post is listed on the blog page by itself: adding a file to content/posts is all it takes.
+const postSlugs = readdirSync(new URL('content/posts/', site)).filter((name) => name.endsWith('.json')).map((name) => name.slice(0, -5));
+const blogIndex = pageHtml('blog');
+for (const slug of postSlugs) assert.ok(blogIndex.includes(`href="/blog/${slug}/"`), `The blog page does not list the post ${slug}`);
+assert.equal([...blogIndex.matchAll(/class="blog-card"/g)].length, postSlugs.length, 'The blog page should show one card per post');
+
+// Old addresses go to pages that exist.
+for (const [from, to] of Object.entries(redirects)) assert.ok(outputExists(to), `${from} redirects to ${to}, which is not built`);
+
 // Both menus only link to pages that exist, and the current page marks itself.
 const navTargets = [...settings.nav, ...settings.footer.nav].map((item) => item.href).filter((href) => href.startsWith('/') && !href.startsWith('/#'));
-for (const target of new Set(navTargets)) assert.ok(outputExists(target.slice(1)), `The menu links to ${target}, which is not built`);
+for (const target of new Set(navTargets)) assert.ok(outputExists(target), `The menu links to ${target}, which is not built`);
 const headerTargets = settings.nav.map((item) => item.href);
-for (const page of pages.filter((p) => p.path && headerTargets.includes(`/${p.path}`))) {
-  assert.ok(pageHtml(page.path).includes(`<a href="/${page.path}" aria-current="page">`), `/${page.path} should mark itself current in the menu`);
+for (const page of pages.filter((p) => p.path && headerTargets.includes(`/${p.path}/`))) {
+  assert.ok(pageHtml(page.path).includes(`<a href="/${page.path}/" aria-current="page">`), `/${page.path}/ should mark itself current in the menu`);
 }
+// Every service area in the footer links to its own page.
+for (const area of settings.footer.areas) assert.ok(area.href && outputExists(area.href), `The ${area.name} service area has no built page`);
+
+// The business and each service describe themselves in structured data.
+const frontHtml = pageHtml('');
+assert.ok(frontHtml.includes(`"employee":{"@type":"Person","name":"${settings.ownerName}"`), 'The business schema should name the owner');
+// The home page links to the page of every served city, in its own text.
+for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`>Pool builders in ${escapeHtml(area.name)}</a>`), `The home page should link to its ${area.name} page`);
+for (const slug of ['custom-pools', 'custom-patios', 'outdoor-kitchens']) assert.ok(pageHtml(slug).includes('"@type":"Service"'), `/${slug}/ should describe its Service`);
 
 // The form and the endpoint must agree on field names and choices.
 const formPage = pages.find((page) => (page.blocks ?? []).some((block) => block._template === 'quoteForm' && !block.hidden));
@@ -99,6 +158,9 @@ const endpoint = read('src/pages/api/quote.ts');
 const endpointFields = new Set([...endpoint.matchAll(/\b(?:v|form\.get)\('([^']+)'\)/g)].map((m) => m[1]));
 assert.deepEqual([...formFields].sort(), [...endpointFields].sort(), 'Form fields and /api/quote fields differ');
 assert.deepEqual([...form.matchAll(/<option value="([^"]+)">/g)].map((m) => m[1]), [...interests], 'Interest options differ');
+// A sent request goes to the thank-you page.
+assert.match(form, /data-thanks="([^"]+)"/, 'The quote form should name its thank-you page');
+assert.ok(outputExists(form.match(/data-thanks="([^"]+)"/)[1]), 'The thank-you page of the quote form is not built');
 assert.deepEqual([...form.matchAll(/name="preferredContact" value="([^"]+)"/g)].map((m) => m[1]), [...contactMethods], 'Contact methods differ');
 assert.ok(home.includes(escapeHtml(settings.footer.tagline)), 'settings.json footer text missing from the page');
 

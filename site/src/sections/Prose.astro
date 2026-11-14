@@ -1,0 +1,27 @@
+---
+// Long plain text in titled sections, for pages such as a privacy policy. A line that starts with "- " is a bullet;
+// consecutive bullets form one list. Unlike the faq section it adds no structured data.
+interface Section { title?: string; lines?: string[] }
+interface Props { sections?: Section[]; updated?: string; anchor?: string; headingId: string }
+const { sections = [], updated = '', anchor, headingId } = Astro.props;
+
+type Part = { list: string[] } | { text: string };
+const parts = (lines: string[]) => lines.reduce<Part[]>((all, line) => {
+  const last = all[all.length - 1];
+  if (!line.startsWith('- ')) return [...all, { text: line }];
+  if (last && 'list' in last) last.list.push(line.slice(2));
+  else all.push({ list: [line.slice(2)] });
+  return all;
+}, []);
+---
+<section class="prose-page section" id={anchor || undefined}>
+  <div class="page-shell prose-page__inner">
+    {sections.map((section, index) => (
+      <section class="prose-page__section" aria-labelledby={`${headingId}-${index + 1}`}>
+        <h2 id={`${headingId}-${index + 1}`}>{section.title}</h2>
+        {parts(section.lines ?? []).map((part) => ('list' in part ? <ul>{part.list.map((item) => <li>{item}</li>)}</ul> : <p>{part.text}</p>))}
+      </section>
+    ))}
+    {updated && <p class="prose-page__updated">{updated}</p>}
+  </div>
+</section>

@@ -12,7 +12,7 @@ Astro (static output) served by the Node standalone adapter, with TinaCMS editin
 
 ## Users
 
-Houston-area homeowners (Tomball, Cypress, The Woodlands, Houston) researching a pool builder on a phone or laptop. Two audiences with equal weight: first-pool buyers who need to be walked through the whole process, and backyard upgraders adding a pool, patio cover, outdoor kitchen, or pickleball court to a yard they already use.
+Houston-area homeowners (Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, Jersey Village) researching a pool builder on a phone or laptop. Two audiences with equal weight: first-pool buyers who need to be walked through the whole process, and backyard upgraders adding a pool, patio cover, outdoor kitchen, or pickleball court to a yard they already use.
 
 ## Product Purpose
 
@@ -20,11 +20,11 @@ Island Life Custom Pools designs and builds custom pools, patios, and outdoor ki
 
 ## Positioning
 
-The company models the pool and outdoor space in 3D so the homeowner sees the design before it is built. Owner-led (Tim), Google Guaranteed, with communication clients repeatedly name in reviews.
+The company models the pool and outdoor space in 3D so the homeowner sees the design before it is built. Owner-led (Justin Hall, owner; the client reviews say "Tim", which is kept verbatim), Google Guaranteed, with communication clients repeatedly name in reviews. The company began in 2016 and lists the Best of Tomball Pool Builders Award (2018, 2019, 2020) and Best of Houzz 2020 (Service), as its old About page and Houzz profile do.
 
 ## Operating Context
 
-Free design consult, then 3D design, excavation, structure, start-up. Hours Mon–Fri 8am–7pm, Sat 8am–12pm, Sunday closed. Phones: (832) 304-4092 and (281) 305-8711, both active. Discount for military, first responders, and teachers. Financing through partners. Hayward equipment page, gallery, blog, financing, about, contact pages exist on the current site.
+Free design consult, then 3D design, excavation, structure, start-up. Hours Mon–Fri 8am–7pm, Sat 8am–12pm, Sunday closed. Phones: (832) 304-4092 and (281) 305-8711, both active. Discount for military, first responders, and teachers. Financing through partners. The old site's pages are recreated at the same addresses (see `README.md`): the three service pages, one pool-builders page per served city, Hayward equipment, gallery, blog, financing, about, contact, thank-you and the privacy policy.
 
 ## Capabilities and Constraints
 
@@ -36,7 +36,7 @@ Keep: name "Island Life Custom Pools", logo, "Bring Your Vacation Dreams Home!",
 
 ## Evidence on Hand
 
-Five real client reviews on the homepage (Sam M., Jasmine H., Annette, Dee G., Jeff L.). Google Guaranteed status. A 3D design software video. Eight Instagram posts (patio covers, pickleball, work in progress, night swim, Lake Conroe lakefront, Houston Galleria commercial project). The site imagery is the company’s own project photography, supplied by the owner from its marketing library in November 2026 (file names and camera metadata are not published), plus the hero video. The earlier AI-generated 3D concept images were removed. A photo is only described as what it shows, and 3D design visuals appear only if they are the company’s own and are captioned as visualizations. The set of project photos copied from the old site earlier was removed because their ownership was never confirmed (it remains in git history; `originals/` stays local and untracked). Hayward equipment shots, partner logos, and the Google Guaranteed badge were deliberately left out (third-party assets). Do not fabricate photography, generated pool imagery, ratings, review counts, prices, or timelines.
+Five real client reviews on the homepage (Sam M., Jasmine H., Annette, Dee G., Jeff L.). Google Guaranteed status. A 3D design software video. Eight Instagram posts (patio covers, pickleball, work in progress, night swim, Lake Conroe lakefront, Houston Galleria commercial project). The site imagery is the company’s own project photography, supplied by the owner from its marketing library in November 2026 (file names and camera metadata are not published), plus the hero video. The earlier AI-generated 3D concept images were removed. A photo is only described as what it shows, and 3D design visuals appear only if they are the company’s own and are captioned as visualizations. The set of project photos copied from the old site earlier was removed because their ownership was never confirmed (it remains in git history; `originals/` stays local and untracked). Hayward equipment shots and partner logos were deliberately left out (third-party assets); the Google Guaranteed badge is shown, as the owner wishes. Only Hayward is named as an equipment brand until the owner confirms others. Do not fabricate photography, generated pool imagery, ratings, review counts, prices, or timelines.
 
 ## Product Principles
 

@@ -20,7 +20,7 @@ const { label = '', title = '', titleEm = '', intro = '', lenders = [], anchor, 
           <div>
             <h3>{lender.name}</h3>
             <p>{lender.description}</p>
-            <a class="text-link text-link--light" href={lender.href} target="_blank" rel="noreferrer">
+            <a class="text-link text-link--light" href={lender.href} target="_blank" rel="noopener">
               {lender.label}<Icon name="arrow-up-right" size={18} strokeWidth={1.6} />
               <span class="sr-only"> (opens in a new tab)</span>
             </a>

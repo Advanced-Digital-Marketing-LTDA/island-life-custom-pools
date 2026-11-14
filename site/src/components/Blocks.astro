@@ -21,6 +21,8 @@ import Trust from '../sections/Trust.astro';
 import SplitHero from '../sections/SplitHero.astro';
 import Estimator from '../sections/Estimator.astro';
 import Lenders from '../sections/Lenders.astro';
+import Faq from '../sections/Faq.astro';
+import Prose from '../sections/Prose.astro';
 import { defaultAnchors, type Block, type BlockName } from '../lib/blocks';
 
 interface Props { blocks: Block[] }
@@ -29,7 +31,7 @@ const { blocks } = Astro.props;
 const components: Record<BlockName, any> = {
   hero: Hero, about: Studio, showcase: Projects, reviews: Testimonial, process: Process, financing: Investment, quoteForm: Estimate,
   pageHero: PageHero, overview: Overview, feature: Feature, collection: Collection, callToAction: CallToAction, heading: Heading, postList: PostList,
-  panorama: Panorama, spotlight: Spotlight, trust: Trust, splitHero: SplitHero, estimator: Estimator, lenders: Lenders,
+  panorama: Panorama, spotlight: Spotlight, trust: Trust, splitHero: SplitHero, estimator: Estimator, lenders: Lenders, faq: Faq, prose: Prose,
 };
 ---
 {blocks.map(({ _template, hidden, anchor, ...fields }, index) => {
