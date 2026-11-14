@@ -1,13 +1,13 @@
 ---
 import Icon from '../components/Icon.astro';
 
-interface Props { badgeLine1?: string; badgeLine2?: string; title?: string; text?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string }
-const { badgeLine1 = '', badgeLine2 = '', title = '', text = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+interface Props { badgeImage?: string; badgeAlt?: string; badgeLine1?: string; badgeLine2?: string; title?: string; text?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string }
+const { badgeImage = '', badgeAlt = '', badgeLine1 = '', badgeLine2 = '', title = '', text = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 ---
 <section class="trust" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell trust__grid">
     <div class="trust__badge">
-      <Icon name="shield-check" size={54} strokeWidth={1.25} />
+      {badgeImage ? <img class="trust__badge-image" src={badgeImage} alt={badgeAlt} width="300" height="289" loading="lazy" /> : <Icon name="shield-check" size={54} strokeWidth={1.25} />}
       <p>{badgeLine1}{badgeLine2 && <Fragment>{' '}<br />{badgeLine2}</Fragment>}</p>
     </div>
     <div class="trust__copy">

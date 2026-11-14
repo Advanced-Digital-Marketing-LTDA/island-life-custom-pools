@@ -4,9 +4,9 @@ import Icon from '../components/Icon.astro';
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string;
   cards?: { layout?: string; name?: string; category?: string; detail?: string; image?: string; alt?: string }[];
-  cta?: string; ctaHref?: string; anchor?: string; headingId: string;
+  video?: string; videoPoster?: string; videoLabel?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
 }
-const { label = '', title = '', titleEm = '', intro = '', cards = [], cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+const { label = '', title = '', titleEm = '', intro = '', cards = [], video = '', videoPoster = '', videoLabel = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 ---
 <section class="projects section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell">
@@ -15,6 +15,13 @@ const { label = '', title = '', titleEm = '', intro = '', cards = [], cta = '', 
       <h2 id={headingId}>{title}{' '}<br /><em>{titleEm}</em></h2>
       <p>{intro}</p>
     </div>
+    {video ? (
+      // With a video, it takes the place of the photos. With a poster the browser downloads nothing until play is pressed;
+      // without one it loads the first frame instead (about 13 MB for a large file).
+      <div class="projects__video">
+        <video controls playsinline preload={videoPoster ? 'none' : 'metadata'} poster={videoPoster || undefined} src={videoPoster ? video : `${video}#t=1`} aria-label={videoLabel || undefined}></video>
+      </div>
+    ) : (
     <div class="projects__grid">
       {cards.map((item) => (
         <figure class={`project project--${item.layout || 'pool'}`}>
@@ -31,6 +38,7 @@ const { label = '', title = '', titleEm = '', intro = '', cards = [], cta = '', 
         </figure>
       ))}
     </div>
+    )}
     {cta && (
       <div class="projects__cta">
         <a class="button button--dark" href={ctaHref}>
