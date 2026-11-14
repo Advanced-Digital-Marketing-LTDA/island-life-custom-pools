@@ -1,0 +1,14 @@
+# Used when the image is built from the repository root. site/.dockerignore covers builds that start in site/.
+.git
+.github
+.impeccable
+skills
+scripts
+**/node_modules
+**/dist
+**/.astro
+**/.env
+**/.env.*
+**/*.log
+site/public/admin
+site/originals

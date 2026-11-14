@@ -1,8 +1,9 @@
 ---
+import Icon from '../components/Icon.astro';
 import Lines from '../components/Lines.astro';
 
-interface Props { title?: string; titleEm?: string; image?: string; imageAlt?: string; text?: string; anchor?: string; headingId: string }
-const { title = '', titleEm = '', image = '', imageAlt = '', text = '', anchor, headingId } = Astro.props;
+interface Props { title?: string; titleEm?: string; image?: string; imageAlt?: string; text?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string }
+const { title = '', titleEm = '', image = '', imageAlt = '', text = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 ---
 <section class="outdoor-life section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell outdoor-life__heading">
@@ -13,5 +14,12 @@ const { title = '', titleEm = '', image = '', imageAlt = '', text = '', anchor, 
   </figure>
   <div class="page-shell outdoor-life__copy">
     <p>{text}</p>
+    {cta && (
+      <a class="button button--light" href={ctaHref}>
+        <span class="button__label">{cta}</span>
+        <span class="button__wash" aria-hidden="true"></span>
+        <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+      </a>
+    )}
   </div>
 </section>

@@ -13,8 +13,8 @@
       "ctaHref": "#quote",
       "image": "/images/cedar-cabana-kitchen.webp",
       "imageAlt": "Stone outdoor kitchen under a cedar-framed patio cover",
-      "scrollLabel": "Explore the possibilities",
-      "scrollHref": "#overview"
+      "scrollLabel": "",
+      "scrollHref": ""
     },
     {
       "_template": "overview",

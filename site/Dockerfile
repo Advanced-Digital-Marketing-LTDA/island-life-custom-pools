@@ -1,18 +1,32 @@
 # syntax=docker/dockerfile:1
+# The image can be built from the repository root or from site/ (Coolify's "Base Directory"): the first stage
+# keeps whichever folder holds package.json, so both ways of starting the build work.
+FROM node:24.19.0-slim AS source
+WORKDIR /ctx
+COPY . .
+RUN mkdir /src && if [ -f site/package.json ]; then cp -a site/. /src/; else cp -a . /src/; fi
+
 FROM node:24.19.0-slim AS build
 WORKDIR /app
 ENV ASTRO_TELEMETRY_DISABLED=1
-COPY package.json package-lock.json ./
+COPY --from=source /src/package.json /src/package-lock.json ./
 RUN --mount=type=secret,id=build_ca \
     if [ -f /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
     npm install --global npm@11.9.0 --ignore-scripts && npm ci --ignore-scripts
-COPY astro.config.mjs tsconfig.json postcss.config.mjs tailwind.config.mjs ./
-COPY src ./src
-COPY content ./content
-COPY public ./public
+COPY --from=source /src/astro.config.mjs /src/tsconfig.json /src/postcss.config.mjs /src/tailwind.config.mjs ./
+COPY --from=source /src/src ./src
+COPY --from=source /src/content ./content
+COPY --from=source /src/tina ./tina
+COPY --from=source /src/public ./public
 ARG SITE_URL=http://localhost:4321
 ARG SOURCE_COMMIT=local
-RUN npm run build && npm prune --omit=dev --ignore-scripts
+# The page editor (/admin) is built only when both Tina Cloud keys are set; without them the site builds without it.
+# --skip-cloud-checks keeps a Tina Cloud problem from failing the deploy.
+ARG TINA_CLIENT_ID=
+ARG TINA_TOKEN=
+ARG GITHUB_BRANCH=main
+RUN if [ -n "$TINA_CLIENT_ID" ] && [ -n "$TINA_TOKEN" ]; then npx tinacms build --skip-cloud-checks; fi \
+    && npm run build && npm prune --omit=dev --ignore-scripts
 
 FROM node:24.19.0-slim
 WORKDIR /app

@@ -79,15 +79,16 @@ const templates = [
     str('label', 'Small heading'), ...headingLines(), text('lede', 'Introduction'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
     str('caption', 'Photo caption'),
     items('services', 'Services', 'title', [str('id', 'Link name', 'Links such as "#patios" jump to this row.'), str('title', 'Title'), text('description', 'Description')]),
-    text('details', 'Closing note'),
-  ]),
+    text('details', 'Closing note'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { ctaHref: '#quote' }),
   block('showcase', 'Design gallery (three photos)', [
     str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'),
     items('cards', 'Gallery items', 'name', [
       { type: 'string', name: 'layout', label: 'Position', description: 'The layout fits one of each.', options: ['pool', 'patio', 'kitchen'] },
       str('name', 'Title'), str('category', 'Tags'), str('detail', 'Caption'), image('image', 'Photo'), str('alt', 'Photo description'),
     ]),
-  ]),
+    str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { ctaHref: '#quote' }),
   block('reviews', 'Reviews (three at a time)', [
     str('label', 'Small heading'), text('title', 'Heading', 'Press Enter to start a new line.'),
     items('reviews', 'Reviews', 'name', [str('name', 'Client name'), str('detail', 'Detail line'), text('quote', 'Review')],
@@ -134,14 +135,15 @@ const templates = [
   block('heading', 'Page title (journal style)', [str('label', 'Small heading'), ...heading(), text('intro', 'Introduction')]),
   block('postList', 'Journal article list', [str('readLabel', 'Article link label')], { readLabel: 'Read the article' }),
   block('panorama', 'Heading, wide photo and text', [
-    ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'),
-  ]),
+    ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { ctaHref: '#quote' }),
   block('spotlight', 'Heading, photo, text and button', [
     ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'), str('buttonLabel', 'Button label'), href('buttonHref', 'Button link'),
   ], { buttonHref: '#quote' }),
   block('trust', 'Trust badge and statement', [
     str('badgeLine1', 'Badge text, line 1'), str('badgeLine2', 'Badge text, line 2'), str('title', 'Heading'), text('text', 'Text'),
-  ]),
+    str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { ctaHref: '#quote' }),
   block('splitHero', 'Page opening: text, button and photo', [
     str('homeLabel', 'Breadcrumb home label'), str('eyebrow', 'Breadcrumb page name'), ...headingLines(), text('text', 'Introduction'),
     str('buttonLabel', 'Button label'), href('buttonHref', 'Button link'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
@@ -149,7 +151,9 @@ const templates = [
   block('estimator', 'Monthly payment estimator', [
     str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'), text('note', 'Note under the results'),
     num('amount', 'Starting loan amount ($)', 'What the visitor sees before changing anything.'), num('rate', 'Starting interest rate (%)'), num('years', 'Starting term (years)'),
-  ], { amount: 75000, rate: 8, years: 15 }),
+    { type: 'string', name: 'background', label: 'Background color', description: 'White sets the estimator apart from a sand-colored section above it.', options: ['sand', 'white'] },
+    str('cta', 'Button label'), href('ctaHref', 'Button link'),
+  ], { amount: 46400, rate: 8, years: 15, ctaHref: '#quote' }),
   block('lenders', 'Financing partners', [
     str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'),
     items('lenders', 'Partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address'), str('label', 'Link label')]),
