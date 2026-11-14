@@ -1,5 +1,6 @@
 ---
 import Icon from '../components/Icon.astro';
+import CallLink from '../components/CallLink.astro';
 import { escapeHtml } from '../lib/content';
 
 interface Props {
@@ -35,11 +36,14 @@ const {
     </h1>
     <div class="hero__intro">
       <p>{intro}</p>
-      <a class="button button--light" href={ctaHref}>
-        <span class="button__label">{cta}</span>
-        <span class="button__wash" aria-hidden="true"></span>
-        <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
-      </a>
+      <div class="hero-actions">
+        <a class="button button--light" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+        <CallLink />
+      </div>
     </div>
   </div>
   {(scrollHref || foot.length > 0) && (

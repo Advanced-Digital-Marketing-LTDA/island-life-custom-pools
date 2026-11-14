@@ -2,8 +2,8 @@ import rawSettings from '../../content/settings.json';
 import rawBlog from '../../content/blog.json';
 import { homePrefix } from './nav';
 import { blockNames, defaultAnchors, type Block } from './blocks';
-import { redirects } from './redirects.mjs';
 import { withAssetUrls } from './assets';
+import { redirects } from './redirects.mjs';
 
 // Tina leaves out a field or list an editor empties, so fill in what the templates loop over: an empty list must never
 // stop the build.
@@ -11,8 +11,12 @@ export const settings = withAssetUrls({
   ...rawSettings,
   nav: rawSettings.nav ?? [],
   social: rawSettings.social ?? [],
+  awards: (rawSettings.awards ?? []) as string[],
+  ownerName: rawSettings.ownerName ?? '',
+  ownerRole: rawSettings.ownerRole ?? '',
+  foundingDate: rawSettings.foundingDate ?? '',
   ogImage: rawSettings.ogImage || '/images/og-share.jpg',
-  footer: { ...rawSettings.footer, credit: rawSettings.footer?.credit ?? '', creditHref: rawSettings.footer?.creditHref ?? '', nav: rawSettings.footer?.nav ?? [], areas: rawSettings.footer?.areas ?? [], hours: rawSettings.footer?.hours ?? [] },
+  footer: { ...rawSettings.footer, credit: rawSettings.footer?.credit ?? '', creditHref: rawSettings.footer?.creditHref ?? '', nav: rawSettings.footer?.nav ?? [], areas: (rawSettings.footer?.areas ?? []) as { name: string; href?: string }[], hours: rawSettings.footer?.hours ?? [] },
   quote: { ...rawSettings.quote, interests: rawSettings.quote?.interests ?? [], errorText: rawSettings.quote?.errorText ?? '' },
 });
 export const blog = { ...rawBlog, author: rawBlog.author ?? ({} as Partial<typeof rawBlog.author>) };
@@ -20,9 +24,9 @@ export const blog = { ...rawBlog, author: rawBlog.author ?? ({} as Partial<typeo
 // Every page is a document in content/pages: its file name is its URL ("home" is the front page) and its
 // blocks are the sections, in order. Anything an editor could get wrong fails the build with a clear message
 // instead of publishing a broken page.
-export interface Page { slug: string; seoTitle: string; seoDescription: string; blocks: Block[] }
+export interface Page { slug: string; seoTitle: string; seoDescription: string; noindex: boolean; blocks: Block[] }
 const reserved = new Set(['404', 'api', 'healthz', 'build.json', ...Object.keys(redirects).map((path) => path.slice(1))]);
-const pageFiles = import.meta.glob<{ seoTitle?: string; seoDescription?: string; blocks?: Block[] }>('../../content/pages/*.json', { eager: true, import: 'default' });
+const pageFiles = import.meta.glob<{ seoTitle?: string; seoDescription?: string; noindex?: boolean; blocks?: Block[] }>('../../content/pages/*.json', { eager: true, import: 'default' });
 const loaded: Page[] = Object.entries(pageFiles).map(([file, doc]) => {
   const name = file.split('/').pop()!.replace(/\.json$/, '');
   const where = `content/pages/${name}.json`;
@@ -37,7 +41,7 @@ const loaded: Page[] = Object.entries(pageFiles).map(([file, doc]) => {
     if (anchors.has(anchor)) throw new Error(`${where}: the link name "${anchor}" is used by more than one section (section ${index + 1}). Link names must be unique on a page.`);
     anchors.add(anchor);
   });
-  return { slug: name === 'home' ? '' : name, seoTitle: doc.seoTitle ?? '', seoDescription: doc.seoDescription ?? '', blocks: withAssetUrls(blocks) };
+  return { slug: name === 'home' ? '' : name, seoTitle: doc.seoTitle ?? '', seoDescription: doc.seoDescription ?? '', noindex: !!doc.noindex, blocks: withAssetUrls(blocks) };
 });
 // Tina lets an editor delete any page, so make sure the front page cannot quietly disappear from a published build.
 if (!loaded.some((page) => page.slug === '')) {

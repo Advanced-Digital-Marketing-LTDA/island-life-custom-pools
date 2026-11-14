@@ -4,13 +4,17 @@ import Icon from './Icon.astro';
 import { settings, linkTo } from '../lib/content';
 import { homePrefix as prefixOf, pathOf } from '../lib/nav';
 
-interface Props { solid?: boolean }
-const { solid = false } = Astro.props;
+// hasQuote: the page has its own quote form, so the buttons jump to it instead of to the home page's.
+interface Props { solid?: boolean; hasQuote?: boolean }
+const { solid = false, hasQuote = false } = Astro.props;
 const pathname = pathOf(Astro.url);
 const homePrefix = prefixOf(Astro.url);
 
 const { phone, phoneHref } = settings;
 const navItems = settings.nav.map((item) => ({ ...item, target: linkTo(Astro.url, item.href) }));
+const quoteHref = hasQuote ? '#quote' : `${homePrefix}#quote`;
+// pathOf() drops the trailing slash, so compare menu links without theirs.
+const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') || '/');
 ---
 <header class:list={['site-header', { 'site-header--solid': solid }]}>
   <nav class="site-header__inner" aria-label="Main navigation">
@@ -18,13 +22,18 @@ const navItems = settings.nav.map((item) => ({ ...item, target: linkTo(Astro.url
       <Brand />
     </a>
     <div class="site-header__links">
-      {navItems.map((item) => <a href={item.target} aria-current={pathname === item.target ? 'page' : undefined}>{item.label}</a>)}
+      {navItems.map((item) => <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined}>{item.label}</a>)}
     </div>
-    <a class="button button--light site-header__cta" href={`${homePrefix}#quote`}>
-      <span class="button__label">{settings.headerCta}</span>
-      <span class="button__wash" aria-hidden="true"></span>
-      <Icon name="arrow-up-right" size={17} strokeWidth={1.7} />
-    </a>
+    <div class="site-header__actions">
+      <a class="site-header__phone" href={phoneHref} aria-label={`Call ${phone}`}>
+        <Icon name="phone" size={20} strokeWidth={1.6} /><span>{phone}</span>
+      </a>
+      <a class="button button--light site-header__cta" href={quoteHref}>
+        <span class="button__label">{settings.headerCta}</span>
+        <span class="button__wash" aria-hidden="true"></span>
+        <Icon name="arrow-up-right" size={17} strokeWidth={1.7} />
+      </a>
+    </div>
     <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
       <Icon name="menu" size={25} strokeWidth={1.5} />
     </button>
@@ -39,10 +48,10 @@ const navItems = settings.nav.map((item) => ({ ...item, target: linkTo(Astro.url
     </button>
   </div>
   <div class="mobile-menu__links">
-    {navItems.map((item, index) => <a href={item.target} aria-current={pathname === item.target ? 'page' : undefined} tabindex="-1"><span>0{index + 1}</span>{item.label}</a>)}
+    {navItems.map((item, index) => <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined} tabindex="-1"><span>0{index + 1}</span>{item.label}</a>)}
   </div>
   <div class="mobile-menu__bottom">
-    <a class="button button--light" href={`${homePrefix}#quote`} tabindex="-1">
+    <a class="button button--light" href={quoteHref} tabindex="-1">
       <span class="button__label">{settings.menuCta}</span>
       <span class="button__wash" aria-hidden="true"></span>
       <Icon name="arrow-up-right" size={18} />

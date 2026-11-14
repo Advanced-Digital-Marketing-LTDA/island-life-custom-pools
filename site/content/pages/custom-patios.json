@@ -1,0 +1,123 @@
+{
+  "seoTitle": "Custom Patios & Covers in Houston | Island Life Custom Pools",
+  "seoDescription": "Custom patios and patio covers for Houston-area homes, designed with your pool, kitchen, and fire features. Request a free design consultation.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Patios & covers",
+      "title": "Custom patios & covers",
+      "italicTitle": "in Houston, TX.",
+      "introduction": "Island Life Custom Pools designs and builds custom patios and patio covers for homes across the Houston area: shade, comfort, and a setting that makes the outdoors feel like another room.",
+      "ctaLabel": "Start with a free design consult",
+      "ctaHref": "#quote",
+      "image": "/images/patio-cover-spa.webp",
+      "imageAlt": "Covered patio with a fireplace and seating beside a stone-faced raised spa",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Designed for your property",
+      "title": "Shade, designed with the rest of the yard.",
+      "lede": "A patio cover is an important part of our pool builds. We design it together with the pool, spa, outdoor kitchen, and fire features, so the shade, the seating, and the view all belong to one plan—and you can explore that plan in a custom 3D model before construction begins.",
+      "checklist": [
+        "Custom patios and patio covers that carry the architecture of your home outdoors",
+        "Fireplaces and fire pits planned together with the seating around them",
+        "Lounge, dining, and kitchen areas arranged as one coordinated space",
+        "A custom 3D model to explore the space before construction"
+      ]
+    },
+    {
+      "_template": "feature",
+      "image": "/images/covered-patio-lakeside.webp",
+      "imageAlt": "Large covered patio with ceiling fans, a stone fireplace, and outdoor dining",
+      "eyebrow": "See it before we build it",
+      "title": "Planned in 3D, then built.",
+      "text": "Your patio starts with the free design consultation and a custom 3D design, so you can see the shade, the seating, and the fire features in place before construction begins. Clear communication keeps you connected to what comes next.",
+      "linkLabel": "Request a free design consult",
+      "linkHref": "#quote"
+    },
+    {
+      "_template": "reviews",
+      "label": "Client reviews",
+      "title": "Hear what our clients\nhave to say.",
+      "reviews": [
+        {
+          "name": "Sam M.",
+          "detail": "On time · On budget",
+          "quote": "We had an amazing experience with Island Life custom pools. Tim and team took amazing care in helping us develop and execute on our vision. We really wanted to build a pool and an outdoor space we could use year round to bring people together. The quality and craftsmanship of the final product exceed our expectations and we came in on time and on budget. I think what sets Tim apart as a builder is his superb communication skills. We were always given a thorough understanding each step of the way from design, to excavation, to the structure and fireplace, all the way to start up! The crews are top notch and all materials feel premium I would highly recommend Island Life Custom Pools."
+        },
+        {
+          "name": "Jasmine H.",
+          "detail": "Pool · Spa · Fire pit",
+          "quote": "We had a wonderful experience using Island Life to build our pool, spa and fire pit. Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way. Even the construction crews were very nice and polite. We are so impressed with how everything turned out. It is so beautiful and we are so happy with it. We highly recommend."
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "trust",
+      "badgeLine1": "Vetted and endorsed",
+      "badgeLine2": "by Google",
+      "title": "Google Guaranteed",
+      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
+      "badgeAlt": "Google Guaranteed Service Provider badge"
+    },
+    {
+      "_template": "faq",
+      "label": "Patio questions",
+      "title": "Before you build",
+      "titleEm": "a patio or cover.",
+      "questions": [
+        {
+          "question": "What is the difference between a patio and a patio cover?",
+          "answer": "A patio is the paved outdoor living area. A patio cover is a roofed structure over part of it that adds shade and shelter. We design both together with the rest of your backyard.",
+          "linkLabel": "See covered patio photos",
+          "linkHref": "/gallery/"
+        },
+        {
+          "question": "Can a patio cover include a fireplace or outdoor kitchen?",
+          "answer": "Yes. A covered patio can include a fireplace or fire pit, seating, dining, and an outdoor kitchen, planned as one coordinated space.",
+          "linkLabel": "See outdoor kitchens",
+          "linkHref": "/outdoor-kitchens/"
+        },
+        {
+          "question": "Can you design the patio together with a pool?",
+          "answer": "Yes. A patio cover is an important part of our pool builds, so we design the shade, the seating, and the view together with the pool and spa.",
+          "linkLabel": "See custom pools",
+          "linkHref": "/custom-pools/"
+        },
+        {
+          "question": "Can you add a patio cover to my existing backyard?",
+          "answer": "Yes. Tell us about your yard during the free design consultation. We design the patio and cover to fit what you already have, and to work with a pool, kitchen, or fire feature if you add one later."
+        },
+        {
+          "question": "Do I need a permit or HOA approval?",
+          "answer": "Requirements depend on your city or county and your homeowners association, so it is worth checking early. Tell us about your property during the free design consultation and we will talk through next steps."
+        },
+        {
+          "question": "How much does a custom patio or patio cover cost?",
+          "answer": "The cost depends on the size, the structure and materials, and features such as a fireplace, lighting, or an outdoor kitchen. After your free design consultation we provide a quote for your project.",
+          "linkLabel": "Explore financing",
+          "linkHref": "/financing/"
+        },
+        {
+          "question": "Can I see the patio before it is built?",
+          "answer": "Yes. We create a 3D model of your outdoor space, so you can see the shade, the seating, and the fire features in place before construction begins."
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

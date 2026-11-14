@@ -1,0 +1,32 @@
+---
+import Icon from '../components/Icon.astro';
+import Lines from '../components/Lines.astro';
+
+interface Question { question?: string; answer?: string; linkLabel?: string; linkHref?: string }
+interface Props { label?: string; title?: string; titleEm?: string; questions?: Question[]; cta?: string; ctaHref?: string; anchor?: string; headingId: string }
+const { label = '', title = '', titleEm = '', questions = [], cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+---
+<section class="faq section" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="page-shell faq__grid">
+    <div class="faq__intro">
+      <p class="section-label">{label}</p>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+      {cta && (
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
+    </div>
+    <div class="faq__list">
+      {questions.map((item) => (
+        <div class="faq__item">
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+          {item.linkLabel && item.linkHref && <a class="text-link faq__link" href={item.linkHref}>{item.linkLabel} <Icon name="arrow-up-right" size={17} strokeWidth={1.6} /></a>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,12 +1,13 @@
 ---
 import Icon from '../components/Icon.astro';
 import Lines from '../components/Lines.astro';
+import { settings } from '../lib/content';
 
 interface Props {
   label?: string; title?: string; titleEm?: string; lede?: string; image?: string; imageAlt?: string; caption?: string;
-  services?: { id?: string; title?: string; description?: string }[]; details?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
+  services?: { id?: string; title?: string; description?: string; href?: string }[]; details?: string; areasLabel?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
 }
-const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = '', caption = '', services = [], details = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = '', caption = '', services = [], details = '', areasLabel = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 ---
 <section class="studio section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell studio__grid">
@@ -30,11 +31,17 @@ const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = 
       {services.map((service, index) => (
         <div class="service-row" id={service.id || undefined}>
           <span class="service-row__index">0{index + 1}</span>
-          <h3>{service.title}</h3>
+          <h3>{service.href ? <a href={service.href}>{service.title}</a> : service.title}</h3>
           <p>{service.description}</p>
         </div>
       ))}
       <p class="studio__details">{details}</p>
+      {areasLabel && settings.footer.areas.length > 0 && (
+        <div class="studio__areas">
+          <p class="section-label">{areasLabel}</p>
+          <ul>{settings.footer.areas.map((area) => <li>{area.href ? <a href={area.href}>Pool builders in {area.name}</a> : area.name}</li>)}</ul>
+        </div>
+      )}
     </div>
   </div>
 </section>

@@ -1,0 +1,24 @@
+{
+  "seoTitle": "Contact Island Life Custom Pools | Free Quote",
+  "seoDescription": "Contact Island Life Custom Pools to request a free quote and design consultation, or call (832) 304-4092. Open Monday to Saturday.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Contact",
+      "title": "Contact Island Life",
+      "italicTitle": "Custom Pools.",
+      "introduction": "Tell us what you are picturing and how you would like us to reach you. Your quote request includes a free design consultation. Prefer to talk? Call (832) 304-4092, Monday–Friday 8am–7pm or Saturday 8am–12pm. We serve Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village.",
+      "ctaLabel": "Request a free quote",
+      "ctaHref": "#quote",
+      "image": "/images/travertine-pool-loungers.webp",
+      "imageAlt": "Backyard pool with a travertine deck, lounge chairs, and an umbrella beside a brick home at dusk",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

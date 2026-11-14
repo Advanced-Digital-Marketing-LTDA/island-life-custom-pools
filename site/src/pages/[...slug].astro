@@ -5,6 +5,7 @@ import Blocks from '../components/Blocks.astro';
 import Footer from '../sections/Footer.astro';
 import { pages, settings } from '../lib/content';
 import { clearsHeader, overlayBlocks } from '../lib/blocks';
+import { services } from '../lib/services';
 
 export function getStaticPaths() {
   return pages.map((page) => ({ params: { slug: page.slug || undefined }, props: { page } }));
@@ -17,13 +18,35 @@ const overlay = !!first && overlayBlocks.includes(first._template);
 // A first section that was not built to open a page needs room below the fixed header.
 const needsClearance = !!first && !clearsHeader.includes(first._template);
 const heroStill = typeof first?.video === 'string' && first.video && typeof first.videoPoster === 'string' ? first.videoPoster : first?.image;
+// Breadcrumbs for inner pages, and the questions of any FAQ section, described the way the page shows them.
+const crumb = String(first?.eyebrow || page.seoTitle.split('|')[0].trim() || page.slug);
+const faqs = blocks.filter((block) => block._template === 'faq').flatMap((block) => (block.questions as { question?: string; answer?: string }[] | undefined) ?? []).filter((item) => item.question && item.answer);
+// The header and footer buttons jump to the page's own quote form when it has one.
+const hasQuote = blocks.some((block) => block._template === 'quoteForm');
+const pageUrl = new URL(page.slug ? `/${page.slug}/` : '/', Astro.site).href;
+const extraLd: object[] = [];
+if (page.slug) extraLd.push({
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href }, { '@type': 'ListItem', position: 2, name: crumb, item: pageUrl }],
+});
+const service = services.find((item) => item.slug === page.slug);
+if (service) extraLd.push({
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: service.name, serviceType: service.name, url: pageUrl, description: page.seoDescription,
+  provider: { '@id': `${Astro.site?.href}#business` },
+  areaServed: settings.footer.areas.map((area) => ({ '@type': 'City', name: `${area.name}, TX` })),
+});
+if (faqs.length) extraLd.push({
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+});
 const preload = first?._template === 'hero' && typeof heroStill === 'string' ? heroStill : undefined;
 ---
-<Base title={page.seoTitle || settings.name} description={page.seoDescription || settings.name} preload={preload}>
-  <Header solid={!overlay} />
+<Base title={page.seoTitle || settings.name} description={page.seoDescription || settings.name} preload={preload} extraLd={extraLd} noindex={page.noindex}>
+  <Header solid={!overlay} hasQuote={hasQuote} />
   <main id="top">
     {needsClearance && <div class="header-clearance" aria-hidden="true"></div>}
     <Blocks blocks={blocks} />
   </main>
-  <Footer />
+  <Footer hasQuote={hasQuote} />
 </Base>

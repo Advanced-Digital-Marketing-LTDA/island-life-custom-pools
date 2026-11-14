@@ -1,5 +1,7 @@
 ---
-interface Item { layout?: string; title?: string; category?: string; description?: string; image?: string; position?: string }
+import Icon from '../components/Icon.astro';
+
+interface Item { layout?: string; title?: string; category?: string; description?: string; image?: string; alt?: string; href?: string; linkLabel?: string; position?: string }
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string; linkLabel?: string; linkHref?: string; photos?: Item[];
   anchor?: string; headingId: string;
@@ -18,7 +20,7 @@ const { label = '', title = '', titleEm = '', intro = '', linkLabel = '', linkHr
       {photos.map((item, index) => (
         <figure class={`gallery-item gallery-item--${item.layout || 'wide'}`}>
           <div class="gallery-item__image">
-            {item.image && <img src={item.image} alt={item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
+            {item.image && <img src={item.image} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
           </div>
           <figcaption>
             <span class="gallery-item__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
@@ -26,6 +28,7 @@ const { label = '', title = '', titleEm = '', intro = '', linkLabel = '', linkHr
               <p class="gallery-item__category">{item.category}</p>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
+              {item.href && item.linkLabel && <a class="text-link gallery-item__link" href={item.href}>{item.linkLabel} <Icon name="arrow-up-right" size={17} strokeWidth={1.6} /></a>}
             </div>
           </figcaption>
         </figure>

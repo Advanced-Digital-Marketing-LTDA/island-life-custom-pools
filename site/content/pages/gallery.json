@@ -1,14 +1,14 @@
 {
-  "seoTitle": "Outdoor Living Gallery | Island Life Custom Pools",
-  "seoDescription": "Photos of pools, spas, patios, outdoor kitchens, and fire features from Island Life Custom Pools.",
+  "seoTitle": "Pool & Patio Project Gallery | Island Life Custom Pools",
+  "seoDescription": "Browse photos of custom pools, spas, patios, fire features, and outdoor kitchens from Island Life Custom Pools projects.",
   "blocks": [
     {
       "_template": "pageHero",
       "homeLabel": "Home",
       "eyebrow": "Gallery",
-      "title": "Island Life Custom Pools",
-      "italicTitle": "Gallery",
-      "introduction": "Pools, spas, patios, fire features, and outdoor kitchens from our projects.",
+      "title": "Pool, patio & outdoor kitchen",
+      "italicTitle": "project gallery.",
+      "introduction": "Pools, spas, patios, fire features, and outdoor kitchens from our projects. Pick out what you like, and we can model it in 3D for your yard.",
       "ctaLabel": "Start with a free design consult",
       "ctaHref": "/#quote",
       "image": "/images/travertine-pool-loungers.webp",
@@ -31,98 +31,140 @@
           "title": "Raised spa at sunset",
           "category": "Pool · Spa · Color lighting",
           "description": "A raised spa beside a pool lit from underneath, under an orange sky.",
-          "image": "/images/gallery-sunset-spa.webp"
+          "image": "/images/gallery-sunset-spa.webp",
+          "alt": "Raised stone spa next to a purple-lit pool at sunset, with an umbrella and lounge chairs on the far deck.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "portrait",
           "title": "Rock waterfall",
           "category": "Rock waterfall · Pool",
           "description": "A rock waterfall spilling into the pool.",
-          "image": "/images/gallery-rock-waterfall.webp"
+          "image": "/images/gallery-rock-waterfall.webp",
+          "alt": "Rock waterfall in a stone grotto spilling into a blue pool, with a wooden privacy fence behind it.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "portrait-offset",
           "title": "Water blade, lit purple",
           "category": "Water feature · Pool lighting",
           "description": "A sheet of water pours off a black tile wall into a purple-lit pool.",
-          "image": "/images/gallery-purple-water-blade.webp"
+          "image": "/images/gallery-purple-water-blade.webp",
+          "alt": "Sheet of water pouring from a black tile wall into a pool lit purple and pink at dusk.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "wide",
           "title": "Pool and cabana",
           "category": "Pool · Cabana · Patio",
           "description": "A long rectangular pool with a wide deck, and a covered cabana on the far side.",
-          "image": "/images/gallery-lawn-cabana-pool.webp"
+          "image": "/images/gallery-lawn-cabana-pool.webp",
+          "alt": "Long rectangular pool with wide pale paving and a covered cabana at the far end, under a blue sky with clouds.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "portrait",
           "title": "Black-tile fire pit",
           "category": "Fire pit",
           "description": "A rectangular fire pit faced in black tile with a white cap.",
-          "image": "/images/gallery-black-tile-fire-pit.webp"
+          "image": "/images/gallery-black-tile-fire-pit.webp",
+          "alt": "Rectangular fire pit faced in black tile with a white cap and lava rock on top, on a pale patio beside a wooden fence.",
+          "href": "/custom-patios/",
+          "linkLabel": "See custom patios & covers"
         },
         {
           "layout": "portrait-offset",
           "title": "Rock waterfall and raised spa",
           "category": "Rock waterfall · Raised spa",
           "description": "A rock waterfall and a raised spa at the end of a freeform pool.",
-          "image": "/images/gallery-grotto-spa.webp"
+          "image": "/images/gallery-grotto-spa.webp",
+          "alt": "Rock waterfall grotto and a raised stone spa at the end of a blue pool, with a wooden fence and a two-story house behind.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "feature",
           "title": "Pool at sunset",
           "category": "Pool · Covered patio",
           "description": "The pool at sunset, with a covered patio across the water.",
-          "image": "/images/gallery-sunset-reflections.webp"
+          "image": "/images/gallery-sunset-reflections.webp",
+          "alt": "Pool reflecting an orange and pink sunset sky, with a stone-faced raised spa wall in the foreground and a covered patio beyond.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "portrait",
           "title": "Cedar cabana bar",
           "category": "Cabana · Outdoor bar",
           "description": "A cedar-framed cabana with a bar and four stools next to the pool.",
-          "image": "/images/gallery-cedar-bar.webp"
+          "image": "/images/gallery-cedar-bar.webp",
+          "alt": "Cedar-framed cabana with a wood-clad back wall and a bar with four stools, beside the pool at dusk.",
+          "href": "/outdoor-kitchens/",
+          "linkLabel": "See outdoor kitchens"
         },
         {
           "layout": "portrait-offset",
           "title": "Patio dining",
           "category": "Patio · Dining",
           "description": "A dining table under an umbrella on a covered patio, with the pool beyond.",
-          "image": "/images/gallery-patio-dining.webp"
+          "image": "/images/gallery-patio-dining.webp",
+          "alt": "Round metal dining table under a large umbrella on a covered stone patio, with the pool and a lake beyond.",
+          "href": "/custom-patios/",
+          "linkLabel": "See custom patios & covers"
         },
         {
           "layout": "wide",
           "title": "Scuppers and jets",
           "category": "Pool · Water scuppers",
           "description": "Three water scuppers on a black wall, with bubbler jets in front.",
-          "image": "/images/gallery-scuppers.webp"
+          "image": "/images/gallery-scuppers.webp",
+          "alt": "Three water scuppers on a black tile wall pouring into a pool, with two bubbler jets rising in front.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "feature",
           "title": "Large covered patio",
           "category": "Covered patio · Dining",
           "description": "A deep covered patio with ceiling fans and a dining table, looking out over the yard.",
-          "image": "/images/gallery-covered-patio-view.webp"
+          "image": "/images/gallery-covered-patio-view.webp",
+          "alt": "Deep covered patio with two ceiling fans and a wicker dining table, open to the pool and lawn beyond.",
+          "href": "/custom-patios/",
+          "linkLabel": "See custom patios & covers"
         },
         {
           "layout": "landscape-left",
           "title": "Pool lit blue at dusk",
           "category": "Pool · Spa · Cabana · Lighting",
           "description": "A blue-lit pool with a raised spa and a covered cabana.",
-          "image": "/images/gallery-blue-pool-cabana.webp"
+          "image": "/images/gallery-blue-pool-cabana.webp",
+          "alt": "Blue-lit pool with a raised spa and a covered cabana on the far side, beside a brick house at dusk.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "landscape-right",
           "title": "Rock waterfall and slide",
           "category": "Rock waterfall · Slide · Pool lighting",
           "description": "A rock waterfall and slide beside a pool lit magenta.",
-          "image": "/images/gallery-rock-slide-glow.webp"
+          "image": "/images/gallery-rock-slide-glow.webp",
+          "alt": "Rock waterfall and slide beside a pool glowing magenta and purple at night.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "wide",
           "title": "Pool, patio, and cabana",
           "category": "Pool · Patio · Cabana",
           "description": "The whole backyard at dusk: a pool, a patio, and a covered cabana.",
-          "image": "/images/gallery-estate-dusk.webp"
+          "image": "/images/gallery-estate-dusk.webp",
+          "alt": "Backyard at dusk with a green-lit rectangular pool, stepping stones across the lawn, and a covered cabana beside the house.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "portrait",
@@ -130,7 +172,10 @@
           "category": "Aerial · Freeform pool · Spa",
           "description": "An aerial view of a freeform pool and spa next to a cedar cabana.",
           "image": "/images/gallery-aerial-freeform.webp",
-          "position": "60% center"
+          "position": "60% center",
+          "alt": "Aerial view of a freeform pool with a round spa, a shingle-roofed cabana beside it, and a fenced lawn.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "portrait-offset",
@@ -138,35 +183,70 @@
           "category": "Spa · Fire pit",
           "description": "A lit spa next to a rectangular fire pit with flames, at dusk.",
           "image": "/images/gallery-spa-fire-dusk.webp",
-          "position": "78% center"
+          "position": "78% center",
+          "alt": "Lit blue spa beside a rectangular fire pit with flames, with scuppers and a wooden fence behind, at dusk.",
+          "href": "/custom-patios/",
+          "linkLabel": "See custom patios & covers"
         },
         {
           "layout": "wide",
           "title": "Green-lit pool",
           "category": "Pool · Raised spa · Terrace",
           "description": "A pool lit green, with a raised spa and a stone terrace beside the house.",
-          "image": "/images/gallery-green-light-terrace.webp"
+          "image": "/images/gallery-green-light-terrace.webp",
+          "alt": "Pool lit green with a raised spa and a stone terrace beside a brick house at dusk.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "landscape-left",
           "title": "Stone water wall",
           "category": "Water wall",
           "description": "Three sheets of water fall from a stone-faced wall into the pool.",
-          "image": "/images/gallery-water-wall.webp"
+          "image": "/images/gallery-water-wall.webp",
+          "alt": "Three sheets of water falling from a stacked-stone wall into a pool, under a pink and purple sky.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "landscape-right",
           "title": "Rectangular pool",
           "category": "Pool · Spa · Scuppers",
           "description": "A rectangular pool with a raised spa and scuppers, in warm evening light.",
-          "image": "/images/gallery-geometric-golden.webp"
+          "image": "/images/gallery-geometric-golden.webp",
+          "alt": "Rectangular pool with a raised spa and two scuppers in warm evening light, with houses and a fence behind.",
+          "href": "/custom-pools/",
+          "linkLabel": "See custom pools"
         },
         {
           "layout": "feature",
           "title": "Backyard pool and loungers",
           "category": "Pool · Patio · Loungers",
           "description": "Lounge chairs beside the pool, with the covered patio just outside the back door.",
-          "image": "/images/gallery-house-pool-loungers.webp"
+          "image": "/images/gallery-house-pool-loungers.webp",
+          "alt": "Lounge chairs on a stone deck beside the pool, with a brick house and covered patio behind at sunset.",
+          "href": "/custom-patios/",
+          "linkLabel": "See custom patios & covers"
+        },
+        {
+          "layout": "landscape-left",
+          "title": "Stone outdoor kitchen",
+          "category": "Outdoor kitchen · Cabana",
+          "description": "A stone outdoor kitchen with a stainless refrigerator and drawers under a cedar-framed patio cover.",
+          "alt": "Stone outdoor kitchen counter with a stainless refrigerator and drawers under a cedar-framed patio cover, with a pool and brick houses beyond.",
+          "image": "/images/cedar-cabana-kitchen.webp",
+          "href": "/outdoor-kitchens/",
+          "linkLabel": "See outdoor kitchens"
+        },
+        {
+          "layout": "landscape-right",
+          "title": "Fireplace and kitchen cabinets",
+          "category": "Fireplace · Outdoor kitchen",
+          "description": "A stone fireplace with a mounted TV above it, beside built-in outdoor kitchen cabinets and a firewood niche.",
+          "alt": "Stone fireplace with a mounted TV above it, beside built-in stainless cabinets and a firewood niche.",
+          "image": "/images/fireplace-kitchen-stone.webp",
+          "href": "/outdoor-kitchens/",
+          "linkLabel": "See outdoor kitchens"
         }
       ]
     },

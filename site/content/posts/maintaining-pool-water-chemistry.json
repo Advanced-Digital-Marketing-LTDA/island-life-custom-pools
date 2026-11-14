@@ -1,0 +1,99 @@
+{
+  "date": "2025-04-07",
+  "category": "Pool care",
+  "title": "Maintaining Pool Water Chemistry",
+  "excerpt": "Maintaining proper pool water chemistry is key to keeping your water clean, safe, and crystal clear. Here’s a simple breakdown of what to check and how to keep it balanced:",
+  "image": "/images/gallery-lawn-cabana-pool.webp",
+  "imageAlt": "Long rectangular pool with wide pale paving and a covered cabana at the far end, under a blue sky with clouds.",
+  "seoTitle": "Maintaining Pool Water Chemistry | Island Life Custom Pools",
+  "seoDescription": "A simple breakdown of the pool water chemistry to check each week, the ideal ranges, and how to adjust chlorine, pH, alkalinity, calcium hardness, and stabilizer.",
+  "sections": [
+    {
+      "id": "key-elements-to-monitor",
+      "title": "Key Elements to Monitor",
+      "paragraphs": []
+    },
+    {
+      "id": "chlorine-sanitizer",
+      "title": "1. Chlorine (Sanitizer)",
+      "paragraphs": [],
+      "bullets": [
+        "Ideal range: 1.0 – 3.0 ppm",
+        "Purpose: Kills bacteria, viruses, and algae",
+        "How to adjust: Use chlorine tablets, liquid chlorine, or granular chlorine"
+      ]
+    },
+    {
+      "id": "ph-level",
+      "title": "2. pH Level",
+      "paragraphs": [],
+      "bullets": [
+        "Ideal range: 7.2 – 7.6",
+        "Purpose: Keeps water comfortable and prevents equipment damage",
+        "How to adjust: If pH is too low, add soda ash (sodium carbonate). If pH is too high, add muriatic acid or sodium bisulfate."
+      ]
+    },
+    {
+      "id": "total-alkalinity",
+      "title": "3. Total Alkalinity",
+      "paragraphs": [],
+      "bullets": [
+        "Ideal range: 80 – 120 ppm",
+        "Purpose: Buffers pH, helps prevent rapid fluctuations",
+        "How to adjust: If it is too low, add baking soda (sodium bicarbonate). If it is too high, add acid (like for high pH), then aerate."
+      ]
+    },
+    {
+      "id": "calcium-hardness",
+      "title": "4. Calcium Hardness",
+      "paragraphs": [],
+      "bullets": [
+        "Ideal range: 200 – 400 ppm",
+        "Purpose: Prevents corrosion (low) or scaling (high)",
+        "How to adjust: If it is too low, add calcium chloride. If it is too high, dilute the pool with fresh water."
+      ]
+    },
+    {
+      "id": "cyanuric-acid-stabilizer",
+      "title": "5. Cyanuric Acid (Stabilizer)",
+      "paragraphs": [],
+      "bullets": [
+        "Ideal range: 30 – 50 ppm (for outdoor pools)",
+        "Purpose: Protects chlorine from UV sunlight",
+        "How to adjust: If it is too low, add CYA (stabilizer). If it is too high, partially drain and refill the pool."
+      ]
+    },
+    {
+      "id": "phosphates-metals-optional",
+      "title": "6. Phosphates & Metals (Optional)",
+      "paragraphs": [],
+      "bullets": [
+        "Phosphates feed algae.",
+        "Use a phosphate remover if levels are high."
+      ]
+    },
+    {
+      "id": "weekly-maintenance-checklist",
+      "title": "Weekly Maintenance Checklist",
+      "paragraphs": [],
+      "bullets": [
+        "Test water (use strips or a liquid test kit)",
+        "Adjust chemicals as needed",
+        "Skim, brush, and vacuum the pool",
+        "Clean skimmer baskets and filters",
+        "Shock the pool (especially after heavy use or rain)"
+      ]
+    },
+    {
+      "id": "quick-tips",
+      "title": "Quick Tips",
+      "paragraphs": [],
+      "bullets": [
+        "Always add chemicals to water, never water to chemicals.",
+        "Wait at least 4–6 hours (or as directed) after adding chemicals before swimming.",
+        "Test your water at least twice a week, more often in hot weather or after a storm.",
+        "Keep a logbook or app to track chemical adjustments over time."
+      ]
+    }
+  ]
+}

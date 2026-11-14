@@ -1,0 +1,83 @@
+{
+  "seoTitle": "Hayward Pool Equipment | Island Life Custom Pools",
+  "seoDescription": "Hayward pumps, heaters, filters, lights, and the OmniLogic automation system. Island Life Custom Pools builds with Hayward equipment. Request a free quote.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Hayward equipment",
+      "title": "Hayward pool",
+      "italicTitle": "equipment.",
+      "introduction": "Island Life Custom Pools builds with Hayward pool and spa equipment. These are the Hayward product lines featured on this page. Ask us which fit your design during your free design consultation.",
+      "ctaLabel": "Request a free quote",
+      "ctaHref": "#quote",
+      "image": "/images/gallery-scuppers.webp",
+      "imageAlt": "Three water scuppers on a black tile wall pouring into a pool, with two bubbler jets rising in front.",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Hayward product lines",
+      "title": "Equipment for your pool and spa.",
+      "lede": "We build with Hayward equipment. Here are the Hayward lines we feature, from variable-speed pumps to backyard automation.",
+      "checklist": [
+        "VS Omni® variable-speed pumps",
+        "TriStar® VS 900 Omni® pump",
+        "Universal H-Series™ heaters",
+        "HeatPro® heat pumps",
+        "SwimClear® multi-element cartridge filters",
+        "AquaRite® 900 salt chlorination system",
+        "OmniLogic® backyard automation system",
+        "ColorLogic® pool and spa lights",
+        "TigerShark® robotic pool cleaners"
+      ]
+    },
+    {
+      "_template": "lenders",
+      "label": "From the manufacturer",
+      "title": "Learn more",
+      "titleEm": "about Hayward.",
+      "intro": "Visit Hayward directly for product details.",
+      "lenders": [
+        {
+          "name": "Hayward",
+          "description": "Pool and spa equipment manufacturer.",
+          "href": "https://www.hayward.com/",
+          "label": "Visit Hayward"
+        }
+      ]
+    },
+    {
+      "_template": "faq",
+      "label": "Equipment questions",
+      "title": "Hayward equipment,",
+      "titleEm": "explained.",
+      "questions": [
+        {
+          "question": "Do you build pools with Hayward equipment?",
+          "answer": "Yes. We install Hayward pool equipment, and we walk you through start-up when your pool is ready.",
+          "linkLabel": "See custom pool design",
+          "linkHref": "/custom-pools/"
+        },
+        {
+          "question": "Which Hayward equipment fits my pool?",
+          "answer": "That depends on your pool, your spa, and the features you choose. We talk through the equipment during your free design consultation."
+        },
+        {
+          "question": "Can I see my pool design before construction starts?",
+          "answer": "Yes. We create a 3D model of your pool and outdoor space, so you can see your vision come to life before construction begins.",
+          "linkLabel": "See the 3D design software in action",
+          "linkHref": "/#gallery"
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

@@ -18,13 +18,15 @@ COPY --from=source /src/src ./src
 COPY --from=source /src/content ./content
 COPY --from=source /src/tina ./tina
 COPY --from=source /src/public ./public
-ARG SITE_URL=http://localhost:4321
+ARG SITE_URL=
 ARG SOURCE_COMMIT=local
 # The page editor (/admin) is built only when both Tina Cloud keys are set; without them the site builds without it.
 # --skip-cloud-checks keeps a Tina Cloud problem from failing the deploy.
 ARG TINA_CLIENT_ID=
 ARG TINA_TOKEN=
 ARG GITHUB_BRANCH=main
+# Canonical links, the sitemap, robots.txt and the structured data all use this address, so a missing or localhost value must stop the build.
+RUN case "$SITE_URL" in https://*) ;; *) echo "SITE_URL build argument must be the public https address, for example https://islandlifecustompools.com" >&2; exit 1;; esac
 RUN if [ -n "$TINA_CLIENT_ID" ] && [ -n "$TINA_TOKEN" ]; then npx tinacms build --skip-cloud-checks; fi \
     && npm run build && npm prune --omit=dev --ignore-scripts
 

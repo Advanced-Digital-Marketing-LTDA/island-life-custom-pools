@@ -1,5 +1,6 @@
 ---
 import Icon from '../components/Icon.astro';
+import CallLink from '../components/CallLink.astro';
 
 interface Props {
   homeLabel?: string; eyebrow?: string; title?: string; italicTitle?: string; introduction?: string; ctaLabel?: string; ctaHref?: string;
@@ -17,11 +18,14 @@ const {
       <h1 id={headingId}>{title}{italicTitle && <>{' '}<br /><em>{italicTitle}</em></>}</h1>
       <p class="inner-hero__intro">{introduction}</p>
       {ctaLabel && (
-        <a class="button button--dark" href={ctaHref}>
-          <span class="button__label">{ctaLabel}</span>
-          <span class="button__wash" aria-hidden="true"></span>
-          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
-        </a>
+        <div class="hero-actions">
+          <a class="button button--dark" href={ctaHref}>
+            <span class="button__label">{ctaLabel}</span>
+            <span class="button__wash" aria-hidden="true"></span>
+            <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+          </a>
+          <CallLink />
+        </div>
       )}
     </div>
     <figure class="inner-hero__visual">

@@ -1,0 +1,113 @@
+{
+  "seoTitle": "About Island Life Custom Pools | Houston Pool Builders",
+  "seoDescription": "Island Life Custom Pools began in 2016. Owner-led by Justin Hall, we design and build custom pools, patios, and outdoor kitchens across the Houston area.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "About us",
+      "title": "About Island Life",
+      "italicTitle": "Custom Pools.",
+      "introduction": "Island Life Custom Pools began in 2016 to bring the best pool, patio, and outdoor kitchen concepts to our customers. We are native Houstonians, owner-led by Justin Hall, and we love giving you an ultimate escape from the long work week.",
+      "ctaLabel": "Request a free quote",
+      "ctaHref": "#quote",
+      "image": "/images/pavilion-dusk.webp",
+      "imageAlt": "Covered pavilion with a stone fireplace across a dark pool at dusk",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "overview",
+      "anchor": "story",
+      "label": "Our story",
+      "title": "Native Houstonians, building backyard escapes.",
+      "lede": "When you contact us about a custom pool, patio, or outdoor project, you can bring the living-room atmosphere outdoors. There is no better way to entertain family and guests, any day of the week. We give the highest level of attention to detail on every project and work closely with you to deliver your vision.",
+      "checklist": [
+        "Owner-led by Justin Hall",
+        "Founded in 2016 by native Houstonians",
+        "Best of Tomball Pool Builders Award, 2018, 2019, and 2020",
+        "Best of Houzz 2020 (Service)",
+        "A free design consultation with every quote request, then a custom 3D design",
+        "Serving Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village"
+      ]
+    },
+    {
+      "_template": "trust",
+      "badgeLine1": "Vetted and endorsed",
+      "badgeLine2": "by Google",
+      "title": "Google Guaranteed",
+      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
+      "badgeAlt": "Google Guaranteed Service Provider badge"
+    },
+    {
+      "_template": "reviews",
+      "label": "Client reviews",
+      "title": "Hear what our clients\nhave to say.",
+      "reviews": [
+        {
+          "name": "Jeff L.",
+          "detail": "Pool construction",
+          "quote": "Having recently moved to a new area, we relied on a friend who highly recommended Island Life Custom Pools. We are so glad that we heeded their advice. Tim exceeded our expectations with the construction of our beautiful pool. He was extremely communicative, detail oriented and surrounded himself with quality subs. In addition, his passion for assisting us with aesthetics was greatly appreciated. In essence, we would highly recommend Tim and his team to create your own slice of paradise."
+        },
+        {
+          "name": "Sam M.",
+          "detail": "On time · On budget",
+          "quote": "We had an amazing experience with Island Life custom pools. Tim and team took amazing care in helping us develop and execute on our vision. We really wanted to build a pool and an outdoor space we could use year round to bring people together. The quality and craftsmanship of the final product exceed our expectations and we came in on time and on budget. I think what sets Tim apart as a builder is his superb communication skills. We were always given a thorough understanding each step of the way from design, to excavation, to the structure and fireplace, all the way to start up! The crews are top notch and all materials feel premium I would highly recommend Island Life Custom Pools."
+        },
+        {
+          "name": "Jasmine H.",
+          "detail": "Pool · Spa · Fire pit",
+          "quote": "We had a wonderful experience using Island Life to build our pool, spa and fire pit. Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way. Even the construction crews were very nice and polite. We are so impressed with how everything turned out. It is so beautiful and we are so happy with it. We highly recommend."
+        },
+        {
+          "name": "Annette",
+          "detail": "A personal oasis",
+          "quote": "Huge thanks to Island Life Custom Pools for converting our backyard into our own personal oasis. Tim (the owner) made the process very easy and stress free. He is an honest man who constantly kept his word and heard our every want/must haves and made it happen. Tim is very responsive and answered all calls and text fast. He knew how our dogs are spoiled and even made a cute trail for them! If you don’t know anything about pools, don’t worry, he walks you through every step of the way. Highly recommend!"
+        },
+        {
+          "name": "Dee G.",
+          "detail": "Design through close-out",
+          "quote": "From the design to close-out, Tim and Eric were amazing! They addressed any issue big or small, listened to our needs and concerns and started working on them immediately. Our pool is beautiful. Making a large purchase like this can be a stressful time but Tim was patient and Eric new exactly what we wanted. We are so happy we chose Island Life Pools!!"
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "anchor": "reviews"
+    },
+    {
+      "_template": "faq",
+      "label": "About Island Life",
+      "title": "Who we are,",
+      "titleEm": "in short.",
+      "questions": [
+        {
+          "question": "Who owns Island Life Custom Pools?",
+          "answer": "Island Life Custom Pools is owner-led by Justin Hall."
+        },
+        {
+          "question": "When did Island Life Custom Pools start?",
+          "answer": "The company began in 2016. We are native Houstonians."
+        },
+        {
+          "question": "Which awards has Island Life Custom Pools received?",
+          "answer": "Island Life Custom Pools received the Best of Tomball Pool Builders Award in 2018, 2019, and 2020, and Best of Houzz 2020 (Service)."
+        },
+        {
+          "question": "What do clients say about working with Island Life?",
+          "answer": "Clients repeatedly mention clear communication, from the first design conversation through start-up. Their reviews are on this page.",
+          "linkLabel": "Read the reviews",
+          "linkHref": "#reviews"
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

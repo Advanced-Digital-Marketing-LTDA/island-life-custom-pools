@@ -1,0 +1,87 @@
+{
+  "seoTitle": "Custom Pool Builders in Jersey Village, TX | Island Life",
+  "seoDescription": "Custom pool builders serving Jersey Village, TX. See your pool in 3D before we build, and request a free design consultation from Island Life Custom Pools.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "Pool builders in Jersey Village",
+      "title": "Custom pool builders",
+      "italicTitle": "in Jersey Village, TX.",
+      "introduction": "Island Life Custom Pools designs and builds custom pools and spas for homes in Jersey Village, Texas, with patios, covers, and outdoor kitchens planned around them. See your pool in a custom 3D model before construction begins.",
+      "ctaLabel": "Start with a free design consult",
+      "ctaHref": "#quote",
+      "image": "/images/gallery-green-light-terrace.webp",
+      "imageAlt": "Pool lit green with a raised spa and a stone terrace beside a brick house at dusk.",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "overview",
+      "anchor": "overview",
+      "label": "Pool builders in Jersey Village",
+      "title": "Your pool, planned with your yard.",
+      "lede": "Whether you want a pool and spa, a covered patio, an outdoor kitchen, or all three, we plan them together for your Jersey Village home, then bring the plan to life in a custom 3D model before construction begins.",
+      "checklist": [
+        "Pool and spa design planned around your Jersey Village property",
+        "Water features and lighting",
+        "Patios and patio covers planned with the pool",
+        "Outdoor kitchens, fire pits, and fireplaces"
+      ]
+    },
+    {
+      "_template": "feature",
+      "image": "/images/gallery-water-wall.webp",
+      "imageAlt": "Three sheets of water falling from a stacked-stone wall into a pool, under a pink and purple sky.",
+      "eyebrow": "See it before we build it",
+      "title": "Planned in 3D, then built.",
+      "text": "Your free design consult leads into a custom 3D design of your pool and outdoor space, so you can see it come to life before construction begins. We keep you informed about what comes next.",
+      "linkLabel": "Request a free design consult",
+      "linkHref": "#quote"
+    },
+    {
+      "_template": "faq",
+      "label": "Jersey Village pool questions",
+      "title": "Before you build",
+      "titleEm": "a custom pool.",
+      "questions": [
+        {
+          "question": "Do you build custom pools in Jersey Village?",
+          "answer": "Yes. Island Life Custom Pools designs and builds custom pools and spas for homes in Jersey Village, Texas, along with patios, patio covers, and outdoor kitchens. Your free design consultation comes with every quote request.",
+          "linkLabel": "See custom pool design",
+          "linkHref": "/custom-pools/"
+        },
+        {
+          "question": "What can I build with my pool?",
+          "answer": "We plan the pool, spa, patio, outdoor kitchen, and fire features together as one backyard. That can include water features, lighting, a patio cover, and seating.",
+          "linkLabel": "See custom patios & covers",
+          "linkHref": "/custom-patios/"
+        },
+        {
+          "question": "Can I see my pool before it is built?",
+          "answer": "Yes. We create a 3D model of your pool and outdoor space, so you can see your vision come to life before construction begins.",
+          "linkLabel": "See the 3D design software in action",
+          "linkHref": "/#gallery"
+        },
+        {
+          "question": "How much does a pool cost in Jersey Village?",
+          "answer": "The cost depends on the size and shape of the pool, the features and finishes you choose, the equipment, and the rest of the backyard around it. After your free design consultation we provide a quote for your project.",
+          "linkLabel": "Explore pool financing",
+          "linkHref": "/financing/"
+        },
+        {
+          "question": "Which other areas do you serve?",
+          "answer": "We also build for homes in Tomball, Cypress, The Woodlands, Houston, Katy, Spring, and Magnolia, Texas.",
+          "linkLabel": "Contact us",
+          "linkHref": "/contact/"
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

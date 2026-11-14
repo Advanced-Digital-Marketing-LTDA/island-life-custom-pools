@@ -3,69 +3,88 @@
   "logo": "/images/island-life-logo.png",
   "phone": "(832) 304-4092",
   "phoneHref": "tel:+18323044092",
+  "ownerName": "Justin Hall",
+  "ownerRole": "Owner",
+  "foundingDate": "2016",
+  "awards": [
+    "Best of Tomball Pool Builders Award (2018, 2019, 2020)",
+    "Best of Houzz 2020 (Service)"
+  ],
   "nav": [
     {
       "label": "About",
-      "href": "#about"
+      "href": "/about-us/"
     },
     {
       "label": "Pools",
-      "href": "/pools"
+      "href": "/custom-pools/"
     },
     {
       "label": "Patios",
-      "href": "/patios"
+      "href": "/custom-patios/"
     },
     {
       "label": "Outdoor kitchens",
-      "href": "/outdoor-kitchens"
+      "href": "/outdoor-kitchens/"
     },
     {
       "label": "Gallery",
-      "href": "/gallery"
+      "href": "/gallery/"
     },
     {
       "label": "Financing",
-      "href": "/financing"
+      "href": "/financing/"
     },
     {
       "label": "Blog",
-      "href": "/blog"
+      "href": "/blog/"
     }
   ],
   "headerCta": "Free quote",
   "menuCta": "Request a free quote",
   "footer": {
-    "blurbLine1": "Houston pool & patio builders.",
+    "blurbLine1": "Greater Houston pool & patio builders.",
     "blurbLine2": "Bring your vacation dreams home.",
     "nav": [
       {
         "label": "About",
-        "href": "#about"
+        "href": "/about-us/"
       },
       {
         "label": "Pools",
-        "href": "/pools"
+        "href": "/custom-pools/"
       },
       {
         "label": "Patios",
-        "href": "/patios"
+        "href": "/custom-patios/"
       },
       {
         "label": "Outdoor kitchens",
-        "href": "/outdoor-kitchens"
+        "href": "/outdoor-kitchens/"
       },
       {
         "label": "Gallery",
-        "href": "/gallery"
+        "href": "/gallery/"
       },
       {
         "label": "Blog",
-        "href": "/blog"
+        "href": "/blog/"
       },
       {
         "label": "Financing",
-        "href": "/financing"
+        "href": "/financing/"
+      },
+      {
+        "label": "Hayward equipment",
+        "href": "/hayward-equipment/"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact/"
+      },
+      {
+        "label": "Privacy policy",
+        "href": "/gdpr-privacy-policy/"
       },
       {
         "label": "Free quote",
@@ -74,10 +93,38 @@
     ],
     "areasTitle": "Service areas",
     "areas": [
-      "Tomball",
-      "Cypress",
-      "The Woodlands",
-      "Houston"
+      {
+        "name": "Tomball",
+        "href": "/custom-pool-builders-tomball/"
+      },
+      {
+        "name": "Cypress",
+        "href": "/custom-pool-builders-cypress/"
+      },
+      {
+        "name": "The Woodlands",
+        "href": "/custom-pool-builders-woodlands/"
+      },
+      {
+        "name": "Houston",
+        "href": "/custom-pool-builders-houston/"
+      },
+      {
+        "name": "Katy",
+        "href": "/custom-pool-builders-katy/"
+      },
+      {
+        "name": "Spring",
+        "href": "/custom-pool-builders-spring/"
+      },
+      {
+        "name": "Magnolia",
+        "href": "/custom-pool-builders-magnolia/"
+      },
+      {
+        "name": "Jersey Village",
+        "href": "/custom-pool-builders-jersey-village/"
+      }
     ],
     "hoursTitle": "Hours",
     "hours": [
@@ -134,13 +181,7 @@
     "submitLabel": "Send my request",
     "submitPendingLabel": "Sending your request",
     "note": "Free design consult included. No pressure—just a conversation about your backyard.",
-    "errorText": "We couldn’t send your request. Please check your details and try again, or call {phone}.",
-    "successLabel": "Request received",
-    "successTitleLine": "Your island life",
-    "successTitleEm": "starts here.",
-    "successLead": "Thank you. Your request reference is",
-    "successText": "The Island Life team will be in touch by {method} to arrange your free design consultation. If you call us, mention your reference.",
-    "successButton": "Send another request"
+    "errorText": "We couldn’t send your request. Please check your details and try again, or call {phone}."
   },
   "ogImage": "/images/og-share.jpg"
 }

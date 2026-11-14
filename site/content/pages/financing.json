@@ -1,12 +1,12 @@
 {
-  "seoTitle": "Pool Financing & Payment Estimator | Island Life Custom Pools",
-  "seoDescription": "Explore pool and outdoor living financing through Lyon Financial and HFS Financial, and estimate a monthly payment for your Houston-area project.",
+  "seoTitle": "Pool Financing & Loan Calculator | Island Life Custom Pools",
+  "seoDescription": "Estimate monthly payments for a pool, patio, or outdoor kitchen and explore financing through Lyon Financial and HFS Financial.",
   "blocks": [
     {
       "_template": "splitHero",
       "homeLabel": "Home",
       "eyebrow": "Financing",
-      "title": "Bring the island life",
+      "title": "Pool & patio financing",
       "titleEm": "within reach.",
       "text": "Explore third-party financing and estimate a monthly payment for your pool, patio, or outdoor kitchen.",
       "buttonLabel": "Estimate your payment",
@@ -16,10 +16,10 @@
     },
     {
       "_template": "estimator",
-      "label": "Finance estimator",
+      "label": "Pool financing calculator",
       "title": "Explore your project",
       "titleEm": "month to month.",
-      "intro": "Adjust the loan amount, interest rate, and term to see an estimated payment.",
+      "intro": "Adjust the loan amount, interest rate, and term to see an estimated monthly payment for your pool, patio, or outdoor kitchen.",
       "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
       "amount": 46400,
       "rate": 8,
@@ -48,6 +48,40 @@
           "label": "Visit HFS Financial"
         }
       ]
+    },
+    {
+      "_template": "faq",
+      "label": "Financing questions",
+      "title": "Pool financing,",
+      "titleEm": "explained.",
+      "questions": [
+        {
+          "question": "Does Island Life Custom Pools offer financing?",
+          "answer": "We work with third-party lenders, including Lyon Financial and HFS Financial. You can visit either one directly to learn about its current loan programs and application process. Rates and terms come from the lender."
+        },
+        {
+          "question": "How does the payment estimator work?",
+          "answer": "Enter a loan amount, an interest rate, and a term, and the estimator shows an estimated monthly payment, the total of the payments, and the estimated interest. It assumes a fixed rate and equal monthly payments. The starting figures are only an example, not an offer, and your lender provides final rates and terms."
+        },
+        {
+          "question": "Which loan amounts can I estimate?",
+          "answer": "The estimator accepts loan amounts from $1,000 to $1,000,000, interest rates from 0% to 40%, and terms from 1 to 30 years. Whether a lender will finance a particular project is the lender’s decision."
+        },
+        {
+          "question": "Can I finance a patio or outdoor kitchen?",
+          "answer": "The estimator works for a pool, patio, or outdoor kitchen project. Whether a lender will finance a particular project is the lender’s decision, so ask us about your project during the free design consultation.",
+          "linkLabel": "See custom patios & covers",
+          "linkHref": "/custom-patios/"
+        },
+        {
+          "question": "Where do I start?",
+          "answer": "Start by requesting a free quote, which includes a free design consultation. Once you know the scope of your project, you can use the estimator to explore monthly payments.",
+          "linkLabel": "See custom pools",
+          "linkHref": "/custom-pools/"
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
     },
     {
       "_template": "quoteForm",
