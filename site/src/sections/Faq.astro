@@ -3,10 +3,10 @@ import Icon from '../components/Icon.astro';
 import Lines from '../components/Lines.astro';
 
 interface Question { question?: string; answer?: string; linkLabel?: string; linkHref?: string }
-interface Props { label?: string; title?: string; titleEm?: string; questions?: Question[]; cta?: string; ctaHref?: string; anchor?: string; headingId: string }
-const { label = '', title = '', titleEm = '', questions = [], cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+interface Props { label?: string; title?: string; titleEm?: string; questions?: Question[]; cta?: string; ctaHref?: string; twoColumns?: boolean; anchor?: string; headingId: string }
+const { label = '', title = '', titleEm = '', questions = [], cta = '', ctaHref = '#quote', twoColumns = false, anchor, headingId } = Astro.props;
 ---
-<section class="faq section" id={anchor || undefined} aria-labelledby={headingId}>
+<section class:list={['faq', 'section', { 'faq--wide': twoColumns }]} id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell faq__grid">
     <div class="faq__intro">
       <p class="section-label">{label}</p>

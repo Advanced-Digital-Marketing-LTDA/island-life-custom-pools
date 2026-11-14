@@ -1,12 +1,12 @@
 ---
 import Brand from '../components/Brand.astro';
 import Icon from '../components/Icon.astro';
-import { settings, linkTo } from '../lib/content';
+import { settings, linkTo, mapUrl } from '../lib/content';
 import { homePrefix } from '../lib/nav';
 
 interface Props { hasQuote?: boolean }
 const { hasQuote = false } = Astro.props;
-const { phone, phoneHref, footer } = settings;
+const { phone, phoneHref, footer, address } = settings;
 const prefix = homePrefix(Astro.url);
 // On a page with its own quote form, "#quote" stays on the page.
 const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(Astro.url, href));
@@ -16,6 +16,11 @@ const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(
     <div>
       <a class="footer__brand" href={`${prefix}#top`} aria-label={`${settings.name} home`}><Brand /></a>
       <p>{footer.blurbLine1}{' '}<br />{footer.blurbLine2}</p>
+      {address && (
+        <address class="footer__address">
+          <a href={mapUrl} target="_blank" rel="noopener">{address.street}{' '}<br />{address.city}, {address.region} {address.postalCode}<span class="sr-only"> (opens in a map in a new tab)</span></a>
+        </address>
+      )}
     </div>
     <nav aria-label="Footer navigation">
       {footer.nav.map((item) => <a href={target(item.href)}>{item.label}</a>)}

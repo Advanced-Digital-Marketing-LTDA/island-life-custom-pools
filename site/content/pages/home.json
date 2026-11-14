@@ -18,7 +18,31 @@
       "foot": [],
       "video": "/videos/island-life-hero.mp4",
       "videoMobile": "/videos/island-life-hero-mobile.mp4",
-      "videoPoster": "/images/hero-video-poster.webp"
+      "videoPoster": "/images/hero-video-poster.webp",
+      "trust": [
+        {
+          "text": "Google Guaranteed",
+          "image": "/images/Google-Guaranteed-01-300x289.webp",
+          "imageAlt": ""
+        },
+        {
+          "text": "stars on Google",
+          "highlight": "4.9",
+          "stars": true
+        },
+        {
+          "text": "Best of Tomball Pool Builders, 2018–2020",
+          "icon": "trophy"
+        },
+        {
+          "text": "Best of Houzz 2020",
+          "icon": "award"
+        },
+        {
+          "text": "Owner-led since 2016",
+          "icon": "user-check"
+        }
+      ]
     },
     {
       "_template": "about",
@@ -270,7 +294,8 @@
         }
       ],
       "cta": "Request a free quote",
-      "ctaHref": "#quote"
+      "ctaHref": "#quote",
+      "twoColumns": true
     },
     {
       "_template": "quoteForm",

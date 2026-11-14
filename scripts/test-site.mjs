@@ -76,6 +76,7 @@ for (const page of pages) {
   assert.match(html, new RegExp(`<link rel="canonical" href="[^"]+${page.path ? `/${page.path}/` : '/'}"`), `Canonical on ${where} should end in a slash`);
   assert.equal(/<meta name="robots" content="noindex"/.test(html), !!page.noindex, `noindex is wrong on ${where}`);
   // The phone number sits in the header, and a page with its own quote form keeps its buttons on that form.
+  assert.ok(html.includes(`<address class="footer__address">`) && html.includes(escapeHtml(settings.address.street)), `The footer address is missing on ${where}`);
   assert.ok(html.includes(`class="site-header__phone" href="${settings.phoneHref}"`), `Header phone link missing on ${where}`);
   if (visible.some((block) => block._template === 'quoteForm')) assert.ok(/class="button button--light site-header__cta" href="#quote"/.test(html), `The header quote button should stay on the page's own form on ${where}`);
   // Internal links: use the slash form and point at a page that was built.
@@ -148,6 +149,14 @@ assert.ok(frontHtml.includes(`"employee":{"@type":"Person","name":"${settings.ow
 // The home page links to the page of every served city, in its own text.
 for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`>Pool builders in ${escapeHtml(area.name)}</a>`), `The home page should link to its ${area.name} page`);
 for (const slug of ['custom-pools', 'custom-patios', 'outdoor-kitchens']) assert.ok(pageHtml(slug).includes('"@type":"Service"'), `/${slug}/ should describe its Service`);
+for (const area of settings.footer.areas) assert.ok(pageHtml(area.href).includes(`"@type":"Service","name":"Custom pool builders in ${area.name}"`), `${area.href} should describe its Service`);
+assert.ok(frontHtml.includes('"@type":"WebSite"'), 'The home page should describe the WebSite');
+for (const link of settings.social.filter((item) => !/review/i.test(item.label))) assert.ok(frontHtml.includes(`"${link.href}"`), `The business schema should list ${link.label}`);
+assert.ok(frontHtml.includes(`"streetAddress":"${settings.address.street}"`) && frontHtml.includes('"@type":"GeoCoordinates"'), 'The business schema should carry the address');
+for (const slug of postSlugs) {
+  const html = pageHtml(`blog/${slug}`);
+  assert.ok(html.includes('"@type":"BlogPosting"') && html.includes('"@type":"BreadcrumbList"'), `/blog/${slug}/ should describe its BlogPosting and breadcrumbs`);
+}
 
 // The form and the endpoint must agree on field names and choices.
 const formPage = pages.find((page) => (page.blocks ?? []).some((block) => block._template === 'quoteForm' && !block.hidden));
@@ -169,6 +178,9 @@ const front = pageHtml('');
 assert.match(front, /class="hero__image"[^>]*style="transform: translate3d\(0px, 0%, 0px\) scale\(1\.04\);"/);
 assert.match(front, /<div class="testimonial__slides" style="opacity: 1; transform: translate3d\(0px, 0px, 0px\);">/);
 assert.equal([...front.matchAll(/class="testimonial-slide"/g)].length, 3);
+// The trust bar under the hero shows every credential given in the content.
+const heroTrust = (pages.find((page) => page.slug === 'home').blocks.find((block) => block._template === 'hero').trust ?? []);
+for (const item of heroTrust) assert.ok(front.includes(escapeHtml(item.text)), `The hero trust bar is missing: ${item.text}`);
 assert.match(front, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
 
 // The gallery's closing section offers the phone number and reaches the home page quote form.
