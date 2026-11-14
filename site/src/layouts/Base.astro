@@ -2,7 +2,7 @@
 import '../styles/index.css';
 import '../styles/app.css';
 import SmoothScroll from '../components/SmoothScroll.astro';
-import { settings, pages } from '../lib/content';
+import { settings, pages, mapUrl } from '../lib/content';
 import { services } from '../lib/services';
 
 interface Props { title: string; description: string; preload?: string; noindex?: boolean; extraLd?: object[] }
@@ -20,6 +20,11 @@ const ld = {
   logo: new URL(settings.logo, Astro.site).href,
   image: ogImage,
   telephone: settings.phone,
+  ...(settings.address ? {
+    address: { '@type': 'PostalAddress', streetAddress: settings.address.street, addressLocality: settings.address.city, addressRegion: settings.address.region, postalCode: settings.address.postalCode, addressCountry: 'US' },
+    geo: { '@type': 'GeoCoordinates', latitude: settings.address.latitude, longitude: settings.address.longitude },
+    hasMap: mapUrl,
+  } : {}),
   description: businessDescription,
   alternateName: 'Island Life Pools',
   areaServed: [{ '@type': 'AdministrativeArea', name: 'Greater Houston, TX' }, ...settings.footer.areas.map((area) => ({ '@type': 'City', name: `${area.name}, TX` }))],

@@ -73,6 +73,12 @@ const templates = [
     str('line1', 'Heading, line 1'), str('line2', 'Heading, line 2 (accent color)'), str('line3', 'Heading, line 3'),
     text('intro', 'Introduction'), str('cta', 'Button label'), href('ctaHref', 'Button link'),
     str('scrollLabel', 'Scroll link label'), href('scrollHref', 'Scroll link'), strings('foot', 'Bottom-right list'),
+    items('trust', 'Trust bar along the bottom', 'text', [
+      str('text', 'Text'), str('highlight', 'Bold figure before the text (optional)', 'For example "4.9".'),
+      { type: 'string', name: 'icon', label: 'Icon (optional)', options: ['award', 'trophy', 'user-check', 'shield-check', 'check'] },
+      { type: 'boolean', name: 'stars', label: 'Show five stars (optional)' },
+      image('image', 'Small picture (optional)'), str('imageAlt', 'Picture description', 'Leave empty when the text beside it already says it.'),
+    ], 'Short credentials shown in a bar at the bottom of the photo. Leave the list empty for no bar.'),
     { type: 'boolean', name: 'scrim', label: 'Dark band behind the text', description: 'Turn on for bright photos, so the text stays easy to read.' },
   ], { ctaHref: '#quote' }),
   block('about', 'About and services', [
@@ -164,6 +170,7 @@ const templates = [
     str('label', 'Small heading'), ...headingLines(),
     items('questions', 'Questions', 'question', [text('question', 'Question'), text('answer', 'Answer'), str('linkLabel', 'Link label (optional)'), href('linkHref', 'Link')]),
     str('cta', 'Button label'), href('ctaHref', 'Button link'),
+    { type: 'boolean', name: 'twoColumns', label: 'Two columns on wide screens', description: 'For a long list of questions: the heading runs across the top and the questions sit in two columns.' },
   ], { ctaHref: '#quote' }),
   block('prose', 'Long text (policy page)', [
     items('sections', 'Sections', 'title', [str('title', 'Heading'), strings('lines', 'Text', 'One paragraph per line. Start a line with "- " to make it a bullet.')]),
@@ -189,6 +196,7 @@ export default defineConfig({
         image('ogImage', 'Link preview image', 'The photo shown when a page is shared in a message or on social media.'),
         str('phone', 'Phone (as shown)'),
         str('phoneHref', 'Phone link', 'The tel: link, for example tel:+18323044092.'),
+        group('address', 'Business address', [str('street', 'Street'), str('city', 'City'), str('region', 'State'), str('postalCode', 'ZIP code'), num('latitude', 'Latitude'), num('longitude', 'Longitude')]),
         str('ownerName', 'Owner name', 'Named in the search-engine description of the business.'),
         str('ownerRole', 'Owner role'),
         str('foundingDate', 'Year the business started', 'For example "2016".'),

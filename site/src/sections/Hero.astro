@@ -6,14 +6,15 @@ import { escapeHtml } from '../lib/content';
 interface Props {
   image?: string; imageAlt?: string; video?: string; videoMobile?: string; videoPoster?: string; kicker?: string; line1?: string; line2?: string; line3?: string; intro?: string;
   cta?: string; ctaHref?: string; scrollLabel?: string; scrollHref?: string; foot?: string[]; scrim?: boolean;
+  trust?: { text?: string; highlight?: string; icon?: string; stars?: boolean; image?: string; imageAlt?: string }[];
   anchor?: string; headingId: string;
 }
 const {
   image = '', imageAlt = '', video = '', videoMobile = '', videoPoster = '', kicker = '', line1 = '', line2 = '', line3 = '', intro = '', cta = '', ctaHref = '#quote',
-  scrollLabel = '', scrollHref = '', foot = [], scrim = false, anchor, headingId,
+  scrollLabel = '', scrollHref = '', foot = [], scrim = false, trust = [], anchor, headingId,
 } = Astro.props;
 ---
-<section class:list={['hero', { 'hero--video': !!video, 'hero--scrim': scrim }]} id={anchor || undefined} aria-labelledby={headingId}>
+<section class:list={['hero', { 'hero--video': !!video, 'hero--scrim': scrim, 'hero--trust': trust.length > 0 }]} id={anchor || undefined} aria-labelledby={headingId}>
   {video ? (
     // The video is decoration: it plays muted and loops. Visitors who prefer reduced motion get the still instead (see the script).
     // MP4 comes first because it is the smaller file; WebM is for browsers without H.264. Phones get the smaller 720p files.
@@ -46,6 +47,20 @@ const {
       </div>
     </div>
   </div>
+  {trust.length > 0 && (
+    <div class="hero__trust">
+      <ul class="page-shell" aria-label="Why homeowners choose Island Life Custom Pools">
+        {trust.map((item) => (
+          <li>
+            {item.image && <img class="hero__trust-badge" src={item.image} alt={item.imageAlt || ''} height="40" />}
+            {item.icon && <span class="hero__trust-icon" aria-hidden="true"><Icon name={item.icon as any} size={20} strokeWidth={1.5} /></span>}
+            {item.stars && <span class="hero__trust-stars" aria-hidden="true">{[0, 1, 2, 3, 4].map(() => <Icon name="star" size={16} strokeWidth={1.2} fill />)}</span>}
+            <span class="hero__trust-text">{item.highlight && <strong>{item.highlight}</strong>}{item.highlight && ' '}{item.text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
   {(scrollHref || foot.length > 0) && (
     <div class="hero__foot page-shell">
       {scrollHref && (
