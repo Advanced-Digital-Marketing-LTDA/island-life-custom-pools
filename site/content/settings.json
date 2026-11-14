@@ -27,6 +27,10 @@
     {
       "label": "Financing",
       "href": "/financing"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
     }
   ],
   "headerCta": "Free quote",
