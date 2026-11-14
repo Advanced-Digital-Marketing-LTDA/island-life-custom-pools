@@ -5,13 +5,13 @@ import { estimate, money } from '../lib/estimate';
 
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string; note?: string;
-  amount?: number; rate?: number; years?: number; anchor?: string; headingId: string;
+  amount?: number; rate?: number; years?: number; background?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
 }
-const { label = '', title = '', titleEm = '', intro = '', note = '', amount = 75000, rate = 8, years = 15, anchor, headingId } = Astro.props;
+const { label = '', title = '', titleEm = '', intro = '', note = '', amount = 46400, rate = 8, years = 15, background = 'sand', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 const result = estimate(amount, rate, years);
 const shown = (value: number) => (result.valid ? money(value) : '—');
 ---
-<section class="estimator section" id={anchor || undefined} aria-labelledby={headingId}>
+<section class:list={['estimator', 'section', { 'estimator--white': background === 'white' }]} id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell">
     <div class="estimator__heading">
       <p class="section-label">{label}</p>
@@ -67,6 +67,15 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
         {note && <p class="estimator__note">{note}</p>}
       </div>
     </div>
+    {cta && (
+      <div class="estimator__cta">
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      </div>
+    )}
   </div>
 </section>
 

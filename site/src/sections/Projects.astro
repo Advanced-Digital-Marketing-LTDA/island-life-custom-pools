@@ -1,10 +1,12 @@
 ---
+import Icon from '../components/Icon.astro';
+
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string;
   cards?: { layout?: string; name?: string; category?: string; detail?: string; image?: string; alt?: string }[];
-  anchor?: string; headingId: string;
+  cta?: string; ctaHref?: string; anchor?: string; headingId: string;
 }
-const { label = '', title = '', titleEm = '', intro = '', cards = [], anchor, headingId } = Astro.props;
+const { label = '', title = '', titleEm = '', intro = '', cards = [], cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 ---
 <section class="projects section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell">
@@ -29,5 +31,14 @@ const { label = '', title = '', titleEm = '', intro = '', cards = [], anchor, he
         </figure>
       ))}
     </div>
+    {cta && (
+      <div class="projects__cta">
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      </div>
+    )}
   </div>
 </section>

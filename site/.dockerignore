@@ -5,6 +5,5 @@ dist
 .env
 .env.*
 *.log
-tina
 public/admin
 originals

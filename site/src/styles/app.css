@@ -879,3 +879,31 @@
 /* The designer credit sits in the footer's bottom row, linked, at 14px. */
 .footer__credit { font-size: 14px; }
 .footer__credit a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* An estimator that sits right after another sand-colored section is set apart with a white background. */
+.estimator--white { background: #fff; }
+
+/* Calls to action added under existing sections. */
+.studio__statement .button, .outdoor-life__copy .button, .trust__copy .button { margin-top: 32px; }
+.projects__cta, .estimator__cta { margin-top: 56px; }
+
+/* Navigation and menu text: white on the photo header and the dark mobile menu, black on a white header or footer. */
+.site-header { --text-on-dark: #fff; color: #fff; }
+.site-header.is-scrolled, .site-header--solid { color: #000; }
+.site-header.is-scrolled .button--light, .site-header--solid .button--light,
+.site-header.is-scrolled .button--light:hover, .site-header.is-scrolled .button--light:focus-visible,
+.site-header--solid .button--light:hover, .site-header--solid .button--light:focus-visible { color: #000; }
+.mobile-menu { --text-on-dark: #fff; }
+.footer__top nav a, .footer__hours a { color: #000; }
+
+/* Alignment: a button sits on the same left edge as the text it follows, and columns start on the same line. */
+@media (min-width: 1024px) {
+  .studio__statement .button { margin-left: 12%; }
+  .outdoor-life__copy .button { margin-left: 33.333%; }
+  .investment__offer { border-top: 0; padding-top: 0; }
+}
+/* On a phone the tags beside a photo's title would wrap into a narrow right-hand column: put them under the caption instead. */
+@media (max-width: 767px) {
+  .project figcaption { flex-direction: column; gap: 0; }
+  .project figcaption > span { max-width: none; margin-top: 10px; text-align: left; }
+}

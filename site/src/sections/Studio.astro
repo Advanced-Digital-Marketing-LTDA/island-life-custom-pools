@@ -1,11 +1,12 @@
 ---
+import Icon from '../components/Icon.astro';
 import Lines from '../components/Lines.astro';
 
 interface Props {
   label?: string; title?: string; titleEm?: string; lede?: string; image?: string; imageAlt?: string; caption?: string;
-  services?: { id?: string; title?: string; description?: string }[]; details?: string; anchor?: string; headingId: string;
+  services?: { id?: string; title?: string; description?: string }[]; details?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
 }
-const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = '', caption = '', services = [], details = '', anchor, headingId } = Astro.props;
+const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = '', caption = '', services = [], details = '', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
 ---
 <section class="studio section" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell studio__grid">
@@ -13,6 +14,13 @@ const { label = '', title = '', titleEm = '', lede = '', image = '', imageAlt = 
       <p class="section-label">{label}</p>
       <h2 id={headingId}><Lines text={title} />{' '}<br /><em>{titleEm}</em></h2>
       <p class="studio__lede">{lede}</p>
+      {cta && (
+        <a class="button button--dark" href={ctaHref}>
+          <span class="button__label">{cta}</span>
+          <span class="button__wash" aria-hidden="true"></span>
+          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+        </a>
+      )}
     </div>
     <figure class="studio__image-wrap">
       {image && <img src={image} alt={imageAlt} loading="lazy" />}

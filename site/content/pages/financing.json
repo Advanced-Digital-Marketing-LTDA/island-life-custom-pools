@@ -21,16 +21,18 @@
       "titleEm": "month to month.",
       "intro": "Adjust the loan amount, interest rate, and term to see an estimated payment.",
       "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
-      "amount": 75000,
+      "amount": 46400,
       "rate": 8,
       "years": 15,
-      "anchor": "payment-estimator"
+      "anchor": "payment-estimator",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote"
     },
     {
       "_template": "lenders",
       "label": "Third-party financing",
-      "title": "Choose where to",
-      "titleEm": "explore your options.",
+      "title": "Choose where",
+      "titleEm": "to explore your options.",
       "intro": "Visit either financing partner directly to learn about its current loan programs and application process.",
       "lenders": [
         {

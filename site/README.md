@@ -58,11 +58,15 @@ docker build --build-arg SITE_URL=https://islandlifecustompools.com \
 docker run --rm -p 127.0.0.1:4321:4321 island-life
 ```
 
-In Coolify select Dockerfile with base directory `/site`, Dockerfile `/Dockerfile` and exposed port 4321. Keep HOST=0.0.0.0 and PORT=4321 in the container. After deployment check the home page, a missing page, `/healthz` and `/build.json`.
+In Coolify select the Dockerfile build pack and exposed port 4321. The Dockerfile works whether the build starts at the repository root (Dockerfile `/site/Dockerfile`) or in `site/` (base directory `/site`, Dockerfile `/Dockerfile`). Keep HOST=0.0.0.0 and PORT=4321 in the container. After deployment check the home page, a missing page, `/healthz` and `/build.json`.
+
+### Editing on the live site (Tina Cloud)
+
+The editor at `/admin` is built into the image only when both `TINA_CLIENT_ID` and `TINA_TOKEN` are set as **build variables** in Coolify (also set `GITHUB_BRANCH=main`). Without them the site builds and runs with no `/admin`. Create the Tina Cloud project for this repository, add the site's address to its allowed sites, and every save in the editor is committed to `main`, which Coolify redeploys. The editor build uses `--skip-cloud-checks`, so a Tina Cloud problem cannot fail a deploy, but it can leave the editor unable to save. The token is a build argument, so keep the image on your own server. Photos picked in Tina are saved to `public/images`, which is not on the CDN: upload the file to the CDN's `public/images` folder as well.
 
 ### Caching and compression
 
-The Node server sends `Cache-Control: public, max-age=0` for everything in `public/` (only the hashed `/_astro/` files are cached for a year) and does not compress responses. Both belong to the proxy: in Coolify keep gzip/brotli on, and add a response header for `/images/*` and `/fonts/*` such as `Cache-Control: public, max-age=604800, stale-while-revalidate=86400` (not `immutable`, because those file names are not hashed). After deploy, `curl -sI -H "Accept-Encoding: gzip" https://islandlifecustompools.com/` should show `content-encoding`, and `curl -sI https://islandlifecustompools.com/images/hero.webp` should show the max-age above.
+The Node server sends `Cache-Control: public, max-age=0` for everything in `public/` (only the hashed `/_astro/` files are cached for a year) and does not compress responses. Both belong to the proxy: in Coolify keep gzip/brotli on, and add a response header for `/fonts/*` (the only static files the site still serves besides the favicon; images and videos are cached by Bunny) such as `Cache-Control: public, max-age=604800, stale-while-revalidate=86400` (not `immutable`, because those file names are not hashed). After deploy, `curl -sI -H "Accept-Encoding: gzip" https://islandlifecustompools.com/` should show `content-encoding`, and `curl -sI https://islandlifecustompools.com/fonts/michroma-regular.woff2` should show the max-age above.
 
 Old page URLs (`/custom-pools/`, `/custom-patios/`, `/about-us/`, `/contact/`) redirect to their closest place on the new site (`astro.config.mjs`). Other old URLs return the 404 page.
 

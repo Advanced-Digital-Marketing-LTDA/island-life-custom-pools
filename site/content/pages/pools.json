@@ -13,8 +13,8 @@
       "ctaHref": "#quote",
       "image": "/images/freeform-pool-cabana.webp",
       "imageAlt": "Freeform pool with a rock waterfall, a spa, and a cedar cabana",
-      "scrollLabel": "Explore the possibilities",
-      "scrollHref": "#overview"
+      "scrollLabel": "",
+      "scrollHref": ""
     },
     {
       "_template": "overview",

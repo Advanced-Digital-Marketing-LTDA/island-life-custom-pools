@@ -13,8 +13,8 @@
       "ctaHref": "#quote",
       "image": "/images/patio-cover-spa.webp",
       "imageAlt": "Covered patio with a fireplace and seating beside a stone-faced raised spa",
-      "scrollLabel": "Explore the possibilities",
-      "scrollHref": "#overview"
+      "scrollLabel": "",
+      "scrollHref": ""
     },
     {
       "_template": "overview",
