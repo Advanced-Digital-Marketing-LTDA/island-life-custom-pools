@@ -1,6 +1,6 @@
 {
   "seoTitle": "Outdoor Living Gallery | Island Life Custom Pools",
-  "seoDescription": "Explore custom pool, spa, patio, outdoor kitchen, and backyard design possibilities from Island Life Custom Pools.",
+  "seoDescription": "Photos of pools, spas, patios, outdoor kitchens, and fire features from Island Life Custom Pools.",
   "blocks": [
     {
       "_template": "pageHero",
@@ -8,195 +8,175 @@
       "eyebrow": "Gallery",
       "title": "Island Life Custom Pools",
       "italicTitle": "Gallery",
-      "introduction": "See how water, shade, fire, and food can come together in one beautifully coordinated backyard.",
+      "introduction": "Pools, spas, patios, fire features, and outdoor kitchens from our projects.",
       "ctaLabel": "Start with a free design consult",
       "ctaHref": "/#quote",
       "image": "/images/travertine-pool-loungers.webp",
       "imageAlt": "Backyard pool with a travertine deck, lounge chairs, and an umbrella beside a brick home at dusk",
-      "scrollLabel": "Explore the collection",
+      "scrollLabel": "See the photos",
       "scrollHref": "#gallery-collection"
     },
     {
       "_template": "collection",
       "anchor": "gallery-collection",
-      "label": "A vision for the whole space",
-      "title": "One backyard.",
-      "titleEm": "Every detail.",
-      "intro": "Start with the features you love. Then use a custom 3D design to see how they fit your property and connect with one another before construction begins.",
-      "linkLabel": "See how the 3D design works",
-      "linkHref": "/#process",
+      "label": "Photos from our projects",
+      "title": "Pools, patios,",
+      "titleEm": "and kitchens.",
+      "intro": "Pick out what you like. We can model it in 3D for your yard, so you can see it before we build.",
+      "linkLabel": "See the 3D design software",
+      "linkHref": "/#gallery",
       "photos": [
         {
           "layout": "feature",
-          "title": "Sunset, lit from below",
+          "title": "Raised spa at sunset",
           "category": "Pool · Spa · Color lighting",
-          "description": "A raised spa, a lit pool, and a sky worth staying out for.",
-          "image": "/images/gallery-sunset-spa.webp",
-          "alt": "Raised spa and pool glowing purple under a bright orange sunset sky"
+          "description": "A raised spa beside a pool lit from underneath, under an orange sky.",
+          "image": "/images/gallery-sunset-spa.webp"
         },
         {
           "layout": "portrait",
-          "title": "Water you can hear",
+          "title": "Rock waterfall",
           "category": "Rock waterfall · Pool",
-          "description": "Falling water gives the whole backyard a soundtrack.",
-          "image": "/images/gallery-rock-waterfall.webp",
-          "alt": "Rock waterfall spilling into a blue pool"
+          "description": "A rock waterfall spilling into the pool.",
+          "image": "/images/gallery-rock-waterfall.webp"
         },
         {
           "layout": "portrait-offset",
-          "title": "Color after dark",
-          "category": "Water blade · Pool lighting",
-          "description": "A sheet of water and a colored light change the mood of the pool.",
-          "image": "/images/gallery-purple-water-blade.webp",
-          "alt": "Water pouring from a black-tile wall into a purple-lit pool"
+          "title": "Water blade, lit purple",
+          "category": "Water feature · Pool lighting",
+          "description": "A sheet of water pours off a black tile wall into a purple-lit pool.",
+          "image": "/images/gallery-purple-water-blade.webp"
         },
         {
           "layout": "wide",
-          "title": "Long lines, open lawn",
+          "title": "Pool and cabana",
           "category": "Pool · Cabana · Patio",
-          "description": "A long pool, a wide deck, and a covered cabana across the lawn.",
-          "image": "/images/gallery-lawn-cabana-pool.webp",
-          "alt": "Rectangular pool with a wide deck, a house, and a covered cabana under a blue sky"
+          "description": "A long rectangular pool with a wide deck, and a covered cabana on the far side.",
+          "image": "/images/gallery-lawn-cabana-pool.webp"
         },
         {
           "layout": "portrait",
-          "title": "A fire feature of its own",
-          "category": "Fire pit · Black tile",
-          "description": "A clean, low fire pit with room to sit around it.",
-          "image": "/images/gallery-black-tile-fire-pit.webp",
-          "alt": "Rectangular fire pit faced in black tile with a white cap"
+          "title": "Black-tile fire pit",
+          "category": "Fire pit",
+          "description": "A rectangular fire pit faced in black tile with a white cap.",
+          "image": "/images/gallery-black-tile-fire-pit.webp"
         },
         {
           "layout": "portrait-offset",
-          "title": "Stone, spa and falling water",
+          "title": "Rock waterfall and raised spa",
           "category": "Rock waterfall · Raised spa",
-          "description": "A rock waterfall and raised spa add height to a freeform pool.",
-          "image": "/images/gallery-grotto-spa.webp",
-          "alt": "Rock waterfall and raised spa beside a freeform pool"
+          "description": "A rock waterfall and a raised spa at the end of a freeform pool.",
+          "image": "/images/gallery-grotto-spa.webp"
         },
         {
           "layout": "feature",
-          "title": "The last light of the day",
-          "category": "Pool · Sunset",
-          "description": "Still water catches the colors of the evening.",
-          "image": "/images/gallery-sunset-reflections.webp",
-          "alt": "Sunset reflected in a pool beside a covered patio"
+          "title": "Pool at sunset",
+          "category": "Pool · Covered patio",
+          "description": "The pool at sunset, with a covered patio across the water.",
+          "image": "/images/gallery-sunset-reflections.webp"
         },
         {
           "layout": "portrait",
-          "title": "A bar of its own",
+          "title": "Cedar cabana bar",
           "category": "Cabana · Outdoor bar",
-          "description": "A cedar-framed cabana with seating for the whole group.",
-          "image": "/images/gallery-cedar-bar.webp",
-          "alt": "Cedar-framed cabana with an outdoor bar and stools beside a pool at sunset"
+          "description": "A cedar-framed cabana with a bar and four stools next to the pool.",
+          "image": "/images/gallery-cedar-bar.webp"
         },
         {
           "layout": "portrait-offset",
-          "title": "Dinner, outdoors",
-          "category": "Patio dining · Umbrella",
-          "description": "A shaded table and a view of the pool beyond.",
-          "image": "/images/gallery-patio-dining.webp",
-          "alt": "Patio dining table under an umbrella with a pool in the background"
+          "title": "Patio dining",
+          "category": "Patio · Dining",
+          "description": "A dining table under an umbrella on a covered patio, with the pool beyond.",
+          "image": "/images/gallery-patio-dining.webp"
         },
         {
           "layout": "wide",
-          "title": "Clean lines, easy living",
+          "title": "Scuppers and jets",
           "category": "Pool · Water scuppers",
-          "description": "Water scuppers and a simple black wall give the pool a modern edge.",
-          "image": "/images/gallery-scuppers.webp",
-          "alt": "Pool with three water scuppers on a black wall and bubbling jets"
+          "description": "Three water scuppers on a black wall, with bubbler jets in front.",
+          "image": "/images/gallery-scuppers.webp"
         },
         {
           "layout": "feature",
-          "title": "Room for everyone",
+          "title": "Large covered patio",
           "category": "Covered patio · Dining",
-          "description": "A deep covered patio with ceiling fans and a view of the yard.",
-          "image": "/images/gallery-covered-patio-view.webp",
-          "alt": "Large covered patio with ceiling fans and a dining table overlooking the yard"
+          "description": "A deep covered patio with ceiling fans and a dining table, looking out over the yard.",
+          "image": "/images/gallery-covered-patio-view.webp"
         },
         {
           "layout": "landscape-left",
-          "title": "An evening in blue",
-          "category": "Pool · Cabana · Lighting",
-          "description": "Underwater light turns the pool into the center of the evening.",
-          "image": "/images/gallery-blue-pool-cabana.webp",
-          "alt": "Blue-lit pool with a spa and a covered cabana at dusk"
+          "title": "Pool lit blue at dusk",
+          "category": "Pool · Spa · Cabana · Lighting",
+          "description": "A blue-lit pool with a raised spa and a covered cabana.",
+          "image": "/images/gallery-blue-pool-cabana.webp"
         },
         {
           "layout": "landscape-right",
-          "title": "Lit for the evening",
-          "category": "Rock waterfall · Pool lighting",
-          "description": "Rock, water, and magenta light make a dramatic end to the day.",
-          "image": "/images/gallery-rock-slide-glow.webp",
-          "alt": "Rock waterfall and slide beside a pool glowing magenta at dusk"
+          "title": "Rock waterfall and slide",
+          "category": "Rock waterfall · Slide · Pool lighting",
+          "description": "A rock waterfall and slide beside a pool lit magenta.",
+          "image": "/images/gallery-rock-slide-glow.webp"
         },
         {
           "layout": "wide",
-          "title": "The whole picture",
+          "title": "Pool, patio, and cabana",
           "category": "Pool · Patio · Cabana",
-          "description": "Pool, patio, and cabana laid out as one space, seen at dusk.",
-          "image": "/images/gallery-estate-dusk.webp",
-          "alt": "Home with a lit pool, patio, and cabana at dusk"
+          "description": "The whole backyard at dusk: a pool, a patio, and a covered cabana.",
+          "image": "/images/gallery-estate-dusk.webp"
         },
         {
           "layout": "portrait",
-          "title": "From above",
-          "category": "Freeform pool · Spa · Cabana",
-          "description": "The curves of a freeform pool and spa, seen from the air.",
+          "title": "Freeform pool from above",
+          "category": "Aerial · Freeform pool · Spa",
+          "description": "An aerial view of a freeform pool and spa next to a cedar cabana.",
           "image": "/images/gallery-aerial-freeform.webp",
-          "alt": "Aerial view of a freeform pool and spa beside a cedar cabana",
           "position": "60% center"
         },
         {
           "layout": "portrait-offset",
-          "title": "Fire beside the water",
+          "title": "Spa and fire pit",
           "category": "Spa · Fire pit",
-          "description": "A lit spa and a fire pit side by side at dusk.",
+          "description": "A lit spa next to a rectangular fire pit with flames, at dusk.",
           "image": "/images/gallery-spa-fire-dusk.webp",
-          "alt": "Lit spa next to a rectangular fire pit with flames at dusk",
           "position": "78% center"
         },
         {
           "layout": "wide",
-          "title": "Green light, warm home",
+          "title": "Green-lit pool",
           "category": "Pool · Raised spa · Terrace",
-          "description": "A softly lit pool and terrace in front of the house.",
-          "image": "/images/gallery-green-light-terrace.webp",
-          "alt": "Green-lit pool and raised spa on a travertine terrace beside a brick home at dusk"
+          "description": "A pool lit green, with a raised spa and a stone terrace beside the house.",
+          "image": "/images/gallery-green-light-terrace.webp"
         },
         {
           "layout": "landscape-left",
-          "title": "A wall of water",
-          "category": "Water wall · Stone",
-          "description": "Three sheets of water fall from a stone wall into the pool.",
-          "image": "/images/gallery-water-wall.webp",
-          "alt": "Three sheets of water falling from a stone-faced wall into a pool"
+          "title": "Stone water wall",
+          "category": "Water wall",
+          "description": "Three sheets of water fall from a stone-faced wall into the pool.",
+          "image": "/images/gallery-water-wall.webp"
         },
         {
           "layout": "landscape-right",
-          "title": "Golden hour, straight lines",
+          "title": "Rectangular pool",
           "category": "Pool · Spa · Scuppers",
-          "description": "Straight lines, a raised spa, and scuppers in warm evening light.",
-          "image": "/images/gallery-geometric-golden.webp",
-          "alt": "Rectangular pool with a raised spa and scuppers in golden evening light"
+          "description": "A rectangular pool with a raised spa and scuppers, in warm evening light.",
+          "image": "/images/gallery-geometric-golden.webp"
         },
         {
           "layout": "feature",
-          "title": "Home, pool, and patio as one",
+          "title": "Backyard pool and loungers",
           "category": "Pool · Patio · Loungers",
-          "description": "Loungers by the water and a covered patio steps from the door.",
-          "image": "/images/gallery-house-pool-loungers.webp",
-          "alt": "Brick home with lounge chairs beside a pool at sunset"
+          "description": "Lounge chairs beside the pool, with the covered patio just outside the back door.",
+          "image": "/images/gallery-house-pool-loungers.webp"
         }
       ]
     },
     {
       "_template": "callToAction",
-      "label": "Your space, your way",
-      "title": "What does your",
-      "titleEm": "island life look like?",
-      "text": "Bring your ideas to a free design consultation and start shaping a backyard around your routines, your property, and your priorities.",
-      "button": "Get my free quote",
+      "label": "Free quote",
+      "title": "Want a backyard",
+      "titleEm": "like these?",
+      "text": "Tell us what you have in mind. A free design consult comes with your quote, and we go from there.",
+      "button": "Request a free quote",
       "callLabel": "Prefer to talk?",
       "buttonHref": "/#quote"
     }

@@ -83,6 +83,9 @@ const templates = [
   ], { ctaHref: '#quote' }),
   block('showcase', 'Design gallery (three photos)', [
     str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'),
+    str('video', 'Video (replaces the photos)', 'A video on the CDN, for example "/videos/name.mp4". Leave empty to show the three photos.'),
+    image('videoPoster', 'Video poster picture', 'Shown before play. With one, the video is not downloaded until a visitor presses play.'),
+    str('videoLabel', 'Video description', 'Read aloud by screen readers.'),
     items('cards', 'Gallery items', 'name', [
       { type: 'string', name: 'layout', label: 'Position', description: 'The layout fits one of each.', options: ['pool', 'patio', 'kitchen'] },
       str('name', 'Title'), str('category', 'Tags'), str('detail', 'Caption'), image('image', 'Photo'), str('alt', 'Photo description'),
@@ -124,7 +127,7 @@ const templates = [
         description: 'How the photo sits in the grid. Alternate wide or feature photos with pairs of portrait, portrait-offset, landscape-left and landscape-right photos to keep the rhythm.',
         options: ['feature', 'wide', 'portrait', 'portrait-offset', 'landscape-left', 'landscape-right'],
       },
-      str('title', 'Title'), str('category', 'Tags'), text('description', 'Description'), image('image', 'Photo'), str('alt', 'Photo description'),
+      str('title', 'Title', 'Also used as the photo\'s alt text.'), str('category', 'Tags'), text('description', 'Description'), image('image', 'Photo'),
       str('position', 'Crop focus (optional)', 'Where the crop is anchored, for example "center top" or "60% center". Defaults to the center.'),
     ]),
   ]),
@@ -141,7 +144,7 @@ const templates = [
     ...headingLines(), image('image', 'Photo'), str('imageAlt', 'Photo description'), text('text', 'Text'), str('buttonLabel', 'Button label'), href('buttonHref', 'Button link'),
   ], { buttonHref: '#quote' }),
   block('trust', 'Trust badge and statement', [
-    str('badgeLine1', 'Badge text, line 1'), str('badgeLine2', 'Badge text, line 2'), str('title', 'Heading'), text('text', 'Text'),
+    image('badgeImage', 'Badge picture', 'Replaces the shield icon.'), str('badgeAlt', 'Badge picture description'), str('badgeLine1', 'Badge text, line 1'), str('badgeLine2', 'Badge text, line 2'), str('title', 'Heading'), text('text', 'Text'),
     str('cta', 'Button label'), href('ctaHref', 'Button link'),
   ], { ctaHref: '#quote' }),
   block('splitHero', 'Page opening: text, button and photo', [

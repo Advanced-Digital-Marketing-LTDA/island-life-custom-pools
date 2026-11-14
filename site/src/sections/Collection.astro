@@ -1,5 +1,5 @@
 ---
-interface Item { layout?: string; title?: string; category?: string; description?: string; image?: string; alt?: string; position?: string }
+interface Item { layout?: string; title?: string; category?: string; description?: string; image?: string; position?: string }
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string; linkLabel?: string; linkHref?: string; photos?: Item[];
   anchor?: string; headingId: string;
@@ -18,7 +18,7 @@ const { label = '', title = '', titleEm = '', intro = '', linkLabel = '', linkHr
       {photos.map((item, index) => (
         <figure class={`gallery-item gallery-item--${item.layout || 'wide'}`}>
           <div class="gallery-item__image">
-            {item.image && <img src={item.image} alt={item.alt} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
+            {item.image && <img src={item.image} alt={item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
           </div>
           <figcaption>
             <span class="gallery-item__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>

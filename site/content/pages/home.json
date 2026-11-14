@@ -69,34 +69,12 @@
       "title": "See our design software",
       "titleEm": "in action.",
       "intro": "At Island Life Custom Pools we create a 3D model of your pool and outdoor space so you can see your vision come to life.",
-      "cards": [
-        {
-          "layout": "pool",
-          "name": "Pool & spa",
-          "category": "Custom water · Raised spa",
-          "detail": "A private escape, shaped around you",
-          "image": "/images/pool-spa-cabana-dusk.webp",
-          "alt": "Pool with a raised spa, bubbling jets, and a covered cabana at dusk"
-        },
-        {
-          "layout": "patio",
-          "name": "Patio living",
-          "category": "Patio cover · Fireplace",
-          "detail": "Comfort that carries the outdoors further",
-          "image": "/images/covered-patio-fireplace.webp",
-          "alt": "Covered patio with a brick fireplace, ceiling fan, and green cushioned seating"
-        },
-        {
-          "layout": "kitchen",
-          "name": "Outdoor kitchen",
-          "category": "Cooking · Dining · Gathering",
-          "detail": "Everything for an evening outside",
-          "image": "/images/outdoor-kitchen-cabana.webp",
-          "alt": "Outdoor kitchen with stone cabinets under a cedar-framed patio cover"
-        }
-      ],
+      "cards": [],
       "cta": "Request a free quote",
-      "ctaHref": "#quote"
+      "ctaHref": "#quote",
+      "video": "/videos/Island-Life-Skaggs-Family-Revisions_StoryBoard_01_001%20(1).mp4",
+      "videoLabel": "Video: the Island Life 3D design software in action",
+      "videoPoster": "https://ilcpmedia.b-cdn.net/public/design-software-poster.webp"
     },
     {
       "_template": "spotlight",
@@ -115,7 +93,9 @@
       "title": "Google Guaranteed",
       "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
       "cta": "Request a free quote",
-      "ctaHref": "#quote"
+      "ctaHref": "#quote",
+      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
+      "badgeAlt": "Google Guaranteed Service Provider badge"
     },
     {
       "_template": "reviews",

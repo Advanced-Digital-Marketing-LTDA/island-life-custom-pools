@@ -907,3 +907,12 @@
   .project figcaption { flex-direction: column; gap: 0; }
   .project figcaption > span { max-width: none; margin-top: 10px; text-align: left; }
 }
+
+/* A video in the design-software section: full width, 16:9, with the same space above it as the photo grid. */
+.projects__video { margin-top: 56px; }
+.projects__video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--primitive-paper-deep); }
+@media (min-width: 1024px) { .projects__video { margin-top: 110px; } }
+
+/* The Google Guaranteed badge picture sits where the shield icon was. */
+.trust__badge-image { width: 136px; height: auto; flex-shrink: 0; }
+@media (min-width: 1024px) { .trust__badge-image { width: 232px; } }
