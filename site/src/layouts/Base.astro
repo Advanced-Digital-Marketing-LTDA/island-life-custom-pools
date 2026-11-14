@@ -31,7 +31,9 @@ const ld = {
     <meta name="theme-color" content="#0290fc" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
     <link rel="preload" as="font" href="/fonts/michroma-regular.woff2" type="font/woff2" crossorigin />
     <link rel="preload" as="font" href="/fonts/montserrat-regular.woff2" type="font/woff2" crossorigin />
