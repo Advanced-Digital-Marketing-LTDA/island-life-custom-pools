@@ -169,6 +169,9 @@ const front = pageHtml('');
 assert.match(front, /class="hero__image"[^>]*style="transform: translate3d\(0px, 0%, 0px\) scale\(1\.04\);"/);
 assert.match(front, /<div class="testimonial__slides" style="opacity: 1; transform: translate3d\(0px, 0px, 0px\);">/);
 assert.equal([...front.matchAll(/class="testimonial-slide"/g)].length, 3);
+// The trust bar under the hero shows every credential given in the content.
+const heroTrust = (pages.find((page) => page.slug === 'home').blocks.find((block) => block._template === 'hero').trust ?? []);
+for (const item of heroTrust) assert.ok(front.includes(escapeHtml(item.text)), `The hero trust bar is missing: ${item.text}`);
 assert.match(front, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
 
 // The gallery's closing section offers the phone number and reaches the home page quote form.
