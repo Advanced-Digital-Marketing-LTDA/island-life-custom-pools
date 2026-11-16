@@ -68,16 +68,14 @@
           "answer": "The cost depends on the size and shape of the pool, the features and finishes you choose, the equipment, and the rest of the backyard around it. After your free design consultation we provide a quote for your project.",
           "linkLabel": "Explore pool financing",
           "linkHref": "/financing/"
-        },
-        {
-          "question": "Which other areas do you serve?",
-          "answer": "We also build for homes in Tomball, Cypress, The Woodlands, Houston, Katy, Magnolia, and Jersey Village, Texas.",
-          "linkLabel": "Contact us",
-          "linkHref": "/contact/"
         }
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
+    },
+    {
+      "_template": "areas",
+      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

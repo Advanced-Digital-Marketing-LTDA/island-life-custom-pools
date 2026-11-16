@@ -77,6 +77,15 @@ for (const page of pages) {
   assert.equal(/<meta name="robots" content="noindex"/.test(html), !!page.noindex, `noindex is wrong on ${where}`);
   // The phone number sits in the header, and a page with its own quote form keeps its buttons on that form.
   assert.ok(html.includes(`<address class="footer__address">`) && html.includes(escapeHtml(settings.address.street)), `The footer address is missing on ${where}`);
+  // The service areas band lists every area once on the pages that carry it; those pages do not repeat the list in the footer.
+  const hasAreas = visible.some((block) => block._template === 'areas');
+  assert.equal(/<section class="areas section"/.test(html), hasAreas, `The areas band is wrong on ${where}`);
+  assert.equal(html.includes('class="footer__contact"'), !hasAreas, `The footer area list should be hidden exactly when the page has the areas band (${where})`);
+  // A collapsible FAQ keeps every question and answer in the page.
+  for (const block of visible.filter((b) => b._template === 'faq' && b.collapsible)) assert.equal([...html.matchAll(/<details class="faq__item/g)].length, (block.questions ?? []).length, `Collapsible FAQ items are missing on ${where}`);
+  // Nobody is named, and the calculator shows only the payment.
+  assert.doesNotMatch(html, /Justin/, `A person's name is on ${where}`);
+  assert.doesNotMatch(html, /data-total|data-interest|Total of payments|Estimated interest/, `The calculator shows more than the payment on ${where}`);
   assert.ok(html.includes(`class="site-header__phone" href="${settings.phoneHref}"`), `Header phone link missing on ${where}`);
   if (visible.some((block) => block._template === 'quoteForm')) assert.ok(/class="button button--light site-header__cta" href="#quote"/.test(html), `The header quote button should stay on the page's own form on ${where}`);
   // Internal links: use the slash form and point at a page that was built.
@@ -141,15 +150,17 @@ for (const page of pages.filter((p) => p.path && headerTargets.includes(`/${p.pa
   assert.ok(pageHtml(page.path).includes(`<a href="/${page.path}/" aria-current="page">`), `/${page.path}/ should mark itself current in the menu`);
 }
 // Every service area in the footer links to its own page.
-for (const area of settings.footer.areas) assert.ok(area.href && outputExists(area.href), `The ${area.name} service area has no built page`);
+// An area added without a page of its own is plain text; one with a page must point at a built page.
+for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(outputExists(area.href), `The ${area.name} service area has no built page`);
 
 // The business and each service describe themselves in structured data.
 const frontHtml = pageHtml('');
-assert.ok(frontHtml.includes(`"employee":{"@type":"Person","name":"${settings.ownerName}"`), 'The business schema should name the owner');
+assert.ok(!frontHtml.includes('"employee"'), 'The business schema should not name a person');
 // The home page links to the page of every served city, in its own text.
-for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`>Pool builders in ${escapeHtml(area.name)}</a>`), `The home page should link to its ${area.name} page`);
+for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`Pool builders in ${escapeHtml(area.name)}</`), `The home page should list ${area.name}`);
+for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(frontHtml.includes(`>Pool builders in ${escapeHtml(area.name)}</a>`), `The home page should link to its ${area.name} page`);
 for (const slug of ['custom-pools', 'custom-patios', 'outdoor-kitchens']) assert.ok(pageHtml(slug).includes('"@type":"Service"'), `/${slug}/ should describe its Service`);
-for (const area of settings.footer.areas) assert.ok(pageHtml(area.href).includes(`"@type":"Service","name":"Custom pool builders in ${area.name}"`), `${area.href} should describe its Service`);
+for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(pageHtml(area.href).includes(`"@type":"Service","name":"Custom pool builders in ${area.name}"`), `${area.href} should describe its Service`);
 assert.ok(frontHtml.includes('"@type":"WebSite"'), 'The home page should describe the WebSite');
 for (const link of settings.social.filter((item) => !/review/i.test(item.label))) assert.ok(frontHtml.includes(`"${link.href}"`), `The business schema should list ${link.label}`);
 assert.ok(frontHtml.includes(`"streetAddress":"${settings.address.street}"`) && frontHtml.includes('"@type":"GeoCoordinates"'), 'The business schema should carry the address');

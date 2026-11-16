@@ -1,6 +1,6 @@
 {
   "seoTitle": "About Island Life Custom Pools | Houston Pool Builders",
-  "seoDescription": "Island Life Custom Pools began in 2016. Owner-led by Justin Hall, we design and build custom pools, patios, and outdoor kitchens across the Houston area.",
+  "seoDescription": "Island Life Custom Pools began in 2016. Owner-led and Tomball-based, we design and build custom pools, patios, and outdoor kitchens across the Greater Houston area.",
   "blocks": [
     {
       "_template": "pageHero",
@@ -8,7 +8,7 @@
       "eyebrow": "About us",
       "title": "About Island Life",
       "italicTitle": "Custom Pools.",
-      "introduction": "Island Life Custom Pools began in 2016 to bring the best pool, patio, and outdoor kitchen concepts to our customers. We are native Houstonians, owner-led by Justin Hall, and we love giving you an ultimate escape from the long work week.",
+      "introduction": "Island Life Custom Pools began in 2016 to bring the best pool, patio, and outdoor kitchen concepts to our customers. We are native Houstonians, owner-led and Tomball-based, and we love giving you an ultimate escape from the long work week.",
       "ctaLabel": "Request a free quote",
       "ctaHref": "#quote",
       "image": "/images/pavilion-dusk.webp",
@@ -23,12 +23,45 @@
       "title": "Native Houstonians, building backyard escapes.",
       "lede": "When you contact us about a custom pool, patio, or outdoor project, you can bring the living-room atmosphere outdoors. There is no better way to entertain family and guests, any day of the week. We give the highest level of attention to detail on every project and work closely with you to deliver your vision.",
       "checklist": [
-        "Owner-led by Justin Hall",
+        "Owner-led and Tomball-based",
         "Founded in 2016 by native Houstonians",
         "Best of Tomball Pool Builders Award, 2018, 2019, and 2020",
         "Best of Houzz 2020 (Service)",
-        "A free design consultation with every quote request, then a custom 3D design",
-        "Serving Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village"
+        "A free design consultation with every quote request, then a custom 3D design"
+      ]
+    },
+    {
+      "_template": "spotlight",
+      "title": "Experience the island life",
+      "titleEm": "across Greater Houston, every day",
+      "image": "/images/loungers-umbrellas-dusk.webp",
+      "imageAlt": "Lounge chairs and striped umbrellas on a stone-edged pool deck at dusk",
+      "text": "When you work with Island Life Custom Pools, our team crafts an outdoor space you can be proud of. We work closely with you to create the perfect home away from home in your backyard. We’re pleased to offer a generous discount for the military, first responders, and teachers.",
+      "buttonLabel": "Request a free quote",
+      "buttonHref": "#quote"
+    },
+    {
+      "_template": "process",
+      "anchor": "process",
+      "label": "A simple way to start",
+      "title": "From your request\nto a",
+      "titleEm": "real conversation.",
+      "intro": "Once we understand your project, we’ll guide you through design, permitting, and construction in person.",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "steps": [
+        {
+          "title": "Tell us about your project.",
+          "description": "Complete the quote form with your contact details, location, and what you would like to build."
+        },
+        {
+          "title": "We’ll reach out.",
+          "description": "Our team will contact you using your preferred method to learn more and answer your initial questions."
+        },
+        {
+          "title": "Meet for your free design consult.",
+          "description": "We’ll discuss your property, priorities, and next steps during your complimentary consultation."
+        }
       ]
     },
     {
@@ -84,16 +117,8 @@
       "titleEm": "in short.",
       "questions": [
         {
-          "question": "Who owns Island Life Custom Pools?",
-          "answer": "Island Life Custom Pools is owner-led by Justin Hall."
-        },
-        {
           "question": "When did Island Life Custom Pools start?",
           "answer": "The company began in 2016. We are native Houstonians."
-        },
-        {
-          "question": "Which awards has Island Life Custom Pools received?",
-          "answer": "Island Life Custom Pools received the Best of Tomball Pool Builders Award in 2018, 2019, and 2020, and Best of Houzz 2020 (Service)."
         },
         {
           "question": "What do clients say about working with Island Life?",
@@ -104,6 +129,10 @@
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
+    },
+    {
+      "_template": "areas",
+      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

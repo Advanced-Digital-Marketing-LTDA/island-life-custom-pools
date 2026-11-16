@@ -4,14 +4,14 @@ import Icon from '../components/Icon.astro';
 import { settings, linkTo, mapUrl } from '../lib/content';
 import { homePrefix } from '../lib/nav';
 
-interface Props { hasQuote?: boolean }
-const { hasQuote = false } = Astro.props;
+interface Props { hasQuote?: boolean; hasAreas?: boolean }
+const { hasQuote = false, hasAreas = false } = Astro.props;
 const { phone, phoneHref, footer, address } = settings;
 const prefix = homePrefix(Astro.url);
 // On a page with its own quote form, "#quote" stays on the page.
 const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(Astro.url, href));
 ---
-<footer class="footer">
+<footer class:list={['footer', { 'footer--no-areas': hasAreas }]}>
   <div class="page-shell footer__top">
     <div>
       <a class="footer__brand" href={`${prefix}#top`} aria-label={`${settings.name} home`}><Brand /></a>
@@ -25,10 +25,10 @@ const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(
     <nav aria-label="Footer navigation">
       {footer.nav.map((item) => <a href={target(item.href)}>{item.label}</a>)}
     </nav>
-    <div class="footer__contact">
+    {!hasAreas && <div class="footer__contact">
       <span>{footer.areasTitle}</span>
       <p>{footer.areas.map((area, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{area.href ? <a href={area.href}>{area.name}</a> : area.name}</Fragment>)}</p>
-    </div>
+    </div>}
     <div class="footer__hours">
       <span>{footer.hoursTitle}</span>
       <p>{footer.hours.map((row, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{row.days}{' '}<strong>{row.time}</strong></Fragment>)}</p>

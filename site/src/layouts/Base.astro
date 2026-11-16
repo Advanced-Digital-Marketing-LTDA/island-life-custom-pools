@@ -28,7 +28,6 @@ const ld = {
   description: businessDescription,
   alternateName: 'Island Life Pools',
   areaServed: [{ '@type': 'AdministrativeArea', name: 'Greater Houston, TX' }, ...settings.footer.areas.map((area) => ({ '@type': 'City', name: `${area.name}, TX` }))],
-  ...(settings.ownerName ? { employee: { '@type': 'Person', name: settings.ownerName, jobTitle: settings.ownerRole || 'Owner' } } : {}),
   ...(settings.foundingDate ? { foundingDate: settings.foundingDate } : {}),
   ...(settings.awards.length ? { award: settings.awards } : {}),
   hasOfferCatalog: {
