@@ -179,16 +179,14 @@
           "answer": "We install Hayward pool equipment, and we walk you through start-up when your pool is ready.",
           "linkLabel": "See Hayward equipment",
           "linkHref": "/hayward-equipment/"
-        },
-        {
-          "question": "Which cities do you build pools in?",
-          "answer": "We build pools for homes in Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas. Each city has its own page.",
-          "linkLabel": "See pool builders in Houston",
-          "linkHref": "/custom-pool-builders-houston/"
         }
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
+    },
+    {
+      "_template": "areas",
+      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

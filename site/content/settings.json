@@ -11,8 +11,6 @@
     "latitude": 30.057761,
     "longitude": -95.728349
   },
-  "ownerName": "Justin Hall",
-  "ownerRole": "Owner",
   "foundingDate": "2016",
   "awards": [
     "Best of Tomball Pool Builders Award (2018, 2019, 2020)",
@@ -100,6 +98,7 @@
       }
     ],
     "areasTitle": "Service areas",
+    "areasNote": "Tomball-based, we build throughout the Greater Houston area.",
     "areas": [
       {
         "name": "Tomball",

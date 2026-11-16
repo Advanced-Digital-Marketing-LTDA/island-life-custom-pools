@@ -61,7 +61,7 @@
         },
         {
           "question": "How does the payment estimator work?",
-          "answer": "Enter a loan amount, an interest rate, and a term, and the estimator shows an estimated monthly payment, the total of the payments, and the estimated interest. It assumes a fixed rate and equal monthly payments. The starting figures are only an example, not an offer, and your lender provides final rates and terms."
+          "answer": "Enter a loan amount, an interest rate, and a term, and the estimator shows an estimated monthly payment. It assumes a fixed rate and equal monthly payments. The starting figures are only an example, not an offer, and your lender provides final rates and terms."
         },
         {
           "question": "Which loan amounts can I estimate?",

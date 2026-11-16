@@ -116,6 +116,10 @@
       "ctaHref": "#quote"
     },
     {
+      "_template": "areas",
+      "anchor": "areas"
+    },
+    {
       "_template": "quoteForm",
       "anchor": "quote"
     }

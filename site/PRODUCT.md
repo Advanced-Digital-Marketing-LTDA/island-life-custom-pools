@@ -20,7 +20,7 @@ Island Life Custom Pools designs and builds custom pools, patios, and outdoor ki
 
 ## Positioning
 
-The company models the pool and outdoor space in 3D so the homeowner sees the design before it is built. Owner-led (Justin Hall, owner; the client reviews say "Tim", which is kept verbatim), Google Guaranteed, with communication clients repeatedly name in reviews. The company began in 2016 and lists the Best of Tomball Pool Builders Award (2018, 2019, 2020) and Best of Houzz 2020 (Service), as its old About page and Houzz profile do.
+The company models the pool and outdoor space in 3D so the homeowner sees the design before it is built. Owner-led (the owner's name is not published on the site; the client reviews say "Tim" and are kept verbatim), Tomball-based and serving the Greater Houston area, Google Guaranteed, with communication clients repeatedly name in reviews. The company began in 2016 and lists the Best of Tomball Pool Builders Award (2018, 2019, 2020) and Best of Houzz 2020 (Service), as its old About page and Houzz profile do.
 
 ## Operating Context
 

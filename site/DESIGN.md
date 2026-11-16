@@ -12,7 +12,7 @@ Island Life sells certainty before construction: a 3D model of the yard, then a 
 Alternatives considered and rejected: a drafting-sheet look (grid ticks, sheet numbers: decoration, and numbers read as template tells) and a warm resort brochure (serif, cream, brass: interchangeable with every premium-consumer site).
 
 ## Page structure (home)
-Hero video, trust line, services (one large panel plus two), 3D design film (the differentiator, on deep water), process with the first-pool reassurance beside a ruled step list and the weekly-calendar review, reviews, financing, quote form with the military/first-responder/teacher discount note. Each section answers one question a homeowner has, in the order they ask it. Inner pages vary: service pages add overview, process and film; gallery is images only; contact is the form only; the privacy page is text.
+Short and image-led: hero video with the keyword headline and a trust bar, a brief intro with the three services as ruled rows, the 3D design film, a three-photo preview of the gallery, reviews, a collapsed FAQ, one clean grid of the areas served, and the quote form. Heavy text lives on other pages: the story, awards, process and discount note on About; the calculator and lenders on Financing; costs, comparisons and detailed answers on the service pages. The areas grid is the single place a page lists its cities, and the owner's name is not published. Inner pages vary: service pages add overview, process and film; gallery is images only; contact is the form only; the privacy page is text.
 
 ## Color
 Tokens live in `src/styles/brand.css`.

@@ -38,11 +38,14 @@ Section "link names" (`anchor`) become ids that links can jump to (`#about`). Th
 
 - **Pages:** open Pages in Tina. "Add File" creates a page; its file name (made from the title) is its address. Never delete the page named `home`: it is the front page and the site will not build without it.
 - **Sections:** drag the handle to reorder, the bin to delete, "Hide this section" to keep a section without showing it, and add a section from the list at the bottom. Tina has no "duplicate": add another section of the same type and fill it in. Neighbouring sections of the same background colour will sit directly against each other, so a reordered page can need a different neighbour.
+- **Service areas:** the list lives in Site settings > Footer > Service areas (name, and a page address when the area has its own page; an area without one shows as plain text). The same list feeds the "Service areas" section, the footer and the search-engine description, so add an area there once. The line under the list is "Line under the service areas". Pages that have the Service areas section hide the footer's list.
+- **FAQ:** switch on "Collapsed answers" for a short list of questions that open on click; the answers stay in the page for search engines.
+- **Names:** the owner's name is deliberately not published.
 - **Links:** use `#name` for a section on the same page, `/page` for another page and `/#name` for a section on the home page.
 - **If a save does not appear on the live site:** the site is rebuilt after every save, and a mistake the build catches stops that build. The live site then keeps showing its previous version, and Tina shows no error. Look at the latest deployment log in Coolify; the message says what to fix. The checks are: an unknown section type, a link name used twice on one page, a page file name that is not lowercase letters, numbers and dashes (or is reserved: `404`, `api`, `healthz`, `build.json`, and the old URLs in `src/lib/redirects.mjs`), and a missing `home` page. Fix it in Tina (or restore the file from Git history) and save again.
 - **Not editable in Tina:** the design of each section, the header and footer layout (their text and links are in Site settings), the quote form's field labels, the 404 page and the article layout.
 
-Leftovers from the previous design that no page reads: `content/pages.json`, `content/blog/*.md` and `public/media/`.
+Leftovers from the previous design that no page reads: `content/pages.json` and `public/media/`.
 
 ## Quote form
 

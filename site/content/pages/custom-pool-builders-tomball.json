@@ -11,8 +11,8 @@
       "introduction": "Island Life Custom Pools designs and builds custom pools and spas for homes in Tomball, Texas, with patios, covers, and outdoor kitchens planned around them. See your pool in a custom 3D model before construction begins.",
       "ctaLabel": "Start with a free design consult",
       "ctaHref": "#quote",
-      "image": "/images/freeform-pool-grotto.webp",
-      "imageAlt": "Freeform pool with a rock waterfall, a raised spa, and bubbling jets",
+      "image": "/images/pool-spa-cabana-dusk.webp",
+      "imageAlt": "Blue-lit pool with a raised spa and a covered patio with a fireplace, beside a lake at dusk",
       "scrollLabel": "",
       "scrollHref": ""
     },
@@ -68,16 +68,14 @@
           "answer": "The cost depends on the size and shape of the pool, the features and finishes you choose, the equipment, and the rest of the backyard around it. After your free design consultation we provide a quote for your project.",
           "linkLabel": "Explore pool financing",
           "linkHref": "/financing/"
-        },
-        {
-          "question": "Which other areas do you serve?",
-          "answer": "We also build for homes in Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas.",
-          "linkLabel": "Contact us",
-          "linkHref": "/contact/"
         }
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
+    },
+    {
+      "_template": "areas",
+      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

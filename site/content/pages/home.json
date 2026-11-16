@@ -10,7 +10,7 @@
       "line1": "Greater Houston pool, patio",
       "line2": "& outdoor kitchen",
       "line3": "builders.",
-      "intro": "Island Life Custom Pools is an owner-led pool builder serving the Greater Houston area. We design and build custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village.",
+      "intro": "Island Life Custom Pools is a Tomball-based, owner-led pool builder serving the Greater Houston area. We design and build custom pools, patios, and outdoor kitchens.",
       "cta": "Request a free quote",
       "ctaHref": "#quote",
       "scrollHref": "",
@@ -50,10 +50,10 @@
       "label": "Owner-led pool builders since 2016",
       "title": "Bring your vacation",
       "titleEm": "dreams home!",
-      "lede": "Island Life Custom Pools began in 2016 and is owner-led by Justin Hall. We design and build custom swimming pools, patios and patio covers, and outdoor kitchens for homes across the Greater Houston area: Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village. We plan them together as one backyard, so the space feels like your own little island at home.",
-      "image": "/images/freeform-pool-grotto.webp",
-      "imageAlt": "Freeform pool with a rock waterfall, a raised spa, and bubbling jets",
-      "caption": "Custom pool & spa",
+      "lede": "We design and build custom swimming pools, patios and patio covers, and outdoor kitchens as one backyard, so the space feels like your own little island at home.",
+      "image": "/images/covered-patio-fireplace.webp",
+      "imageAlt": "Covered patio with a brick fireplace, a ceiling fan, and green wicker seating at dusk",
+      "caption": "Custom patio & cover",
       "services": [
         {
           "id": "pools",
@@ -74,21 +74,11 @@
           "href": "/outdoor-kitchens/"
         }
       ],
-      "details": "Complete the space with spas, fire pits, fireplaces, pickleball courts, and dependable Hayward equipment—all coordinated by one team.",
+      "details": "Planning around a monthly payment?",
       "cta": "Request a free quote",
       "ctaHref": "#quote",
-      "areasLabel": "Where we build"
-    },
-    {
-      "_template": "panorama",
-      "anchor": "outdoor-life",
-      "title": "Experience the ultimate",
-      "titleEm": "outdoor life",
-      "image": "/images/pavilion-dusk.webp",
-      "imageAlt": "Covered pavilion with a stone fireplace across a dark pool at dusk",
-      "text": "We give homeowners a place in the backyard to step out of the day: spectacular pools, patios, and outdoor kitchens that feel like your own island paradise. We work closely with you to capture your vision, then create a personalized design just for you.",
-      "cta": "Request a free quote",
-      "ctaHref": "#quote"
+      "detailsLinkLabel": "Try the payment estimator",
+      "detailsLinkHref": "/financing/#payment-estimator"
     },
     {
       "_template": "showcase",
@@ -105,25 +95,32 @@
       "videoPoster": "https://ilcpmedia.b-cdn.net/public/design-software-poster.webp"
     },
     {
-      "_template": "spotlight",
-      "title": "Experience the island life",
-      "titleEm": "in Houston, TX, every day",
-      "image": "/images/loungers-umbrellas-dusk.webp",
-      "imageAlt": "Lounge chairs and striped umbrellas on a stone-edged pool deck at dusk",
-      "text": "When you work with Island Life Custom Pools, our team crafts an outdoor space you can be proud of. We work closely with you to create the perfect home away from home in your backyard. We’re pleased to offer a generous discount for the military, first responders, and teachers. Island Life Custom Pools has received the Best of Tomball Pool Builders Award (2018, 2019, and 2020) and Best of Houzz 2020 (Service).",
-      "buttonLabel": "Request a free quote",
-      "buttonHref": "#quote"
-    },
-    {
-      "_template": "trust",
-      "badgeLine1": "Vetted and endorsed",
-      "badgeLine2": "by Google",
-      "title": "Google Guaranteed",
-      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
-      "cta": "Request a free quote",
-      "ctaHref": "#quote",
-      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
-      "badgeAlt": "Google Guaranteed Service Provider badge"
+      "_template": "collection",
+      "anchor": "our-work",
+      "label": "Our work",
+      "title": "Pools, patios,",
+      "titleEm": "and kitchens.",
+      "intro": "",
+      "linkLabel": "See the full gallery",
+      "linkHref": "/gallery/",
+      "photos": [
+        {
+          "title": "Raised spa at sunset",
+          "image": "/images/gallery-sunset-spa.webp",
+          "alt": "Raised stone spa next to a purple-lit pool at sunset, with an umbrella and lounge chairs on the far deck."
+        },
+        {
+          "title": "Patio dining",
+          "image": "/images/gallery-patio-dining.webp",
+          "alt": "Round metal dining table under a large umbrella on a covered stone patio, with the pool and a lake beyond."
+        },
+        {
+          "title": "Stone outdoor kitchen",
+          "image": "/images/cedar-cabana-kitchen.webp",
+          "alt": "Stone outdoor kitchen counter with a stainless refrigerator and drawers under a cedar-framed patio cover, with a pool and brick houses beyond."
+        }
+      ],
+      "compact": true
     },
     {
       "_template": "reviews",
@@ -160,71 +157,6 @@
       "ctaHref": "#quote"
     },
     {
-      "_template": "process",
-      "anchor": "process",
-      "label": "A simple way to start",
-      "title": "From your request\nto a",
-      "titleEm": "real conversation.",
-      "intro": "Once we understand your project, we’ll guide you through design, permitting, and construction in person.",
-      "cta": "Request a free quote",
-      "ctaHref": "#quote",
-      "steps": [
-        {
-          "title": "Tell us about your project.",
-          "description": "Complete the quote form with your contact details, location, and what you would like to build."
-        },
-        {
-          "title": "We’ll reach out.",
-          "description": "Our team will contact you using your preferred method to learn more and answer your initial questions."
-        },
-        {
-          "title": "Meet for your free design consult.",
-          "description": "We’ll discuss your property, priorities, and next steps during your complimentary consultation."
-        }
-      ]
-    },
-    {
-      "_template": "financing",
-      "anchor": "financing",
-      "label": "Flexible ways to begin",
-      "title": "Explore financing",
-      "titleEm": "options.",
-      "intro": "We work with third-party lenders, including Lyon Financial and HFS Financial, so you can plan your pool, patio, or outdoor kitchen with a monthly payment in mind. Estimate it below, then ask us about your options.",
-      "partnersLabel": "Trusted products & partners",
-      "partners": [
-        "Hayward"
-      ],
-      "offerLabel": "HFS home improvement loans",
-      "offerLine1": "Ask about",
-      "offerLine2": "financing.",
-      "possibilities": [
-        "Custom pools, spas, and water features",
-        "Patios, covers, and outdoor kitchens",
-        "Fire pits, fireplaces, and recreation",
-        "Equipment, finishes, and the details between"
-      ],
-      "note": "Your free design consultation is included with your quote request.",
-      "discountTitle": "A thank-you for your service.",
-      "discountText": "Military personnel, first responders, and teachers receive a generous discount.",
-      "cta": "Get financing",
-      "ctaHref": "/financing/"
-    },
-    {
-      "_template": "estimator",
-      "label": "Pool financing calculator",
-      "title": "Explore your project",
-      "titleEm": "month to month.",
-      "intro": "Adjust the loan amount, interest rate, and term to see an estimated monthly payment for your pool, patio, or outdoor kitchen.",
-      "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
-      "amount": 46400,
-      "rate": 8,
-      "years": 15,
-      "anchor": "payment-estimator",
-      "background": "white",
-      "cta": "Request a free quote",
-      "ctaHref": "#quote"
-    },
-    {
       "_template": "faq",
       "label": "Frequently asked questions",
       "title": "Questions before",
@@ -237,20 +169,16 @@
           "linkHref": "/gallery/"
         },
         {
-          "question": "Which Greater Houston-area cities do you build pools in?",
-          "answer": "We design and build custom pools, patios, and outdoor kitchens in Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas. Each city has its own page.",
-          "linkLabel": "Custom pool builders in Houston",
-          "linkHref": "/custom-pool-builders-houston/"
+          "question": "Which areas of Greater Houston do you build pools in?",
+          "answer": "We are based in Tomball and build throughout the Greater Houston area, including Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas. Each of those has its own page.",
+          "linkLabel": "See all service areas",
+          "linkHref": "#areas"
         },
         {
-          "question": "Do you build pools in Cypress and Tomball?",
-          "answer": "Yes. Island Life Custom Pools designs and builds custom pools, patios, and outdoor kitchens for homes in Cypress and Tomball. Request a free quote and your free design consultation comes with it.",
-          "linkLabel": "Custom pool builders in Cypress",
-          "linkHref": "/custom-pool-builders-cypress/"
-        },
-        {
-          "question": "What happens in the free design consultation?",
-          "answer": "Your quote request includes a free design consultation. We talk through your property, your priorities, and the next steps, so we understand what you would like to build before the design takes shape."
+          "question": "How do I get started?",
+          "answer": "Request a quote with the quote form on the Island Life Custom Pools home page, or call (832) 304-4092 (Monday–Friday 8am–7pm, Saturday 8am–12pm). Every quote request includes a free design consultation, where we talk through your property, your priorities, and the next steps.",
+          "linkLabel": "Request a free quote",
+          "linkHref": "#quote"
         },
         {
           "question": "Can I see my pool before it is built?",
@@ -262,7 +190,7 @@
           "question": "How much does a custom pool cost?",
           "answer": "Every project is custom, so the cost depends on the size and shape of the pool, the features you choose, the equipment, and the rest of the backyard around it. After your free design consultation we provide a quote for your project. To plan a monthly payment, try the financing estimator.",
           "linkLabel": "Estimate a monthly payment",
-          "linkHref": "#payment-estimator"
+          "linkHref": "/financing/#payment-estimator"
         },
         {
           "question": "Do you offer financing?",
@@ -275,27 +203,17 @@
           "answer": "Military personnel, first responders, and teachers receive a generous discount."
         },
         {
-          "question": "How do I request a quote?",
-          "answer": "Request a quote with the quote form on the Island Life Custom Pools home page, or call (832) 304-4092 (Monday–Friday 8am–7pm, Saturday 8am–12pm). A free design consultation comes with every quote request."
-        },
-        {
           "question": "Why choose Island Life Custom Pools as your pool builder?",
-          "answer": "We plan the pool, patio, and outdoor kitchen as one backyard and show it in a custom 3D model before construction begins. The company began in 2016, is owner-led by Justin Hall, and received the Best of Tomball Pool Builders Award (2018, 2019, 2020) and Best of Houzz 2020 (Service). Every quote request includes a free design consultation."
-        },
-        {
-          "question": "Who owns Island Life Custom Pools?",
-          "answer": "Island Life Custom Pools is owner-led by Justin Hall. The company began in 2016.",
-          "linkLabel": "About Island Life",
-          "linkHref": "/about-us/"
-        },
-        {
-          "question": "Has Island Life Custom Pools won any pool builder awards?",
-          "answer": "Yes. Island Life Custom Pools received the Best of Tomball Pool Builders Award in 2018, 2019, and 2020, and Best of Houzz 2020 (Service)."
+          "answer": "We plan the pool, patio, and outdoor kitchen as one backyard and show it in a custom 3D model before construction begins. The company began in 2016 and is owner-led, and every quote request includes a free design consultation."
         }
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote",
-      "twoColumns": true
+      "collapsible": true
+    },
+    {
+      "_template": "areas",
+      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

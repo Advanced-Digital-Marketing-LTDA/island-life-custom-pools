@@ -85,7 +85,7 @@ const templates = [
     str('label', 'Small heading'), ...headingLines(), text('lede', 'Introduction'), image('image', 'Photo'), str('imageAlt', 'Photo description'),
     str('caption', 'Photo caption'),
     items('services', 'Services', 'title', [str('id', 'Link name', 'Links such as "#patios" jump to this row.'), str('title', 'Title'), text('description', 'Description'), str('href', 'Page this service links to (optional)')]),
-    text('details', 'Closing note'), str('areasLabel', 'Heading above the city links', 'Lists every Service area from Site settings as links to its page. Leave empty to hide the list.'),
+    text('details', 'Closing note'), str('detailsLinkLabel', 'Link at the end of the closing note (optional)'), href('detailsLinkHref', 'Link'),
     str('cta', 'Button label'), href('ctaHref', 'Button link'),
   ], { ctaHref: '#quote' }),
   block('showcase', 'Design gallery (three photos)', [
@@ -127,6 +127,7 @@ const templates = [
     str('linkLabel', 'Link label'), href('linkHref', 'Link'),
   ], { linkHref: '#quote' }),
   block('collection', 'Photo collection', [
+    { type: 'boolean', name: 'compact', label: 'Compact row', description: 'Three photos side by side with just a title each, for a short preview on a page like the home page.' },
     str('label', 'Small heading'), ...heading(), text('intro', 'Introduction'), str('linkLabel', 'Link label (end of the introduction)'), href('linkHref', 'Link'),
     items('photos', 'Gallery items', 'title', [
       {
@@ -170,12 +171,14 @@ const templates = [
     str('label', 'Small heading'), ...headingLines(),
     items('questions', 'Questions', 'question', [text('question', 'Question'), text('answer', 'Answer'), str('linkLabel', 'Link label (optional)'), href('linkHref', 'Link')]),
     str('cta', 'Button label'), href('ctaHref', 'Button link'),
+    { type: 'boolean', name: 'collapsible', label: 'Collapsed answers', description: 'Shows the questions as a short list; a visitor opens an answer to read it. The text stays on the page.' },
     { type: 'boolean', name: 'twoColumns', label: 'Two columns on wide screens', description: 'For a long list of questions: the heading runs across the top and the questions sit in two columns.' },
   ], { ctaHref: '#quote' }),
   block('prose', 'Long text (policy page)', [
     items('sections', 'Sections', 'title', [str('title', 'Heading'), strings('lines', 'Text', 'One paragraph per line. Start a line with "- " to make it a bullet.')]),
     str('updated', 'Closing line', 'For example "Last updated: November 14, 2026".'),
   ]),
+  block('areas', 'Service areas band', [], { anchor: 'areas' }),
   block('lenders', 'Financing partners', [
     str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'),
     items('lenders', 'Partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address'), str('label', 'Link label')]),
@@ -197,8 +200,6 @@ export default defineConfig({
         str('phone', 'Phone (as shown)'),
         str('phoneHref', 'Phone link', 'The tel: link, for example tel:+18323044092.'),
         group('address', 'Business address', [str('street', 'Street'), str('city', 'City'), str('region', 'State'), str('postalCode', 'ZIP code'), num('latitude', 'Latitude'), num('longitude', 'Longitude')]),
-        str('ownerName', 'Owner name', 'Named in the search-engine description of the business.'),
-        str('ownerRole', 'Owner role'),
         str('foundingDate', 'Year the business started', 'For example "2016".'),
         strings('awards', 'Awards', 'One per line, as they should be written, for example "Best of Houzz 2020 (Service)". Used by search engines.'),
         links('nav', 'Main menu', 'Header and mobile menu.'),
@@ -209,7 +210,8 @@ export default defineConfig({
           str('blurbLine2', 'Tagline, second line'),
           links('nav', 'Footer links'),
           str('areasTitle', 'Service areas heading'),
-          items('areas', 'Service areas', 'name', [str('name', 'City'), str('href', 'City page (optional)', 'For example "/custom-pool-builders-katy/". The city becomes a link in the footer.')]),
+          text('areasNote', 'Line under the service areas', 'Shown under the service areas section, for example that you build throughout the Greater Houston area.'),
+          items('areas', 'Service areas', 'name', [str('name', 'City'), str('href', 'City page (optional)', 'For example "/custom-pool-builders-katy/". The area becomes a link in the service areas sections and the footer. Leave empty for an area without its own page.')]),
           str('hoursTitle', 'Hours heading'),
           items('hours', 'Hours', 'days', [str('days', 'Days'), str('time', 'Hours')]),
           str('copyright', 'Copyright name', 'Shown after © and the current year.'),
