@@ -11,14 +11,15 @@ WORKDIR /app
 ENV ASTRO_TELEMETRY_DISABLED=1
 COPY --from=source /src/package.json /src/package-lock.json ./
 # The build server's connection to the npm registry can drop (ECONNRESET), which can also leave a package half installed.
-# npm retries each download, and the whole install is repeated up to three times; an install only counts once the native
-# Markdown binding Astro needs actually loads.
-ENV npm_config_fetch_retries=5 npm_config_fetch_retry_mintimeout=20000 npm_config_fetch_retry_maxtimeout=120000 \
-    npm_config_fetch_timeout=300000 npm_config_maxsockets=4 npm_config_audit=false npm_config_fund=false
+# A download that stalls (no data, no error) is cut off after 90 seconds and retried, and each npm command has an overall
+# time limit, so a hung connection cannot freeze the build. The whole install is repeated up to three times; an install
+# only counts once the native Markdown binding Astro needs actually loads.
+ENV npm_config_fetch_retries=8 npm_config_fetch_retry_mintimeout=5000 npm_config_fetch_retry_maxtimeout=60000 \
+    npm_config_fetch_timeout=90000 npm_config_maxsockets=4 npm_config_audit=false npm_config_fund=false
 RUN --mount=type=secret,id=build_ca \
     if [ -f /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
     for attempt in 1 2 3; do \
-      npm install --global npm@11.9.0 --ignore-scripts && npm ci --ignore-scripts \
+      timeout 120 npm install --global npm@11.9.0 --ignore-scripts && timeout 420 npm ci --ignore-scripts \
         && node --input-type=module -e "await import('satteri')" && exit 0; \
       echo "npm install attempt $attempt failed" >&2; rm -rf node_modules; sleep 15; \
     done; exit 1
