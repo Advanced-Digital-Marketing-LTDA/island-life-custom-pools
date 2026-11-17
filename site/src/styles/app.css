@@ -997,7 +997,7 @@
 @media (min-width: 1024px) { .hero--trust .hero__content { padding-bottom: 56px; } .hero__trust ul { padding: 22px 0; } .hero__trust li { font-size: 15px; } }
 /* Five credentials side by side need about 1330px of bar; below that they sit two by two. */
 @media (min-width: 1440px) {
-  .hero__trust ul { grid-template-columns: repeat(5, auto); justify-content: space-between; gap: 0 22px; }
+  .hero__trust ul { grid-template-columns: repeat(4, auto); justify-content: space-between; gap: 0 22px; }
   .hero__trust li:last-child:nth-child(odd) { grid-column: auto; }
   .hero__trust li { position: relative; gap: 10px; font-size: 13px; }
   .hero__trust li + li::before { position: absolute; top: 2px; bottom: 2px; left: -11px; width: 1px; background: rgb(255 255 255 / 16%); content: ""; }
@@ -1140,7 +1140,7 @@
 /* Home trust bar: the long award name gets a full row instead of five narrow lines */
 @media (max-width: 639px) {
   .hero__trust li:nth-child(3) { grid-column: 1 / -1; }
-  .hero__trust li:last-child:nth-child(5) { grid-column: auto; }
+  .hero__trust li:last-child:nth-child(4) { grid-column: 1 / -1; }
   .hero__trust li { font-size: 15px; }
 }
 
