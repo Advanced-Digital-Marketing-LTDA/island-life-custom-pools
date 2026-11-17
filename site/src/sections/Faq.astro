@@ -10,7 +10,7 @@ const { label = '', title = '', titleEm = '', questions = [], cta = '', ctaHref 
   <div class="page-shell faq__grid">
     <div class="faq__intro">
       <p class="section-label">{label}</p>
-      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<em>{titleEm}</em></Fragment>}</h2>
       {cta && (
         <a class="button button--dark" href={ctaHref}>
           <span class="button__label">{cta}</span>

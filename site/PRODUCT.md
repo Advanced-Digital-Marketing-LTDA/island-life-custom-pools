@@ -32,7 +32,7 @@ Quote form fields: name, email, phone, preferred contact method (email or phone)
 
 ## Brand Commitments
 
-Keep: name "Island Life Custom Pools", logo, "Bring Your Vacation Dreams Home!", "Clear Communication. Quality Craftsmanship. Fair Pricing.", "Bring the Island Home.", "Experience the Island Life", island/vacation voice, existing nav and page structure. The logo file is `public/images/island-life-logo.svg` (white background: the header and footer both blend it with multiply on a light stone plate). Brand colors are sampled from it: navy #010031, blue #0c75b6, sky #75b5d2, glow #fdeeb4. The action color is near-black (dark pills on light, off-white on dark); navy, water blue and sun yellow stay as primitives in `src/styles/brand.css`. The header and footer show the logo on a light plate (multiply blend on the light header).
+Keep: name "Island Life Custom Pools", logo, "Bring Your Vacation Dreams Home!", "Clear Communication. Quality Craftsmanship. Fair Pricing.", "Bring the Island Home.", "Experience the Island Life", island/vacation voice, existing nav and page structure. The logo is the one on islandlifecustompools.com (`Island-Life-Custom-Pools.png`, 262x166, drawn on white). The site uses a transparent copy, `island-life-logo-original.png`, on the CDN; it shows unfiltered, with a subtle white glow over the hero video and in the dark mobile menu. Brand colors are the client's: Primary Blue #5CA9CC, Brand Yellow #FBEEBC, Dark Blue #0E73B9, Original Logo Blue #0A72B9, plus deep navy #00243b for text and dark bands (see DESIGN.md). Buttons are Dark Blue with white text on light surfaces and Brand Yellow with navy text on dark ones.
 
 ## Evidence on Hand
 

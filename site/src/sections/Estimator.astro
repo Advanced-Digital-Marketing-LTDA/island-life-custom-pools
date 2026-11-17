@@ -17,7 +17,7 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
   <div class="page-shell">
     <div class="estimator__heading">
       <p class="section-label">{label}</p>
-      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
+      <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<em>{titleEm}</em></Fragment>}</h2>
       <p>{intro}</p>
     </div>
     <div class="estimator__layout">
@@ -61,7 +61,7 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
         {note && <p class="estimator__note">{note}</p>}
         {slogan && <p class="estimator__slogan">{slogan}</p>}
         {cta && (
-          <a class="button button--dark" href={ctaHref}>
+          <a class="button button--light" href={ctaHref}>
             <span class="button__label">{cta}</span>
             <span class="button__wash" aria-hidden="true"></span>
             <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
