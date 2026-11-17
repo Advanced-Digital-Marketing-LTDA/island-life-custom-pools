@@ -8,7 +8,7 @@
       "eyebrow": "$58K pool package",
       "title": "A backyard paradise for $58,000?",
       "italicTitle": "Yes, please!",
-      "introduction": "Your dream backyard might be more affordable than you think. At Island Life Custom Pools, we believe your backyard should feel like your favorite vacation destination. That's why we're offering a custom gunite pool package starting at just $58,000!",
+      "introduction": "Your dream backyard might be more affordable than you think. Custom gunite pool packages start at $58,000.",
       "ctaLabel": "Request a free quote",
       "ctaHref": "#quote",
       "image": "/images/gallery-lawn-cabana-pool.webp",
@@ -20,9 +20,9 @@
     {
       "_template": "overview",
       "anchor": "overview",
-      "label": "Your backyard upgrade includes",
-      "title": "Everything in the $58,000 package.",
-      "lede": "A custom gunite pool package starting at just $58,000, with these finishes and equipment included.",
+      "label": "",
+      "title": "Your backyard upgrade includes",
+      "lede": "Included in the $58,000 package:",
       "checklist": [
         "Spacious 30' x 15' Custom Gunite Pool",
         "Beautiful Mini Pebble Interior Finish",
@@ -45,8 +45,8 @@
       "image": "/images/gallery-house-pool-loungers.webp",
       "imageAlt": "Lounge chairs on a stone deck beside the pool, with a brick house and covered patio behind at sunset.",
       "eyebrow": "The best part?",
-      "title": "Custom pool packages starting at $58,000.",
-      "text": "Flexible financing options are available for qualified buyers. Your pool takes approximately 5–6 weeks to complete, and there are customization options to make it uniquely yours.",
+      "title": "Starting at $58,000.",
+      "text": "Flexible financing for qualified buyers. About 5–6 weeks to complete. Customization options to make your pool yours.",
       "linkLabel": "Request a free quote",
       "linkHref": "#quote"
     },
@@ -55,7 +55,7 @@
       "anchor": "quote",
       "title": "Did you know you can finance",
       "titleEm": "your backyard project?",
-      "intro": "Adjust the loan amount, interest rate and term to see an estimated monthly payment. Then tell us about your project and we will take it from there.",
+      "intro": "Estimate your monthly payment, then tell us about your project.",
       "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
       "amount": 58000,
       "rate": 6,
@@ -64,7 +64,7 @@
     },
     {
       "_template": "reviews",
-      "label": "Five-star backyard experiences",
+      "label": "",
       "title": "Hear what our clients\nhave to say.",
       "reviews": [
         {
@@ -88,10 +88,10 @@
     },
     {
       "_template": "callToAction",
-      "label": "Proudly serving Northwest Houston",
+      "label": "",
       "title": "Your backyard has potential.",
       "titleEm": "Let's make a splash!",
-      "text": "Message Island Life Custom Pools today to request your complimentary consultation and learn more about our $58K pool package! Proudly serving Cypress, Tomball, Magnolia, Montgomery, Conroe, Spring, and surrounding Northwest Houston communities.",
+      "text": "Request your complimentary consultation. Serving Cypress, Tomball, Magnolia, Montgomery, Conroe, Spring and nearby Northwest Houston communities.",
       "button": "Request a free quote",
       "buttonHref": "#quote",
       "callLabel": "Prefer to talk?"

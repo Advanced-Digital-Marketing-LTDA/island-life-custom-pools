@@ -17,7 +17,7 @@ const shown = reviews.slice(0, Math.min(3, reviews.length));
   <div class="page-shell testimonial__inner">
     <div class="testimonial__top">
       <div>
-        <p class="section-label">{label}</p>
+        {label && <p class="section-label">{label}</p>}
         <h2 id={headingId}><Lines text={title} /></h2>
       </div>
       {(cta || reviewUrl) && (
