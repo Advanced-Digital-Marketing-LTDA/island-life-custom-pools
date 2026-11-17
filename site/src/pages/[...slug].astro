@@ -42,7 +42,7 @@ if (service) extraLd.push({
 const city = settings.footer.areas.find((area) => area.href === `/${page.slug}/`);
 if (city) extraLd.push({
   '@context': 'https://schema.org', '@type': 'Service',
-  name: `Custom pool builders in ${city.name}`, serviceType: services[0].name, url: pageUrl, description: page.seoDescription,
+  name: `Custom pool builder in ${city.name}`, serviceType: services[0].name, url: pageUrl, description: page.seoDescription,
   provider: { '@id': `${Astro.site?.href}#business` },
   areaServed: { '@type': 'City', name: `${city.name}, TX` },
 });

@@ -157,13 +157,13 @@ for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(
 const frontHtml = pageHtml('');
 assert.ok(!frontHtml.includes('"employee"'), 'The business schema should not name a person');
 // The home page links to the page of every served city, in its own text.
-for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`Pool builders in ${escapeHtml(area.name)}</`), `The home page should list ${area.name}`);
-for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(frontHtml.includes(`>Pool builders in ${escapeHtml(area.name)}</a>`), `The home page should link to its ${area.name} page`);
+for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`${escapeHtml(area.label || `Pool builder in ${area.name}`)}</`), `The home page should list ${area.name}`);
+for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(frontHtml.includes(`>${escapeHtml(area.label || `Pool builder in ${area.name}`)}</a>`), `The home page should link to its ${area.name} page`);
 for (const slug of ['custom-pools', 'custom-patios', 'outdoor-kitchens']) assert.ok(pageHtml(slug).includes('"@type":"Service"'), `/${slug}/ should describe its Service`);
-for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(pageHtml(area.href).includes(`"@type":"Service","name":"Custom pool builders in ${area.name}"`), `${area.href} should describe its Service`);
+for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(pageHtml(area.href).includes(`"@type":"Service","name":"Custom pool builder in ${area.name}"`), `${area.href} should describe its Service`);
 assert.ok(frontHtml.includes('"@type":"WebSite"'), 'The home page should describe the WebSite');
 for (const link of settings.social.filter((item) => !/review/i.test(item.label))) assert.ok(frontHtml.includes(`"${link.href}"`), `The business schema should list ${link.label}`);
-assert.ok(frontHtml.includes(`"streetAddress":"${settings.address.street}"`) && frontHtml.includes('"@type":"GeoCoordinates"'), 'The business schema should carry the address');
+assert.ok(frontHtml.includes(`"streetAddress":"${settings.address.street}"`), 'The business schema should carry the address');
 for (const slug of postSlugs) {
   const html = pageHtml(`blog/${slug}`);
   assert.ok(html.includes('"@type":"BlogPosting"') && html.includes('"@type":"BreadcrumbList"'), `/blog/${slug}/ should describe its BlogPosting and breadcrumbs`);

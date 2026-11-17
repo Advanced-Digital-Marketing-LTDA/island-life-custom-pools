@@ -32,7 +32,7 @@ Quote form fields: name, email, phone, preferred contact method (email or phone)
 
 ## Brand Commitments
 
-Keep: name "Island Life Custom Pools", logo, "Bring Your Vacation Dreams Home!", "Fast Service. Fair Pricing.", "Experience the Island Life", island/vacation voice, existing nav and page structure. The logo file is `public/images/island-life-logo.svg` (white background: the header and footer both blend it with multiply on a light stone plate). Brand colors are sampled from it: navy #010031, blue #0c75b6, sky #75b5d2, glow #fdeeb4. The action color is near-black (dark pills on light, off-white on dark); navy, water blue and sun yellow stay as primitives in `src/styles/brand.css`. The header and footer show the logo on a light plate (multiply blend on the light header).
+Keep: name "Island Life Custom Pools", logo, "Bring Your Vacation Dreams Home!", "Clear Communication. Quality Craftsmanship. Fair Pricing.", "Bring the Island Home.", "Experience the Island Life", island/vacation voice, existing nav and page structure. The logo file is `public/images/island-life-logo.svg` (white background: the header and footer both blend it with multiply on a light stone plate). Brand colors are sampled from it: navy #010031, blue #0c75b6, sky #75b5d2, glow #fdeeb4. The action color is near-black (dark pills on light, off-white on dark); navy, water blue and sun yellow stay as primitives in `src/styles/brand.css`. The header and footer show the logo on a light plate (multiply blend on the light header).
 
 ## Evidence on Hand
 
