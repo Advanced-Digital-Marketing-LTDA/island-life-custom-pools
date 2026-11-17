@@ -1148,6 +1148,8 @@
 @media (max-width: 767px) {
   .inner-hero:has(+ #quote) .inner-hero__visual, .inner-hero:has(+ .faq) .inner-hero__visual { display: none; }
   .inner-hero:has(+ #quote), .inner-hero:has(+ .faq) { padding-bottom: 8px; }
+  /* On Contact the form is the next thing, so the scroll-to-form button is redundant; the call link stays. */
+  .inner-hero:has(+ #quote) .hero-actions .button { display: none; }
 }
 
 /* Gallery on a phone: two-up tiles, titles only; the full photo and caption open in the lightbox */

@@ -9,7 +9,7 @@
       "title": "Custom outdoor kitchens",
       "italicTitle": "in Houston, TX.",
       "introduction": "Island Life Custom Pools designs and builds outdoor kitchens made for entertaining and relaxing, planned to fit the pool and patio around them, for homes across the Houston area. Cook, gather, and stay in the moment.",
-      "ctaLabel": "Free design consult",
+      "ctaLabel": "Start with a free design consult",
       "ctaHref": "#quote",
       "image": "/images/cedar-cabana-kitchen.webp",
       "imageAlt": "Stone outdoor kitchen under a cedar-framed patio cover",
@@ -38,6 +38,17 @@
       "text": "Your free design consult leads into a custom 3D design, so you can see the kitchen, the seating, and the space around them before construction begins. The goal stays simple: an easy place to cook and plenty of room for everyone to settle in.",
       "linkLabel": "Request a free design consult",
       "linkHref": "#quote"
+    },
+    {
+      "_template": "trust",
+      "badgeLine1": "Vetted and endorsed",
+      "badgeLine2": "by Google",
+      "title": "Google Guaranteed",
+      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
+      "badgeAlt": "Google Guaranteed Service Provider badge"
     },
     {
       "_template": "faq",
