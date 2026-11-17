@@ -47,7 +47,7 @@ const glyph = (label: string) => (['google', 'facebook', 'instagram', 'houzz'] a
   </div>
   <div class="page-shell footer__bottom">
     <span>© <span data-year>{new Date().getFullYear()}</span> {footer.copyright}</span>
-    <span>{footer.tagline}</span>
+    <span class="footer__tagline">{footer.tagline}</span>
     {footer.credit && <span class="footer__credit">{footer.creditHref ? <a href={footer.creditHref} target="_blank" rel="noopener">{footer.credit}</a> : footer.credit}</span>}
   </div>
 </footer>

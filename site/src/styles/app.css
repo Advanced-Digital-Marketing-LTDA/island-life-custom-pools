@@ -1228,3 +1228,13 @@
 
 /* Home on a phone or tablet: the cards stack, so the quote form comes before the payment calculator. Side by side from 1100px, calculator first. */
 @media (max-width: 1099px) { .calc-quote__card:nth-child(2) { order: -1; } }
+/* Phones: the footer tagline is left out, and the service areas list shows only the cities that have their own page. */
+@media (max-width: 767px) {
+  .footer__tagline { display: none; }
+  .areas__list li:not(:has(a)) { display: none; }
+}
+
+/* Phones: the footer menu runs in two columns instead of one long list */
+@media (max-width: 767px) {
+  .footer__top nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+}
