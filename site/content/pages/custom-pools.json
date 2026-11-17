@@ -9,7 +9,7 @@
       "title": "Custom pool design",
       "italicTitle": "& construction.",
       "introduction": "Island Life Custom Pools designs and builds custom pools and spas for homes across the Houston area, including Tomball, Cypress, The Woodlands, and Katy, planned around your property and the way you want to live. Your own escape, right outside.",
-      "ctaLabel": "Start with a free design consult",
+      "ctaLabel": "Free design consult",
       "ctaHref": "#quote",
       "image": "/images/freeform-pool-cabana.webp",
       "imageAlt": "Freeform pool with a rock waterfall, a spa, and a cedar cabana",
@@ -110,17 +110,6 @@
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
-    },
-    {
-      "_template": "trust",
-      "badgeLine1": "Vetted and endorsed",
-      "badgeLine2": "by Google",
-      "title": "Google Guaranteed",
-      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
-      "cta": "Request a free quote",
-      "ctaHref": "#quote",
-      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
-      "badgeAlt": "Google Guaranteed Service Provider badge"
     },
     {
       "_template": "faq",

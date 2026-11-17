@@ -48,7 +48,7 @@ const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') ||
     </button>
   </div>
   <div class="mobile-menu__links">
-    {navItems.map((item, index) => <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined} tabindex="-1"><span>0{index + 1}</span>{item.label}</a>)}
+    {navItems.map((item) => <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined} tabindex="-1">{item.label}</a>)}
   </div>
   <div class="mobile-menu__bottom">
     <a class="button button--light" href={quoteHref} tabindex="-1">
@@ -56,7 +56,7 @@ const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') ||
       <span class="button__wash" aria-hidden="true"></span>
       <Icon name="arrow-up-right" size={18} />
     </a>
-    <a href={phoneHref} tabindex="-1">{phone}</a>
+    <a class="mobile-menu__call" href={phoneHref} tabindex="-1"><Icon name="phone" size={18} strokeWidth={1.6} />Call {phone}</a>
   </div>
 </div>
 

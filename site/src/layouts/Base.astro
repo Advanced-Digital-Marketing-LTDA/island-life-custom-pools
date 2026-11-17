@@ -2,6 +2,7 @@
 import '../styles/index.css';
 import '../styles/app.css';
 import SmoothScroll from '../components/SmoothScroll.astro';
+import MobileBar from '../components/MobileBar.astro';
 import { settings, pages, mapUrl } from '../lib/content';
 import { services } from '../lib/services';
 
@@ -76,6 +77,7 @@ const ld = {
       <a class="skip-link" href="#top">Skip to main content</a>
       <SmoothScroll />
       <slot />
+      {!noindex && <MobileBar />}
     </div>
     <script>
       // Lenis intercepts in-page links and scrolls itself, so move keyboard focus to the content explicitly.

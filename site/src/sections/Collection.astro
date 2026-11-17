@@ -6,7 +6,11 @@ interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string; linkLabel?: string; linkHref?: string; photos?: Item[];
   compact?: boolean; anchor?: string; headingId: string;
 }
+// A photo's group comes from the page it links to, so the chips never drift from the site's own sections.
+const groups: Record<string, string> = { '/custom-pools/': 'Pools', '/custom-patios/': 'Patios', '/outdoor-kitchens/': 'Outdoor kitchens' };
+const groupOf = (item: Item) => groups[item.href || ''] || '';
 const { label = '', title = '', titleEm = '', intro = '', linkLabel = '', linkHref = '', photos = [], compact = false, anchor, headingId } = Astro.props;
+const chips = compact ? [] : Object.values(groups).filter((name) => photos.some((item) => groupOf(item) === name));
 ---
 <section class:list={['gallery-collection', 'section', { 'gallery-collection--compact': compact }]} id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell">
@@ -16,11 +20,17 @@ const { label = '', title = '', titleEm = '', intro = '', linkLabel = '', linkHr
       <p>{intro}{linkLabel && linkHref && <>{' '}<a href={linkHref}>{linkLabel}</a></>}</p>
     </div>
 
+    {chips.length > 1 && (
+      <div class="gallery-filter" role="group" aria-label="Filter photos">
+        {['All', ...chips].map((name, i) => <button type="button" class="gallery-filter__chip" data-group={i === 0 ? '' : name} aria-pressed={i === 0 ? 'true' : 'false'}>{name}</button>)}
+      </div>
+    )}
     <div class="gallery-collection__grid">
       {photos.map((item, index) => (
-        <figure class={`gallery-item gallery-item--${compact ? 'compact' : item.layout || 'wide'}`}>
+        <figure class={`gallery-item gallery-item--${compact ? 'compact' : item.layout || 'wide'}`} data-group={groupOf(item)}>
           <div class="gallery-item__image">
-            {item.image && <img src={item.image} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
+            {item.image && !compact && <button type="button" class="gallery-item__open" aria-label={`View larger: ${item.title}`}><img src={item.image} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} /></button>}
+            {item.image && compact && <img src={item.image} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
           </div>
           <figcaption>
             {!compact && <span class="gallery-item__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}
@@ -36,3 +46,37 @@ const { label = '', title = '', titleEm = '', intro = '', linkLabel = '', linkHr
     </div>
   </div>
 </section>
+
+{!compact && (
+  <dialog class="lightbox" aria-label="Photo">
+    <button type="button" class="lightbox__close" aria-label="Close photo"><Icon name="x" size={24} strokeWidth={1.5} /></button>
+    <img alt="" />
+    <p></p>
+  </dialog>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('.gallery-collection').forEach((root) => {
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.gallery-item'));
+    root.querySelectorAll<HTMLButtonElement>('.gallery-filter__chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        root.querySelectorAll('.gallery-filter__chip').forEach((other) => other.setAttribute('aria-pressed', String(other === chip)));
+        items.forEach((item) => { item.hidden = !!chip.dataset.group && item.dataset.group !== chip.dataset.group; });
+      });
+    });
+    const dialog = root.parentElement?.querySelector<HTMLDialogElement>('.lightbox') ?? document.querySelector<HTMLDialogElement>('.lightbox');
+    if (!dialog) return;
+    const image = dialog.querySelector('img')!;
+    const caption = dialog.querySelector('p')!;
+    root.querySelectorAll<HTMLButtonElement>('.gallery-item__open').forEach((open) => {
+      open.addEventListener('click', () => {
+        const source = open.querySelector('img')!;
+        image.src = source.currentSrc || source.src;
+        image.alt = source.alt;
+        caption.textContent = open.closest('figure')?.querySelector('h3')?.textContent ?? '';
+        dialog.showModal();
+      });
+    });
+    dialog.addEventListener('click', (event) => { if (event.target !== image) dialog.close(); });
+  });
+</script>

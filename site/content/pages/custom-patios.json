@@ -9,7 +9,7 @@
       "title": "Custom patios & covers",
       "italicTitle": "in Houston, TX.",
       "introduction": "Island Life Custom Pools designs and builds custom patios and patio covers for homes across the Houston area: shade, comfort, and a setting that makes the outdoors feel like another room.",
-      "ctaLabel": "Start with a free design consult",
+      "ctaLabel": "Free design consult",
       "ctaHref": "#quote",
       "image": "/images/patio-cover-spa.webp",
       "imageAlt": "Covered patio with a fireplace and seating beside a stone-faced raised spa",
@@ -57,17 +57,6 @@
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
-    },
-    {
-      "_template": "trust",
-      "badgeLine1": "Vetted and endorsed",
-      "badgeLine2": "by Google",
-      "title": "Google Guaranteed",
-      "text": "We are a thoroughly vetted and endorsed enterprise backed by Google. The Google Guaranteed badge is an exclusive endorsement that not all companies can secure. Having undergone a comprehensive evaluation by Google, we have earned their esteemed badge, signifying our reliability and authenticity as a business.",
-      "cta": "Request a free quote",
-      "ctaHref": "#quote",
-      "badgeImage": "/images/Google-Guaranteed-01-300x289.webp",
-      "badgeAlt": "Google Guaranteed Service Provider badge"
     },
     {
       "_template": "faq",

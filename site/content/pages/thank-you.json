@@ -8,16 +8,16 @@
       "label": "Request received",
       "title": "Thank you for contacting",
       "titleEm": "Island Life.",
-      "intro": "We will be in contact with you shortly. We look forward to creating your backyard oasis."
+      "intro": "We will be in contact with you shortly, during business hours: Monday–Friday 8am–7pm and Saturday 8am–12pm. We look forward to creating your backyard oasis."
     },
     {
       "_template": "callToAction",
       "label": "While you wait",
-      "title": "See our",
-      "titleEm": "financing options.",
-      "text": "Estimate a monthly payment for your pool, patio, or outdoor kitchen.",
-      "button": "Financing options",
-      "buttonHref": "/financing/",
+      "title": "See what we have",
+      "titleEm": "built.",
+      "text": "Browse photos of finished pools, patios and outdoor kitchens while you wait.",
+      "button": "See our gallery",
+      "buttonHref": "/gallery/",
       "callLabel": "Prefer to talk?"
     }
   ]

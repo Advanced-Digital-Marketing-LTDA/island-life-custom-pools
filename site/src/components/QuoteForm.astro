@@ -10,7 +10,7 @@ const { phone, phoneHref, quote } = settings;
 const errorParts = quote.errorText.split('{phone}');
 const thankYouHref = '/thank-you/';
 ---
-<form class="estimate-form" method="post" action="/api/quote" data-thanks={thankYouHref} data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel}>
+<form class="estimate-form" novalidate method="post" action="/api/quote" data-thanks={thankYouHref} data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel}>
   <p class="estimate-form__required">* Required</p>
   <div class="form-row">
     <label>
@@ -74,9 +74,42 @@ const thankYouHref = '/thank-you/';
     };
     setPending(false);
 
+    // Browser bubbles vanish and say nothing near the field, so each bad field gets its own message and the first one takes focus.
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input:not([tabindex]), select, textarea'));
+    const clearField = (field: HTMLElement) => {
+      field.removeAttribute('aria-invalid');
+      field.removeAttribute('aria-describedby');
+      field.parentElement?.querySelector('.field-error')?.remove();
+    };
+    const messageFor = (field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+      if (field.validity.valueMissing) return field instanceof HTMLSelectElement ? 'Choose a project.' : 'This field is required.';
+      if (field.validity.typeMismatch && field.type === 'email') return 'Enter a valid email address, like jane@example.com.';
+      if (field.validity.tooShort) return 'Enter at least 2 characters.';
+      return field.title || 'Check this field.';
+    };
+    fields.forEach((field) => {
+      field.addEventListener('input', () => clearField(field));
+      field.addEventListener('change', () => clearField(field));
+    });
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       error.hidden = true;
+      fields.forEach(clearField);
+      const invalid = fields.filter((field) => !field.checkValidity());
+      if (invalid.length) {
+        invalid.forEach((field, i) => {
+          const note = document.createElement('small');
+          note.className = 'field-error';
+          note.id = `${field.name}-error-${i}`;
+          note.textContent = messageFor(field);
+          field.setAttribute('aria-invalid', 'true');
+          field.setAttribute('aria-describedby', note.id);
+          field.parentElement?.append(note);
+        });
+        invalid[0].focus();
+        return;
+      }
       setPending(true);
       let leaving = false;
       try {
