@@ -14,6 +14,10 @@ const { phone, phoneHref } = settings;
 const navItems = settings.nav.map((item) => ({ ...item, target: linkTo(Astro.url, item.href) }));
 const quoteHref = hasQuote ? '#quote' : `${homePrefix}#quote`;
 // pathOf() drops the trailing slash, so compare menu links without theirs.
+// A menu item that points at the home page's #areas section gets the cities that have their own page as a submenu,
+// taken from Site settings (the same list as the footer), so a new city page shows up here with no extra step.
+const cityPages = settings.footer.areas.filter((area) => area.href).map((area) => ({ label: area.name, target: area.href as string }));
+const hasCities = (item: { href: string }) => cityPages.length > 0 && /^\/?#areas$/.test(item.href);
 const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') || '/');
 ---
 <header class:list={['site-header', { 'site-header--solid': solid }]}>
@@ -22,7 +26,15 @@ const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') ||
       <Brand />
     </a>
     <div class="site-header__links">
-      {navItems.map((item) => <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined}>{item.label}</a>)}
+      {navItems.map((item) => hasCities(item) ? (
+        <div class="nav-item">
+          <a href={item.target} aria-current={cityPages.some((city) => isCurrent(city.target)) ? 'true' : undefined}>{item.label}</a>
+          <button type="button" class="nav-item__toggle" aria-expanded="false" aria-label={`Show ${item.label.toLowerCase()}`}><Icon name="chevron-down" size={16} strokeWidth={1.6} /></button>
+          <ul class="nav-sub">
+            {cityPages.map((city) => <li><a href={city.target} aria-current={isCurrent(city.target) ? 'page' : undefined}>{city.label}</a></li>)}
+          </ul>
+        </div>
+      ) : <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined}>{item.label}</a>)}
     </div>
     <div class="site-header__actions">
       <a class="site-header__phone" href={phoneHref} aria-label={`Call ${phone}`}>
@@ -48,7 +60,15 @@ const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') ||
     </button>
   </div>
   <div class="mobile-menu__links">
-    {navItems.map((item) => <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined} tabindex="-1">{item.label}</a>)}
+    {navItems.map((item) => hasCities(item) ? (
+      <details class="mobile-menu__group" open={cityPages.some((city) => isCurrent(city.target))}>
+        <summary>{item.label}<Icon name="chevron-down" size={22} strokeWidth={1.5} /></summary>
+        <div class="mobile-menu__sub">
+          <a href={item.target} tabindex="-1">All service areas</a>
+          {cityPages.map((city) => <a href={city.target} aria-current={isCurrent(city.target) ? 'page' : undefined} tabindex="-1">{city.label}</a>)}
+        </div>
+      </details>
+    ) : <a href={item.target} aria-current={isCurrent(item.target) ? 'page' : undefined} tabindex="-1">{item.label}</a>)}
   </div>
   <div class="mobile-menu__bottom">
     <a class="button button--light" href={quoteHref} tabindex="-1">
@@ -115,6 +135,15 @@ const isCurrent = (target: string) => pathname === (target.replace(/\/$/, '') ||
       trigger.focus();
     }
   }
+
+  // The cities submenu opens on hover and focus (CSS); the chevron button also opens it by touch or keyboard, and Escape closes it.
+  header.querySelectorAll<HTMLElement>('.nav-item').forEach((item) => {
+    const toggle = item.querySelector<HTMLButtonElement>('.nav-item__toggle')!;
+    const setSub = (open: boolean) => { item.classList.toggle('is-open', open); toggle.setAttribute('aria-expanded', String(open)); };
+    toggle.addEventListener('click', () => setSub(!item.classList.contains('is-open')));
+    item.addEventListener('keydown', (event) => { if (event.key === 'Escape') { setSub(false); toggle.focus(); } });
+    document.addEventListener('click', (event) => { if (!item.contains(event.target as Node)) setSub(false); });
+  });
 
   trigger.addEventListener('click', () => setOpen(true));
   closeButton.addEventListener('click', () => setOpen(false));

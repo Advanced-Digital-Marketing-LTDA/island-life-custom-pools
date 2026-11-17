@@ -44,6 +44,10 @@
       "href": "/faq/"
     },
     {
+      "label": "Service areas",
+      "href": "/#areas"
+    },
+    {
       "label": "Blog",
       "href": "/blog/"
     }
