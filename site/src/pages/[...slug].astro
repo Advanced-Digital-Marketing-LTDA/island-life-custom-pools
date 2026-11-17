@@ -24,7 +24,6 @@ const faqs = blocks.filter((block) => block._template === 'faq').flatMap((block)
 // The header and footer buttons jump to the page's own quote form when it has one.
 const hasQuote = blocks.some((block) => block._template === 'quoteForm');
 // A page with its own service areas section does not repeat the list in the footer.
-const hasAreas = blocks.some((block) => block._template === 'areas');
 const pageUrl = new URL(page.slug ? `/${page.slug}/` : '/', Astro.site).href;
 const extraLd: object[] = [];
 if (page.slug) extraLd.push({
@@ -62,5 +61,5 @@ const preload = first?._template === 'hero' && typeof heroStill === 'string' ? h
     {needsClearance && <div class="header-clearance" aria-hidden="true"></div>}
     <Blocks blocks={blocks} />
   </main>
-  <Footer hasQuote={hasQuote} hasAreas={hasAreas} />
+  <Footer hasQuote={hasQuote} />
 </Base>

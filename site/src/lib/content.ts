@@ -77,6 +77,12 @@ export const linkTo = (url: URL, target: string) => (target.startsWith('#') ? `$
 
 export const interests: string[] = settings.quote.interests;
 
+// The Google review link lives in the social list (its label contains "review"). The footer's icon row leaves it out;
+// the review slider, the Google Guaranteed band and the hero trust bar link to it instead.
+const isReviewLink = (link: { label: string }) => /review/i.test(link.label);
+export const reviewUrl: string = settings.social.find(isReviewLink)?.href ?? '';
+export const socialLinks = settings.social.filter((link) => !isReviewLink(link));
+
 // A Google Maps link for the business address, for the footer and the business schema.
 const place = settings.address;
 export const mapUrl = place ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.street}, ${place.city}, ${place.region} ${place.postalCode}`)}` : '';

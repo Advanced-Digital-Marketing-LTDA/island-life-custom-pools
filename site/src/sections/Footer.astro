@@ -1,17 +1,20 @@
 ---
 import Brand from '../components/Brand.astro';
+import BrandIcon from '../components/BrandIcon.astro';
 import Icon from '../components/Icon.astro';
-import { settings, linkTo, mapUrl } from '../lib/content';
+import { settings, linkTo, mapUrl, socialLinks } from '../lib/content';
 import { homePrefix } from '../lib/nav';
 
-interface Props { hasQuote?: boolean; hasAreas?: boolean }
-const { hasQuote = false, hasAreas = false } = Astro.props;
+interface Props { hasQuote?: boolean }
+const { hasQuote = false } = Astro.props;
 const { phone, phoneHref, footer, address } = settings;
 const prefix = homePrefix(Astro.url);
 // On a page with its own quote form, "#quote" stays on the page.
 const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(Astro.url, href));
+// The social links show as logos; a label that matches none of them stays a text link.
+const glyph = (label: string) => (['google', 'facebook', 'instagram', 'houzz'] as const).find((name) => label.toLowerCase().includes(name));
 ---
-<footer class:list={['footer', { 'footer--no-areas': hasAreas }]}>
+<footer class="footer">
   <div class="page-shell footer__top">
     <div>
       <a class="footer__brand" href={`${prefix}#top`} aria-label={`${settings.name} home`}><Brand /></a>
@@ -21,23 +24,22 @@ const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(
           <a href={mapUrl} target="_blank" rel="noopener">{address.street}{' '}<br />{address.city}, {address.region} {address.postalCode}<span class="sr-only"> (opens in a map in a new tab)</span></a>
         </address>
       )}
+      {socialLinks.length > 0 && (
+        <ul class="footer__social" aria-label={`${settings.name} online`}>
+          {socialLinks.map((link) => {
+            const name = glyph(link.label);
+            return <li><a href={link.href} target="_blank" rel="noopener" class={name ? 'footer__social-icon' : 'footer__social-text'}>{name && <BrandIcon name={name} size={20} />}<span class={name ? 'sr-only' : undefined}>{link.label}</span><span class="sr-only"> (opens in a new tab)</span></a></li>;
+          })}
+        </ul>
+      )}
     </div>
     <nav aria-label="Footer navigation">
       {footer.nav.map((item) => <a href={target(item.href)}>{item.label}</a>)}
     </nav>
-    {!hasAreas && <div class="footer__contact">
-      <span>{footer.areasTitle}</span>
-      <p>{footer.areas.map((area, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{area.href ? <a href={area.href}>{area.name}</a> : area.name}</Fragment>)}</p>
-    </div>}
     <div class="footer__hours">
       <span>{footer.hoursTitle}</span>
       <p>{footer.hours.map((row, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{row.days}{' '}<strong>{row.time}</strong></Fragment>)}</p>
       <a href={phoneHref}>{phone}</a>
-      {settings.social.length > 0 && (
-        <ul class="footer__social" aria-label="Island Life Custom Pools online">
-          {settings.social.map((link) => <li><a href={link.href} target="_blank" rel="noopener">{link.label}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
-        </ul>
-      )}
     </div>
     <a class="footer__top-link" href={`${prefix}#top`} aria-label="Back to top">
       <Icon name="arrow-up" size={22} strokeWidth={1.4} />

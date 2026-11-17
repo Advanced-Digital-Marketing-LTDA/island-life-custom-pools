@@ -77,6 +77,7 @@ const templates = [
       str('text', 'Text'), str('highlight', 'Bold figure before the text (optional)', 'For example "4.9".'),
       { type: 'string', name: 'icon', label: 'Icon (optional)', options: ['award', 'trophy', 'user-check', 'shield-check', 'check'] },
       { type: 'boolean', name: 'stars', label: 'Show five stars (optional)' },
+      { type: 'boolean', name: 'review', label: 'Link to the Google review page (optional)', description: 'The link comes from the Google review entry in Site settings, social links.' },
       image('image', 'Small picture (optional)'), str('imageAlt', 'Picture description', 'Leave empty when the text beside it already says it.'),
     ], 'Short credentials shown in a bar at the bottom of the photo. Leave the list empty for no bar.'),
     { type: 'boolean', name: 'scrim', label: 'Dark band behind the text', description: 'Turn on for bright photos, so the text stays easy to read.' },
