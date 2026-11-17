@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+
+// One financing partner (or manufacturer) as a numbered card: an optional logo, the name, a line of text and a link.
+// The logo is decorative (the name sits right below it); without a link address the card shows no link.
+export interface Lender { name?: string; description?: string; href?: string; label?: string; logo?: string }
+interface Props { lender: Lender; index: number; level?: 'h3' | 'h4' }
+const { lender, index, level = 'h3' } = Astro.props;
+const Heading = level;
+---
+<article class="financing-partner">
+  <span class="financing-partner__number">0{index + 1}</span>
+  <div>
+    {lender.logo && <img class="financing-partner__logo" src={lender.logo} alt="" loading="lazy" decoding="async" />}
+    <Heading>{lender.name}</Heading>
+    <p>{lender.description}</p>
+    {lender.href && (
+      <a class="text-link text-link--light" href={lender.href} target="_blank" rel="noopener">
+        {lender.label || `Visit ${lender.name}`}<Icon name="arrow-up-right" size={18} strokeWidth={1.6} />
+        <span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    )}
+  </div>
+</article>

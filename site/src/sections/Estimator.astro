@@ -1,13 +1,15 @@
 ---
 import Icon from '../components/Icon.astro';
 import Lines from '../components/Lines.astro';
+import LenderCard, { type Lender } from '../components/LenderCard.astro';
 import { estimate, money } from '../lib/estimate';
 
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string; note?: string;
   amount?: number; rate?: number; years?: number; background?: string; cta?: string; ctaHref?: string; anchor?: string; headingId: string;
+  slogan?: string; lendersLabel?: string; lendersTitle?: string; lendersIntro?: string; lenders?: Lender[];
 }
-const { label = '', title = '', titleEm = '', intro = '', note = '', amount = 46400, rate = 8, years = 15, background = 'sand', cta = '', ctaHref = '#quote', anchor, headingId } = Astro.props;
+const { label = '', title = '', titleEm = '', intro = '', note = '', amount = 68000, rate = 6, years = 20, background = 'sand', slogan = '', cta = '', ctaHref = '#quote', anchor, headingId, lendersLabel = '', lendersTitle = '', lendersIntro = '', lenders = [] } = Astro.props;
 const result = estimate(amount, rate, years);
 const shown = (value: number) => (result.valid ? money(value) : '—');
 ---
@@ -18,6 +20,8 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
       <h2 id={headingId}><Lines text={title} />{titleEm && <Fragment>{' '}<br /><em>{titleEm}</em></Fragment>}</h2>
       <p>{intro}</p>
     </div>
+    <div class="estimator__layout">
+    <div class="estimator__card">
     <div class="estimator__grid" data-defaults={JSON.stringify({ amount: String(amount), rate: String(rate), years: String(years) })}>
       <form class="estimator__form" onsubmit="return false">
         <div class="estimator__field">
@@ -52,20 +56,31 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
 
       <div class="estimator__results" aria-live="polite" aria-atomic="true">
         <p class="estimator__results-label">Estimated monthly payment</p>
-        <output class="estimator__monthly" aria-label="Estimated monthly payment" data-monthly>{shown(result.monthly)}</output>
+        <output class="estimator__monthly" aria-label="Estimated monthly payment" data-monthly data-long={shown(result.monthly).length > 4 ? "" : undefined}>{shown(result.monthly)}</output>
         <p class="estimator__error" data-error hidden={result.valid}>Enter an amount from $1,000 to $1,000,000, a rate from 0% to 40%, and a term from 1 to 30 years.</p>
         {note && <p class="estimator__note">{note}</p>}
+        {slogan && <p class="estimator__slogan">{slogan}</p>}
+        {cta && (
+          <a class="button button--dark" href={ctaHref}>
+            <span class="button__label">{cta}</span>
+            <span class="button__wash" aria-hidden="true"></span>
+            <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
+          </a>
+        )}
       </div>
     </div>
-    {cta && (
-      <div class="estimator__cta">
-        <a class="button button--dark" href={ctaHref}>
-          <span class="button__label">{cta}</span>
-          <span class="button__wash" aria-hidden="true"></span>
-          <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
-        </a>
-      </div>
+    </div>
+    {lenders.length > 0 && (
+      <aside class="estimator__lenders" aria-labelledby={`${headingId}-lenders`}>
+        {lendersLabel && <p class="section-label section-label--light">{lendersLabel}</p>}
+        <h3 id={`${headingId}-lenders`}>{lendersTitle}</h3>
+        {lendersIntro && <p>{lendersIntro}</p>}
+        <div class="estimator__lender-list">
+          {lenders.map((lender, index) => <LenderCard lender={lender} index={index} level="h4" />)}
+        </div>
+      </aside>
     )}
+    </div>
   </div>
 </section>
 
@@ -80,7 +95,9 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
 
     const update = () => {
       const result = estimate(inputs[0].value, inputs[1].value, inputs[2].value);
-      monthly.textContent = result.valid ? money(result.monthly) : '—';
+      const shown = result.valid ? money(result.monthly) : '—';
+      monthly.textContent = shown;
+      monthly.toggleAttribute('data-long', shown.length > 4);
       error.hidden = result.valid;
     };
     inputs.forEach((input) => input.addEventListener('input', update));

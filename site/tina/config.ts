@@ -164,9 +164,13 @@ const templates = [
   block('estimator', 'Monthly payment estimator', [
     str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'), text('note', 'Note under the results'),
     num('amount', 'Starting loan amount ($)', 'What the visitor sees before changing anything.'), num('rate', 'Starting interest rate (%)'), num('years', 'Starting term (years)'),
+    str('slogan', 'Line above the button', 'Shown in the payment box, for example "Bring the island home."'),
     { type: 'string', name: 'background', label: 'Background color', description: 'White sets the estimator apart from a sand-colored section above it.', options: ['sand', 'white'] },
     str('cta', 'Button label'), href('ctaHref', 'Button link'),
-  ], { amount: 46400, rate: 8, years: 15, ctaHref: '#quote' }),
+    str('lendersLabel', 'Financing partners: small heading', 'The partners sit in a panel beside the calculator. Leave the partner list empty to show the calculator alone.'),
+    str('lendersTitle', 'Financing partners: heading'), text('lendersIntro', 'Financing partners: introduction'),
+    items('lenders', 'Financing partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address', 'Leave empty to show the partner without a link.'), str('label', 'Link label (optional)'), image('logo', 'Logo')]),
+  ], { amount: 68000, rate: 6, years: 20, ctaHref: '#quote' }),
   block('faq', 'Questions and answers', [
     str('label', 'Small heading'), ...headingLines(),
     items('questions', 'Questions', 'question', [text('question', 'Question'), text('answer', 'Answer'), str('linkLabel', 'Link label (optional)'), href('linkHref', 'Link')]),
@@ -181,7 +185,7 @@ const templates = [
   block('areas', 'Service areas band', [], { anchor: 'areas' }),
   block('lenders', 'Financing partners', [
     str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'),
-    items('lenders', 'Partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address'), str('label', 'Link label')]),
+    items('lenders', 'Partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address'), str('label', 'Link label'), image('logo', 'Logo')]),
   ]),
 ];
 

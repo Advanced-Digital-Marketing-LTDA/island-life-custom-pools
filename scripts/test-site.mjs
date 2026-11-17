@@ -86,6 +86,12 @@ for (const page of pages) {
   // Nobody is named, and the calculator shows only the payment.
   assert.doesNotMatch(html, /Justin/, `A person's name is on ${where}`);
   assert.doesNotMatch(html, /data-total|data-interest|Total of payments|Estimated interest/, `The calculator shows more than the payment on ${where}`);
+  // The calculator starts at the agreed example and sits beside every financing partner; "Explore" is not in its heading.
+  for (const block of visible.filter((b) => b._template === 'estimator')) {
+    assert.ok(html.includes(`name="amount" type="number"`) && html.includes(`value="${block.amount}"`) && html.includes(`value="${block.rate}"`) && html.includes(`value="${block.years}"`), `The calculator defaults are missing on ${where}`);
+    for (const lender of block.lenders ?? []) assert.ok(html.includes(`>${escapeHtml(lender.name)}</h4>`), `Financing partner missing beside the calculator on ${where}: ${lender.name}`);
+    assert.doesNotMatch(html.match(/<h2 id="[^"]*">[\s\S]*?<\/h2>/)?.[0] ?? '', /Explore/, `The calculator heading still says Explore on ${where}`);
+  }
   assert.ok(html.includes(`class="site-header__phone" href="${settings.phoneHref}"`), `Header phone link missing on ${where}`);
   if (visible.some((block) => block._template === 'quoteForm')) assert.ok(/class="button button--light site-header__cta" href="#quote"/.test(html), `The header quote button should stay on the page's own form on ${where}`);
   // Internal links: use the slash form and point at a page that was built.
