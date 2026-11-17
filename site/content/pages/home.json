@@ -1,15 +1,15 @@
 {
-  "seoTitle": "Pool Builders in Greater Houston | Island Life Custom Pools",
-  "seoDescription": "Owner-led custom pool builders serving the Greater Houston area, including Cypress and Tomball. Pools, patios, and outdoor kitchens planned in 3D.",
+  "seoTitle": "Pool Builder in Greater Houston | Island Life Custom Pools",
+  "seoDescription": "Owner-led custom pool builder serving the Greater Houston area, including Cypress and Tomball. Pools, patios, and outdoor kitchens planned in 3D.",
   "blocks": [
     {
       "_template": "hero",
       "image": "/images/pavilion-at-night.webp",
       "imageAlt": "Island Life custom pool and raised spa at sunset",
-      "kicker": "Fast service. Fair pricing.",
+      "kicker": "Clear communication. Quality craftsmanship. Fair pricing.",
       "line1": "Greater Houston pool, patio",
       "line2": "& outdoor kitchen",
-      "line3": "builders.",
+      "line3": "builder.",
       "intro": "Island Life Custom Pools is a Tomball-based, owner-led pool builder serving the Greater Houston area. We design and build custom pools, patios, and outdoor kitchens.",
       "cta": "Request a free quote",
       "ctaHref": "#quote",
@@ -47,7 +47,7 @@
     {
       "_template": "about",
       "anchor": "about",
-      "label": "Owner-led pool builders since 2016",
+      "label": "Owner-led pool builder since 2016",
       "title": "Bring your vacation",
       "titleEm": "dreams home!",
       "lede": "We design and build custom swimming pools, patios and patio covers, and outdoor kitchens as one backyard, so the space feels like your own little island at home.",
@@ -57,20 +57,20 @@
       "services": [
         {
           "id": "pools",
-          "title": "Custom pools",
-          "description": "A pool and spa designed for your property, your routines, and your idea of an escape—not pulled from a catalog.",
+          "title": "Custom Pool & Spa",
+          "description": "Your yard. Your routine. Your escape. A custom pool and spa designed for the way you live, not pulled from a catalog.",
           "href": "/custom-pools/"
         },
         {
           "id": "patios",
-          "title": "Custom patios & covers",
-          "description": "Shade, comfort, and architectural continuity, with custom patios and patio covers that make the outdoors feel like another room.",
+          "title": "Patio",
+          "description": "Shade when you want it, comfort all day, and a design that flows right from your house. A custom patio that turns your backyard into another room.",
           "href": "/custom-patios/"
         },
         {
           "id": "outdoor-kitchens",
-          "title": "Custom outdoor kitchens",
-          "description": "Cook, gather, and stay in the moment with a kitchen planned as part of the complete backyard, not added as an afterthought.",
+          "title": "Outdoor Kitchen",
+          "description": "The heart of the home, now outside. A custom outdoor kitchen designed to fit your backyard and the way you entertain.",
           "href": "/outdoor-kitchens/"
         }
       ],
@@ -170,7 +170,7 @@
         },
         {
           "question": "Which areas of Greater Houston do you build pools in?",
-          "answer": "We are based in Tomball and build throughout the Greater Houston area, including Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas. Each of those has its own page.",
+          "answer": "We are based in Tomball and build throughout the Greater Houston area, including Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas, which each have their own page. We also serve Baytown, Bellville, Central Houston, Cleveland, Conroe, Dayton, Fulshear, Humble, League City, Mont Belvieu, Montgomery, Navasota, Pearland, Rosenberg, Sealy, Sugar Land, Willis, and inside the Loop.",
           "linkLabel": "See all service areas",
           "linkHref": "#areas"
         },

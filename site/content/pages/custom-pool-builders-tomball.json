@@ -1,12 +1,12 @@
 {
-  "seoTitle": "Custom Pool Builders in Tomball, TX | Island Life",
-  "seoDescription": "Custom pool builders serving Tomball, TX. See your pool in 3D before we build, and request a free design consultation from Island Life Custom Pools.",
+  "seoTitle": "Custom Pool Builder in Tomball, TX | Island Life",
+  "seoDescription": "Custom pool builder serving Tomball, TX. See your pool in 3D before we build, and request a free design consultation from Island Life Custom Pools.",
   "blocks": [
     {
       "_template": "pageHero",
       "homeLabel": "Home",
-      "eyebrow": "Pool builders in Tomball",
-      "title": "Custom pool builders",
+      "eyebrow": "Pool builder in Tomball",
+      "title": "Custom pool builder",
       "italicTitle": "in Tomball, TX.",
       "introduction": "Island Life Custom Pools designs and builds custom pools and spas for homes in Tomball, Texas, with patios, covers, and outdoor kitchens planned around them. See your pool in a custom 3D model before construction begins.",
       "ctaLabel": "Start with a free design consult",
@@ -19,7 +19,7 @@
     {
       "_template": "overview",
       "anchor": "overview",
-      "label": "Pool builders in Tomball",
+      "label": "Pool builder in Tomball",
       "title": "Your pool, planned with your yard.",
       "lede": "Whether you want a pool and spa, a covered patio, an outdoor kitchen, or all three, we plan them together for your Tomball home, then bring the plan to life in a custom 3D model before construction begins.",
       "checklist": [

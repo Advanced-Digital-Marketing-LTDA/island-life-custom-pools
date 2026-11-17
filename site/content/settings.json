@@ -4,12 +4,10 @@
   "phone": "(832) 304-4092",
   "phoneHref": "tel:+18323044092",
   "address": {
-    "street": "20102 Stone Lake Cir",
+    "street": "19723 Lake Stone Ct",
     "city": "Tomball",
     "region": "TX",
-    "postalCode": "77377",
-    "latitude": 30.057761,
-    "longitude": -95.728349
+    "postalCode": "77377"
   },
   "foundingDate": "2016",
   "awards": [
@@ -49,8 +47,8 @@
   "headerCta": "Free quote",
   "menuCta": "Request a free quote",
   "footer": {
-    "blurbLine1": "Greater Houston pool & patio builders.",
-    "blurbLine2": "Bring your vacation dreams home.",
+    "blurbLine1": "Greater Houston pool & patio builder.",
+    "blurbLine2": "Bring the island home.",
     "nav": [
       {
         "label": "About",
@@ -131,6 +129,61 @@
       {
         "name": "Jersey Village",
         "href": "/custom-pool-builders-jersey-village/"
+      },
+      {
+        "name": "Baytown"
+      },
+      {
+        "name": "Bellville"
+      },
+      {
+        "name": "Central Houston"
+      },
+      {
+        "name": "Cleveland"
+      },
+      {
+        "name": "Conroe"
+      },
+      {
+        "name": "Dayton"
+      },
+      {
+        "name": "Fulshear"
+      },
+      {
+        "name": "Humble"
+      },
+      {
+        "name": "League City"
+      },
+      {
+        "name": "Mont Belvieu"
+      },
+      {
+        "name": "Montgomery"
+      },
+      {
+        "name": "Navasota"
+      },
+      {
+        "name": "Pearland"
+      },
+      {
+        "name": "Rosenberg"
+      },
+      {
+        "name": "Sealy"
+      },
+      {
+        "name": "Sugar Land"
+      },
+      {
+        "name": "Willis"
+      },
+      {
+        "name": "Inside the Loop",
+        "label": "Pool builder inside the Loop"
       }
     ],
     "hoursTitle": "Hours",
@@ -149,7 +202,7 @@
       }
     ],
     "copyright": "Island Life Custom Pools",
-    "tagline": "Fast service. Fair pricing.",
+    "tagline": "Clear communication. Quality craftsmanship. Fair pricing.",
     "credit": "Website Designed by Advanced Digital Marketing LTDA",
     "creditHref": "https://advanceddigitalmarketingltda.com/"
   },

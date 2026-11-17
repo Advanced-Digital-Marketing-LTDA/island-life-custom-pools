@@ -6,6 +6,8 @@ import { settings, pages, mapUrl } from '../lib/content';
 import { services } from '../lib/services';
 
 interface Props { title: string; description: string; preload?: string; noindex?: boolean; extraLd?: object[] }
+// Coordinates are optional: without them the business schema simply has no map position.
+const coords = (settings.address ?? {}) as { latitude?: number; longitude?: number };
 const { title, description, preload, noindex = false, extraLd = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(settings.ogImage, Astro.site).href;
@@ -22,7 +24,7 @@ const ld = {
   telephone: settings.phone,
   ...(settings.address ? {
     address: { '@type': 'PostalAddress', streetAddress: settings.address.street, addressLocality: settings.address.city, addressRegion: settings.address.region, postalCode: settings.address.postalCode, addressCountry: 'US' },
-    geo: { '@type': 'GeoCoordinates', latitude: settings.address.latitude, longitude: settings.address.longitude },
+    ...(coords.latitude && coords.longitude ? { geo: { '@type': 'GeoCoordinates', latitude: coords.latitude, longitude: coords.longitude } } : {}),
     hasMap: mapUrl,
   } : {}),
   description: businessDescription,
