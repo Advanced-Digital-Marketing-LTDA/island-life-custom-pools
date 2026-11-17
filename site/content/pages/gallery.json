@@ -38,11 +38,11 @@
         },
         {
           "layout": "portrait",
-          "title": "Rock waterfall",
-          "category": "Rock waterfall · Pool",
-          "description": "A rock waterfall spilling into the pool.",
-          "image": "/images/gallery-rock-waterfall.webp",
-          "alt": "Rock waterfall in a stone grotto spilling into a blue pool, with a wooden privacy fence behind it.",
+          "title": "Tiled waterfall wall",
+          "category": "Water feature · Pool",
+          "description": "A checkered tile wall with a planter urn, and a spout pouring into the pool.",
+          "image": "/images/gallery-block-waterfall.webp",
+          "alt": "Checkered gray and cream tile wall topped with a stone planter urn, with water pouring from a spout into the pool beside a wooden fence.",
           "href": "/custom-pools/",
           "linkLabel": "See custom pools"
         },
@@ -78,11 +78,11 @@
         },
         {
           "layout": "portrait-offset",
-          "title": "Rock waterfall and raised spa",
-          "category": "Rock waterfall · Raised spa",
-          "description": "A rock waterfall and a raised spa at the end of a freeform pool.",
-          "image": "/images/gallery-grotto-spa.webp",
-          "alt": "Rock waterfall grotto and a raised stone spa at the end of a blue pool, with a wooden fence and a two-story house behind.",
+          "title": "Raised spa wall",
+          "category": "Raised spa · Stone",
+          "description": "A raised spa faced in stacked stone, with a stepped spillway into the pool.",
+          "image": "/images/gallery-raised-spa-wall.webp",
+          "alt": "Raised spa faced in stacked stone with a stepped spillway into a blue pool, beside a stamped patio and a wooden fence.",
           "href": "/custom-pools/",
           "linkLabel": "See custom pools"
         },
