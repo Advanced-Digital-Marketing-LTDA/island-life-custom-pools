@@ -818,7 +818,7 @@
 .estimator__lenders .financing-partner h4 { font-size: clamp(20px, 4.5vw, 24px); }
 .estimator__lenders .financing-partner p { margin-top: 8px; }
 .estimator__lenders .financing-partner .text-link { margin-top: 12px; }
-.estimator__lenders .financing-partner__logo { height: 34px; margin-bottom: 10px; }
+.estimator__lenders .financing-partner__logo { height: 46px; margin-bottom: 10px; }
 .estimator__lenders .financing-partner:last-child { border-bottom: 0; padding-bottom: 0; }
 
 .financing-partners { --text-on-dark: var(--brand-sand); background: var(--brand-ink); color: var(--text-on-dark); }
