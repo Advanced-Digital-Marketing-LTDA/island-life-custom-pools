@@ -18,7 +18,8 @@ const write = (name, doc) => {
 
 try {
   const real = readdirSync(pagesDir).filter((f) => f.endsWith('.json')).map((f) => ({ slug: f.slice(0, -5), ...JSON.parse(readFileSync(new URL(f, pagesDir), 'utf8')) }));
-  write('zz-test-bare', { seoTitle: 'Bare', seoDescription: 'Every section with no content', blocks: blockNames.map((_template) => ({ _template })) });
+  // A page holds one quote form, so the calculator + form section gets its own link name here.
+  write('zz-test-bare', { seoTitle: 'Bare', seoDescription: 'Every section with no content', blocks: blockNames.map((_template) => (_template === 'calculatorQuote' ? { _template, anchor: 'calculator-quote' } : { _template })) });
   write('zz-test-empty', { seoTitle: 'Empty', blocks: [] });
   write('zz-test-nothing', {});
   write('zz-test-hidden', { seoTitle: 'Hidden', blocks: real[0].blocks.map((block) => ({ ...block, hidden: true })) });

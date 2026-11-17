@@ -19,26 +19,30 @@
 
 @layer base {
   :root {
-    --brand-blue: #0290fc;
-    --brand-aqua: #71c6d5;
-    --brand-sand: #ffefb2;
-    --brand-blue-text: #0068b8;
+    /* Client brand palette: Primary Blue, Brand Yellow, Dark Blue, Original Logo Blue */
+    --brand-blue: #0e73b9;
+    --brand-aqua: #5ca9cc;
+    --brand-sand: #fbeebc;
+    --brand-blue-text: #0a72b9;
     --brand-ink: #00243b;
-    --brand-sand-light: #fffdf4;
-    --brand-aqua-light: #e5f5f7;
+    --brand-sand-light: color-mix(in srgb, var(--brand-sand) 14%, white);
+    --brand-aqua-light: color-mix(in srgb, var(--brand-aqua) 15%, white);
     --primitive-navy: var(--brand-ink);
     --primitive-navy-soft: #064b78;
     --primitive-taupe: var(--brand-blue-text);
     --primitive-paper: var(--brand-sand-light);
     --primitive-paper-deep: var(--brand-aqua-light);
-    --primitive-paper-light: #fffef9;
-    --primitive-line: #b7dfe4;
+    --primitive-paper-light: color-mix(in srgb, var(--brand-sand) 8%, white);
+    --primitive-line: color-mix(in srgb, var(--brand-aqua) 45%, white);
     --page-bg: var(--primitive-paper);
     --page-text: var(--primitive-navy);
     --surface-muted: var(--primitive-paper-deep);
     --surface-dark: var(--primitive-navy);
     --text-on-dark: var(--brand-sand);
     --accent-earth: var(--brand-blue);
+    --fs-h1: clamp(30px, 3.4vw, 50px);
+    --fs-h2: clamp(26px, 3vw, 42px);
+    --fs-h3: clamp(20px, 2vw, 26px);
     --type-label: 1rem;
     --type-detail: 1rem;
     --tracking-label: 0.05em;
@@ -92,6 +96,7 @@
   h1, h2, h3 {
     font-family: "Michroma", sans-serif;
     font-weight: 400;
+    text-wrap: balance;
   }
   em { font-style: normal; }
   strong, b { font-weight: 400; }
@@ -101,7 +106,7 @@
   button:disabled { cursor: wait; }
   img { display: block; max-width: 100%; }
   ::selection {
-    background: var(--brand-blue);
+    background: var(--brand-aqua);
     color: var(--brand-ink);
   }
   :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }

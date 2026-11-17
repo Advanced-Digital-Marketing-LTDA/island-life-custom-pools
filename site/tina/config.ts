@@ -184,6 +184,12 @@ const templates = [
     str('updated', 'Closing line', 'For example "Last updated: November 14, 2026".'),
   ]),
   block('areas', 'Service areas band', [], { anchor: 'areas' }),
+  block('calculatorQuote', 'Payment calculator and quote form', [
+    ...headingLines(), text('intro', 'Introduction'), text('note', 'Note under the results'),
+    num('amount', 'Starting loan amount ($)', 'What the visitor sees before changing anything.'), num('rate', 'Starting interest rate (%)'), num('years', 'Starting term (years)'),
+    str('slogan', 'Line in the payment box', 'For example "Bring the island home."'),
+  ], { amount: 68000, rate: 6, years: 20, anchor: 'quote' }),
+  block('warranties', 'Warranty bar', [strings('items', 'Warranties', 'One per line, shown side by side with a shield icon.')]),
   block('lenders', 'Financing partners', [
     str('label', 'Small heading'), ...headingLines(), text('intro', 'Introduction'),
     items('lenders', 'Partners', 'name', [str('name', 'Name'), text('description', 'Description'), str('href', 'Website address'), str('label', 'Link label'), image('logo', 'Logo')]),

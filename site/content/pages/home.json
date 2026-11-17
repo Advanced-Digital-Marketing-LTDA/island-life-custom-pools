@@ -46,6 +46,26 @@
       ]
     },
     {
+      "_template": "calculatorQuote",
+      "anchor": "quote",
+      "title": "Did you know you can finance",
+      "titleEm": "your backyard project?",
+      "intro": "Adjust the loan amount, interest rate and term to see an estimated monthly payment. Then tell us about your project and we will take it from there.",
+      "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
+      "amount": 68000,
+      "rate": 6,
+      "years": 20,
+      "slogan": "Bring the island home."
+    },
+    {
+      "_template": "warranties",
+      "items": [
+        "Lifetime Warranty on Gunite",
+        "15-Year Warranty on Plaster",
+        "3-Year Warranty on Craftsmanship"
+      ]
+    },
+    {
       "_template": "about",
       "anchor": "about",
       "label": "Owner-led pool builder since 2016",
@@ -75,53 +95,11 @@
           "href": "/outdoor-kitchens/"
         }
       ],
-      "details": "Planning around a monthly payment?",
+      "details": "Did you know you can finance your backyard project?",
       "cta": "Request a free quote",
       "ctaHref": "#quote",
-      "detailsLinkLabel": "Try the payment estimator",
-      "detailsLinkHref": "/financing/#payment-estimator"
-    },
-    {
-      "_template": "showcase",
-      "anchor": "gallery",
-      "label": "3D design",
-      "title": "See your pool in 3D",
-      "titleEm": "before we build.",
-      "intro": "At Island Life Custom Pools we create a 3D model of your pool and outdoor space so you can see your vision come to life.",
-      "cards": [],
-      "cta": "Request a free quote",
-      "ctaHref": "#quote",
-      "video": "/videos/Island-Life-Skaggs-Family-Revisions_StoryBoard_01_001%20(1).mp4",
-      "videoLabel": "Video: the Island Life 3D design software in action",
-      "videoPoster": "https://ilcpmedia.b-cdn.net/public/design-software-poster.webp"
-    },
-    {
-      "_template": "collection",
-      "anchor": "our-work",
-      "label": "Our work",
-      "title": "Pools, patios,",
-      "titleEm": "and kitchens.",
-      "intro": "",
-      "linkLabel": "See the full gallery",
-      "linkHref": "/gallery/",
-      "photos": [
-        {
-          "title": "Raised spa at sunset",
-          "image": "/images/gallery-sunset-spa.webp",
-          "alt": "Raised stone spa next to a purple-lit pool at sunset, with an umbrella and lounge chairs on the far deck."
-        },
-        {
-          "title": "Patio dining",
-          "image": "/images/gallery-patio-dining.webp",
-          "alt": "Round metal dining table under a large umbrella on a covered stone patio, with the pool and a lake beyond."
-        },
-        {
-          "title": "Stone outdoor kitchen",
-          "image": "/images/cedar-cabana-kitchen.webp",
-          "alt": "Stone outdoor kitchen counter with a stainless refrigerator and drawers under a cedar-framed patio cover, with a pool and brick houses beyond."
-        }
-      ],
-      "compact": true
+      "detailsLinkLabel": "See financing options",
+      "detailsLinkHref": "/financing/"
     },
     {
       "_template": "reviews",
@@ -131,94 +109,35 @@
         {
           "name": "Jeff L.",
           "detail": "Pool construction",
-          "quote": "Having recently moved to a new area, we relied on a friend who highly recommended Island Life Custom Pools. We are so glad that we heeded their advice. Tim exceeded our expectations with the construction of our beautiful pool. He was extremely communicative, detail oriented and surrounded himself with quality subs. In addition, his passion for assisting us with aesthetics was greatly appreciated. In essence, we would highly recommend Tim and his team to create your own slice of paradise."
+          "quote": "Tim exceeded our expectations with the construction of our beautiful pool. He was extremely communicative, detail oriented and surrounded himself with quality subs."
         },
         {
           "name": "Sam M.",
           "detail": "On time · On budget",
-          "quote": "We had an amazing experience with Island Life custom pools. Tim and team took amazing care in helping us develop and execute on our vision. We really wanted to build a pool and an outdoor space we could use year round to bring people together. The quality and craftsmanship of the final product exceed our expectations and we came in on time and on budget. I think what sets Tim apart as a builder is his superb communication skills. We were always given a thorough understanding each step of the way from design, to excavation, to the structure and fireplace, all the way to start up! The crews are top notch and all materials feel premium I would highly recommend Island Life Custom Pools."
+          "quote": "The quality and craftsmanship of the final product exceed our expectations and we came in on time and on budget. I think what sets Tim apart as a builder is his superb communication skills."
         },
         {
           "name": "Jasmine H.",
           "detail": "Pool · Spa · Fire pit",
-          "quote": "We had a wonderful experience using Island Life to build our pool, spa and fire pit. Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way. Even the construction crews were very nice and polite. We are so impressed with how everything turned out. It is so beautiful and we are so happy with it. We highly recommend."
+          "quote": "Tim and Jose were in constant communication with us with a weekly calendar to keep us updated every step of the way. Even the construction crews were very nice and polite. We are so impressed with how everything turned out."
         },
         {
           "name": "Annette",
           "detail": "A personal oasis",
-          "quote": "Huge thanks to Island Life Custom Pools for converting our backyard into our own personal oasis. Tim (the owner) made the process very easy and stress free. He is an honest man who constantly kept his word and heard our every want/must haves and made it happen. Tim is very responsive and answered all calls and text fast. He knew how our dogs are spoiled and even made a cute trail for them! If you don’t know anything about pools, don’t worry, he walks you through every step of the way. Highly recommend!"
+          "quote": "Huge thanks to Island Life Custom Pools for converting our backyard into our own personal oasis. Tim (the owner) made the process very easy and stress free."
         },
         {
           "name": "Dee G.",
           "detail": "Design through close-out",
-          "quote": "From the design to close-out, Tim and Eric were amazing! They addressed any issue big or small, listened to our needs and concerns and started working on them immediately. Our pool is beautiful. Making a large purchase like this can be a stressful time but Tim was patient and Eric new exactly what we wanted. We are so happy we chose Island Life Pools!!"
+          "quote": "They addressed any issue big or small, listened to our needs and concerns and started working on them immediately. Our pool is beautiful."
         }
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
     },
     {
-      "_template": "faq",
-      "label": "Frequently asked questions",
-      "title": "Questions before",
-      "titleEm": "you get started.",
-      "questions": [
-        {
-          "question": "What does Island Life Custom Pools build?",
-          "answer": "We design and build custom swimming pools and spas, custom patios and patio covers, and outdoor kitchens. We also coordinate spas, fire pits, fireplaces, pickleball courts, and dependable Hayward equipment, so the whole backyard comes from one team.",
-          "linkLabel": "See our gallery",
-          "linkHref": "/gallery/"
-        },
-        {
-          "question": "Which areas of Greater Houston do you build pools in?",
-          "answer": "We are based in Tomball and build throughout the Greater Houston area, including Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas, which each have their own page. We also serve Baytown, Bellville, Central Houston, Cleveland, Conroe, Dayton, Fulshear, Humble, League City, Mont Belvieu, Montgomery, Navasota, Pearland, Rosenberg, Sealy, Sugar Land, Willis, and inside the Loop.",
-          "linkLabel": "See all service areas",
-          "linkHref": "#areas"
-        },
-        {
-          "question": "How do I get started?",
-          "answer": "Request a quote with the quote form on the Island Life Custom Pools home page, or call (832) 304-4092 (Monday–Friday 8am–7pm, Saturday 8am–12pm). Every quote request includes a free design consultation, where we talk through your property, your priorities, and the next steps.",
-          "linkLabel": "Request a free quote",
-          "linkHref": "#quote"
-        },
-        {
-          "question": "Can I see my pool before it is built?",
-          "answer": "Yes. We create a 3D model of your pool and outdoor space, so you can see your vision come to life before construction begins.",
-          "linkLabel": "See the design software in action",
-          "linkHref": "#gallery"
-        },
-        {
-          "question": "How much does a custom pool cost?",
-          "answer": "Every project is custom, so the cost depends on the size and shape of the pool, the features you choose, the equipment, and the rest of the backyard around it. After your free design consultation we provide a quote for your project. To plan a monthly payment, try the financing estimator.",
-          "linkLabel": "Estimate a monthly payment",
-          "linkHref": "/financing/#payment-estimator"
-        },
-        {
-          "question": "Do you offer financing?",
-          "answer": "We work with third-party lenders, including Lyon Financial, HFS Financial, Frost Banking, and Viking Capital. You apply with the lender, which provides the final rates and terms.",
-          "linkLabel": "See financing options",
-          "linkHref": "/financing/"
-        },
-        {
-          "question": "Do you offer discounts?",
-          "answer": "Military personnel, first responders, and teachers receive a generous discount."
-        },
-        {
-          "question": "Why choose Island Life Custom Pools as your pool builder?",
-          "answer": "We plan the pool, patio, and outdoor kitchen as one backyard and show it in a custom 3D model before construction begins. The company began in 2016 and is owner-led, and every quote request includes a free design consultation."
-        }
-      ],
-      "cta": "Request a free quote",
-      "ctaHref": "#quote",
-      "collapsible": true
-    },
-    {
       "_template": "areas",
       "anchor": "areas"
-    },
-    {
-      "_template": "quoteForm",
-      "anchor": "quote"
     }
   ]
 }
