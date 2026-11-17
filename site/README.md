@@ -58,10 +58,10 @@ Set SITE_URL to https://islandlifecustompools.com as a build variable (the Docke
 ```sh
 docker build --build-arg SITE_URL=https://islandlifecustompools.com \
   --build-arg SOURCE_COMMIT="$(git rev-parse HEAD)" -t island-life .
-docker run --rm -p 127.0.0.1:4321:4321 island-life
+docker run --rm -p 127.0.0.1:3000:3000 island-life
 ```
 
-In Coolify select the Dockerfile build pack and exposed port 4321. The Dockerfile works whether the build starts at the repository root (Dockerfile `/site/Dockerfile`) or in `site/` (base directory `/site`, Dockerfile `/Dockerfile`). Keep HOST=0.0.0.0 and PORT=4321 in the container. After deployment check the home page, a missing page, `/healthz` and `/build.json`.
+In Coolify select the Dockerfile build pack and exposed port 3000 (Coolify's default). The Dockerfile works whether the build starts at the repository root (Dockerfile `/site/Dockerfile`) or in `site/` (base directory `/site`, Dockerfile `/Dockerfile`). Keep HOST=0.0.0.0 and PORT=3000 in the container. After deployment check the home page, a missing page, `/healthz` and `/build.json`.
 
 ### Editing on the live site (Tina Cloud)
 
