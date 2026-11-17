@@ -44,7 +44,7 @@ const shown = reviews.slice(0, Math.min(3, reviews.length));
         {shown.map((review) => (
           <blockquote class="testimonial-slide">
             <p>“{review.quote}”</p>
-            <div class="testimonial-slide__stars" aria-label="5 out of 5 stars">
+            <div class="testimonial-slide__stars" role="img" aria-label="5 out of 5 stars">
               {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={19} strokeWidth={1.4} fill />)}
             </div>
             <footer>
