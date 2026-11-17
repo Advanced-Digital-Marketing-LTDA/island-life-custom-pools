@@ -17,12 +17,11 @@ const {
 <section class:list={['hero', { 'hero--video': !!video, 'hero--scrim': scrim, 'hero--trust': trust.length > 0 }]} id={anchor || undefined} aria-labelledby={headingId}>
   {video ? (
     // The video is decoration: it plays muted and loops. Visitors who prefer reduced motion get the still instead (see the script).
-    // MP4 comes first because it is the smaller file; WebM is for browsers without H.264. Phones get the smaller 720p files.
-    <video class="hero__image" autoplay muted loop playsinline preload="metadata" poster={videoPoster || image} aria-hidden="true" tabindex="-1" data-alt={imageAlt} style="transform: translate3d(0px, 0%, 0px) scale(1.04);">
+    // MP4 only: every current browser plays H.264, and one small file beats two formats. Phones get the smaller portrait file.
+    // The file is not fetched until the page has loaded (see the script), so it never competes with the headline and the poster.
+    <video class="hero__image" muted loop playsinline preload="none" poster={videoPoster || image} aria-hidden="true" tabindex="-1" data-alt={imageAlt} style="transform: translate3d(0px, 0%, 0px) scale(1.04);">
       {videoMobile && <source src={videoMobile} type="video/mp4" media="(max-width: 767px)" />}
       <source src={video} type="video/mp4" />
-      {videoMobile && <source src={videoMobile.replace(/\.mp4$/, '.webm')} type="video/webm" media="(max-width: 767px)" />}
-      <source src={video.replace(/\.mp4$/, '.webm')} type="video/webm" />
     </video>
   ) : (
     image && <img class="hero__image" src={image} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
@@ -102,6 +101,14 @@ const {
   });
   swapVideoForStill();
   stillMotion.addEventListener('change', swapVideoForStill);
+
+  // Start the video once the page has loaded. Visitors who asked to save data keep the poster still.
+  const heroVideo = document.querySelector<HTMLVideoElement>('video.hero__image');
+  if (heroVideo && !(navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) {
+    const play = () => { heroVideo.play().catch(() => {}); };
+    if (document.readyState === 'complete') play();
+    else window.addEventListener('load', play, { once: true });
+  }
 
   const heroes = [...document.querySelectorAll<HTMLElement>('.hero')].map((hero) => ({
     hero, image: hero.querySelector<HTMLElement>('.hero__image'), content: hero.querySelector<HTMLElement>('.hero__content')!,
