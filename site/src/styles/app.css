@@ -1190,3 +1190,9 @@
 @media (min-width: 1024px) { .mobile-bar { display: none; } }
 @media (max-width: 1023px) { .footer { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } }
 @media (prefers-reduced-motion: reduce) { .mobile-bar { transition: none; } }
+
+/* Home hero on a phone: the headline, the buttons and the trust bar carry it; the tagline and intro paragraph are left out. */
+@media (max-width: 767px) {
+  .hero__kicker, .hero__intro > p { display: none; }
+  .hero__intro { margin-top: 24px; }
+}
