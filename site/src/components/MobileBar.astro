@@ -7,8 +7,10 @@ import { homePrefix } from '../lib/nav';
 // It steps aside while a quote form or the payment calculator is on screen, since those already are the action.
 const { phone, phoneHref } = settings;
 const prefix = homePrefix(Astro.url);
+// On the home page the hero has its own call and quote buttons, so the bar waits until the visitor starts scrolling.
+const waitsForScroll = prefix === '';
 ---
-<div class="mobile-bar" data-mobile-bar>
+<div class:list={['mobile-bar', { 'is-hidden': waitsForScroll }]} data-mobile-bar data-after-scroll={waitsForScroll ? '' : undefined}>
   <a class="mobile-bar__call" href={phoneHref}><Icon name="phone" size={18} strokeWidth={1.6} />Call</a>
   <a class="button button--light" href={`${prefix}#quote`}>
     <span class="button__label">{settings.headerCta}</span>
@@ -19,11 +21,23 @@ const prefix = homePrefix(Astro.url);
   const bar = document.querySelector<HTMLElement>('[data-mobile-bar]')!;
   const targets = document.querySelectorAll('#quote, #payment-estimator');
   const inView = new Set<Element>();
+  let started = !bar.hasAttribute('data-after-scroll');
+  const update = () => bar.classList.toggle('is-hidden', !started || inView.size > 0);
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => (entry.isIntersecting ? inView.add(entry.target) : inView.delete(entry.target)));
-    bar.classList.toggle('is-hidden', inView.size > 0);
+    update();
   });
   targets.forEach((target) => observer.observe(target));
+  if (!started) {
+    const onScroll = () => {
+      if (window.scrollY < 24) return;
+      started = true;
+      window.removeEventListener('scroll', onScroll);
+      update();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // a page restored part-way down already counts as scrolled
+  }
   // The bar's own quote link goes to the page's form when there is one.
   if (targets.length) bar.querySelector<HTMLAnchorElement>('.button')!.setAttribute('href', '#quote');
 </script>
