@@ -56,7 +56,7 @@
         },
         {
           "title": "We’ll reach out.",
-          "description": "Our team will contact you using your preferred method to learn more and answer your initial questions."
+          "description": "Our team will contact you to learn more and answer your initial questions."
         },
         {
           "title": "Meet for your free design consult.",
@@ -129,10 +129,6 @@
       ],
       "cta": "Request a free quote",
       "ctaHref": "#quote"
-    },
-    {
-      "_template": "areas",
-      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

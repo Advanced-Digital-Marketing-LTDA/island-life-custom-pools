@@ -1,7 +1,6 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 import { randomInt } from 'node:crypto';
-import { contactMethods } from '../../data/quote';
 import { interests } from '../../lib/content';
 
 export const prerender = false;
@@ -50,7 +49,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     email: v('email'),
     phone: v('phone'),
     zip: v('zipCode'),
-    contact: v('preferredContact'),
     interest: v('interest'),
     message: v('message'),
   };
@@ -60,7 +58,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email) && q.email.length <= 320 &&
     q.phone.length >= 1 && q.phone.length <= 40 &&
     /^\d{5}(-\d{4})?$/.test(q.zip) &&
-    (contactMethods as readonly string[]).includes(q.contact) &&
     interests.includes(q.interest) &&
     q.message.length <= 2000;
   if (!valid) return json(400, { error: 'invalid' });
@@ -101,7 +98,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           `Phone: ${q.phone}`,
           `Email: ${q.email}`,
           `Zip: ${q.zip}`,
-          `Prefers: ${q.contact}`,
           `Interested in: ${q.interest}`,
           '',
           q.message || '(no message)',

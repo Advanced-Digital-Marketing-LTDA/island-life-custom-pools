@@ -46,11 +46,13 @@
         },
         {
           "name": "Frost Banking",
-          "description": "Financing for your backyard project through Frost Banking."
+          "description": "Financing for your backyard project through Frost Banking.",
+          "href": "https://www.frostbank.com/personal/banking/loan-products/improvement"
         },
         {
           "name": "Viking Capital",
-          "description": "Financing for your backyard project through Viking Capital."
+          "description": "Financing for your backyard project through Viking Capital.",
+          "href": "https://poolloan.net/"
         }
       ]
     },
