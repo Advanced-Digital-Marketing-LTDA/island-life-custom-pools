@@ -1137,10 +1137,9 @@
 /* Content lists and article bodies read in the body face; Michroma stays for headings and labels */
 .inner-considerations li, .article-body :is(li, td, th, dd), .faq__answer :is(li, span) { font-family: "Montserrat", sans-serif; }
 
-/* Home trust bar: the long award name gets a full row instead of five narrow lines */
+/* Home trust bar on a phone: one item per row */
 @media (max-width: 639px) {
-  .hero__trust li:nth-child(3) { grid-column: 1 / -1; }
-  .hero__trust li:last-child:nth-child(4) { grid-column: 1 / -1; }
+  .hero__trust ul { grid-template-columns: 1fr; gap: 14px; }
   .hero__trust li { font-size: 15px; }
 }
 
