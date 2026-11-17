@@ -36,21 +36,25 @@
           "name": "Lyon Financial",
           "description": "Pool financing options directly through Lyon Financial.",
           "href": "https://www.lyonfinancial.net/",
-          "label": "Visit Lyon Financial"
+          "label": "Visit Lyon Financial",
+          "logo": "/images/lyon-financial-logo.png"
         },
         {
           "name": "HFS Financial",
           "description": "Home improvement loan options directly through HFS Financial.",
-          "href": "https://www.hfsfinancial.net/",
-          "label": "Visit HFS Financial"
+          "href": "https://www.hfsfinancial.net/promo/IslandLifeCustomPoolsTX/",
+          "label": "Visit HFS Financial",
+          "logo": "/images/hfs-financial-logo.png"
         },
         {
           "name": "Frost Banking",
-          "description": "Financing for your backyard project through Frost Banking."
+          "description": "Financing for your backyard project through Frost Banking.",
+          "href": "https://www.frostbank.com/personal/banking/loan-products/improvement"
         },
         {
           "name": "Viking Capital",
-          "description": "Financing for your backyard project through Viking Capital."
+          "description": "Financing for your backyard project through Viking Capital.",
+          "href": "https://poolloan.net/"
         }
       ]
     },

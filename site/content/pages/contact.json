@@ -8,17 +8,13 @@
       "eyebrow": "Contact",
       "title": "Contact Island Life",
       "italicTitle": "Custom Pools.",
-      "introduction": "Tell us what you are picturing and how you would like us to reach you. Your quote request includes a free design consultation. Prefer to talk? Call (832) 304-4092, Monday–Friday 8am–7pm or Saturday 8am–12pm. Our address is 19723 Lake Stone Ct, Tomball, TX 77377.",
+      "introduction": "Tell us what you are picturing and we will be in touch. Your quote request includes a free design consultation. Prefer to talk? Call (832) 304-4092, Monday–Friday 8am–7pm or Saturday 8am–12pm. Our address is 19723 Lake Stone Ct, Tomball, TX 77377.",
       "ctaLabel": "Request a free quote",
       "ctaHref": "#quote",
       "image": "/images/travertine-pool-loungers.webp",
       "imageAlt": "Backyard pool with a travertine deck, lounge chairs, and an umbrella beside a brick home at dusk",
       "scrollLabel": "",
       "scrollHref": ""
-    },
-    {
-      "_template": "areas",
-      "anchor": "areas"
     },
     {
       "_template": "quoteForm",

@@ -8,7 +8,6 @@ const site = new URL('../site/', import.meta.url);
 const read = (path) => readFileSync(new URL(path, site), 'utf8');
 const json = (path) => JSON.parse(read(path));
 const escapeHtml = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const { contactMethods } = await import(new URL('src/data/quote.ts', site));
 const { blockNames, defaultAnchors, overlayBlocks, quoteBlocks } = await import(new URL('src/lib/blocks.ts', site));
 const { redirects } = await import(new URL('src/lib/redirects.mjs', site));
 const settings = json('content/settings.json');
@@ -95,6 +94,7 @@ for (const page of pages) {
   for (const block of visible.filter((b) => b._template === 'estimator' || b._template === 'calculatorQuote')) {
     assert.ok(html.includes(`name="amount" type="number"`) && html.includes(`value="${block.amount}"`) && html.includes(`value="${block.rate}"`) && html.includes(`value="${block.years}"`), `The calculator defaults are missing on ${where}`);
     for (const lender of block.lenders ?? []) assert.ok(html.includes(`>${escapeHtml(lender.name)}</h4>`), `Financing partner missing beside the calculator on ${where}: ${lender.name}`);
+    for (const lender of (block.lenders ?? []).filter((item) => item.href)) assert.ok(html.includes(`href="${escapeHtml(lender.href)}"`), `Financing partner link missing on ${where}: ${lender.name}`);
     assert.doesNotMatch(html.match(/<h2 id="[^"]*">[\s\S]*?<\/h2>/)?.[0] ?? '', /Explore/, `The calculator heading still says Explore on ${where}`);
   }
   assert.ok(html.includes(`class="site-header__phone" href="${settings.phoneHref}"`), `Header phone link missing on ${where}`);
@@ -192,7 +192,7 @@ assert.deepEqual([...form.matchAll(/<option value="([^"]+)">/g)].map((m) => m[1]
 // A sent request goes to the thank-you page.
 assert.match(form, /data-thanks="([^"]+)"/, 'The quote form should name its thank-you page');
 assert.ok(outputExists(form.match(/data-thanks="([^"]+)"/)[1]), 'The thank-you page of the quote form is not built');
-assert.deepEqual([...form.matchAll(/name="preferredContact" value="([^"]+)"/g)].map((m) => m[1]), [...contactMethods], 'Contact methods differ');
+assert.ok(!/preferredContact/.test(form), 'The quote form should not ask how to be reached');
 assert.ok(home.includes(escapeHtml(settings.footer.tagline)), 'settings.json footer text missing from the page');
 
 // The home page's scripts take over from markup that must render in its resting state.
@@ -204,6 +204,9 @@ assert.equal([...front.matchAll(/class="testimonial-slide"/g)].length, 3);
 const heroTrust = (pages.find((page) => page.slug === 'home').blocks.find((block) => block._template === 'hero').trust ?? []);
 for (const item of heroTrust) assert.ok(front.includes(escapeHtml(item.text)), `The hero trust bar is missing: ${item.text}`);
 assert.match(front, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
+
+// The list of cities is on the home page only.
+for (const page of pages.filter((item) => item.slug !== 'home')) assert.ok(!(page.blocks ?? []).some((block) => block._template === 'areas'), `/${page.path} should not carry the service areas band`);
 
 // The home page puts the calculator and the quote form side by side under the hero, then the warranties, and ends with the
 // service areas. The gallery, 3D design and FAQ sections live on their own pages.

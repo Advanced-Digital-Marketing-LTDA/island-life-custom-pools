@@ -372,14 +372,6 @@
 .estimate-form select option { background: var(--primitive-navy); color: var(--text-on-dark); }
 .estimate-form input:hover, .estimate-form select:hover, .estimate-form textarea:hover { border-bottom-color: var(--primitive-paper-light); }
 .estimate-form input:focus-visible, .estimate-form select:focus-visible, .estimate-form textarea:focus-visible { outline-offset: 3px; }
-.contact-preference { margin: 0; border: 0; padding: 0; }
-.contact-preference legend { margin-bottom: 12px; padding: 0; font-size: var(--type-detail); font-weight: 400; letter-spacing: 0.02em; }
-.contact-preference > div { display: flex; gap: 12px; }
-.estimate-form .contact-preference label { position: relative; display: block; cursor: pointer; }
-.contact-preference input { position: absolute; width: 1px; height: 1px; min-height: 0; opacity: 0; }
-.estimate-form .contact-preference label > span { display: inline-flex; min-width: 104px; min-height: 48px; align-items: center; justify-content: center; border: 1px solid color-mix(in oklch, var(--primitive-paper) 45%, transparent); border-radius: 0.35em; padding: 10px 20px; font-size: var(--type-detail); letter-spacing: 0.02em; transition: background-color var(--motion-feedback) var(--ease-out), color var(--motion-feedback) var(--ease-out); }
-.contact-preference input:checked + span { background: var(--brand-blue); color: #fff; }
-.contact-preference input:focus-visible + span { outline: 2px solid var(--brand-aqua); outline-offset: 4px; }
 .hp-field { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .estimate-form__submit { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 4px; }
 .estimate-form__submit .button { flex-shrink: 0; }
@@ -826,7 +818,7 @@
 .estimator__lenders .financing-partner h4 { font-size: clamp(20px, 4.5vw, 24px); }
 .estimator__lenders .financing-partner p { margin-top: 8px; }
 .estimator__lenders .financing-partner .text-link { margin-top: 12px; }
-.estimator__lenders .financing-partner__logo { height: 34px; margin-bottom: 10px; }
+.estimator__lenders .financing-partner__logo { height: 46px; margin-bottom: 10px; }
 .estimator__lenders .financing-partner:last-child { border-bottom: 0; padding-bottom: 0; }
 
 .financing-partners { --text-on-dark: var(--brand-sand); background: var(--brand-ink); color: var(--text-on-dark); }

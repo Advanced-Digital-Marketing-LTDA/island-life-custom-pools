@@ -1,7 +1,6 @@
 ---
 import Icon from './Icon.astro';
 import { settings, interests } from '../lib/content';
-import { contactMethods } from '../data/quote';
 
 // The quote request form and its submit script. `surface` is the background it sits on: dark gets the yellow button, light the blue one.
 interface Props { surface?: 'dark' | 'light' }
@@ -33,17 +32,6 @@ const thankYouHref = '/thank-you/';
       <input name="phone" type="tel" autocomplete="tel" maxlength="40" required placeholder="(832) 555-0123" />
     </label>
   </div>
-  <fieldset class="contact-preference">
-    <legend>Best way to reach you *</legend>
-    <div>
-      {contactMethods.map((method) => (
-        <label>
-          <input type="radio" name="preferredContact" value={method} checked={method === 'Email'} required />
-          <span>{method}</span>
-        </label>
-      ))}
-    </div>
-  </fieldset>
   <label>
     <span>I’m interested in *</span>
     <select name="interest" required>
