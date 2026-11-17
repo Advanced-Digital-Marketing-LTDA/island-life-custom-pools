@@ -12,7 +12,7 @@ const hours = settings.footer.hours[0];
 ---
 <section class="gallery-cta" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell gallery-cta__inner">
-    <p class="section-label section-label--light">{label}</p>
+    {label && <p class="section-label section-label--light">{label}</p>}
     <h2 id={headingId}>{title}{' '}<em>{titleEm}</em></h2>
     <div class="gallery-cta__action">
       <p>{text}</p>
