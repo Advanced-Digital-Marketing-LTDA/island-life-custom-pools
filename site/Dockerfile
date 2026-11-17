@@ -6,7 +6,7 @@ WORKDIR /ctx
 COPY . .
 RUN mkdir /src && if [ -f site/package.json ]; then cp -a site/. /src/; else cp -a . /src/; fi
 
-FROM node:24.19.0-slim AS build
+FROM node:24.19.0-slim AS npm
 WORKDIR /app
 ENV ASTRO_TELEMETRY_DISABLED=1
 COPY --from=source /src/package.json /src/package-lock.json ./
@@ -17,9 +17,23 @@ ENV npm_config_fetch_retries=5 npm_config_fetch_retry_mintimeout=20000 npm_confi
     npm_config_fetch_timeout=300000 npm_config_maxsockets=4 npm_config_audit=false npm_config_fund=false
 RUN --mount=type=secret,id=build_ca \
     if [ -f /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    for attempt in 1 2 3; do npm install --global npm@11.9.0 --ignore-scripts && exit 0; sleep 15; done; exit 1
+
+# The runtime needs only the production packages. They get their own install: removing the ~1000 development packages
+# afterwards (npm prune) took 9 minutes on the Contabo server's disk, a few seconds on a fast one.
+FROM npm AS prod-deps
+RUN --mount=type=secret,id=build_ca --mount=type=cache,target=/root/.npm \
+    if [ -f /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
     for attempt in 1 2 3; do \
-      npm install --global npm@11.9.0 --ignore-scripts && npm ci --ignore-scripts \
-        && node --input-type=module -e "await import('satteri')" && exit 0; \
+      npm ci --omit=dev --ignore-scripts && node --input-type=module -e "await import('satteri')" && exit 0; \
+      echo "npm install attempt $attempt failed" >&2; rm -rf node_modules; sleep 15; \
+    done; exit 1
+
+FROM npm AS build
+RUN --mount=type=secret,id=build_ca --mount=type=cache,target=/root/.npm \
+    if [ -f /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    for attempt in 1 2 3; do \
+      npm ci --ignore-scripts && node --input-type=module -e "await import('satteri')" && exit 0; \
       echo "npm install attempt $attempt failed" >&2; rm -rf node_modules; sleep 15; \
     done; exit 1
 COPY --from=source /src/astro.config.mjs /src/tsconfig.json /src/postcss.config.mjs /src/tailwind.config.mjs ./
@@ -37,13 +51,13 @@ ARG GITHUB_BRANCH=main
 # Canonical links, the sitemap, robots.txt and the structured data all use this address, so a missing or localhost value must stop the build.
 RUN case "$SITE_URL" in https://*) ;; *) echo "SITE_URL build argument must be the public https address, for example https://islandlifecustompools.com" >&2; exit 1;; esac
 RUN if [ -n "$TINA_CLIENT_ID" ] && [ -n "$TINA_TOKEN" ]; then npx tinacms build --skip-cloud-checks; fi \
-    && npm run build && npm prune --omit=dev --ignore-scripts
+    && npm run build
 
 FROM node:24.19.0-slim
 WORKDIR /app
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
 COPY --from=build --chown=node:node /app/dist ./dist
-COPY --from=build --chown=node:node /app/node_modules ./node_modules
+COPY --from=prod-deps --chown=node:node /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./package.json
 USER node
 EXPOSE 3000
