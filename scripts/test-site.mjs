@@ -9,7 +9,7 @@ const read = (path) => readFileSync(new URL(path, site), 'utf8');
 const json = (path) => JSON.parse(read(path));
 const escapeHtml = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const { contactMethods } = await import(new URL('src/data/quote.ts', site));
-const { blockNames, defaultAnchors, overlayBlocks } = await import(new URL('src/lib/blocks.ts', site));
+const { blockNames, defaultAnchors, overlayBlocks, quoteBlocks } = await import(new URL('src/lib/blocks.ts', site));
 const { redirects } = await import(new URL('src/lib/redirects.mjs', site));
 const settings = json('content/settings.json');
 const { quote: { interests } } = settings;
@@ -51,7 +51,7 @@ for (const page of pages) {
   const overlay = visible.length > 0 && overlayBlocks.includes(visible[0]._template);
   assert.equal(/class="site-header site-header--solid"/.test(html), !overlay, `Wrong header style on ${where}`);
   // The quote form is on the page exactly when the page has a quote section.
-  assert.equal(/<section class="estimate section"/.test(html), visible.some((block) => block._template === 'quoteForm'), `Quote form presence is wrong on ${where}`);
+  assert.equal(/<section class="(?:estimate|calc-quote) section"/.test(html), visible.some((block) => quoteBlocks.includes(block._template)), `Quote form presence is wrong on ${where}`);
 
   // Every section with a link name is on the page, in the order it was given.
   let last = -1;
@@ -92,13 +92,13 @@ for (const page of pages) {
   assert.doesNotMatch(html, /Justin/, `A person's name is on ${where}`);
   assert.doesNotMatch(html, /data-total|data-interest|Total of payments|Estimated interest/, `The calculator shows more than the payment on ${where}`);
   // The calculator starts at the agreed example and sits beside every financing partner; "Explore" is not in its heading.
-  for (const block of visible.filter((b) => b._template === 'estimator')) {
+  for (const block of visible.filter((b) => b._template === 'estimator' || b._template === 'calculatorQuote')) {
     assert.ok(html.includes(`name="amount" type="number"`) && html.includes(`value="${block.amount}"`) && html.includes(`value="${block.rate}"`) && html.includes(`value="${block.years}"`), `The calculator defaults are missing on ${where}`);
     for (const lender of block.lenders ?? []) assert.ok(html.includes(`>${escapeHtml(lender.name)}</h4>`), `Financing partner missing beside the calculator on ${where}: ${lender.name}`);
     assert.doesNotMatch(html.match(/<h2 id="[^"]*">[\s\S]*?<\/h2>/)?.[0] ?? '', /Explore/, `The calculator heading still says Explore on ${where}`);
   }
   assert.ok(html.includes(`class="site-header__phone" href="${settings.phoneHref}"`), `Header phone link missing on ${where}`);
-  if (visible.some((block) => block._template === 'quoteForm')) assert.ok(/class="button button--light site-header__cta" href="#quote"/.test(html), `The header quote button should stay on the page's own form on ${where}`);
+  if (visible.some((block) => quoteBlocks.includes(block._template))) assert.ok(/class="button button--light site-header__cta" href="#quote"/.test(html), `The header quote button should stay on the page's own form on ${where}`);
   // Internal links: use the slash form and point at a page that was built.
   for (const [, href] of html.matchAll(/<a\b[^>]*href="(\/[^"]*)"/g)) {
     const path = href.split(/[?#]/)[0];
@@ -181,7 +181,7 @@ for (const slug of postSlugs) {
 }
 
 // The form and the endpoint must agree on field names and choices.
-const formPage = pages.find((page) => (page.blocks ?? []).some((block) => block._template === 'quoteForm' && !block.hidden));
+const formPage = pages.find((page) => (page.blocks ?? []).some((block) => quoteBlocks.includes(block._template) && !block.hidden));
 const home = pageHtml(formPage.path);
 const form = home.match(/<form class="estimate-form"[\s\S]*?<\/form>/)[0];
 const formFields = new Set([...form.matchAll(/\bname="([^"]+)"/g)].map((m) => m[1]));
@@ -204,6 +204,19 @@ assert.equal([...front.matchAll(/class="testimonial-slide"/g)].length, 3);
 const heroTrust = (pages.find((page) => page.slug === 'home').blocks.find((block) => block._template === 'hero').trust ?? []);
 for (const item of heroTrust) assert.ok(front.includes(escapeHtml(item.text)), `The hero trust bar is missing: ${item.text}`);
 assert.match(front, /id="mobile-menu"[^>]*aria-hidden="true"[^>]*inert/);
+
+// The home page puts the calculator and the quote form side by side under the hero, then the warranties, and ends with the
+// service areas. The gallery, 3D design and FAQ sections live on their own pages.
+const homeBlocks = pages.find((page) => page.slug === 'home').blocks.filter((block) => !block.hidden);
+assert.equal(homeBlocks[1]?._template, 'calculatorQuote', 'The calculator and quote form belong directly under the hero');
+assert.equal(homeBlocks[2]?._template, 'warranties', 'The warranty bar belongs directly under the calculator and quote form');
+assert.equal(homeBlocks.at(-1)?._template, 'areas', 'The service areas belong at the very bottom of the home page');
+for (const gone of ['faq', 'showcase', 'collection']) assert.ok(!homeBlocks.some((block) => block._template === gone), `The home page should not carry a ${gone} section`);
+assert.equal([...front.matchAll(/<form class="estimate-form"/g)].length, 1, 'The home page should have exactly one quote form');
+for (const item of homeBlocks.find((block) => block._template === 'warranties').items ?? []) assert.ok(front.includes(`<span>${escapeHtml(item)}</span>`), `Warranty missing from the home page: ${item}`);
+assert.ok(outputExists('faq') && pageHtml('faq').includes('"@type":"FAQPage"'), 'The FAQ page should be built with its questions described for search');
+assert.ok(pageHtml('gallery').includes('id="3d-design"'), 'The 3D design video should be on the Gallery page');
+assert.ok(settings.nav.some((item) => item.href === '/faq/'), 'The FAQ should have its own navigation tab');
 
 // The gallery's closing section offers the phone number and reaches the home page quote form.
 const gallery = pages.find((page) => page.slug === 'gallery');

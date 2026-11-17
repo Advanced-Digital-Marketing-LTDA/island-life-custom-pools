@@ -3,7 +3,7 @@
 export const blockNames = [
   'hero', 'about', 'showcase', 'reviews', 'process', 'financing', 'quoteForm',
   'pageHero', 'overview', 'feature', 'collection', 'callToAction', 'heading', 'postList',
-  'panorama', 'spotlight', 'trust', 'splitHero', 'estimator', 'lenders', 'faq', 'prose', 'areas',
+  'panorama', 'spotlight', 'trust', 'splitHero', 'estimator', 'lenders', 'faq', 'prose', 'areas', 'calculatorQuote', 'warranties',
 ] as const;
 export type BlockName = (typeof blockNames)[number];
 
@@ -19,4 +19,6 @@ export const overlayBlocks: readonly BlockName[] = ['hero'];
 // Sections built to open a page: they clear the fixed header themselves. Anything else gets a spacer.
 export const clearsHeader: readonly BlockName[] = ['hero', 'pageHero', 'splitHero', 'heading'];
 // Sections that other links point at by default (the header "Free quote" button goes to #quote).
-export const defaultAnchors: Partial<Record<BlockName, string>> = { quoteForm: 'quote', estimator: 'payment-estimator', areas: 'areas' };
+export const defaultAnchors: Partial<Record<BlockName, string>> = { quoteForm: 'quote', calculatorQuote: 'quote', estimator: 'payment-estimator', areas: 'areas' };
+// Sections that hold the quote form: the header and footer "Free quote" buttons jump to it.
+export const quoteBlocks: readonly BlockName[] = ['quoteForm', 'calculatorQuote'];

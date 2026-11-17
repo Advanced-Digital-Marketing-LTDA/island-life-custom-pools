@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Blocks from '../components/Blocks.astro';
 import Footer from '../sections/Footer.astro';
 import { pages, settings } from '../lib/content';
-import { clearsHeader, overlayBlocks } from '../lib/blocks';
+import { clearsHeader, overlayBlocks, quoteBlocks } from '../lib/blocks';
 import { services } from '../lib/services';
 
 export function getStaticPaths() {
@@ -22,7 +22,7 @@ const heroStill = typeof first?.video === 'string' && first.video && typeof firs
 const crumb = String(first?.eyebrow || page.seoTitle.split('|')[0].trim() || page.slug);
 const faqs = blocks.filter((block) => block._template === 'faq').flatMap((block) => (block.questions as { question?: string; answer?: string }[] | undefined) ?? []).filter((item) => item.question && item.answer);
 // The header and footer buttons jump to the page's own quote form when it has one.
-const hasQuote = blocks.some((block) => block._template === 'quoteForm');
+const hasQuote = blocks.some((block) => quoteBlocks.includes(block._template));
 // A page with its own service areas section does not repeat the list in the footer.
 const pageUrl = new URL(page.slug ? `/${page.slug}/` : '/', Astro.site).href;
 const extraLd: object[] = [];

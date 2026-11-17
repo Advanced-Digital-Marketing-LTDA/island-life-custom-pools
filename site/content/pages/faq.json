@@ -1,0 +1,79 @@
+{
+  "seoTitle": "Pool, Patio & Outdoor Kitchen FAQ | Island Life Custom Pools",
+  "seoDescription": "Answers to common questions about custom pools, patios and outdoor kitchens in the Greater Houston area: what we build, how a project works, what it costs and how to finance it.",
+  "blocks": [
+    {
+      "_template": "pageHero",
+      "homeLabel": "Home",
+      "eyebrow": "FAQ",
+      "title": "Frequently asked",
+      "italicTitle": "questions.",
+      "introduction": "Straight answers about building a pool, patio or outdoor kitchen in the Greater Houston area: what we build, how a project works, what it costs and how to finance it.",
+      "ctaLabel": "Request a free quote",
+      "ctaHref": "#quote",
+      "image": "/images/gallery-sunset-spa.webp",
+      "imageAlt": "Raised stone spa next to a purple-lit pool at sunset, with an umbrella and lounge chairs on the far deck.",
+      "scrollLabel": "",
+      "scrollHref": ""
+    },
+    {
+      "_template": "faq",
+      "label": "Pools, patios and outdoor kitchens",
+      "title": "Questions before",
+      "titleEm": "you get started.",
+      "questions": [
+        {
+          "question": "What does Island Life Custom Pools build?",
+          "answer": "We design and build custom swimming pools and spas, custom patios and patio covers, and outdoor kitchens. We also coordinate spas, fire pits, fireplaces, pickleball courts, and dependable Hayward equipment, so the whole backyard comes from one team.",
+          "linkLabel": "See our gallery",
+          "linkHref": "/gallery/"
+        },
+        {
+          "question": "Which areas of Greater Houston do you build pools in?",
+          "answer": "We are based in Tomball and build throughout the Greater Houston area, including Tomball, Cypress, The Woodlands, Houston, Katy, Spring, Magnolia, and Jersey Village, Texas, which each have their own page. We also serve Baytown, Bellville, Central Houston, Cleveland, Conroe, Dayton, Fulshear, Humble, League City, Mont Belvieu, Montgomery, Navasota, Pearland, Rosenberg, Sealy, Sugar Land, Willis, and inside the Loop.",
+          "linkLabel": "See all service areas",
+          "linkHref": "/#areas"
+        },
+        {
+          "question": "How do I get started?",
+          "answer": "Request a quote with the quote form on the Island Life Custom Pools home page, or call (832) 304-4092 (Monday–Friday 8am–7pm, Saturday 8am–12pm). Every quote request includes a free design consultation, where we talk through your property, your priorities, and the next steps.",
+          "linkLabel": "Request a free quote",
+          "linkHref": "#quote"
+        },
+        {
+          "question": "Can I see my pool before it is built?",
+          "answer": "Yes. We create a 3D model of your pool and outdoor space, so you can see your vision come to life before construction begins.",
+          "linkLabel": "See the design software in action",
+          "linkHref": "/gallery/#3d-design"
+        },
+        {
+          "question": "How much does a custom pool cost?",
+          "answer": "Every project is custom, so the cost depends on the size and shape of the pool, the features you choose, the equipment, and the rest of the backyard around it. After your free design consultation we provide a quote for your project. To plan a monthly payment, try the financing estimator.",
+          "linkLabel": "Estimate a monthly payment",
+          "linkHref": "/financing/#payment-estimator"
+        },
+        {
+          "question": "Do you offer financing?",
+          "answer": "We work with third-party lenders, including Lyon Financial, HFS Financial, Frost Banking, and Viking Capital. You apply with the lender, which provides the final rates and terms.",
+          "linkLabel": "See financing options",
+          "linkHref": "/financing/"
+        },
+        {
+          "question": "Do you offer discounts?",
+          "answer": "Military personnel, first responders, and teachers receive a generous discount."
+        },
+        {
+          "question": "Why choose Island Life Custom Pools as your pool builder?",
+          "answer": "We plan the pool, patio, and outdoor kitchen as one backyard and show it in a custom 3D model before construction begins. The company began in 2016 and is owner-led, and every quote request includes a free design consultation."
+        }
+      ],
+      "cta": "Request a free quote",
+      "ctaHref": "#quote",
+      "collapsible": true
+    },
+    {
+      "_template": "quoteForm",
+      "anchor": "quote"
+    }
+  ]
+}

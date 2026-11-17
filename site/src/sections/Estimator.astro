@@ -1,8 +1,7 @@
 ---
-import Icon from '../components/Icon.astro';
+import EstimatorCard from '../components/EstimatorCard.astro';
 import Lines from '../components/Lines.astro';
 import LenderCard, { type Lender } from '../components/LenderCard.astro';
-import { estimate, money } from '../lib/estimate';
 
 interface Props {
   label?: string; title?: string; titleEm?: string; intro?: string; note?: string;
@@ -10,8 +9,6 @@ interface Props {
   slogan?: string; lendersLabel?: string; lendersTitle?: string; lendersIntro?: string; lenders?: Lender[];
 }
 const { label = '', title = '', titleEm = '', intro = '', note = '', amount = 68000, rate = 6, years = 20, background = 'sand', slogan = '', cta = '', ctaHref = '#quote', anchor, headingId, lendersLabel = '', lendersTitle = '', lendersIntro = '', lenders = [] } = Astro.props;
-const result = estimate(amount, rate, years);
-const shown = (value: number) => (result.valid ? money(value) : '—');
 ---
 <section class:list={['estimator', 'section', { 'estimator--white': background === 'white' }]} id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell">
@@ -22,53 +19,7 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
     </div>
     <div class="estimator__layout">
     <div class="estimator__card">
-    <div class="estimator__grid" data-defaults={JSON.stringify({ amount: String(amount), rate: String(rate), years: String(years) })}>
-      <form class="estimator__form" onsubmit="return false">
-        <div class="estimator__field">
-          <label for={`${headingId}-amount`}>Loan amount</label>
-          <div class="estimator__input-wrap">
-            <span aria-hidden="true">$</span>
-            <input id={`${headingId}-amount`} name="amount" type="number" inputmode="decimal" min="1000" max="1000000" step="500" value={amount} required />
-          </div>
-          <p>Enter the amount you would like to finance.</p>
-        </div>
-        <div class="estimator__field">
-          <label for={`${headingId}-rate`}>Interest rate</label>
-          <div class="estimator__input-wrap estimator__input-wrap--suffix">
-            <input id={`${headingId}-rate`} name="rate" type="number" inputmode="decimal" min="0" max="40" step="0.01" value={rate} required />
-            <span aria-hidden="true">%</span>
-          </div>
-          <p>Enter the annual interest rate from your lender.</p>
-        </div>
-        <div class="estimator__field">
-          <label for={`${headingId}-years`}>Loan term</label>
-          <div class="estimator__input-wrap estimator__input-wrap--suffix">
-            <input id={`${headingId}-years`} name="years" type="number" inputmode="numeric" min="1" max="30" step="1" value={years} required />
-            <span aria-hidden="true">years</span>
-          </div>
-          <p>Choose a repayment term from 1 to 30 years.</p>
-        </div>
-        <button class="text-link estimator__reset" type="button">
-          <Icon name="rotate-ccw" size={17} strokeWidth={1.5} />
-          Reset estimator
-        </button>
-      </form>
-
-      <div class="estimator__results" aria-live="polite" aria-atomic="true">
-        <p class="estimator__results-label">Estimated monthly payment</p>
-        <output class="estimator__monthly" aria-label="Estimated monthly payment" data-monthly data-long={shown(result.monthly).length > 4 ? "" : undefined}>{shown(result.monthly)}</output>
-        <p class="estimator__error" data-error hidden={result.valid}>Enter an amount from $1,000 to $1,000,000, a rate from 0% to 40%, and a term from 1 to 30 years.</p>
-        {note && <p class="estimator__note">{note}</p>}
-        {slogan && <p class="estimator__slogan">{slogan}</p>}
-        {cta && (
-          <a class="button button--light" href={ctaHref}>
-            <span class="button__label">{cta}</span>
-            <span class="button__wash" aria-hidden="true"></span>
-            <Icon name="arrow-up-right" size={18} strokeWidth={1.7} />
-          </a>
-        )}
-      </div>
-    </div>
+      <EstimatorCard amount={amount} rate={rate} years={years} note={note} slogan={slogan} cta={cta} ctaHref={ctaHref} headingId={headingId} />
     </div>
     {lenders.length > 0 && (
       <aside class="estimator__lenders" aria-labelledby={`${headingId}-lenders`}>
@@ -83,29 +34,3 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
     </div>
   </div>
 </section>
-
-<script>
-  import { estimate, money } from '../lib/estimate';
-
-  document.querySelectorAll<HTMLElement>('.estimator__grid').forEach((root) => {
-    const inputs = ['amount', 'rate', 'years'].map((name) => root.querySelector<HTMLInputElement>(`input[name="${name}"]`)!);
-    const monthly = root.querySelector<HTMLElement>('[data-monthly]')!;
-    const error = root.querySelector<HTMLElement>('[data-error]')!;
-    const defaults = JSON.parse(root.dataset.defaults || '{}');
-
-    const update = () => {
-      const result = estimate(inputs[0].value, inputs[1].value, inputs[2].value);
-      const shown = result.valid ? money(result.monthly) : '—';
-      monthly.textContent = shown;
-      monthly.toggleAttribute('data-long', shown.length > 4);
-      error.hidden = result.valid;
-    };
-    inputs.forEach((input) => input.addEventListener('input', update));
-    root.querySelector('.estimator__reset')!.addEventListener('click', () => {
-      inputs[0].value = defaults.amount;
-      inputs[1].value = defaults.rate;
-      inputs[2].value = defaults.years;
-      update();
-    });
-  });
-</script>

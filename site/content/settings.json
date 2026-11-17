@@ -40,6 +40,10 @@
       "href": "/financing/"
     },
     {
+      "label": "FAQ",
+      "href": "/faq/"
+    },
+    {
       "label": "Blog",
       "href": "/blog/"
     }
@@ -77,6 +81,10 @@
       {
         "label": "Financing",
         "href": "/financing/"
+      },
+      {
+        "label": "FAQ",
+        "href": "/faq/"
       },
       {
         "label": "Service areas",

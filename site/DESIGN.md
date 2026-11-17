@@ -11,7 +11,7 @@ Island Life sells certainty before construction: a 3D model of the yard, then a 
 Alternatives considered and rejected: a drafting-sheet look (grid ticks, sheet numbers: decoration, and numbers read as template tells) and a warm resort brochure (serif, cream, brass: interchangeable with every premium-consumer site).
 
 ## Page structure (home)
-Short and image-led: hero video with the keyword headline and a trust bar, a brief intro with the three services as ruled rows, the 3D design film, a three-photo preview of the gallery, reviews, a collapsed FAQ, one clean grid of the areas served, and the quote form. Heavy text lives on other pages: the story, awards, process and discount note on About; the calculator and lenders on Financing; costs, comparisons and detailed answers on the service pages. The areas grid is the single place a page lists its cities, and the owner's name is not published. Inner pages vary: service pages add overview, process and film; gallery is images only; contact is the form only; the privacy page is text.
+Short and quote-first: hero video with the keyword headline and a trust bar; the payment calculator and the quote form side by side; a three-warranty bar; a brief intro with the three services as ruled rows; reviews (verbatim excerpts); and one clean grid of the areas served, the last section before the footer. Heavy text lives on other pages: the story, awards, process and discount note on About; the lenders on Financing; the gallery and the 3D design video on Gallery; the questions on FAQ; costs, comparisons and detailed answers on the service pages. The areas grid is the single place the cities are listed (home only), and the owner's name is not published. Inner pages vary: service pages add overview, process and film; gallery is images only; contact is the form only; the privacy page is text.
 
 ## Color
 Tokens live in `:root` in `src/styles/index.css`. The brand palette comes from the client:
@@ -37,5 +37,5 @@ Hover and focus transitions only, 150 ms. The hero video autoplays only when all
 ## Rules that keep it from looking generic
 - One label per intent: every quote action says "Request a free quote" (compact header and phone bar say "Free quote").
 - No eyebrow labels, numbered sections, decorative dots, section pills, or text overlaid on images.
-- Client reviews are reproduced verbatim. Do not shorten or reword them without owner approval.
+- Client reviews are reproduced verbatim. The home page shows excerpts the client asked to shorten: whole sentences, in order, never reworded. Other pages show the full review.
 - No invented facts, metrics, logos, awards, or photography.
