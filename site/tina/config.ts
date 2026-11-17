@@ -121,8 +121,9 @@ const templates = [
     str('homeLabel', 'Breadcrumb home label'), str('eyebrow', 'Breadcrumb page name'), str('title', 'Heading, first line'),
     str('italicTitle', 'Heading, second line (accent color)'), text('introduction', 'Introduction'), str('ctaLabel', 'Button label'), href('ctaHref', 'Button link'),
     image('image', 'Photo'), str('imageAlt', 'Photo description'), str('scrollLabel', 'Scroll link label'), href('scrollHref', 'Scroll link'),
+    { type: 'boolean', name: 'photoFirst', label: 'Show the photo above the heading on phones and tablets (optional)', description: 'Use on landing pages, so the photo is on screen when the page opens.' },
   ], { homeLabel: 'Home', ctaHref: '#quote', scrollHref: '#overview' }),
-  block('overview', 'Overview with checklist', [str('label', 'Small heading'), str('title', 'Heading'), text('lede', 'Text'), strings('checklist', 'Checklist')], { anchor: 'overview' }),
+  block('overview', 'Overview with checklist', [str('label', 'Small heading'), str('title', 'Heading'), text('lede', 'Text'), strings('checklist', 'Checklist'), str('ctaLabel', 'Button label (optional)'), href('ctaHref', 'Button link')], { anchor: 'overview', ctaHref: '#quote' }),
   block('feature', 'Photo and text band', [
     image('image', 'Photo'), str('imageAlt', 'Photo description'), str('eyebrow', 'Small heading'), str('title', 'Heading'), text('text', 'Text'),
     str('linkLabel', 'Link label'), href('linkHref', 'Link'),

@@ -14,7 +14,8 @@
       "image": "/images/gallery-lawn-cabana-pool.webp",
       "imageAlt": "Long rectangular pool with wide pale paving and a covered cabana at the far end, under a blue sky with clouds.",
       "scrollLabel": "",
-      "scrollHref": ""
+      "scrollHref": "",
+      "photoFirst": true
     },
     {
       "_template": "overview",
@@ -35,7 +36,9 @@
         "Complete Pool Filtration & Chlorination Equipment",
         "400 Sq. Ft. of Concrete Decking with Spray Deck Finish",
         "Personalized Pool Equipment Walkthrough"
-      ]
+      ],
+      "ctaLabel": "Request a free quote",
+      "ctaHref": "#quote"
     },
     {
       "_template": "feature",
@@ -44,8 +47,8 @@
       "eyebrow": "The best part?",
       "title": "Custom pool packages starting at $58,000.",
       "text": "Flexible financing options are available for qualified buyers. Your pool takes approximately 5–6 weeks to complete, and there are customization options to make it uniquely yours.",
-      "linkLabel": "See financing options",
-      "linkHref": "/financing/"
+      "linkLabel": "Request a free quote",
+      "linkHref": "#quote"
     },
     {
       "_template": "calculatorQuote",

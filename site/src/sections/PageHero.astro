@@ -4,14 +4,14 @@ import CallLink from '../components/CallLink.astro';
 
 interface Props {
   homeLabel?: string; eyebrow?: string; title?: string; italicTitle?: string; introduction?: string; ctaLabel?: string; ctaHref?: string;
-  image?: string; imageAlt?: string; scrollLabel?: string; scrollHref?: string; anchor?: string; headingId: string;
+  image?: string; imageAlt?: string; scrollLabel?: string; scrollHref?: string; photoFirst?: boolean; anchor?: string; headingId: string;
 }
 const {
   homeLabel = 'Home', eyebrow = '', title = '', italicTitle = '', introduction = '', ctaLabel = '', ctaHref = '#quote',
-  image = '', imageAlt = '', scrollLabel = '', scrollHref = '', anchor, headingId,
+  image = '', imageAlt = '', scrollLabel = '', scrollHref = '', photoFirst = false, anchor, headingId,
 } = Astro.props;
 ---
-<section class="inner-hero" id={anchor || undefined} aria-labelledby={headingId}>
+<section class:list={['inner-hero', { 'inner-hero--photo-first': photoFirst }]} id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell inner-hero__grid">
     <div class="inner-hero__copy">
       <p class="inner-hero__breadcrumb"><a href="/">{homeLabel}</a><span aria-hidden="true">/</span>{eyebrow}</p>

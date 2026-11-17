@@ -1238,3 +1238,14 @@
 @media (max-width: 767px) {
   .footer__top nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
 }
+
+/* Landing pages: below 1024px the photo comes first, sized so it and the heading both show when the page opens */
+.inner-overview__content > .button { margin-top: 32px; }
+@media (max-width: 1023px) {
+  .inner-hero--photo-first { padding-block: 92px 40px; }
+  .inner-hero--photo-first .inner-hero__grid { gap: 24px; }
+  .inner-hero--photo-first .inner-hero__visual { order: -1; }
+  .inner-hero--photo-first .inner-hero__visual img { aspect-ratio: 16 / 10; max-height: 38svh; }
+  .inner-hero--photo-first .inner-hero__breadcrumb { margin-bottom: 16px; }
+  .inner-hero--photo-first .inner-hero__intro { margin-top: 20px; }
+}
