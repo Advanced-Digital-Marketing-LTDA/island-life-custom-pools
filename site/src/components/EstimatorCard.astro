@@ -43,6 +43,7 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
   <div class="estimator__results" aria-live="polite" aria-atomic="true">
     <p class="estimator__results-label">Estimated monthly payment</p>
     <output class="estimator__monthly" aria-label="Estimated monthly payment" data-monthly data-long={shown(result.monthly).length > 4 ? "" : undefined}>{shown(result.monthly)}</output>
+    <p class="estimator__summary" data-summary>{result.valid ? `on ${money(amount)} at ${rate}% for ${years} years` : ''}</p>
     <p class="estimator__error" data-error hidden={result.valid}>Enter an amount from $1,000 to $1,000,000, a rate from 0% to 40%, and a term from 1 to 30 years.</p>
     {note && <p class="estimator__note">{note}</p>}
     {slogan && <p class="estimator__slogan">{slogan}</p>}
@@ -63,6 +64,7 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
     const inputs = ['amount', 'rate', 'years'].map((name) => root.querySelector<HTMLInputElement>(`input[name="${name}"]`)!);
     const monthly = root.querySelector<HTMLElement>('[data-monthly]')!;
     const error = root.querySelector<HTMLElement>('[data-error]')!;
+    const summary = root.querySelector<HTMLElement>('[data-summary]')!;
     const defaults = JSON.parse(root.dataset.defaults || '{}');
 
     const update = () => {
@@ -71,6 +73,7 @@ const shown = (value: number) => (result.valid ? money(value) : '—');
       monthly.textContent = shown;
       monthly.toggleAttribute('data-long', shown.length > 4);
       error.hidden = result.valid;
+      summary.textContent = result.valid ? `on ${money(Number(inputs[0].value))} at ${Number(inputs[1].value)}% for ${Number(inputs[2].value)} years` : '';
     };
     inputs.forEach((input) => input.addEventListener('input', update));
     root.querySelector('.estimator__reset')!.addEventListener('click', () => {

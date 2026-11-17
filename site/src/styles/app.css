@@ -356,11 +356,10 @@
 .estimate-form input, .estimate-form select, .estimate-form textarea {
   width: 100%;
   min-height: 52px;
-  border: 0;
-  border-bottom: 1px solid color-mix(in oklch, var(--primitive-paper) 38%, transparent);
-  border-radius: 0;
-  padding: 10px 0;
-  background: transparent;
+  border: 1px solid color-mix(in oklch, var(--primitive-paper) 38%, transparent);
+  border-radius: 0.35em;
+  padding: 10px 14px;
+  background: color-mix(in oklch, var(--primitive-paper) 6%, transparent);
   color: var(--text-on-dark);
   font-size: 16px;
   line-height: 1.5;
@@ -370,7 +369,7 @@
 .estimate-form input::placeholder, .estimate-form textarea::placeholder { color: var(--primitive-paper); opacity: 0.66; }
 .estimate-form select { color-scheme: dark; }
 .estimate-form select option { background: var(--primitive-navy); color: var(--text-on-dark); }
-.estimate-form input:hover, .estimate-form select:hover, .estimate-form textarea:hover { border-bottom-color: var(--primitive-paper-light); }
+.estimate-form input:hover, .estimate-form select:hover, .estimate-form textarea:hover { border-color: var(--primitive-paper-light); }
 .estimate-form input:focus-visible, .estimate-form select:focus-visible, .estimate-form textarea:focus-visible { outline-offset: 3px; }
 .hp-field { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .estimate-form__submit { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 4px; }
@@ -1101,3 +1100,93 @@
 
 /* Eight menu items and the logo leave no room for the phone icon until the screen is wide; the number is in the hero and the menu. */
 @media (min-width: 1024px) and (max-width: 1439px) { .site-header__phone { display: none; } }
+
+
+/* ── Mobile critique fixes ───────────────────────────────────────────── */
+
+/* Form: inline errors beside each field */
+.field-error { color: #ffb4a8; font-size: 15px; line-height: 1.45; }
+.estimate-form [aria-invalid="true"] { border-color: #ffb4a8; }
+.calc-quote .field-error { color: #a4161a; }
+.calc-quote .estimate-form [aria-invalid="true"] { border-color: #a4161a; }
+
+/* Calculator: the % sign in the body face (Michroma draws it as "o/o"), a summary under the number, a readable note */
+.estimator__input-wrap > span { font-family: "Montserrat", sans-serif; }
+.estimator__summary { margin-top: 8px; font-size: 16px; line-height: 1.4; }
+.estimator__note { font-size: 16px; }
+@media (max-width: 719px) {
+  /* The result leads, so it stays in view while the three fields are edited */
+  .estimator__grid { gap: 24px; }
+  .estimator__results { order: -1; padding: 22px 20px; }
+  .estimator__monthly { margin-top: 8px; }
+  .estimator__slogan { display: none; }
+  .estimator__note { margin-top: 14px; font-size: 14px; line-height: 1.5; }
+  .estimator__form { gap: 18px; }
+  .estimator__field > p { display: none; }
+  .estimator__field > label { margin-bottom: 6px; font-size: 18px; }
+  .estimator__input-wrap { min-height: 60px; }
+  .estimator__input-wrap input { min-height: 58px; }
+  .estimator__results .button { width: 100%; padding-inline: 16px; }
+}
+
+/* Tap targets: 44px minimum for links that sit alone on a line */
+.inner-hero__breadcrumb a, .footer__credit a, .service-row h3 a { display: inline-flex; min-height: 44px; align-items: center; }
+.footer__credit a { padding-block: 6px; }
+.areas__list a, .areas__list span { min-height: 48px; }
+
+/* Content lists and article bodies read in the body face; Michroma stays for headings and labels */
+.inner-considerations li, .article-body :is(li, td, th, dd), .faq__answer :is(li, span) { font-family: "Montserrat", sans-serif; }
+
+/* Home trust bar: the long award name gets a full row instead of five narrow lines */
+@media (max-width: 639px) {
+  .hero__trust li:nth-child(3) { grid-column: 1 / -1; }
+  .hero__trust li:last-child:nth-child(5) { grid-column: auto; }
+  .hero__trust li { font-size: 15px; }
+}
+
+/* The contact and FAQ pages put their form or questions first on a phone; the photo waits */
+@media (max-width: 767px) {
+  .inner-hero:has(+ #quote) .inner-hero__visual, .inner-hero:has(+ .faq) .inner-hero__visual { display: none; }
+  .inner-hero:has(+ #quote), .inner-hero:has(+ .faq) { padding-bottom: 8px; }
+  /* On Contact the form is the next thing, so the scroll-to-form button is redundant; the call link stays. */
+  .inner-hero:has(+ #quote) .hero-actions .button { display: none; }
+}
+
+/* Gallery on a phone: two-up tiles, titles only; the full photo and caption open in the lightbox */
+.gallery-filter { display: flex; gap: 8px; margin-top: 32px; overflow-x: auto; scrollbar-width: none; }
+.gallery-filter::-webkit-scrollbar { display: none; }
+.gallery-filter__chip { min-height: 44px; flex-shrink: 0; border: 1px solid color-mix(in oklch, var(--brand-ink) 42%, transparent); border-radius: 999px; padding: 8px 18px; font-size: 15px; transition: background-color var(--motion-feedback) var(--ease-out), color var(--motion-feedback) var(--ease-out); }
+.gallery-filter__chip[aria-pressed="true"] { border-color: var(--brand-blue); background: var(--brand-blue); color: #fff; }
+.gallery-item[hidden] { display: none; }
+.gallery-item__open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.lightbox { max-width: min(96vw, 1100px); max-height: 94vh; border: 0; padding: 0; background: var(--brand-ink); color: #fff; }
+.lightbox::backdrop { background: rgb(0 36 59 / 86%); }
+.lightbox img { display: block; width: 100%; max-height: 80vh; object-fit: contain; }
+.lightbox p { padding: 14px 20px; font-size: 16px; }
+.lightbox__close { position: absolute; top: 8px; right: 8px; display: grid; width: 48px; height: 48px; place-items: center; border: 0; border-radius: 50%; background: rgb(0 36 59 / 70%); color: #fff; }
+@media (max-width: 767px) {
+  .gallery-collection:not(.gallery-collection--compact) .gallery-collection__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 10px; margin-top: 24px; }
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item .gallery-item__image { aspect-ratio: 1 / 1; }
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item--feature,
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item--wide { grid-column: 1 / -1; }
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item--feature .gallery-item__image,
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item--wide .gallery-item__image { aspect-ratio: 4 / 3; }
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item figcaption { display: block; margin-top: 8px; }
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item__number,
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item__category,
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item figcaption div > p,
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item__link { display: none; }
+  .gallery-collection:not(.gallery-collection--compact) .gallery-item h3 { margin-top: 0; font-size: 15px; line-height: 1.3; }
+}
+
+/* Mobile menu: no decorative numbers; the call link says what it is */
+.mobile-menu__call { display: inline-flex; min-height: 48px; align-items: center; gap: 10px; }
+
+/* Sticky call / quote bar, phones and small tablets only */
+.mobile-bar { position: fixed; z-index: 40; right: 0; bottom: 0; left: 0; display: flex; align-items: center; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--brand-ink); box-shadow: 0 -8px 24px rgb(0 36 59 / 28%); transition: transform var(--motion-state) var(--ease-out); }
+.mobile-bar.is-hidden { transform: translateY(110%); }
+.mobile-bar__call { display: inline-flex; min-height: 52px; flex: 0 0 auto; align-items: center; justify-content: center; gap: 8px; border: 1px solid color-mix(in oklch, var(--brand-sand) 60%, transparent); border-radius: 0.35em; padding: 12px 20px; color: var(--brand-sand); font-size: 16px; }
+.mobile-bar .button { flex: 1; }
+@media (min-width: 1024px) { .mobile-bar { display: none; } }
+@media (max-width: 1023px) { .footer { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } }
+@media (prefers-reduced-motion: reduce) { .mobile-bar { transition: none; } }
