@@ -18,11 +18,11 @@
       "foot": [],
       "video": "/videos/island-life-hero-v2.mp4",
       "videoMobile": "/videos/island-life-hero-mobile-v2.mp4",
-      "videoPoster": "/images/hero-video-poster.webp",
+      "videoPoster": "/images/hero-video-poster-v2.webp",
       "trust": [
         {
           "text": "Google Guaranteed",
-          "image": "/images/Google-Guaranteed-01-300x289.webp",
+          "image": "/images/Google-Guaranteed-01-146x141.webp",
           "imageAlt": ""
         },
         {
@@ -68,7 +68,7 @@
       "title": "Bring your vacation",
       "titleEm": "dreams home!",
       "lede": "We design and build custom swimming pools, patios and patio covers, and outdoor kitchens as one backyard, so the space feels like your own little island at home.",
-      "image": "/images/covered-patio-fireplace.webp",
+      "image": "/images/covered-patio-fireplace-v2.webp",
       "imageAlt": "Covered patio with a brick fireplace, a ceiling fan, and green wicker seating at dusk",
       "caption": "Custom patio & cover",
       "services": [
