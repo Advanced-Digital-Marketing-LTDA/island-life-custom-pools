@@ -1196,3 +1196,33 @@
   .hero__kicker, .hero__intro > p { display: none; }
   .hero__intro { margin-top: 24px; }
 }
+
+
+/* Service areas submenu: a dropdown on wide screens, an expandable group in the phone menu */
+.nav-item { position: relative; display: inline-flex; align-items: center; }
+.nav-item__toggle { display: inline-flex; width: 32px; height: 44px; align-items: center; justify-content: center; border: 0; background: none; color: inherit; }
+.nav-item__toggle svg { transition: transform var(--motion-feedback) var(--ease-out); }
+.nav-item.is-open .nav-item__toggle svg { transform: rotate(180deg); }
+.nav-sub { position: absolute; z-index: 5; top: 100%; left: 50%; display: none; min-width: 230px; margin: 0; padding: 8px 0; list-style: none; border-radius: 0.35em; background: var(--brand-ink); box-shadow: 0 18px 40px rgb(0 36 59 / 32%); color: var(--brand-sand); transform: translateX(-50%); }
+.nav-item:hover .nav-sub, .nav-item:focus-within .nav-sub, .nav-item.is-open .nav-sub { display: block; }
+.site-header__links .nav-sub a { display: flex; min-height: 44px; padding: 8px 20px; font-size: 15px; }
+.site-header__links .nav-sub a::after { display: none; }
+.site-header__links .nav-sub a:hover, .site-header__links .nav-sub a:focus-visible { background: color-mix(in oklch, var(--brand-sand) 14%, transparent); }
+.site-header__links .nav-sub a[aria-current="page"] { color: #fff; text-decoration: underline; text-underline-offset: 5px; }
+.nav-item > a[aria-current="true"]::after { transform: scaleX(1); }
+
+.mobile-menu__group { border-bottom: 1px solid color-mix(in oklch, var(--primitive-paper) 24%, transparent); }
+.mobile-menu__group summary { display: flex; min-height: 56px; cursor: pointer; align-items: center; justify-content: space-between; gap: 16px; font-family: "Michroma", sans-serif; font-size: clamp(24px, 6.4vw, 38px); line-height: 1.15; list-style: none; }
+.mobile-menu__group summary::-webkit-details-marker { display: none; }
+.mobile-menu__group summary svg { flex-shrink: 0; transition: transform var(--motion-feedback) var(--ease-out); }
+.mobile-menu__group[open] summary svg { transform: rotate(180deg); }
+.mobile-menu__links .mobile-menu__sub a { min-height: 48px; align-items: center; border-bottom: 0; padding-left: 16px; font-family: "Montserrat", sans-serif; font-size: 18px; color: var(--brand-sand); }
+.mobile-menu__sub { padding-bottom: 12px; }
+
+/* Nine menu items need more room than 1024–1139px offers: those widths keep the phone menu. Up to 1599px the menu, the phone number and the quote button compete for room, so the menu tightens. */
+@media (min-width: 1024px) and (max-width: 1139px) {
+  .site-header__links { display: none; }
+  .site-header .menu-toggle { display: inline-flex; }
+}
+@media (min-width: 1280px) and (max-width: 1359px) { .site-header__links { gap: 8px; } .site-header__links a { font-size: 14px; } }
+@media (min-width: 1360px) and (max-width: 1599px) { .site-header__links { gap: 10px; } .site-header__links a { font-size: 15px; } }
