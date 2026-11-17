@@ -133,7 +133,7 @@
   gap: 16px;
   border-bottom: 1px solid color-mix(in oklch, var(--primitive-paper) 24%, transparent);
   font-family: "Michroma", sans-serif;
-  font-size: clamp(24px, 6.4vw, 38px);
+  font-size: clamp(22px, 5.6vw, 30px);
   line-height: 1.15;
 }
 .mobile-menu__links a span { font-family: "Michroma", sans-serif; font-size: var(--type-label); letter-spacing: var(--tracking-label); }
@@ -637,7 +637,7 @@
 }
 
 @media (max-height: 700px) and (max-width: 1023px) {
-  .mobile-menu__links a { min-height: 49px; font-size: clamp(22px, 6vw, 32px); }
+  .mobile-menu__links a { min-height: 49px; font-size: clamp(20px, 5.4vw, 28px); }
   .mobile-menu__top { min-height: 62px; }
   .mobile-menu__bottom { padding-top: 10px; }
 }
