@@ -1,6 +1,6 @@
 {
   "seoTitle": "Pool Financing & Loan Calculator | Island Life Custom Pools",
-  "seoDescription": "Estimate monthly payments for a pool, patio, or outdoor kitchen and explore financing through Lyon Financial and HFS Financial.",
+  "seoDescription": "Estimate monthly payments for a pool, patio, or outdoor kitchen and see financing options from Lyon Financial, HFS Financial, Frost Banking, and Viking Capital.",
   "blocks": [
     {
       "_template": "splitHero",
@@ -8,7 +8,7 @@
       "eyebrow": "Financing",
       "title": "Pool & patio financing",
       "titleEm": "within reach.",
-      "text": "Explore third-party financing and estimate a monthly payment for your pool, patio, or outdoor kitchen.",
+      "text": "See our financing partners and estimate a monthly payment for your pool, patio, or outdoor kitchen.",
       "buttonLabel": "Estimate your payment",
       "buttonHref": "#payment-estimator",
       "image": "/images/pool-cabana-sunset.webp",
@@ -17,35 +17,40 @@
     {
       "_template": "estimator",
       "label": "Pool financing calculator",
-      "title": "Explore your project",
-      "titleEm": "month to month.",
+      "title": "Did you know you can finance",
+      "titleEm": "your backyard project?",
       "intro": "Adjust the loan amount, interest rate, and term to see an estimated monthly payment for your pool, patio, or outdoor kitchen.",
       "note": "This estimate uses a fixed rate and equal monthly payments. Your lender will provide final rates and terms.",
-      "amount": 46400,
-      "rate": 8,
-      "years": 15,
+      "amount": 68000,
+      "rate": 6,
+      "years": 20,
       "anchor": "payment-estimator",
       "cta": "Request a free quote",
-      "ctaHref": "#quote"
-    },
-    {
-      "_template": "lenders",
-      "label": "Third-party financing",
-      "title": "Choose where",
-      "titleEm": "to explore your options.",
-      "intro": "Visit either financing partner directly to learn about its current loan programs and application process.",
+      "ctaHref": "#quote",
+      "slogan": "Bring the island home.",
+      "lendersLabel": "Third-party financing",
+      "lendersTitle": "Our financing partners",
+      "lendersIntro": "Visit any financing partner directly to learn about its current loan programs and application process.",
       "lenders": [
         {
           "name": "Lyon Financial",
-          "description": "Explore pool financing options directly through Lyon Financial.",
+          "description": "Pool financing options directly through Lyon Financial.",
           "href": "https://www.lyonfinancial.net/",
           "label": "Visit Lyon Financial"
         },
         {
           "name": "HFS Financial",
-          "description": "Explore home improvement loan options directly through HFS Financial.",
+          "description": "Home improvement loan options directly through HFS Financial.",
           "href": "https://www.hfsfinancial.net/",
           "label": "Visit HFS Financial"
+        },
+        {
+          "name": "Frost Banking",
+          "description": "Financing for your backyard project through Frost Banking."
+        },
+        {
+          "name": "Viking Capital",
+          "description": "Financing for your backyard project through Viking Capital."
         }
       ]
     },
@@ -57,7 +62,7 @@
       "questions": [
         {
           "question": "Does Island Life Custom Pools offer financing?",
-          "answer": "We work with third-party lenders, including Lyon Financial and HFS Financial. You can visit either one directly to learn about its current loan programs and application process. Rates and terms come from the lender."
+          "answer": "We work with third-party lenders, including Lyon Financial, HFS Financial, Frost Banking, and Viking Capital. You can visit any of them directly to learn about its current loan programs and application process. Rates and terms come from the lender."
         },
         {
           "question": "How does the payment estimator work?",
@@ -75,7 +80,7 @@
         },
         {
           "question": "Where do I start?",
-          "answer": "Start by requesting a free quote, which includes a free design consultation. Once you know the scope of your project, you can use the estimator to explore monthly payments.",
+          "answer": "Start by requesting a free quote, which includes a free design consultation. Once you know the scope of your project, you can use the estimator to estimate monthly payments.",
           "linkLabel": "See custom pools",
           "linkHref": "/custom-pools/"
         }

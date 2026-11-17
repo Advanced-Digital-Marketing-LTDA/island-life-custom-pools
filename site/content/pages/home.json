@@ -194,8 +194,8 @@
         },
         {
           "question": "Do you offer financing?",
-          "answer": "We work with third-party lenders, including Lyon Financial and HFS Financial. You apply with the lender, which provides the final rates and terms.",
-          "linkLabel": "Explore pool financing",
+          "answer": "We work with third-party lenders, including Lyon Financial, HFS Financial, Frost Banking, and Viking Capital. You apply with the lender, which provides the final rates and terms.",
+          "linkLabel": "See financing options",
           "linkHref": "/financing/"
         },
         {

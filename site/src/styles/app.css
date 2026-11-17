@@ -808,24 +808,40 @@
 
 .estimator { background: var(--brand-sand); color: var(--brand-ink); }
 .estimator__heading { display: grid; gap: 20px; }
-.estimator__heading h2 { font-size: clamp(34px, 8.5vw, 64px); letter-spacing: 0; line-height: 1.12; text-wrap: balance; }
+.estimator__heading h2 { font-size: clamp(38px, 9.5vw, 76px); letter-spacing: 0; line-height: 1.08; text-wrap: balance; }
 .estimator__heading h2 em { color: var(--brand-blue-text); }
-.estimator__heading > p:last-child { max-width: 560px; font-size: 17px; line-height: 1.75; }
-.estimator__grid { display: grid; gap: 48px; margin-top: 56px; }
-.estimator__form { display: grid; align-content: start; gap: 24px; }
-.estimator__field > label { display: inline-block; margin-bottom: 8px; font-size: 16px; line-height: 1.5; }
-.estimator__input-wrap { display: flex; min-height: 56px; align-items: center; border: 1px solid color-mix(in oklch, var(--brand-ink) 42%, transparent); border-radius: 0.35em; background: var(--primitive-paper-light); transition: border-color var(--motion-feedback) var(--ease-out); }
+.estimator__heading > p:last-child { max-width: 600px; font-size: 18px; line-height: 1.7; }
+.estimator__layout { display: grid; gap: 32px; margin-top: 48px; }
+.estimator__card { border: 1px solid color-mix(in oklch, var(--brand-ink) 14%, transparent); border-radius: 0.5em; padding: 28px 20px; background: var(--primitive-paper); box-shadow: 0 28px 64px color-mix(in oklch, var(--brand-ink) 16%, transparent); }
+.estimator__grid { display: grid; gap: 32px; }
+.estimator__form { display: grid; align-content: start; gap: 28px; }
+.estimator__field > label { display: inline-block; margin-bottom: 10px; font-size: 20px; font-weight: 600; line-height: 1.4; }
+.estimator__input-wrap { display: flex; min-height: 76px; align-items: center; border: 1px solid color-mix(in oklch, var(--brand-ink) 42%, transparent); border-radius: 0.35em; background: var(--primitive-paper-light); transition: border-color var(--motion-feedback) var(--ease-out); }
 .estimator__input-wrap:focus-within { border-color: var(--brand-blue-text); outline: 2px solid var(--brand-blue-text); outline-offset: 3px; }
-.estimator__input-wrap > span { flex-shrink: 0; padding-left: 16px; font-size: 18px; }
-.estimator__input-wrap--suffix > span { padding-right: 16px; padding-left: 0; }
-.estimator__input-wrap input { width: 100%; min-width: 0; min-height: 54px; border: 0; padding: 12px; outline: 0; background: transparent; color: var(--brand-ink); font-size: 18px; }
+.estimator__input-wrap > span { flex-shrink: 0; padding-left: 20px; font-size: 24px; }
+.estimator__input-wrap--suffix > span { padding-right: 20px; padding-left: 0; }
+.estimator__input-wrap input { width: 100%; min-width: 0; min-height: 74px; border: 0; padding: 12px; outline: 0; background: transparent; color: var(--brand-ink); font-size: 28px; font-weight: 500; }
 .estimator__field > p { margin-top: 8px; font-size: 16px; line-height: 1.55; }
 .estimator__reset { justify-self: start; }
-.estimator__results { align-self: start; border-radius: 0.35em; padding: 32px; background: var(--brand-blue); color: var(--brand-ink); }
-.estimator__results-label { font-size: 16px; line-height: 1.5; }
-.estimator__monthly { display: block; margin-top: 16px; font-family: "Michroma", sans-serif; font-size: clamp(48px, 13vw, 80px); line-height: 1.08; overflow-wrap: anywhere; }
+/* Centered against the three inputs beside it, and the loudest thing on the page. */
+.estimator__results { container-type: inline-size; align-self: center; border-radius: 0.4em; padding: 32px 28px; background: var(--brand-blue); color: var(--brand-ink); }
+.estimator__results-label { font-size: 17px; font-weight: 600; line-height: 1.5; }
+.estimator__monthly { display: block; margin-top: 16px; font-family: "Michroma", sans-serif; font-size: clamp(36px, 24cqi, 76px); line-height: 1.08; overflow-wrap: anywhere; }
+.estimator__monthly[data-long] { font-size: clamp(28px, 14cqi, 60px); }
 .estimator__error { margin-top: 24px; font-size: 16px; line-height: 1.65; }
-.estimator__note { margin-top: 32px; font-size: 16px; line-height: 1.7; }
+.estimator__note { margin-top: 24px; font-size: 15px; line-height: 1.65; }
+.estimator__slogan { margin-top: 28px; font-size: clamp(22px, 5.5vw, 28px); font-weight: 600; line-height: 1.25; }
+.estimator__results .button { margin-top: 20px; }
+.estimator__lenders { --text-on-dark: var(--brand-sand); border-radius: 0.5em; padding: 32px 24px; background: var(--brand-ink); color: var(--text-on-dark); }
+.estimator__lenders h3 { margin-top: 16px; font-size: clamp(26px, 6vw, 34px); letter-spacing: 0; line-height: 1.2; }
+.estimator__lenders > p:not(.section-label) { margin-top: 16px; font-size: 16px; line-height: 1.7; }
+.estimator__lender-list { margin-top: 24px; border-top: 1px solid color-mix(in oklch, var(--brand-sand) 28%, transparent); }
+.estimator__lenders .financing-partner { grid-template-columns: 32px minmax(0, 1fr); padding-block: 20px; }
+.estimator__lenders .financing-partner h4 { font-size: clamp(20px, 4.5vw, 24px); }
+.estimator__lenders .financing-partner p { margin-top: 8px; }
+.estimator__lenders .financing-partner .text-link { margin-top: 12px; }
+.estimator__lenders .financing-partner__logo { height: 34px; margin-bottom: 10px; }
+.estimator__lenders .financing-partner:last-child { border-bottom: 0; padding-bottom: 0; }
 
 .financing-partners { --text-on-dark: var(--brand-sand); background: var(--brand-ink); color: var(--text-on-dark); }
 .financing-partners__layout { display: grid; gap: 56px; }
@@ -835,7 +851,8 @@
 .financing-partners__list { border-top: 1px solid color-mix(in oklch, var(--brand-sand) 28%, transparent); }
 .financing-partner { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; border-bottom: 1px solid color-mix(in oklch, var(--brand-sand) 28%, transparent); padding-block: 32px; }
 .financing-partner__number { padding-top: 4px; color: var(--brand-aqua); font-size: 16px; font-variant-numeric: tabular-nums; }
-.financing-partner h3 { font-size: clamp(24px, 6vw, 32px); line-height: 1.25; }
+.financing-partner h3, .financing-partner h4 { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.25; }
+.financing-partner__logo { display: block; width: auto; max-width: 180px; height: 40px; margin-bottom: 14px; box-sizing: content-box; border-radius: 6px; padding: 8px 12px; background: var(--primitive-paper-light); object-fit: contain; }
 .financing-partner p { max-width: 540px; margin-top: 16px; font-size: 16px; line-height: 1.75; }
 .financing-partner .text-link { margin-top: 20px; }
 
@@ -849,18 +866,27 @@
 
   .estimator__heading { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px 24px; }
   .estimator__heading > .section-label { grid-column: 1 / 13; }
-  .estimator__heading h2 { grid-column: 1 / 8; font-size: clamp(42px, 4.5vw, 68px); }
+  .estimator__heading h2 { grid-column: 1 / 9; font-size: clamp(44px, 4.6vw, 72px); }
   .estimator__heading > p:last-child { grid-column: 9 / 13; align-self: end; }
-  .estimator__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; margin-top: 72px; }
-  .estimator__form { grid-column: 1 / 6; }
-  .estimator__results { grid-column: 7 / 13; padding: 40px; }
-  .estimator__monthly { font-size: clamp(52px, 5.5vw, 84px); }
 
   .financing-partners__layout { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
   .financing-partners__intro { grid-column: 1 / 6; }
   .financing-partners__intro h2 { font-size: clamp(40px, 4vw, 62px); }
   .financing-partners__list { grid-column: 7 / 13; }
   .financing-partner { padding-block: 40px; }
+}
+
+@media (min-width: 720px) {
+  .estimator__card { padding: 40px; }
+  .estimator__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: center; }
+  .estimator__results { padding: 40px 36px; }
+  .estimator__lenders { padding: 40px; }
+}
+@media (min-width: 1100px) {
+  .estimator__layout { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 32px; align-items: stretch; margin-top: 64px; }
+  .estimator__card { display: flex; align-items: center; padding: 48px; }
+  .estimator__grid { width: 100%; }
+  .estimator__lenders { padding: 40px 36px; }
 }
 
 /* Tailwind's utilities are not loaded here; the financing page's "opens in a new tab" note uses this one. */
