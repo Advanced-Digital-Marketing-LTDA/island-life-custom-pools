@@ -28,7 +28,8 @@
         {
           "text": "stars on Google",
           "highlight": "4.9",
-          "stars": true
+          "stars": true,
+          "review": true
         },
         {
           "text": "Best of Tomball Pool Builders, 2018–2020",

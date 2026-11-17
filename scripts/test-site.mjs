@@ -77,10 +77,15 @@ for (const page of pages) {
   assert.equal(/<meta name="robots" content="noindex"/.test(html), !!page.noindex, `noindex is wrong on ${where}`);
   // The phone number sits in the header, and a page with its own quote form keeps its buttons on that form.
   assert.ok(html.includes(`<address class="footer__address">`) && html.includes(escapeHtml(settings.address.street)), `The footer address is missing on ${where}`);
-  // The service areas band lists every area once on the pages that carry it; those pages do not repeat the list in the footer.
+  // The service areas band lists every area once on the pages that carry it; the footer never repeats the list.
   const hasAreas = visible.some((block) => block._template === 'areas');
   assert.equal(/<section class="areas section"/.test(html), hasAreas, `The areas band is wrong on ${where}`);
-  assert.equal(html.includes('class="footer__contact"'), !hasAreas, `The footer area list should be hidden exactly when the page has the areas band (${where})`);
+  assert.ok(!html.includes('class="footer__contact"'), `The footer should not list the service areas (${where})`);
+  // The footer shows the social links as logos with a readable name, and no review link; that link lives near the reviews.
+  const footerHtml = html.slice(html.indexOf('<footer class="footer"'), html.lastIndexOf('</footer>'));
+  for (const link of settings.social.filter((item) => !/review/i.test(item.label))) assert.ok(footerHtml.includes(`href="${escapeHtml(link.href)}"`) && footerHtml.includes(escapeHtml(link.label)), `The footer should link to ${link.label} on ${where}`);
+  assert.ok(!/Leave a Google review/.test(footerHtml), `The review link should not be in the footer on ${where}`);
+  if (visible.some((block) => block._template === 'reviews')) assert.ok(html.includes('Leave a Google review'), `The review link is missing beside the reviews on ${where}`);
   // A collapsible FAQ keeps every question and answer in the page.
   for (const block of visible.filter((b) => b._template === 'faq' && b.collapsible)) assert.equal([...html.matchAll(/<details class="faq__item/g)].length, (block.questions ?? []).length, `Collapsible FAQ items are missing on ${where}`);
   // Nobody is named, and the calculator shows only the payment.
