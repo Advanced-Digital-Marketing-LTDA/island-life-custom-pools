@@ -13,11 +13,11 @@
     {
       "_template": "callToAction",
       "label": "While you wait",
-      "title": "See our",
-      "titleEm": "financing options.",
-      "text": "Estimate a monthly payment for your pool, patio, or outdoor kitchen.",
-      "button": "Financing options",
-      "buttonHref": "/financing/",
+      "title": "Our $58,000 custom",
+      "titleEm": "pool package.",
+      "text": "A 30' x 15' gunite pool with a mini pebble finish, travertine coping, LED lighting and more, in about 5–6 weeks. Flexible financing for qualified buyers.",
+      "button": "See what's included",
+      "buttonHref": "/58k-pool-package/",
       "callLabel": "Prefer to talk?"
     }
   ]
