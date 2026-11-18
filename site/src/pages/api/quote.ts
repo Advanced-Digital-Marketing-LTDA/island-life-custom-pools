@@ -11,28 +11,7 @@ const json = (status: number, body: object) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   });
 
-// The global cap protects the Proton account other projects share; the per-IP cap stops one visitor using it all.
-// shortcut: counters live in memory, reset on restart and are per instance; move to a shared store if the site ever runs more than one.
-const WINDOW_MS = 60 * 60_000;
-const PER_IP = 3;
-const TOTAL = 30;
-const hits = new Map<string, number[]>();
-
-function allowed(ip: string) {
-  const now = Date.now();
-  for (const [k, t] of hits) {
-    const recent = t.filter((x) => now - x < WINDOW_MS);
-    if (recent.length) hits.set(k, recent);
-    else hits.delete(k);
-  }
-  const mine = hits.get(ip) ?? [];
-  const total = [...hits.values()].reduce((n, t) => n + t.length, 0);
-  if (mine.length >= PER_IP || total >= TOTAL) return false;
-  hits.set(ip, [...mine, now]);
-  return true;
-}
-
-export const POST: APIRoute = async ({ request, clientAddress }) => {
+export const POST: APIRoute = async ({ request }) => {
   let form: FormData;
   try {
     form = await request.formData();
@@ -61,10 +40,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     interests.includes(q.interest) &&
     q.message.length <= 2000;
   if (!valid) return json(400, { error: 'invalid' });
-
-  // The proxy appends the real client address last; anything before it is client-supplied.
-  const ip = request.headers.get('x-forwarded-for')?.split(',').at(-1)?.trim() || clientAddress;
-  if (!allowed(ip)) return json(429, { error: 'rate_limited' });
 
   const { SMTP_HOST = 'smtp.protonmail.ch', SMTP_PORT = '587', SMTP_USER, SMTP_TOKEN, LEAD_TO } = process.env;
   if (!SMTP_USER || !SMTP_TOKEN || !LEAD_TO) {
