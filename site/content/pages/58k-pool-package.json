@@ -11,7 +11,7 @@
       "introduction": "Your dream backyard might be more affordable than you think. Custom gunite pool packages start at $58,000.",
       "ctaLabel": "Request a free quote",
       "ctaHref": "#quote",
-      "image": "/images/gallery-lawn-cabana-pool.webp",
+      "image": "/images/landing-58k-hero.webp",
       "imageAlt": "Long rectangular pool with wide pale paving and a covered cabana at the far end, under a blue sky with clouds.",
       "scrollLabel": "",
       "scrollHref": "",
@@ -42,7 +42,7 @@
     },
     {
       "_template": "feature",
-      "image": "/images/gallery-house-pool-loungers.webp",
+      "image": "/images/landing-58k-lounge.webp",
       "imageAlt": "Lounge chairs on a stone deck beside the pool, with a brick house and covered patio behind at sunset.",
       "eyebrow": "The best part?",
       "title": "Starting at $58,000.",
