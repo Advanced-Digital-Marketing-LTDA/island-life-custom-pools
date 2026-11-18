@@ -1062,7 +1062,7 @@
   .gallery-item--compact .gallery-item__image { aspect-ratio: 4 / 5; }
 }
 
-/* Home: the payment calculator and the quote form side by side, on a Brand Yellow band */
+/* The quote form and the payment calculator side by side (form on the left), on a Brand Yellow band */
 .calc-quote { --text-on-dark: var(--brand-ink); background: var(--brand-sand); color: var(--brand-ink); }
 .calc-quote__grid { display: grid; gap: 24px; }
 .calc-quote__card { display: flex; flex-direction: column; border: 1px solid color-mix(in oklch, var(--brand-ink) 14%, transparent); border-radius: 0.5em; padding: 28px 20px; background: var(--primitive-paper-light); box-shadow: 0 28px 64px color-mix(in oklch, var(--brand-ink) 14%, transparent); }
@@ -1082,7 +1082,7 @@
 .calc-quote .estimate-form input:focus-visible, .calc-quote .estimate-form select:focus-visible, .calc-quote .estimate-form textarea:focus-visible { border-color: var(--brand-blue-text); outline: 2px solid var(--brand-blue-text); outline-offset: 2px; }
 .calc-quote .form-error { border-left-color: var(--brand-ink); }
 @media (min-width: 720px) { .calc-quote__card { padding: 36px; } }
-@media (min-width: 1100px) { .calc-quote__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; } }
+@media (min-width: 1100px) { .calc-quote__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; } }
 
 /* A single row of warranty promises */
 .warranties { background: var(--brand-blue); color: #fff; }
@@ -1226,8 +1226,6 @@
 @media (min-width: 1280px) and (max-width: 1359px) { .site-header__links { gap: 8px; } .site-header__links a { font-size: 14px; } }
 @media (min-width: 1360px) and (max-width: 1599px) { .site-header__links { gap: 10px; } .site-header__links a { font-size: 15px; } }
 
-/* Home on a phone or tablet: the cards stack, so the quote form comes before the payment calculator. Side by side from 1100px, calculator first. */
-@media (max-width: 1099px) { .calc-quote__card:nth-child(2) { order: -1; } }
 /* Phones: the footer tagline is left out, and the service areas list shows only the cities that have their own page. */
 @media (max-width: 767px) {
   .footer__tagline { display: none; }
