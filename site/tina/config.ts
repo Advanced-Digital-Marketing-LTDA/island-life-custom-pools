@@ -211,6 +211,7 @@ export default defineConfig({
         image('ogImage', 'Link preview image', 'The photo shown when a page is shared in a message or on social media.'),
         str('phone', 'Phone (as shown)'),
         str('phoneHref', 'Phone link', 'The tel: link, for example tel:+18323044092.'),
+        str('gtmId', 'Google Tag Manager ID', 'For example GTM-XXXXXXX. The tag is added to every page. Leave empty for no tag.'),
         group('address', 'Business address', [str('street', 'Street'), str('city', 'City'), str('region', 'State'), str('postalCode', 'ZIP code'), num('latitude', 'Latitude'), num('longitude', 'Longitude')]),
         str('foundingDate', 'Year the business started', 'For example "2016".'),
         strings('awards', 'Awards', 'One per line, as they should be written, for example "Best of Houzz 2020 (Service)". Used by search engines.'),

@@ -10,6 +10,8 @@ interface Props { title: string; description: string; preload?: string; noindex?
 // Coordinates are optional: without them the business schema simply has no map position.
 const coords = (settings.address ?? {}) as { latitude?: number; longitude?: number };
 const { title, description, preload, noindex = false, extraLd = [] } = Astro.props;
+// Google Tag Manager's standard snippet, only for a well-formed container ID (the ID comes from Site settings and goes into a script).
+const gtmId = /^GTM-[A-Z0-9]{4,12}$/.test(settings.gtmId ?? '') ? settings.gtmId : '';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(settings.ogImage, Astro.site).href;
 // The business description is the same on every page: the home page's.
@@ -56,6 +58,7 @@ const ld = {
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {gtmId && <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`} />}
     {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
     <link rel="preload" as="font" href="/fonts/michroma-regular.woff2" type="font/woff2" crossorigin />
     <link rel="preload" as="font" href="/fonts/montserrat-regular.woff2" type="font/woff2" crossorigin />
@@ -73,6 +76,7 @@ const ld = {
     <title>{title}</title>
   </head>
   <body>
+    {gtmId && <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>}
     <div id="root">
       <a class="skip-link" href="#top">Skip to main content</a>
       <SmoothScroll />
