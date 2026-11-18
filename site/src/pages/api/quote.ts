@@ -104,8 +104,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         ].join('\n'),
       });
   } catch (err) {
-    // Log the code only: the lead's details must not end up in server logs.
-    console.error('Quote form: send failed', (err as { code?: string }).code ?? 'unknown');
+    // Log why the mail server said no, never the lead's details: the error code, the SMTP reply code and the server's one-line reply
+    // (for example "535 5.7.8 Authentication failed") say what to fix. The message and the visitor's fields stay out of the log.
+    const { code, responseCode, command, response } = err as { code?: string; responseCode?: number; command?: string; response?: string };
+    console.error('Quote form: send failed', code ?? 'unknown', responseCode ?? '', command ?? '', String(response ?? '').split('\n')[0].slice(0, 200));
     return json(502, { error: 'send_failed' });
   }
   return json(200, { ok: true, reference });
