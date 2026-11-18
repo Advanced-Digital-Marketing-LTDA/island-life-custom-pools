@@ -186,7 +186,8 @@ const home = pageHtml(formPage.path);
 const form = home.match(/<form class="estimate-form"[\s\S]*?<\/form>/)[0];
 const formFields = new Set([...form.matchAll(/\bname="([^"]+)"/g)].map((m) => m[1]));
 const endpoint = read('src/pages/api/quote.ts');
-const endpointFields = new Set([...endpoint.matchAll(/\b(?:v|form\.get)\('([^']+)'\)/g)].map((m) => m[1]));
+// The reCAPTCHA token is added by the form's script, not by a field in the markup.
+const endpointFields = new Set([...endpoint.matchAll(/\b(?:v|form\.get)\('([^']+)'\)/g)].map((m) => m[1]).filter((name) => name !== 'g-recaptcha-response'));
 assert.deepEqual([...formFields].sort(), [...endpointFields].sort(), 'Form fields and /api/quote fields differ');
 assert.deepEqual([...form.matchAll(/<option value="([^"]+)">/g)].map((m) => m[1]), [...interests], 'Interest options differ');
 // A sent request goes to the thank-you page.

@@ -1251,3 +1251,8 @@
 /* The home hero's button and call link always stack: with the brand font they never fit side by side in the 560px column, and
    leaving it to chance made the layout jump when the font arrived. */
 .hero__intro .hero-actions { flex-direction: column; align-items: flex-start; }
+
+/* reCAPTCHA: the badge is hidden because the form shows Google's required notice instead. */
+.grecaptcha-badge { visibility: hidden; }
+.estimate-form__recaptcha { max-width: 380px; font-size: 13px; line-height: 1.6; opacity: 0.85; }
+.estimate-form__recaptcha a { text-decoration: underline; text-underline-offset: 3px; }
