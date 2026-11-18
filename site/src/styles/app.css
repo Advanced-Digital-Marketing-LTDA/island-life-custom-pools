@@ -132,11 +132,11 @@
   align-items: baseline;
   gap: 16px;
   border-bottom: 1px solid color-mix(in oklch, var(--primitive-paper) 24%, transparent);
-  font-family: "Michroma", sans-serif;
+  font-family: "Michroma", "Michroma Fallback", sans-serif;
   font-size: clamp(22px, 5.6vw, 30px);
   line-height: 1.15;
 }
-.mobile-menu__links a span { font-family: "Michroma", sans-serif; font-size: var(--type-label); letter-spacing: var(--tracking-label); }
+.mobile-menu__links a span { font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: var(--type-label); letter-spacing: var(--tracking-label); }
 .mobile-menu__bottom { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; }
 .mobile-menu__bottom > a:last-child { display: inline-flex; min-height: 44px; align-items: center; font-size: var(--type-detail); }
 
@@ -297,7 +297,7 @@
 .testimonial__slides { display: grid; align-items: stretch; }
 .testimonial-slide { display: none; min-width: 0; flex-direction: column; border-top: 1px solid color-mix(in oklch, var(--brand-ink) 28%, transparent); padding-top: 24px; }
 .testimonial-slide:first-child { display: flex; }
-.testimonial-slide > p { font-family: "Montserrat", sans-serif; font-size: 17px; line-height: 1.75; }
+.testimonial-slide > p { font-family: "Montserrat", "Montserrat Fallback", sans-serif; font-size: 17px; line-height: 1.75; }
 .testimonial-slide__stars { display: flex; gap: 4px; margin-top: 24px; color: var(--brand-ink); }
 .testimonial-slide footer { display: flex; flex-direction: column; gap: 4px; margin-top: 16px; font-size: var(--type-label); letter-spacing: 0.03em; }
 .testimonial-slide footer span:last-child { color: var(--brand-ink); }
@@ -330,8 +330,8 @@
 .investment__partners > span { font-size: var(--type-label); font-weight: 400; letter-spacing: var(--tracking-label); text-transform: uppercase; }
 .investment__partners p { margin-top: 10px; font-size: var(--type-detail); line-height: 1.8; }
 .investment__offer { border-top: 1px solid color-mix(in oklch, var(--primitive-paper) 50%, transparent); padding-top: 32px; }
-.investment__price { display: flex; flex-direction: column; font-family: "Michroma", sans-serif; font-size: clamp(48px, 12vw, 76px); letter-spacing: 0; line-height: 1.05; }
-.investment__price span { margin-bottom: 20px; font-family: "Michroma", sans-serif; font-size: var(--type-label); font-weight: 400; letter-spacing: var(--tracking-label); line-height: 1.5; text-transform: uppercase; }
+.investment__price { display: flex; flex-direction: column; font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: clamp(48px, 12vw, 76px); letter-spacing: 0; line-height: 1.05; }
+.investment__price span { margin-bottom: 20px; font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: var(--type-label); font-weight: 400; letter-spacing: var(--tracking-label); line-height: 1.5; text-transform: uppercase; }
 .investment__offer ul { display: grid; gap: 14px; margin: 40px 0 0; padding: 0; list-style: none; }
 .investment__offer li { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; }
 .investment__offer li svg { flex-shrink: 0; margin-top: 3px; }
@@ -487,14 +487,14 @@
 .author-box__avatar { display: flex; width: 104px; height: 104px; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; background: var(--primitive-paper-light); }
 .author-box__avatar .brand img { width: 90px; }
 .author-box__label { color: var(--primitive-taupe); font-weight: 400; }
-.author-box h2 { margin-top: 8px; font-family: "Michroma", sans-serif; font-size: 24px; font-weight: 400; line-height: 1.25; }
+.author-box h2 { margin-top: 8px; font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: 24px; font-weight: 400; line-height: 1.25; }
 .author-box__role { margin-top: 4px; color: var(--primitive-taupe); }
 .author-box__content > p:not(.author-box__label):not(.author-box__role) { margin-top: 20px; line-height: 1.75; }
 .author-box .text-link { margin-top: 24px; }
 .article-next { --text-on-dark: var(--brand-ink); background: var(--brand-sand); color: var(--text-on-dark); }
 .article-next__inner { padding-block: 48px; }
 .article-next__inner > p { margin-bottom: 12px; }
-.article-next a { display: inline-flex; min-height: 52px; align-items: center; gap: 12px; font-family: "Michroma", sans-serif; font-size: clamp(24px, 5.5vw, 36px); line-height: 1.2; }
+.article-next a { display: inline-flex; min-height: 52px; align-items: center; gap: 12px; font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: clamp(24px, 5.5vw, 36px); line-height: 1.2; }
 
 @media (min-width: 900px) {
   .blog-index__hero { padding-block: 180px 110px; }
@@ -803,7 +803,7 @@
 /* Centered against the three inputs beside it, and the loudest thing on the page. */
 .estimator__results { container-type: inline-size; align-self: center; border-radius: 0.4em; padding: 32px 28px; background: var(--brand-blue); color: #fff; }
 .estimator__results-label { font-size: 17px; font-weight: 600; line-height: 1.5; }
-.estimator__monthly { display: block; margin-top: 16px; font-family: "Michroma", sans-serif; font-size: clamp(36px, 24cqi, 76px); line-height: 1.08; overflow-wrap: anywhere; }
+.estimator__monthly { display: block; margin-top: 16px; font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: clamp(36px, 24cqi, 76px); line-height: 1.08; overflow-wrap: anywhere; }
 .estimator__monthly[data-long] { font-size: clamp(28px, 14cqi, 60px); }
 .estimator__error { margin-top: 24px; font-size: 16px; line-height: 1.65; }
 .estimator__note { margin-top: 24px; font-size: 15px; line-height: 1.65; }
@@ -1111,7 +1111,7 @@
 .calc-quote .estimate-form [aria-invalid="true"] { border-color: #a4161a; }
 
 /* Calculator: the % sign in the body face (Michroma draws it as "o/o"), a summary under the number, a readable note */
-.estimator__input-wrap > span { font-family: "Montserrat", sans-serif; }
+.estimator__input-wrap > span { font-family: "Montserrat", "Montserrat Fallback", sans-serif; }
 .estimator__summary { margin-top: 8px; font-size: 16px; line-height: 1.4; }
 .estimator__note { font-size: 16px; }
 @media (max-width: 719px) {
@@ -1135,7 +1135,7 @@
 .areas__list a, .areas__list span { min-height: 48px; }
 
 /* Content lists and article bodies read in the body face; Michroma stays for headings and labels */
-.inner-considerations li, .article-body :is(li, td, th, dd), .faq__answer :is(li, span) { font-family: "Montserrat", sans-serif; }
+.inner-considerations li, .article-body :is(li, td, th, dd), .faq__answer :is(li, span) { font-family: "Montserrat", "Montserrat Fallback", sans-serif; }
 
 /* Home trust bar on a phone: one item per row */
 @media (max-width: 639px) {
@@ -1211,11 +1211,11 @@
 .nav-item > a[aria-current="true"]::after { transform: scaleX(1); }
 
 .mobile-menu__group { border-bottom: 1px solid color-mix(in oklch, var(--primitive-paper) 24%, transparent); }
-.mobile-menu__group summary { display: flex; min-height: 56px; cursor: pointer; align-items: center; justify-content: space-between; gap: 16px; font-family: "Michroma", sans-serif; font-size: clamp(24px, 6.4vw, 38px); line-height: 1.15; list-style: none; }
+.mobile-menu__group summary { display: flex; min-height: 56px; cursor: pointer; align-items: center; justify-content: space-between; gap: 16px; font-family: "Michroma", "Michroma Fallback", sans-serif; font-size: clamp(24px, 6.4vw, 38px); line-height: 1.15; list-style: none; }
 .mobile-menu__group summary::-webkit-details-marker { display: none; }
 .mobile-menu__group summary svg { flex-shrink: 0; transition: transform var(--motion-feedback) var(--ease-out); }
 .mobile-menu__group[open] summary svg { transform: rotate(180deg); }
-.mobile-menu__links .mobile-menu__sub a { min-height: 48px; align-items: center; border-bottom: 0; padding-left: 16px; font-family: "Montserrat", sans-serif; font-size: 18px; color: var(--brand-sand); }
+.mobile-menu__links .mobile-menu__sub a { min-height: 48px; align-items: center; border-bottom: 0; padding-left: 16px; font-family: "Montserrat", "Montserrat Fallback", sans-serif; font-size: 18px; color: var(--brand-sand); }
 .mobile-menu__sub { padding-bottom: 12px; }
 
 /* Nine menu items need more room than 1024–1139px offers: those widths keep the phone menu. Up to 1599px the menu, the phone number and the quote button compete for room, so the menu tightens. */
@@ -1249,3 +1249,7 @@
   .inner-hero--photo-first .inner-hero__breadcrumb { margin-bottom: 16px; }
   .inner-hero--photo-first .inner-hero__intro { margin-top: 20px; }
 }
+
+/* The home hero's button and call link always stack: with the brand font they never fit side by side in the 560px column, and
+   leaving it to chance made the layout jump when the font arrived. */
+.hero__intro .hero-actions { flex-direction: column; align-items: flex-start; }

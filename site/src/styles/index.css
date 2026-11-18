@@ -17,6 +17,26 @@
   font-display: swap;
 }
 
+/* Stand-ins for the two fonts while they download: Arial resized and re-spaced to the same widths and line heights, so the text
+   does not reflow when the real font arrives (this was the home page's layout shift). Metrics measured from the font files, then tuned so the home hero wraps the same way before and after the swap. */
+@font-face {
+  font-family: "Michroma Fallback";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 146%;
+  ascent-override: 79.2%;
+  descent-override: 18.19%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Montserrat Fallback";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 112.72%;
+  ascent-override: 85.88%;
+  descent-override: 22.27%;
+  line-gap-override: 0%;
+}
+
 @layer base {
   :root {
     /* Client brand palette: Primary Blue, Brand Yellow, Dark Blue, Original Logo Blue */
@@ -84,7 +104,7 @@
     overflow-x: clip;
     background: var(--page-bg);
     color: var(--page-text);
-    font-family: "Michroma", sans-serif;
+    font-family: "Michroma", "Michroma Fallback", sans-serif;
     font-size: 16px;
     font-synthesis: none;
     line-height: 1.75;
@@ -92,9 +112,9 @@
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, p, figure, blockquote { margin: 0; }
-  p { font-family: "Montserrat", sans-serif; }
+  p { font-family: "Montserrat", "Montserrat Fallback", sans-serif; }
   h1, h2, h3 {
-    font-family: "Michroma", sans-serif;
+    font-family: "Michroma", "Michroma Fallback", sans-serif;
     font-weight: 400;
     text-wrap: balance;
   }
