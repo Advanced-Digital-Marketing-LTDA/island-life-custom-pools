@@ -6,17 +6,17 @@
     {
       "_template": "heading",
       "label": "Request received",
-      "title": "Thank you for contacting",
-      "titleEm": "Island Life.",
+      "title": "Thank you for submitting",
+      "titleEm": "your request.",
       "intro": "We will be in contact with you shortly. We look forward to creating your backyard oasis."
     },
     {
       "_template": "callToAction",
-      "label": "While you wait",
-      "title": "Our $58,000 custom",
-      "titleEm": "pool package.",
-      "text": "A 30' x 15' gunite pool with a mini pebble finish, travertine coping, LED lighting and more, in about 5–6 weeks. Flexible financing for qualified buyers.",
-      "button": "See what's included",
+      "label": "A one-time offer for you",
+      "title": "Our custom pool package",
+      "titleEm": "starting at $58,000.",
+      "text": "To thank you for reaching out, here is a one-time offer: a 30' x 15' gunite pool with a mini pebble finish, travertine coping, LED lighting and more, in about 5–6 weeks. Flexible financing for qualified buyers.",
+      "button": "See the one-time offer",
       "buttonHref": "/58k-pool-package/",
       "callLabel": "Prefer to talk?"
     }
