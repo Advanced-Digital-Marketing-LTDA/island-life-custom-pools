@@ -63,4 +63,4 @@ Check the toolkit with `node scripts/check.mjs` and `node scripts/test-toolkit.m
 
 ## License
 
-The code in this repository is licensed under the [PolyForm Shield License 1.0.0](LICENSE). Commercial use is permitted when it complies with that license; for uses it does not permit, see [commercial licensing](COMMERCIAL.md). Third-party components keep their own licenses. The business name, logo and brand colors, copy, photos and videos on the live site belong to Island Life Custom Pools and are not covered by that license.
+The code in this repository is licensed under the [PolyForm Shield License 1.0.0](LICENSE); third-party components keep their own licenses. There is no separate commercial license and no other arrangement to buy rights to the site or the toolkit: the LICENSE file is the only grant. The business name, logo and brand colors, copy, photos and videos on the live site belong to Island Life Custom Pools and are not covered by it.
