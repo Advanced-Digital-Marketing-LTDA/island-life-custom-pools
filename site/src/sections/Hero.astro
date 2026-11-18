@@ -51,7 +51,7 @@ const {
       <ul class="page-shell" aria-label="Why homeowners choose Island Life Custom Pools">
         {trust.map((item) => (
           <li>
-            {item.image && <img class="hero__trust-badge" src={item.image} alt={item.imageAlt || ''} height="40" />}
+            {item.image && <img class="hero__trust-badge" src={item.image} alt={item.imageAlt || ''} width="146" height="141" />}
             {item.icon && <span class="hero__trust-icon" aria-hidden="true"><Icon name={item.icon as any} size={20} strokeWidth={1.5} /></span>}
             {item.review && reviewUrl ? (
               <a class="hero__trust-link" href={reviewUrl} target="_blank" rel="noopener">
