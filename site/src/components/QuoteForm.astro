@@ -58,7 +58,6 @@ const recaptchaKey = /^6L[\w-]{20,60}$/.test(settings.recaptchaSiteKey ?? '') ? 
       <Icon name="loader-circle" size={18} class="spin" />
     </button>
     <p>{quote.note}</p>
-    {recaptchaKey && <p class="estimate-form__recaptcha">This site is protected by reCAPTCHA, and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.</p>}
   </div>
 </form>
 

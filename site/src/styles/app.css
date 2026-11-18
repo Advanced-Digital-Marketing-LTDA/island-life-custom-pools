@@ -1252,7 +1252,5 @@
    leaving it to chance made the layout jump when the font arrived. */
 .hero__intro .hero-actions { flex-direction: column; align-items: flex-start; }
 
-/* reCAPTCHA: the badge is hidden because the form shows Google's required notice instead. */
-.grecaptcha-badge { visibility: hidden; }
-.estimate-form__recaptcha { max-width: 380px; font-size: 13px; line-height: 1.6; opacity: 0.85; }
-.estimate-form__recaptcha a { text-decoration: underline; text-underline-offset: 3px; }
+/* reCAPTCHA: Google's badge shows (bottom right) once a form has been used; on small screens it sits above the Call / Free quote bar. */
+@media (max-width: 1023px) { .grecaptcha-badge { bottom: 90px !important; } }
