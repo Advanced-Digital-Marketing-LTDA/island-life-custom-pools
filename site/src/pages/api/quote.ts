@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 import { randomInt } from 'node:crypto';
-import { interests } from '../../lib/content';
+import { interests, settings } from '../../lib/content';
 
 export const prerender = false;
 
@@ -10,6 +10,44 @@ const json = (status: number, body: object) =>
     status,
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   });
+
+// reCAPTCHA v3 gives each visit a score from 0 (bot) to 1 (person); anything under this is turned away.
+const MIN_SCORE = 0.5;
+
+// 'rejected' only for a token Google says is bad or a low score. If Google cannot be reached, or our own secret is wrong, the
+// request goes through (and the log says so): losing a real lead costs more than letting one spam message in.
+async function recaptcha(secret: string, token: string): Promise<'ok' | 'rejected'> {
+  if (!token) {
+    console.error('Quote form: reCAPTCHA token missing');
+    return 'rejected';
+  }
+  try {
+    // RECAPTCHA_VERIFY_URL exists only so the checks can be tested without Google.
+    const res = await fetch(process.env.RECAPTCHA_VERIFY_URL || 'https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      body: new URLSearchParams({ secret, response: token }),
+      signal: AbortSignal.timeout(5000),
+    });
+    const data = (await res.json()) as { success?: boolean; score?: number; action?: string; 'error-codes'?: string[] };
+    const codes = data['error-codes'] ?? [];
+    if (!data.success) {
+      if (codes.some((c) => c === 'invalid-input-secret' || c === 'missing-input-secret')) {
+        console.error('Quote form: RECAPTCHA_SECRET is wrong, so reCAPTCHA is not being checked:', codes.join(','));
+        return 'ok';
+      }
+      console.error('Quote form: reCAPTCHA rejected', codes.join(','));
+      return 'rejected';
+    }
+    if (data.action !== 'quote' || (data.score ?? 0) < MIN_SCORE) {
+      console.error('Quote form: reCAPTCHA low score', data.score ?? 'none', data.action ?? 'no action');
+      return 'rejected';
+    }
+    return 'ok';
+  } catch {
+    console.error('Quote form: reCAPTCHA could not be checked, letting the request through');
+    return 'ok';
+  }
+}
 
 export const POST: APIRoute = async ({ request }) => {
   let form: FormData;
@@ -40,6 +78,12 @@ export const POST: APIRoute = async ({ request }) => {
     interests.includes(q.interest) &&
     q.message.length <= 2000;
   if (!valid) return json(400, { error: 'invalid' });
+
+  // Checked after the cheap field checks and before anything is sent. Off until both the secret (Coolify) and the site key (Site settings) are set.
+  const { RECAPTCHA_SECRET } = process.env;
+  if (RECAPTCHA_SECRET && settings.recaptchaSiteKey && (await recaptcha(RECAPTCHA_SECRET, String(form.get('g-recaptcha-response') ?? ''))) === 'rejected') {
+    return json(403, { error: 'captcha' });
+  }
 
   const { SMTP_HOST = 'smtp.protonmail.ch', SMTP_PORT = '587', SMTP_USER, SMTP_TOKEN, LEAD_TO } = process.env;
   if (!SMTP_USER || !SMTP_TOKEN || !LEAD_TO) {

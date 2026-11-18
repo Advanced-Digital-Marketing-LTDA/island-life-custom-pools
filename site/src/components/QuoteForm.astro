@@ -9,8 +9,10 @@ const { phone, phoneHref, quote } = settings;
 // {phone} in the error text becomes a call link. A sent request takes the visitor to the thank-you page.
 const errorParts = quote.errorText.split('{phone}');
 const thankYouHref = '/thank-you/';
+// reCAPTCHA v3 runs only when Site settings has a site key; the server checks the token when RECAPTCHA_SECRET is set.
+const recaptchaKey = /^6L[\w-]{20,60}$/.test(settings.recaptchaSiteKey ?? '') ? settings.recaptchaSiteKey : '';
 ---
-<form class="estimate-form" novalidate method="post" action="/api/quote" data-thanks={thankYouHref} data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel}>
+<form class="estimate-form" novalidate method="post" action="/api/quote" data-thanks={thankYouHref} data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel} data-recaptcha={recaptchaKey || undefined}>
   <p class="estimate-form__required">* Required</p>
   <div class="form-row">
     <label>
@@ -56,12 +58,34 @@ const thankYouHref = '/thank-you/';
       <Icon name="loader-circle" size={18} class="spin" />
     </button>
     <p>{quote.note}</p>
+    {recaptchaKey && <p class="estimate-form__recaptcha">This site is protected by reCAPTCHA, and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.</p>}
   </div>
 </form>
 
 <script>
+  // Google's script loads the first time someone uses a form, so it costs nothing for visitors who never do. If it cannot load
+  // (blocked by an extension, offline) the form still sends, without a token, and the server decides what to do.
+  let recaptchaScript: Promise<void> | null = null;
+  const loadRecaptcha = (key: string) => (recaptchaScript ??= new Promise<void>((resolve) => {
+    const tag = document.createElement('script');
+    tag.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(key)}`;
+    tag.async = true;
+    tag.onload = () => resolve();
+    tag.onerror = () => resolve();
+    document.head.append(tag);
+  }));
+  const recaptchaToken = async (key: string) => {
+    await loadRecaptcha(key);
+    const grecaptcha = (window as unknown as { grecaptcha?: { ready(cb: () => void): void; execute(key: string, options: { action: string }): Promise<string> } }).grecaptcha;
+    if (!grecaptcha) return '';
+    const token = new Promise<string>((resolve) => grecaptcha.ready(() => grecaptcha.execute(key, { action: 'quote' }).then(resolve, () => resolve(''))));
+    return Promise.race([token, new Promise<string>((resolve) => setTimeout(() => resolve(''), 6000))]);
+  };
+
   document.querySelectorAll<HTMLFormElement>('.estimate-form').forEach((form) => {
     const error = form.querySelector<HTMLElement>('.form-error')!;
+    const recaptchaKey = form.dataset.recaptcha || '';
+    if (recaptchaKey) form.addEventListener('focusin', () => loadRecaptcha(recaptchaKey), { once: true });
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const submitLabel = submit.querySelector('.button__label')!;
     const [arrow, spinner] = submit.querySelectorAll<SVGElement>(':scope > svg');
@@ -113,7 +137,9 @@ const thankYouHref = '/thank-you/';
       setPending(true);
       let leaving = false;
       try {
-        const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        const body = new FormData(form);
+        if (recaptchaKey) body.set('g-recaptcha-response', await recaptchaToken(recaptchaKey));
+        const response = await fetch(form.action, { method: 'POST', body });
         const result = await response.json().catch(() => null);
         if (!response.ok || !result?.reference) throw new Error(`Quote request failed (${response.status})`);
         form.reset();

@@ -212,6 +212,7 @@ export default defineConfig({
         str('phone', 'Phone (as shown)'),
         str('phoneHref', 'Phone link', 'The tel: link, for example tel:+18323044092.'),
         str('gtmId', 'Google Tag Manager ID', 'For example GTM-XXXXXXX. The tag is added to every page. Leave empty for no tag.'),
+        str('recaptchaSiteKey', 'reCAPTCHA site key', 'The public key of a reCAPTCHA v3 site (it starts with 6L). Turns on spam protection for the quote form; the private key is the RECAPTCHA_SECRET variable in Coolify. Leave empty for no reCAPTCHA.'),
         group('address', 'Business address', [str('street', 'Street'), str('city', 'City'), str('region', 'State'), str('postalCode', 'ZIP code'), num('latitude', 'Latitude'), num('longitude', 'Longitude')]),
         str('foundingDate', 'Year the business started', 'For example "2016".'),
         strings('awards', 'Awards', 'One per line, as they should be written, for example "Best of Houzz 2020 (Service)". Used by search engines.'),
