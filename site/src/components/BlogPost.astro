@@ -1,5 +1,5 @@
 ---
-import { responsive } from '../lib/assets';
+import { lcpImage } from '../lib/lcpImage';
 import Base from '../layouts/Base.astro';
 import Header from './Header.astro';
 import Icon from './Icon.astro';
@@ -30,6 +30,7 @@ const extraLd = [
     ],
   },
 ];
+const heroImage = await lcpImage(post.image);
 ---
 <Base title={post.seoTitle} description={post.seoDescription} extraLd={extraLd}>
   <Header solid hasQuote />
@@ -42,7 +43,7 @@ const extraLd = [
           <h1>{post.title}</h1>
         </div>
         <figure class="article-hero__visual">
-          <img {...responsive(post.image)} alt={post.imageAlt} fetchpriority="high" />
+          <img {...heroImage} alt={post.imageAlt} fetchpriority="high" />
         </figure>
       </header>
 
