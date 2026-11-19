@@ -22,6 +22,9 @@ export default defineConfig({
   redirects,
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },
+  // Build the CSS for Safari 14 / Chrome 90 and up. Vite's default (recent browsers only) rewrites every `@media (min-width: 768px)` into
+  // `@media (width >= 768px)`, which older phones and Macs ignore, so they lose all the responsive layout (margins, padding, columns).
+  vite: { build: { cssTarget: ['chrome90', 'safari14', 'firefox88', 'edge90'] } },
   // Hero pictures are downloaded from the CDN and written next to the page at build time (see src/lib/lcpImage.ts).
   image: { domains: ['ilcpmedia.b-cdn.net'] },
   devToolbar: { enabled: false },
