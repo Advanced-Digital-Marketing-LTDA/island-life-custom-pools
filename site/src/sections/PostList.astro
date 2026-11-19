@@ -1,16 +1,20 @@
 ---
 import { responsive } from '../lib/assets';
+import { lcpImage } from '../lib/lcpImage';
 import Icon from '../components/Icon.astro';
 import { posts } from '../lib/content';
 
-interface Props { readLabel?: string; anchor?: string; headingId?: string }
-const { readLabel = 'Read the article', anchor } = Astro.props;
+interface Props { readLabel?: string; anchor?: string; headingId?: string; priority?: boolean }
+const { readLabel = 'Read the article', anchor, priority = false } = Astro.props;
+const sizes = '(min-width: 1024px) 33vw, 100vw';
+// When the list opens the page, its first picture is the LCP: serve it from this site and load it first.
+const firstImage = priority && posts[0] ? await lcpImage(posts[0].image, sizes) : null;
 ---
 <section class="page-shell blog-index__posts" id={anchor || undefined} aria-label="Latest articles">
-  {posts.map((post) => (
+  {posts.map((post, index) => (
     <article class="blog-card">
       <a class="blog-card__image" href={`/blog/${post.slug}/`} tabindex="-1" aria-hidden="true">
-        <img {...responsive(post.image, "(min-width: 1024px) 33vw, 100vw")} alt="" loading="lazy" />
+        {index === 0 && firstImage ? <img {...firstImage} alt="" fetchpriority="high" /> : <img {...responsive(post.image, sizes)} alt="" loading="lazy" />}
       </a>
       <div class="blog-card__copy">
         <p class="section-label">{post.category}</p>

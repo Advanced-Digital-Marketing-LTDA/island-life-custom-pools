@@ -1,5 +1,5 @@
 ---
-import { responsive } from '../lib/assets';
+import { lcpImage } from '../lib/lcpImage';
 import Icon from '../components/Icon.astro';
 import CallLink from '../components/CallLink.astro';
 import { escapeHtml, reviewUrl } from '../lib/content';
@@ -14,18 +14,20 @@ const {
   image = '', imageAlt = '', video = '', videoMobile = '', videoPoster = '', kicker = '', line1 = '', line2 = '', line3 = '', intro = '', cta = '', ctaHref = '#quote',
   scrollLabel = '', scrollHref = '', foot = [], scrim = false, trust = [], anchor, headingId,
 } = Astro.props;
+const heroImage = image && !video ? await lcpImage(image) : {};
+const poster = video && (videoPoster || image) ? (await lcpImage(videoPoster || image)).src : '';
 ---
 <section class:list={['hero', { 'hero--video': !!video, 'hero--scrim': scrim, 'hero--trust': trust.length > 0 }]} id={anchor || undefined} aria-labelledby={headingId}>
   {video ? (
     // The video is decoration: it plays muted and loops. Visitors who prefer reduced motion get the still instead (see the script).
     // MP4 only: every current browser plays H.264, and one small file beats two formats. Phones get the smaller portrait file.
     // The file is not fetched until the page has loaded (see the script), so it never competes with the headline and the poster.
-    <video class="hero__image" muted loop playsinline preload="none" poster={videoPoster || image} aria-hidden="true" tabindex="-1" data-alt={imageAlt} style="transform: translate3d(0px, 0%, 0px) scale(1.04);">
+    <video class="hero__image" muted loop playsinline preload="none" poster={poster} aria-hidden="true" tabindex="-1" data-alt={imageAlt} style="transform: translate3d(0px, 0%, 0px) scale(1.04);">
       {videoMobile && <source src={videoMobile} type="video/mp4" media="(max-width: 767px)" />}
       <source src={video} type="video/mp4" />
     </video>
   ) : (
-    image && <img class="hero__image" {...responsive(image)} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
+    image && <img class="hero__image" {...heroImage} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
   )}
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="hero__content page-shell" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">

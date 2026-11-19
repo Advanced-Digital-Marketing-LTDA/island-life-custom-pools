@@ -22,5 +22,7 @@ export default defineConfig({
   redirects,
   adapter: node({ mode: 'standalone' }),
   build: { inlineStylesheets: 'always' },
+  // Hero pictures are downloaded from the CDN and written next to the page at build time (see src/lib/lcpImage.ts).
+  image: { domains: ['ilcpmedia.b-cdn.net'] },
   devToolbar: { enabled: false },
 });

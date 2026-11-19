@@ -1,5 +1,5 @@
 ---
-import { responsive } from '../lib/assets';
+import { lcpImage } from '../lib/lcpImage';
 import Icon from '../components/Icon.astro';
 import CallLink from '../components/CallLink.astro';
 import Lines from '../components/Lines.astro';
@@ -12,6 +12,7 @@ const {
   homeLabel = 'Home', eyebrow = '', title = '', titleEm = '', text = '', buttonLabel = '', buttonHref = '#payment-estimator',
   image = '', imageAlt = '', anchor, headingId,
 } = Astro.props;
+const heroImage = image ? await lcpImage(image, "(min-width: 1024px) 50vw, 100vw") : {};
 ---
 <section class="financing-hero" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="page-shell financing-hero__grid">
@@ -31,7 +32,7 @@ const {
       )}
     </div>
     <figure class="financing-hero__visual">
-      {image && <img {...responsive(image, "(min-width: 1024px) 50vw, 100vw")} alt={imageAlt} fetchpriority="high" />}
+      {image && <img {...heroImage} alt={imageAlt} fetchpriority="high" />}
     </figure>
   </div>
 </section>

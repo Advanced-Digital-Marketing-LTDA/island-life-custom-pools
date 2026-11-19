@@ -41,5 +41,5 @@ const components: Record<BlockName, any> = {
   const Section = components[_template];
   const id = anchor || defaultAnchors[_template];
   // The heading's id comes from the section's link name, so it stays unique when sections move or repeat.
-  return <Section {...fields} anchor={id} headingId={id ? `${id}-title` : `section-${index + 1}-title`} />;
+  return <Section {...fields} anchor={id} headingId={id ? `${id}-title` : `section-${index + 1}-title`} priority={index < 2} />;
 })}
