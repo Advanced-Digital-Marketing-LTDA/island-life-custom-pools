@@ -45,15 +45,15 @@
     --brand-sand: #fbeebc;
     --brand-blue-text: #0a72b9;
     --brand-ink: #00243b;
-    --brand-sand-light: color-mix(in srgb, var(--brand-sand) 14%, white);
-    --brand-aqua-light: color-mix(in srgb, var(--brand-aqua) 15%, white);
+    --brand-sand-light: #fefdf6; /* 14% Brand Yellow on white */
+    --brand-aqua-light: #e7f2f7; /* 15% Brand Aqua on white */
     --primitive-navy: var(--brand-ink);
     --primitive-navy-soft: #064b78;
     --primitive-taupe: var(--brand-blue-text);
     --primitive-paper: var(--brand-sand-light);
     --primitive-paper-deep: var(--brand-aqua-light);
-    --primitive-paper-light: color-mix(in srgb, var(--brand-sand) 8%, white);
-    --primitive-line: color-mix(in srgb, var(--brand-aqua) 45%, white);
+    --primitive-paper-light: #fffefa; /* 8% Brand Yellow on white */
+    --primitive-line: #b6d8e8; /* 45% Brand Aqua on white */
     --page-bg: var(--primitive-paper);
     --page-text: var(--primitive-navy);
     --surface-muted: var(--primitive-paper-deep);
