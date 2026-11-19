@@ -9,6 +9,9 @@ interface Props { hasQuote?: boolean }
 const { hasQuote = false } = Astro.props;
 const { phone, phoneHref, footer, address } = settings;
 const prefix = homePrefix(Astro.url);
+// The privacy policy sits in the bottom line beside the copyright, which leaves the footer menu at twelve links: three rows of four.
+const legal = footer.nav.filter((item) => /privacy/i.test(item.href));
+const links = footer.nav.filter((item) => !legal.includes(item));
 // On a page with its own quote form, "#quote" stays on the page.
 const target = (href: string) => (hasQuote && href === '#quote' ? href : linkTo(Astro.url, href));
 // The social links show as logos; a label that matches none of them stays a text link.
@@ -24,22 +27,20 @@ const glyph = (label: string) => (['google', 'facebook', 'instagram', 'houzz'] a
           <a href={mapUrl} target="_blank" rel="noopener">{address.street}{' '}<br />{address.city}, {address.region} {address.postalCode}<span class="sr-only"> (opens in a map in a new tab)</span></a>
         </address>
       )}
-      {socialLinks.length > 0 && (
-        <ul class="footer__social" aria-label={`${settings.name} online`}>
-          {socialLinks.map((link) => {
-            const name = glyph(link.label);
-            return <li><a href={link.href} target="_blank" rel="noopener" class={name ? 'footer__social-icon' : 'footer__social-text'}>{name && <BrandIcon name={name} size={20} />}<span class={name ? 'sr-only' : undefined}>{link.label}</span><span class="sr-only"> (opens in a new tab)</span></a></li>;
-          })}
-        </ul>
-      )}
+      <ul class="footer__social" aria-label={`Contact ${settings.name}`}>
+        {socialLinks.map((link) => {
+          const name = glyph(link.label);
+          return <li><a href={link.href} target="_blank" rel="noopener" class={name ? 'footer__social-icon' : 'footer__social-text'}>{name && <BrandIcon name={name} size={20} />}<span class={name ? 'sr-only' : undefined}>{link.label}</span><span class="sr-only"> (opens in a new tab)</span></a></li>;
+        })}
+        <li><a href={phoneHref} class="footer__social-icon"><Icon name="phone" size={20} strokeWidth={1.6} /><span class="sr-only">Call {phone}</span></a></li>
+      </ul>
     </div>
     <nav aria-label="Footer navigation">
-      {footer.nav.map((item) => <a href={target(item.href)}>{item.label}</a>)}
+      {links.map((item) => <a href={target(item.href)}>{item.label}</a>)}
     </nav>
     <div class="footer__hours">
       <span>{footer.hoursTitle}</span>
       <p>{footer.hours.map((row, index) => <Fragment>{index > 0 && <Fragment>{' '}<br /></Fragment>}{row.days}{' '}<strong>{row.time}</strong></Fragment>)}</p>
-      <a href={phoneHref}>{phone}</a>
     </div>
     <a class="footer__top-link" href={`${prefix}#top`} aria-label="Back to top">
       <Icon name="arrow-up" size={22} strokeWidth={1.4} />
@@ -47,6 +48,7 @@ const glyph = (label: string) => (['google', 'facebook', 'instagram', 'houzz'] a
   </div>
   <div class="page-shell footer__bottom">
     <span>© <span data-year>{new Date().getFullYear()}</span> {footer.copyright}</span>
+    {legal.map((item) => <a class="footer__legal" href={target(item.href)}>{item.label}</a>)}
     <span class="footer__tagline">{footer.tagline}</span>
     {footer.credit && <span class="footer__credit">{footer.creditHref ? <a href={footer.creditHref} target="_blank" rel="noopener">{footer.credit}</a> : footer.credit}</span>}
   </div>
