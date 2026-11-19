@@ -1,4 +1,5 @@
 ---
+import { responsive } from '../lib/assets';
 import Icon from '../components/Icon.astro';
 import CallLink from '../components/CallLink.astro';
 import { escapeHtml, reviewUrl } from '../lib/content';
@@ -24,7 +25,7 @@ const {
       <source src={video} type="video/mp4" />
     </video>
   ) : (
-    image && <img class="hero__image" src={image} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
+    image && <img class="hero__image" {...responsive(image)} alt={imageAlt} fetchpriority="high" style="transform: translate3d(0px, 0%, 0px) scale(1.04);" />
   )}
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="hero__content page-shell" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
