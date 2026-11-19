@@ -6,6 +6,7 @@ import Footer from '../sections/Footer.astro';
 import { pages, settings } from '../lib/content';
 import { clearsHeader, overlayBlocks, quoteBlocks } from '../lib/blocks';
 import { services } from '../lib/services';
+import { lcpImage } from '../lib/lcpImage';
 
 export function getStaticPaths() {
   return pages.map((page) => ({ params: { slug: page.slug || undefined }, props: { page } }));
@@ -17,7 +18,8 @@ const first = blocks[0];
 const overlay = !!first && overlayBlocks.includes(first._template);
 // A first section that was not built to open a page needs room below the fixed header.
 const needsClearance = !!first && !clearsHeader.includes(first._template);
-const heroStill = typeof first?.video === 'string' && first.video && typeof first.videoPoster === 'string' ? first.videoPoster : first?.image;
+// The still a hero video shows until it plays; it is the page's LCP, so it is served from this site (see lcpImage) and preloaded.
+const heroStill = typeof first?.video === 'string' && first.video ? (first.videoPoster || first.image) : undefined;
 // Breadcrumbs for inner pages, and the questions of any FAQ section, described the way the page shows them.
 const crumb = String(first?.eyebrow || page.seoTitle.split('|')[0].trim() || page.slug);
 const faqs = blocks.filter((block) => block._template === 'faq').flatMap((block) => (block.questions as { question?: string; answer?: string }[] | undefined) ?? []).filter((item) => item.question && item.answer);
@@ -53,7 +55,7 @@ if (faqs.length) extraLd.push({
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faqs.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
 });
-const preload = first?._template === 'hero' && typeof heroStill === 'string' ? heroStill : undefined;
+const preload = first?._template === 'hero' && typeof heroStill === 'string' && heroStill ? (await lcpImage(heroStill)).src : undefined;
 ---
 <Base title={page.seoTitle || settings.name} description={page.seoDescription || settings.name} preload={preload} extraLd={extraLd} noindex={page.noindex}>
   <Header solid={!overlay} hasQuote={hasQuote} />
