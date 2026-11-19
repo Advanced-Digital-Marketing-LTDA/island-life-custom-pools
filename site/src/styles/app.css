@@ -1251,7 +1251,7 @@
 .estimate-form label > span { font-size: 15px; line-height: 1.3; }
 .estimate-form input, .estimate-form select, .estimate-form textarea,
 .calc-quote .estimate-form input, .calc-quote .estimate-form select, .calc-quote .estimate-form textarea { min-height: var(--f-input); padding-block: 6px; }
-.estimate-form textarea, .calc-quote .estimate-form textarea { height: clamp(56px, calc(var(--vh) * 8), 96px); min-height: 0; }
+.estimate-form textarea, .calc-quote .estimate-form textarea { height: clamp(60px, calc(var(--vh) * 10), 96px); min-height: 0; }
 .estimate-form__required { font-size: 13px; line-height: 1.2; margin-bottom: -4px; }
 .estimate-form__submit { gap: 8px; margin-top: 0; }
 .estimate-form__submit p { font-size: 13px; line-height: 1.4; }
@@ -1274,10 +1274,17 @@
 .estimator__note { margin-top: 8px; font-size: 13px; line-height: 1.45; }
 .estimator__slogan { margin-top: 10px; font-size: clamp(18px, 4vw, 22px); }
 .estimator__results .button { margin-top: 12px; }
-@media (min-width: 1100px) { .estimator__card { align-self: start; } }
+@media (min-width: 1100px) { .estimator__card { align-self: start; position: sticky; top: 100px; } }
+.calc-quote .estimator__grid { margin-block: var(--f-gap) 0; }
+.estimator__grid { align-items: start; }
+.estimator__results { align-self: start; }
+/* Side by side the form sets the card height, so the calculator spreads its fields a little instead of leaving a gap at the bottom. */
+@media (min-width: 1100px) { .calc-quote .estimator__grid { margin-top: calc(var(--f-gap) * 1.5); } .calc-quote .estimator__form { gap: calc(var(--f-gap) * 1.8); } }
 @media (max-width: 719px) { .calc-quote__intro { display: none; } .calc-quote__card h2 { margin-bottom: var(--f-gap); } }
 /* A short phone screen (an iPhone SE): drop the small print so the form and the calculator still fit. */
 @media (max-height: 700px) {
   .estimate-form__submit p, .calc-quote__call, .estimator__note, .estimate-form__required { display: none; }
   .estimate-form textarea, .calc-quote .estimate-form textarea { height: 52px; }
+  .calc-quote .estimator__grid { margin-top: 0; }
+  .estimator__results { padding-block: 12px; }
 }
