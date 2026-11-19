@@ -14,7 +14,7 @@ const recaptchaKey = /^6L[\w-]{20,60}$/.test(settings.recaptchaSiteKey ?? '') ? 
 ---
 <form class="estimate-form" novalidate method="post" action="/api/quote" data-thanks={thankYouHref} data-label={quote.submitLabel} data-pending-label={quote.submitPendingLabel} data-recaptcha={recaptchaKey || undefined}>
   <p class="estimate-form__required">* Required</p>
-  <div class="form-row">
+  <div class="form-row form-row--pair">
     <label>
       <span>Name *</span>
       <input name="name" type="text" autocomplete="name" minlength="2" maxlength="120" required placeholder="Jane Smith" />
