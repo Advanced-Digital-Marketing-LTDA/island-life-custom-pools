@@ -2,7 +2,7 @@
 import { settings } from '../lib/content';
 
 // The areas served, as one clean grid. The cities come from Site settings (the same list as the footer and the structured data),
-// so every page that has this section says the same thing. An area without a page of its own is plain text.
+// so every page that has this section says the same thing. An area without a page of its own is the same text, underlined, until it gets one.
 interface Props { anchor?: string; headingId: string }
 const { anchor, headingId } = Astro.props;
 const { areas, areasTitle, areasNote } = settings.footer;
@@ -12,7 +12,7 @@ const { areas, areasTitle, areasNote } = settings.footer;
   <div class="page-shell">
     <h2 id={headingId}>{areasTitle}</h2>
     <ul class="areas__list">
-      {areas.map((area) => { const text = area.label || `Pool builder in ${area.name}`; return <li>{area.href ? <a href={area.href}>{text}</a> : <span>{text}</span>}</li>; })}
+      {areas.map((area) => <li>{area.href ? <a href={area.href}>{area.name}</a> : <span>{area.name}</span>}</li>)}
     </ul>
     {areasNote && <p class="areas__note">{areasNote}</p>}
   </div>

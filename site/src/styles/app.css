@@ -1021,7 +1021,7 @@
 .areas__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 0 32px; margin: 28px 0 0; padding: 0; border-bottom: 1px solid var(--primitive-line); list-style: none; }
 .areas__list li { border-top: 1px solid var(--primitive-line); }
 .areas__list a, .areas__list span { display: flex; min-height: 56px; align-items: center; font-size: 16px; }
-.areas__list a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.areas__list a, .areas__list span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
 .areas__note { max-width: 640px; margin-top: 28px; font-size: 17px; line-height: 1.7; }
 
 /* A collapsible FAQ: a short list of questions, each opening to its answer */

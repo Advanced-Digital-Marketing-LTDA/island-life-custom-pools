@@ -225,7 +225,7 @@ export default defineConfig({
           links('nav', 'Footer links'),
           str('areasTitle', 'Service areas heading'),
           text('areasNote', 'Line under the service areas', 'Shown under the service areas section, for example that you build throughout the Greater Houston area.'),
-          items('areas', 'Service areas', 'name', [str('name', 'City'), str('label', 'Link text (optional)', 'Replaces the default "Pool builder in {name}", for example "Pool builder inside the Loop".'), str('href', 'City page (optional)', 'For example "/custom-pool-builders-katy/". The area becomes a link in the service areas sections and the footer. Leave empty for an area without its own page.')]),
+          items('areas', 'Service areas', 'name', [str('name', 'City'), str('href', 'City page (optional)', 'For example "/custom-pool-builders-katy/". The area becomes a link in the service areas sections and the footer. Leave empty for an area without its own page.')]),
           str('hoursTitle', 'Hours heading'),
           items('hours', 'Hours', 'days', [str('days', 'Days'), str('time', 'Hours')]),
           str('copyright', 'Copyright name', 'Shown after © and the current year.'),
