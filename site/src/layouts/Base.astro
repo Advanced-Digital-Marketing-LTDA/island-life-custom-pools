@@ -5,6 +5,8 @@ import SmoothScroll from '../components/SmoothScroll.astro';
 import MobileBar from '../components/MobileBar.astro';
 import { settings, pages, mapUrl } from '../lib/content';
 import { services } from '../lib/services';
+import michromaFont from '../assets/fonts/michroma-regular.woff2?url';
+import montserratFont from '../assets/fonts/montserrat-regular.woff2?url';
 
 interface Props { title: string; description: string; preload?: string; noindex?: boolean; extraLd?: object[] }
 // Coordinates are optional: without them the business schema simply has no map position.
@@ -62,8 +64,8 @@ const ld = {
     {gtmId && <script is:inline set:html={`addEventListener('load',function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');});`} />}
     <link rel="preconnect" href="https://ilcpmedia.b-cdn.net" />
     {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
-    <link rel="preload" as="font" href="/fonts/michroma-regular.woff2" type="font/woff2" crossorigin />
-    <link rel="preload" as="font" href="/fonts/montserrat-regular.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href={michromaFont} type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href={montserratFont} type="font/woff2" crossorigin />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={settings.name} />
