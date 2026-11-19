@@ -962,15 +962,6 @@
 .prose-page li { padding-left: 4px; line-height: 1.7; }
 .prose-page__updated { margin-top: 56px; color: var(--primitive-taupe); font-size: 16px; }
 .gallery-item__link { margin-top: 14px; }
-/* Just past the point where the menu opens out, there is not room for a full-size menu, the phone icon and the quote button. */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .site-header__inner { gap: 10px; padding-inline: 20px; }
-  .site-header__links { gap: 8px; }
-  .site-header__links a { font-size: 14px; }
-  .site-header__cta { padding-inline: 16px; }
-  .brand img { width: 128px; }
-  .brand--compact img { width: 106px; }
-}
 
 /* Eleven footer links in one column make the footer far taller than its other columns: set them in two columns on wide screens. */
 @media (min-width: 1280px) {
@@ -1098,8 +1089,8 @@
   .warranties__list li { flex-direction: row; justify-content: center; text-align: left; font-size: 16px; }
 }
 
-/* Eight menu items and the logo leave no room for the phone icon until the screen is wide; the number is in the hero and the menu. */
-@media (min-width: 1024px) and (max-width: 1439px) { .site-header__phone { display: none; } }
+/* The phone icon only appears with the full menu; below that the number is in the hero and the hamburger menu. */
+@media (min-width: 1024px) and (max-width: 1535px) { .site-header__phone { display: none; } }
 
 
 /* ── Mobile critique fixes ───────────────────────────────────────────── */
@@ -1218,13 +1209,11 @@
 .mobile-menu__links .mobile-menu__sub a { min-height: 48px; align-items: center; border-bottom: 0; padding-left: 16px; font-family: "Montserrat", "Montserrat Fallback", sans-serif; font-size: 18px; color: var(--brand-sand); }
 .mobile-menu__sub { padding-bottom: 12px; }
 
-/* Nine menu items need more room than 1024–1139px offers: those widths keep the phone menu. Up to 1599px the menu, the phone number and the quote button compete for room, so the menu tightens. */
-@media (min-width: 1024px) and (max-width: 1139px) {
+/* Nine menu items plus the logo, phone icon and quote button need about 1536px at full size and spacing. Narrower than that keeps the hamburger menu instead of squeezing the items together. */
+@media (min-width: 1024px) and (max-width: 1535px) {
   .site-header__links { display: none; }
   .site-header .menu-toggle { display: inline-flex; }
 }
-@media (min-width: 1280px) and (max-width: 1359px) { .site-header__links { gap: 8px; } .site-header__links a { font-size: 14px; } }
-@media (min-width: 1360px) and (max-width: 1599px) { .site-header__links { gap: 10px; } .site-header__links a { font-size: 15px; } }
 
 /* Phones: the footer tagline is left out, and the service areas list shows only the cities that have their own page. */
 @media (max-width: 767px) {
