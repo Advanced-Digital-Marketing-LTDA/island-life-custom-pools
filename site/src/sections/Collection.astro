@@ -1,4 +1,5 @@
 ---
+import { responsive } from '../lib/assets';
 import Icon from '../components/Icon.astro';
 
 interface Item { layout?: string; title?: string; category?: string; description?: string; image?: string; alt?: string; href?: string; linkLabel?: string; position?: string }
@@ -29,8 +30,8 @@ const chips = compact ? [] : Object.values(groups).filter((name) => photos.some(
       {photos.map((item, index) => (
         <figure class={`gallery-item gallery-item--${compact ? 'compact' : item.layout || 'wide'}`} data-group={groupOf(item)}>
           <div class="gallery-item__image">
-            {item.image && !compact && <button type="button" class="gallery-item__open" aria-label={`View larger: ${item.title}`}><img src={item.image} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} /></button>}
-            {item.image && compact && <img src={item.image} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
+            {item.image && !compact && <button type="button" class="gallery-item__open" aria-label={`View larger: ${item.title}`}><img {...responsive(item.image, "(min-width: 1024px) 60vw, 100vw")} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} /></button>}
+            {item.image && compact && <img {...responsive(item.image, "(min-width: 1024px) 33vw, 100vw")} alt={item.alt || item.description || item.title} loading="lazy" decoding="async" style={`object-position: ${item.position || 'center'};`} />}
           </div>
           <figcaption>
             {!compact && <span class="gallery-item__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}
@@ -71,7 +72,7 @@ const chips = compact ? [] : Object.values(groups).filter((name) => photos.some(
     root.querySelectorAll<HTMLButtonElement>('.gallery-item__open').forEach((open) => {
       open.addEventListener('click', () => {
         const source = open.querySelector('img')!;
-        image.src = source.currentSrc || source.src;
+        image.src = source.src;
         image.alt = source.alt;
         caption.textContent = open.closest('figure')?.querySelector('h3')?.textContent ?? '';
         dialog.showModal();

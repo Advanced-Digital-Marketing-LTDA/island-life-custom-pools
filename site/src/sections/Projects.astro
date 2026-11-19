@@ -1,4 +1,5 @@
 ---
+import { responsive } from '../lib/assets';
 import Icon from '../components/Icon.astro';
 
 interface Props {
@@ -26,7 +27,7 @@ const { label = '', title = '', titleEm = '', intro = '', cards = [], video = ''
       {cards.map((item) => (
         <figure class={`project project--${item.layout || 'pool'}`}>
           <div class="project__image">
-            {item.image && <img src={item.image} alt={item.alt} loading="lazy" />}
+            {item.image && <img {...responsive(item.image, "(min-width: 1024px) 33vw, 100vw")} alt={item.alt} loading="lazy" />}
           </div>
           <figcaption>
             <div>
