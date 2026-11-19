@@ -9,4 +9,6 @@ const oldPosts = [
 export const redirects = {
   ...Object.fromEntries(oldPosts.map((slug) => [`/${slug}`, `/blog/${slug}/`])),
   '/category/blog': '/blog/',
+  // The old WordPress author page (a Hostinger preview name) is not worth a page of its own: the posts are in the blog.
+  '/author/lightslategray-oryx-550081-hostingersite-com': '/blog/',
 };
