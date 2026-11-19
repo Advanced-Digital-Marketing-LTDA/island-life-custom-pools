@@ -14,7 +14,7 @@ export const settings = withAssetUrls({
   awards: (rawSettings.awards ?? []) as string[],
   foundingDate: rawSettings.foundingDate ?? '',
   ogImage: rawSettings.ogImage || '/images/og-share.jpg',
-  footer: { ...rawSettings.footer, credit: rawSettings.footer?.credit ?? '', creditHref: rawSettings.footer?.creditHref ?? '', nav: rawSettings.footer?.nav ?? [], areas: (rawSettings.footer?.areas ?? []) as { name: string; href?: string; label?: string }[], areasNote: rawSettings.footer?.areasNote ?? '', hours: rawSettings.footer?.hours ?? [] },
+  footer: { ...rawSettings.footer, credit: rawSettings.footer?.credit ?? '', creditHref: rawSettings.footer?.creditHref ?? '', nav: rawSettings.footer?.nav ?? [], areas: (rawSettings.footer?.areas ?? []) as { name: string; href?: string }[], areasNote: rawSettings.footer?.areasNote ?? '', hours: rawSettings.footer?.hours ?? [] },
   quote: { ...rawSettings.quote, interests: rawSettings.quote?.interests ?? [], errorText: rawSettings.quote?.errorText ?? '' },
 });
 export const blog = { ...rawBlog, author: rawBlog.author ?? ({} as Partial<typeof rawBlog.author>) };

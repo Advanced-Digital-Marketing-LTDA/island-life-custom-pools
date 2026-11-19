@@ -168,8 +168,8 @@ for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(
 const frontHtml = pageHtml('');
 assert.ok(!frontHtml.includes('"employee"'), 'The business schema should not name a person');
 // The home page links to the page of every served city, in its own text.
-for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`${escapeHtml(area.label || `Pool builder in ${area.name}`)}</`), `The home page should list ${area.name}`);
-for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(frontHtml.includes(`>${escapeHtml(area.label || `Pool builder in ${area.name}`)}</a>`), `The home page should link to its ${area.name} page`);
+for (const area of settings.footer.areas) assert.ok(frontHtml.includes(`>${escapeHtml(area.name)}</`), `The home page should list ${area.name}`);
+for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(frontHtml.includes(`>${escapeHtml(area.name)}</a>`), `The home page should link to its ${area.name} page`);
 for (const slug of ['custom-pools', 'custom-patios', 'outdoor-kitchens']) assert.ok(pageHtml(slug).includes('"@type":"Service"'), `/${slug}/ should describe its Service`);
 for (const area of settings.footer.areas.filter((item) => item.href)) assert.ok(pageHtml(area.href).includes(`"@type":"Service","name":"Custom pool builder in ${area.name}"`), `${area.href} should describe its Service`);
 assert.ok(frontHtml.includes('"@type":"WebSite"'), 'The home page should describe the WebSite');
