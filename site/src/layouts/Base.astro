@@ -58,7 +58,9 @@ const ld = {
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    {gtmId && <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`} />}
+    {/* GTM waits for the load event so its 200 KB does not compete with the hero image (the LCP element) on a slow phone. */}
+    {gtmId && <script is:inline set:html={`addEventListener('load',function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');});`} />}
+    <link rel="preconnect" href="https://ilcpmedia.b-cdn.net" />
     {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
     <link rel="preload" as="font" href="/fonts/michroma-regular.woff2" type="font/woff2" crossorigin />
     <link rel="preload" as="font" href="/fonts/montserrat-regular.woff2" type="font/woff2" crossorigin />

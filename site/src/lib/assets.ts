@@ -13,8 +13,8 @@ export function withAssetUrls<T>(value: T): T {
 }
 
 // Bunny Optimizer resizes on request with ?width=N. With Optimizer off the parameter is ignored and the full file is served, so this is safe to ship before it is switched on.
-const widths = [480, 800, 1280];
+const widths = [480, 720, 960, 1280];
 export function responsive(src: string, sizes = '100vw') {
   if (!src.startsWith(assetBase + '/images/') || !src.endsWith('.webp')) return { src };
-  return { src, srcset: widths.map((w) => `${src}?width=${w} ${w}w`).join(', '), sizes };
+  return { src, srcset: widths.map((w) => `${src}?width=${w}&quality=70 ${w}w`).join(', '), sizes };
 }
